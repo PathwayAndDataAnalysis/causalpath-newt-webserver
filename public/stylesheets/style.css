@@ -1,26 +1,33 @@
 body {
-  padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 10px;
+	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00b7ff;
 }
 
-.title-heading{
-  background-color: #617d8a;
-  color:floralwhite;
-  border-radius: 20px;
-  padding: 10px;
+.title-heading {
+	background-color: #617d8a;
+	color: floralwhite;
+	border-radius: 20px;
+	padding: 10px;
 }
 
-img.cp-logo{
-  width:80px;
+img.cp-logo {
+	width: 80px;
 }
 
-.edited-button{
-  font-size: 24px;
-  background-color: #617d8a;
-  font-weight: bold;
-  padding: 14px;
+.edited-button {
+	font-size: 24px;
+	background-color: #617d8a;
+	font-weight: bold;
+	padding: 14px;
+}
+
+.button-anchor {
+	color: white;
+}
+.button-anchor:hover {
+	color: white;
 }
