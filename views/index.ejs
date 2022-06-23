@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= title %>>></title>
+    <title>
+        <%= title %>>>
+    </title>
 
     <link rel="icon" type="image/png" href="../images/logo.png"/>
 
@@ -14,6 +17,7 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
 
 </head>
+
 <body>
 
 <div class="row">
@@ -39,7 +43,8 @@
                     cellular
                     signaling
                     and identifies potential causality among detected changes.&nbsp;
-                    The method uses prior knowledge in high precision, distinguishes between activating and inhibiting
+                    The method uses prior knowledge in high precision, distinguishes between activating and
+                    inhibiting
                     phosphorylations,
                     performs a site-specific evaluation of causality.&nbsp;
                     The output of the method is a network model of signaling that explains the observations.&nbsp;
@@ -54,8 +59,10 @@
                     is
                     freely
                     available.&nbsp;
-                    We also provide this web service for easy access to the method and/or visualizing analysis results.&nbsp;
-                    Please note the web server does not support network significance calculations in the analysis due to
+                    We also provide this web service for easy access to the method and/or visualizing analysis
+                    results.&nbsp;
+                    Please note the web server does not support network significance calculations in the analysis
+                    due to
                     limited
                     resources.&nbsp;
                     If that is desired, then the method needs to be run locally from its JAR file (see above link).
@@ -65,7 +72,8 @@
                     <p></p>
                     For a CausalPath analysis, please prepare your input files according to the <a
                             href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md">guidelines</a>.&nbsp;
-                    If you already have results, please visualize them by uploading the related output folder(s) using
+                    If you already have results, please visualize them by uploading the related output folder(s)
+                    using
                     option C
                     below.&nbsp;
                     A sample dataset and analysis parameters can be found in <a
@@ -73,7 +81,8 @@
                         archive</a>.&nbsp;
                     This can be directly uploaded for analysis through option B below.
                     <p></p>
-                    The <a href="https://github.com/PathwayAndDataAnalysis/causalpath-webserver">source code of this web
+                    The <a href="https://github.com/PathwayAndDataAnalysis/causalpath-webserver">source code of this
+                        web
                         server</a> is
                     freely available in a separate project.&nbsp;
                     <p></p>
@@ -85,14 +94,28 @@
         <div class="card" style="margin: 70px 100px 120px;">
             <div class="card-body">
                 <div class="d-grid gap-4 col-8 mx-auto">
-                    <button class="edited-button btn btn-primary" type="button">Upload all input files for analysis
+
+
+                    <button class="edited-button btn btn-primary" type="button">Upload all input files for
+                        analysis
                     </button>
+                    <input type="file" id="graph-file-input" onchange="loadAnalysisDirFromClientInput($event)"
+                           webkitdirectory directory multiple>
+
+
                     <button class="edited-button btn btn-primary" type="button">Visualize results from previous
                         analysis
                     </button>
-                    <button class="edited-button btn btn-primary" type="button">Display demo graphs</button>
-                    <button class="edited-button btn btn-primary" type="button" data-bs-toggle="modal"
-                            data-bs-target="#learnMoreModal" onclick="redirectToGraph()">
+
+
+                    <button href="/graph" class="edited-button btn btn-primary" type="button"
+                            onclick="redirectToGraph()">
+                        <a href="/graph" class="button-anchor">
+                            Display demo graphs</a>
+                    </button>
+
+
+                    <button class="edited-button btn btn-primary" type="button">
                         Learn more
                     </button>
 
@@ -103,9 +126,10 @@
 
     </div>
     <div class="col-sm-1"></div>
-</div>
 
-<script src="/public/javascript/index.js"></script>
+
+    <script src="../javascript/index.js"></script>
 
 </body>
+
 </html>
