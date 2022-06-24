@@ -42,7 +42,7 @@
                     CausalPath evaluates proteomic and other molecular measurements against our prior knowledge of
                     cellular signaling and identifies potential causality among detected changes.
                     The method uses prior knowledge in high precision, distinguishes between activating and
-                    inhibiting phosphorylations, performs a site-specific evaluation of causality.
+                    inhibiting phosphorylation, performs a site-specific evaluation of causality.
                     The output of the method is a network model of signaling that explains the observations.
                     Please refer to <a href="https://doi.org/10.1016/j.patter.2021.100257">this article</a> for a
                     description of the method.
@@ -87,19 +87,16 @@
                     <button class="edited-button btn btn-primary" type="button">Upload all input files for
                         analysis
                     </button>
-                    <input type="file" id="graph-file-input" onchange="loadAnalysisDirFromClientInput($event)"
-                           webkitdirectory directory multiple>
 
 
                     <button class="edited-button btn btn-primary" type="button">Visualize results from previous
                         analysis
                     </button>
+                    <input type="file" id="graph-file-input" webkitdirectory directory multiple>
 
 
-                    <button href="/graph" class="edited-button btn btn-primary" type="button"
-                            onclick="redirectToGraph()">
-                        <a href="/graph" class="button-anchor">
-                            Display demo graphs</a>
+                    <button class="edited-button btn btn-primary" type="button">
+                        <a href="/graph" class="button-anchor">Display demo graphs</a>
                     </button>
 
 
