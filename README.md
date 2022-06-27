@@ -36,7 +36,7 @@ brew install node
 node --version
 ```
 
-### Getting Stated
+### Getting Started
 
 ```
 git clone https://github.com/PathwayAndDataAnalysis/causalpath-newt-webserver.git
