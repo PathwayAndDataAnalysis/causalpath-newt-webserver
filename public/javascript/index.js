@@ -8,6 +8,7 @@ let graphChoice = graphChoiceEnum.ANALYSIS;
 
 function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
 
+    console.log("file", file)
     let idSeparator = '___';
     if (paths.length === 0) {
         return;
@@ -15,6 +16,7 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
 
     for (let i = 0; i < treeNode.length; i++) {
         let nodeText = treeNode[i].text;
+
         if (paths[0] === nodeText) {
             buildFolderTree(
                 paths.splice(1, paths.length),
@@ -28,12 +30,20 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
 
     let nodeId = parentNodePath + idSeparator + paths[0];
     let newNode = {
-        id: nodeId,
-        text: paths[0],
-        children: [],
-        state: {opened: true},
+        'id': nodeId,
+        'text': paths[0],
+        'children': [],
+        'state': {opened: true},
         data: file,
     };
+
+    if (newNode.text.endsWith(".nwt"))
+        newNode.icon = "./images/tree-newt-icon.png"
+    if (newNode.text.endsWith(".sif"))
+        newNode.icon = "./images/tree-sif-icon.png"
+    if (newNode.text.endsWith(".format"))
+        newNode.icon = "./images/tree-sif-icon.png"
+
     treeNode.push(newNode);
     buildFolderTree(paths.splice(1, paths.length), newNode.children, file, nodeId);
 }
@@ -45,11 +55,16 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
  */
 function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
 
+    console.log('fileList', fileList)
     let data = [];
 
     fileList.forEach(file => {
-        let paths = file.webkitRelativePath.split('/').slice(0, -1);
-        buildFolderTree(paths, data, file)
+        let paths = file.webkitRelativePath.split('/');
+        if (paths.at(-1).endsWith(".sif") || paths.at(-1).endsWith(".format") || paths.at(-1).endsWith(".nwt")) {
+            console.log("paths", paths)
+            buildFolderTree(paths, data, file)
+        }
+
     })
 
     let hierarchy = {core: {data: data}};
@@ -63,6 +78,7 @@ function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
  */
 function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     graphChoice = graphChoiceEnum.JSON;
+    console.log('fileList', fileList)
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
