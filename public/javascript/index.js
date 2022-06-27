@@ -8,11 +8,12 @@ let graphChoice = graphChoiceEnum.ANALYSIS;
 
 function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
 
-    console.log("file", file)
+    console.log('file')
+    console.log(file)
+
     let idSeparator = '___';
-    if (paths.length === 0) {
+    if (paths.length === 0)
         return;
-    }
 
     for (let i = 0; i < treeNode.length; i++) {
         let nodeText = treeNode[i].text;
@@ -55,21 +56,21 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
  */
 function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
 
-    console.log('fileList', fileList)
     let data = [];
 
     fileList.forEach(file => {
+
         let paths = file.webkitRelativePath.split('/');
         if (paths.at(-1).endsWith(".sif") || paths.at(-1).endsWith(".format") || paths.at(-1).endsWith(".nwt")) {
-            console.log("paths", paths)
             buildFolderTree(paths, data, file)
         }
 
     })
 
     let hierarchy = {core: {data: data}};
+    console.log('hierarchy')
+    console.log(hierarchy)
 
-    console.log(JSON.stringify(hierarchy))
 }
 
 /***
@@ -78,7 +79,6 @@ function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
  */
 function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     graphChoice = graphChoiceEnum.JSON;
-    console.log('fileList', fileList)
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
