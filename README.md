@@ -30,11 +30,11 @@ CausalPath Webserver with new newt as a visualization tool.
 
 - Install using homebrew:
 
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-
-`brew install node`
-
-`node --version`
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install node
+node --version
+```
 
 ### Getting Stated
 
