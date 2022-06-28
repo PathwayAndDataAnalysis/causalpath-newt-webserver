@@ -16,27 +16,36 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./stylesheets/index.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css"
+          integrity="sha384-Tv5i09RULyHKMwX0E8wJUqSOaXlyu3SQxORObAI08iUwIalMmN5L6AvlPX2LMoSE" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
+          integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"/>
+
+
 </head>
 
 <body>
+
+<div class="title-heading container-fluid align-items-center">
+    <div class="row">
+        <div class="col-2">
+            <img src="/images/logo.png" class="cp-logo" alt="CausalPath Logo">
+        </div>
+        <div class="col-10">
+            <h4>CausalPath: Causal Interactions from Proteomic Profiles</h4>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-10">
 
-        <div class="title-heading container-fluid align-items-center">
-            <div class="row">
-                <div class="col-2">
-                    <img src="/images/logo.png" class="cp-logo" alt="CausalPath Logo">
-                </div>
-                <div class="col-10">
-                    <h4>CausalPath: Causal Interactions from Proteomic Profiles</h4>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card" style="margin-top:20px;">
+        <div id="body_text" class="card" style="margin-top:20px;">
             <div class="card-body">
                 <p>
                     CausalPath evaluates proteomic and other molecular measurements against our prior knowledge of
@@ -79,20 +88,22 @@
             </div>
         </div>
 
-        <div class="card" style="margin-top: 70px;">
+        <div id="selection_menus" class="card" style="margin-top: 70px;">
             <div class="card-body">
                 <div class="d-grid gap-4 col-8 mx-auto">
 
+                    <input id="graph-file-input" type="file" style="display:none;"
+                           accept=".txt, .zip" multiple/>
+                    <input class="edited-button btn btn-primary" type="button"
+                           value="Upload all input files for analysis"
+                           onclick="document.getElementById('graph-file-input').click();"/>
 
-                    <button class="edited-button btn btn-primary" type="button">Upload all input files for
-                        analysis
-                    </button>
 
-
-                    <button class="edited-button btn btn-primary" type="button">Visualize results from previous
-                        analysis
-                    </button>
-                    <input type="file" id="graph-file-input" webkitdirectory directory multiple>
+                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory
+                           multiple/>
+                    <input class="edited-button btn btn-primary" type="button"
+                           value="Visualize results from previous analysis"
+                           onclick="document.getElementById('graph-file-input').click();"/>
 
 
                     <button class="edited-button btn btn-primary" type="button">
@@ -105,12 +116,31 @@
                     </button>
 
                 </div>
-
             </div>
         </div>
 
     </div>
     <div class="col-sm-1"></div>
+
+    <div id="back_menu" class="card">
+        <div class="card-body">
+            <label id="back_button_label" for="back-button"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
+        </div>
+    </div>
+
+
+    <div id="graph_canvas" class="row">
+        <div class="col-lg-3">
+            <div id="folder-tree-container">
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <p>
+                Network graph here.
+            </p>
+
+        </div>
+    </div>
 
 
     <script src="../javascript/index.js"></script>
