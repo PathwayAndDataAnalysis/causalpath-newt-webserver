@@ -2,15 +2,21 @@ const graphChoiceEnum = {
     JSON: 1, ANALYSIS: 2,
     DEMO: 3,
 };
+let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
+    let {statusText, status, ok} = res;
+    if (!ok) {
+        let errStr = status + ' - ' + statusText;
+        return handleRequestError(errStr);
+    }
+    if (!getResData)
+        getResData = () => res.text();
+
+    return getResData(res).then(afterResolve);
+};
 
 let graphChoice = graphChoiceEnum.ANALYSIS;
 
-
 function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
-
-    console.log('file')
-    console.log(file)
-
     let idSeparator = '___';
     if (paths.length === 0)
         return;
@@ -59,18 +65,26 @@ function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
     let data = [];
 
     fileList.forEach(file => {
-
         let paths = file.webkitRelativePath.split('/');
         if (paths.at(-1).endsWith(".sif") || paths.at(-1).endsWith(".format") || paths.at(-1).endsWith(".nwt")) {
             buildFolderTree(paths, data, file)
         }
-
     })
 
     let hierarchy = {core: {data: data}};
-    console.log('hierarchy')
-    console.log(hierarchy)
 
+    $(function () {
+        $('#folder-tree-container').jstree(hierarchy);
+
+        // JSTREE node click event
+        $('#folder-tree-container').on("changed.jstree", function (e, data) {
+            const instance = $.jstree.reference(this);
+            let node = instance.get_node(e.target)
+
+            console.log('node')
+            console.log(node)
+        });
+    });
 }
 
 /***
@@ -82,12 +96,25 @@ function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
+document.getElementById('graph-file-input').addEventListener('change', (event) => {
 
-document.getElementById('graph-file-input')
-    .addEventListener('change', (event) => {
-        let files = event.target.files;
+    let files = event.target.files;
 
-        let fileList = Array.from(files);
+    let fileList = Array.from(files);
 
-        this.loadAnalysisFilesFromClient(fileList);
-    });
+    event.target.value = null; //to make sure the same files can be loaded again
+
+    document.getElementById('back_menu').style.display = 'flex';
+    document.getElementById('graph_canvas').style.display = 'flex';
+    document.getElementById('body_text').style.display = 'none';
+    document.getElementById('selection_menus').style.display = 'none';
+
+    this.loadAnalysisFilesFromClient(fileList);
+});
+
+document.getElementById("back_button_label").addEventListener("click", (event) => {
+    document.getElementById('back_menu').style.display = 'none';
+    document.getElementById('graph_canvas').style.display = 'none';
+    document.getElementById('body_text').style.display = 'flex';
+    document.getElementById('selection_menus').style.display = 'flex';
+});

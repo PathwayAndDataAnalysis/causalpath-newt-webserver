@@ -12,7 +12,6 @@ const api = require('./lib/api');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 // init middlewares
 app.use(cors({origin: true, credentials: true}));
 app.use(logger('dev'));
@@ -44,8 +43,15 @@ app.get('/', (req, res, next) => {
 app.get('/graph', (req, res, next) => {
     res.render('graph', {
         title: 'Graph Network',
-        graphTee: {}
+        graphTree: {}
     });
+});
+
+// end point
+app.post("/api/submitFolders", (req, res, next) => {
+    console.log("/api/submitFolders");
+    console.log(req.body);
+
 });
 
 // catch 404 and forward to error handler
@@ -65,3 +71,4 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
