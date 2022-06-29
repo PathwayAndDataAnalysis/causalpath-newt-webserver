@@ -108,6 +108,12 @@
                     <!--                           value="Visualize results from previous analysis"-->
                     <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
 
+                    <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory-->
+                    <!--                           multiple/>-->
+                    <!--                    <input class="edited-button btn btn-primary" type="file"-->
+                    <!--                           value="Visualize results from previous analysis"-->
+                    <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
+
 
                     <button class="edited-button btn btn-primary" type="button">
                         <a href="/graph" class="button-anchor">Display demo graphs</a>
@@ -138,10 +144,7 @@
             </div>
         </div>
         <div class="col-lg-9">
-            <p>
-                Network graph here.
-            </p>
-
+            <div id="graph-container"></div>
         </div>
     </div>
 
