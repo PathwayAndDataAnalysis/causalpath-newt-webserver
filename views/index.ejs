@@ -99,11 +99,14 @@
                            onclick="document.getElementById('graph-file-input').click();"/>
 
 
-                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory
-                           multiple/>
-                    <input class="edited-button btn btn-primary" type="button"
-                           value="Visualize results from previous analysis"
-                           onclick="document.getElementById('graph-file-input').click();"/>
+                    <div class="picker">
+                        <input type="file" id="picker" name="fileList" webkitdirectory multiple>
+                    </div>
+
+                    <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory multiple/>-->
+                    <!--                    <input class="edited-button btn btn-primary" type="file"-->
+                    <!--                           value="Visualize results from previous analysis"-->
+                    <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
 
 
                     <button class="edited-button btn btn-primary" type="button">
@@ -122,7 +125,7 @@
     </div>
     <div class="col-sm-1"></div>
 
-    <div id="back_menu" class="card">
+    <div id="back_menu" class="card" style="width: 100rem">
         <div class="card-body">
             <label id="back_button_label" for="back-button"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
         </div>
@@ -142,8 +145,9 @@
         </div>
     </div>
 
+</div>
 
-    <script src="../javascript/index.js"></script>
+<script src="../javascript/index.js"></script>
 
 </body>
 

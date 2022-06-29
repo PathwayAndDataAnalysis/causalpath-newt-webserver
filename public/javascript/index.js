@@ -1,7 +1,10 @@
+const jsFolderTree = $('#folder-tree-container');
+
 const graphChoiceEnum = {
     JSON: 1, ANALYSIS: 2,
     DEMO: 3,
 };
+
 let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
     let {statusText, status, ok} = res;
     if (!ok) {
@@ -46,13 +49,48 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
 
     if (newNode.text.endsWith(".nwt"))
         newNode.icon = "./images/tree-newt-icon.png"
-    if (newNode.text.endsWith(".sif"))
+    else if (newNode.text.endsWith(".sif"))
         newNode.icon = "./images/tree-sif-icon.png"
-    if (newNode.text.endsWith(".format"))
+    else if (newNode.text.endsWith(".format"))
         newNode.icon = "./images/tree-sif-icon.png"
+    else
+        newNode.icon = ""
 
     treeNode.push(newNode);
     buildFolderTree(paths.splice(1, paths.length), newNode.children, file, nodeId);
+}
+
+function createConciseTree(hierarchy) {
+    let data = [];
+    hierarchy.forEach(rootNode => {
+            // It means that the node is a file not a folder
+            if (rootNode.children.length === 0) {
+                if (rootNode.text.endsWith(".sif") || rootNode.text.endsWith(".nwt")) {
+                    let node = {
+                        'id': rootNode.id,
+                        'text': rootNode.text.split(".")[0],
+                        'children': [],
+                        'state': {opened: true},
+                        data: rootNode.data,
+                    };
+                    data.push(node);
+                    createConciseTree(rootNode.children);
+                }
+            } else {
+                let node = {
+                    'id': rootNode.id,
+                    'text': rootNode.text,
+                    'children': [],
+                    'state': {opened: true},
+                    data: rootNode.data,
+                };
+                data.push(node);
+                createConciseTree(rootNode.children);
+            }
+            createConciseTree(rootNode.children);
+        }
+    );
+    return data;
 }
 
 /***
@@ -60,7 +98,11 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
  * @param fileList: List of files to display
  * @param isFromClient: file list structure is different depending on whether it is coming from the server or client
  */
-function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
+function buildAndDisplayFolderTree(
+    fileList,
+    isFromClient,
+    chosenNodeId
+) {
 
     let data = [];
 
@@ -73,16 +115,44 @@ function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
 
     let hierarchy = {core: {data: data}};
 
+    console.log('hierarchy');
+    console.log(hierarchy);
+
+    // let hierarchy2 = {core: {data: createConciseTree(hierarchy.core.data)}};
+    // console.log('hierarchy2');
+    // console.log(hierarchy2);
+
+
     $(function () {
-        $('#folder-tree-container').jstree(hierarchy);
+        jsFolderTree.jstree(hierarchy);
 
         // JSTREE node click event
-        $('#folder-tree-container').on("changed.jstree", function (e, data) {
+        jsFolderTree.on("dblclick.jstree", function (e) {
             const instance = $.jstree.reference(this);
             let node = instance.get_node(e.target)
 
-            console.log('node')
-            console.log(node)
+            let makeRequest = () =>
+                fetch('/api/getJsonAtPath', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(node.data),
+                });
+
+            let afterResolve = (fileContent) => {
+                console.log('fileContent');
+                console.log(fileContent);
+            };
+
+            let handleRequestError = (err) => {
+                alert('The error message is: \n' + err);
+                throw err;
+            };
+
+            makeRequest().then((res) =>
+                handleResponse(res, afterResolve, handleRequestError)
+            );
         });
     });
 }
@@ -96,8 +166,23 @@ function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
-document.getElementById('graph-file-input').addEventListener('change', (event) => {
+// document.getElementById('graph-file-input').addEventListener('change', (event) => {
+//
+//     let files = event.target.files;
+//
+//     let fileList = Array.from(files);
+//
+//     event.target.value = null; //to make sure the same files can be loaded again
+//
+//     document.getElementById('back_menu').style.display = 'flex';
+//     document.getElementById('graph_canvas').style.display = 'flex';
+//     document.getElementById('body_text').style.display = 'none';
+//     document.getElementById('selection_menus').style.display = 'none';
+//
+//     this.loadAnalysisFilesFromClient(fileList);
+// });
 
+document.getElementById('picker').addEventListener('change', event => {
     let files = event.target.files;
 
     let fileList = Array.from(files);
