@@ -60,37 +60,88 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
     buildFolderTree(paths.splice(1, paths.length), newNode.children, file, nodeId);
 }
 
-function createConciseTree(hierarchy) {
-    let data = [];
+function getLonelySifNodes(hierarchy, sifNodes = []) {
     hierarchy.forEach(rootNode => {
-            // It means that the node is a file not a folder
-            if (rootNode.children.length === 0) {
-                if (rootNode.text.endsWith(".sif") || rootNode.text.endsWith(".nwt")) {
-                    let node = {
-                        'id': rootNode.id,
-                        'text': rootNode.text.split(".")[0],
-                        'children': [],
-                        'state': {opened: true},
-                        data: rootNode.data,
-                    };
-                    data.push(node);
-                    createConciseTree(rootNode.children);
+            if (rootNode.children.length !== 0) {
+                for (let i = 0; i < rootNode.children.length; i++) {
+                    if (rootNode.children[i].text.endsWith(".sif")) {
+                        let fileName = rootNode.children[i].text.substring(0, rootNode.children[i].text.length - 4);
+                        let lookUpFileName = fileName + ".format";
+
+                        let isFound = false;
+
+                        for (let j = 0; j < rootNode.children.length; j++) {
+                            if (rootNode.children[j].text === lookUpFileName) {
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                            sifNodes.push(rootNode.children[i]);
+                    }
                 }
-            } else {
-                let node = {
-                    'id': rootNode.id,
-                    'text': rootNode.text,
-                    'children': [],
-                    'state': {opened: true},
-                    data: rootNode.data,
-                };
-                data.push(node);
-                createConciseTree(rootNode.children);
             }
-            createConciseTree(rootNode.children);
+            getLonelySifNodes(rootNode.children, sifNodes);
         }
     );
-    return data;
+    return sifNodes;
+}
+
+function getFormatNodes(hierarchy, formatNodes = []) {
+    hierarchy.forEach(rootNode => {
+            // this is leaf node
+            if (rootNode.children.length === 0) {
+                if (rootNode.data.name.endsWith(".format")) {
+                    formatNodes.push(rootNode);
+                }
+            }
+            getFormatNodes(rootNode.children, formatNodes);
+        }
+    );
+    return formatNodes;
+}
+
+function deleteEmptyDirs() {
+    let jsonNodes = $('#folder-tree-container').jstree(true).get_json('#', {flat: true});
+    console.log('jsonNodes');
+    console.log(jsonNodes);
+
+    $.each(jsonNodes, function (i, node) {
+        $.each(jsonNodes, function (i, otherNode) {
+            if (
+                !otherNode.id.includes(node.id)
+                && otherNode.id !== node.id
+                && !otherNode.id.includes('.format')
+                && !otherNode.id.includes('.sif')
+            ) {
+                console.log('deleting ' + node.id);
+                $('#folder-tree-container').jstree(true).delete_node(node.id);
+            }
+        });
+    });
+}
+
+function getLonelyLeaves(hierarchy, leaves = []) {
+    hierarchy.forEach(rootNode => {
+            // not a leaf node
+            if (rootNode.children.length !== 0) {
+                if (rootNode.children.length === 1
+                    && (rootNode.children[0].text.endsWith(".sif") || rootNode.children[0].text.endsWith(".nwt"))) {
+                    leaves.push(rootNode.children[0]);
+                }
+            }
+            getLonelyLeaves(rootNode.children, leaves);
+        }
+    );
+    return leaves;
+}
+
+function deleteNodesByID(nodes) {
+    let ref = $('#folder-tree-container').jstree(true);
+    let ids = [];
+    for (let i = 0; i < nodes.length; i++)
+        ids.push(nodes[i].id);
+    ref.delete_node(ids);
 }
 
 /***
@@ -103,59 +154,77 @@ function buildAndDisplayFolderTree(
     isFromClient,
     chosenNodeId
 ) {
-
     let data = [];
-
     fileList.forEach(file => {
         let paths = file.webkitRelativePath.split('/');
         if (paths.at(-1).endsWith(".sif") || paths.at(-1).endsWith(".format") || paths.at(-1).endsWith(".nwt")) {
             buildFolderTree(paths, data, file)
         }
     })
-
-    let hierarchy = {core: {data: data}};
+    let hierarchy = {
+        core: {
+            animation: 0,
+            check_callback: true,
+            force_text: true,
+            data: data
+        }
+    };
 
     console.log('hierarchy');
     console.log(hierarchy);
 
-    // let hierarchy2 = {core: {data: createConciseTree(hierarchy.core.data)}};
-    // console.log('hierarchy2');
-    // console.log(hierarchy2);
-
-
     $(function () {
-        jsFolderTree.jstree(hierarchy);
+            jsFolderTree.jstree(hierarchy);
 
-        // JSTREE node click event
-        jsFolderTree.on("dblclick.jstree", function (e) {
-            const instance = $.jstree.reference(this);
-            let node = instance.get_node(e.target)
+            // JSTREE node click event
+            jsFolderTree.on("dblclick.jstree", function (e) {
+                const instance = $.jstree.reference(this);
+                let node = instance.get_node(e.target)
 
-            let makeRequest = () =>
-                fetch('/api/getJsonAtPath', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                    body: JSON.stringify(node.data),
-                });
+                console.log('node');
+                console.log(node);
 
-            let afterResolve = (fileContent) => {
-                console.log('fileContent');
-                console.log(fileContent);
-            };
+                let makeRequest = () =>
+                    fetch('/api/getJsonAtPath', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                        },
+                        body: JSON.stringify(node.data),
+                    });
 
-            let handleRequestError = (err) => {
-                alert('The error message is: \n' + err);
-                throw err;
-            };
+                let afterResolve = (fileContent) => {
+                    console.log('fileContent');
+                    console.log(fileContent);
+                };
 
-            makeRequest().then((res) =>
-                handleResponse(res, afterResolve, handleRequestError)
-            );
-        });
-    });
+                let handleRequestError = (err) => {
+                    alert('The error message is: \n' + err);
+                    throw err;
+                };
+
+                makeRequest().then((res) =>
+                    handleResponse(res, afterResolve, handleRequestError)
+                );
+            });
+
+            jsFolderTree.on("loaded.jstree", function (e, data) {
+                let lonelySIFs = getLonelySifNodes(hierarchy.core.data);
+                let formatNodes = getFormatNodes(hierarchy.core.data);
+                // let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
+
+                let toDeleteNodes = lonelySIFs.concat(formatNodes);
+
+                deleteNodesByID(toDeleteNodes);
+
+                // Remove empty dirs from the tree
+                // deleteEmptyDirs();
+
+            });
+        }
+    );
 }
+
 
 /***
  * Load graph directories as a tree in json format
