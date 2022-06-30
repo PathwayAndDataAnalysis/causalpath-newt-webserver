@@ -48,11 +48,11 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
     };
 
     if (newNode.text.endsWith(".nwt"))
-        newNode.icon = "./images/tree-newt-icon.png"
+        newNode.icon = "./img/tree-newt-icon.png"
     else if (newNode.text.endsWith(".sif"))
-        newNode.icon = "./images/tree-sif-icon.png"
+        newNode.icon = "./img/tree-sif-icon.png"
     else if (newNode.text.endsWith(".format"))
-        newNode.icon = "./images/tree-sif-icon.png"
+        newNode.icon = "./img/tree-sif-icon.png"
     else
         newNode.icon = ""
 
@@ -121,19 +121,23 @@ function deleteEmptyDirs() {
     });
 }
 
-function getLonelyLeaves(hierarchy, leaves = []) {
+function getLonelyLeaves(hierarchy, toDeleteNode = []) {
     hierarchy.forEach(rootNode => {
+            let deleteNode = false;
             // not a leaf node
             if (rootNode.children.length !== 0) {
                 if (rootNode.children.length === 1
-                    && (rootNode.children[0].text.endsWith(".sif") || rootNode.children[0].text.endsWith(".nwt"))) {
-                    leaves.push(rootNode.children[0]);
+                    && !rootNode.children[0].data.name.endsWith(".nwt")) {
+                    deleteNode = true;
                 }
             }
-            getLonelyLeaves(rootNode.children, leaves);
+            if (deleteNode) {
+                toDeleteNode.push(rootNode);
+            }
+            getLonelyLeaves(rootNode.children, toDeleteNode);
         }
     );
-    return leaves;
+    return toDeleteNode;
 }
 
 function deleteNodesByID(nodes) {
@@ -211,9 +215,13 @@ function buildAndDisplayFolderTree(
             jsFolderTree.on("loaded.jstree", function (e, data) {
                 let lonelySIFs = getLonelySifNodes(hierarchy.core.data);
                 let formatNodes = getFormatNodes(hierarchy.core.data);
-                // let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
+                let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
 
-                let toDeleteNodes = lonelySIFs.concat(formatNodes);
+                console.log('lonelyLeaves');
+                console.log(lonelyLeaves);
+
+                let toDeleteNodes = lonelySIFs.concat(formatNodes)
+                    // .concat(lonelyLeaves);
 
                 deleteNodesByID(toDeleteNodes);
 
