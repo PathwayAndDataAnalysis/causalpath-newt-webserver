@@ -179,6 +179,8 @@ function buildAndDisplayFolderTree(
 
     $(function () {
             jsFolderTree.jstree(hierarchy);
+            console.log('jsFolderTree');
+            console.log(jsFolderTree);
 
             // JSTREE node click event
             jsFolderTree.on("dblclick.jstree", function (e) {
