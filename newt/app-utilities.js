@@ -101,7 +101,7 @@ appUtilities.adjustUIComponents = function (_cy) {
 	$('.node-palette img').removeClass('selected-mode');
 	$('.edge-palette img').removeClass('selected-mode');
 
-	// Get img for node/edge palettes
+	// Get images for node/edge palettes
 	var nodeImg = $(
 		'.node-palette img[value="' +
 			nodeVal +
@@ -2111,7 +2111,7 @@ appUtilities.getActionsToApplyMapColorScheme = function (
 
 		var actions = [];
 
-		// first clear the background img of already present elements
+		// first clear the background images of already present elements
 		actions.push({
 			name: 'changeData',
 			param: {
@@ -2125,7 +2125,7 @@ appUtilities.getActionsToApplyMapColorScheme = function (
 			name: 'changeData',
 			param: { eles: eles, name: 'background-color', valueMap: idMap },
 		});
-		// first clear the background img of already present collapsed elements
+		// first clear the background images of already present collapsed elements
 		actions.push({
 			name: 'changeDataDirty',
 			param: {
@@ -2551,7 +2551,7 @@ appUtilities.getAllStyles = function (_cy, _nodes, _edges) {
 	var collapsedChildrenEdges = collapsedChildren.filter('edge');
 	var allEdges = edges.union(collapsedChildrenEdges);
 
-	// first get all used colors and background img, then deal with them and keep reference to them
+	// first get all used colors and background images, then deal with them and keep reference to them
 	var colorUsed = appUtilities.getColorsFromElements(nodes, edges);
 	var imagesUsed = appUtilities.getImagesFromElements(nodes);
 

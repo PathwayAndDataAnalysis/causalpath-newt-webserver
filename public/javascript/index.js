@@ -1,5 +1,3 @@
-const jsFolderTree = $('#folder-tree-container');
-
 const graphChoiceEnum = {
     JSON: 1, ANALYSIS: 2,
     DEMO: 3,
@@ -51,8 +49,10 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
         newNode.icon = "./img/tree-newt-icon.png"
     else if (newNode.text.endsWith(".sif"))
         newNode.icon = "./img/tree-sif-icon.png"
-    else if (newNode.text.endsWith(".format"))
-        newNode.icon = "./img/tree-sif-icon.png"
+    // else if (newNode.text.endsWith(".format"))
+    //     newNode.icon = "./img/tree-sif-icon.png"
+    else if (newNode.text.endsWith(".json"))
+        newNode.icon = "./img/tree-json-icon.png"
     else
         newNode.icon = ""
 
@@ -141,11 +141,13 @@ function getLonelyLeaves(hierarchy, toDeleteNode = []) {
 }
 
 function deleteNodesByID(nodes) {
-    let ref = $('#folder-tree-container').jstree(true);
-    let ids = [];
-    for (let i = 0; i < nodes.length; i++)
-        ids.push(nodes[i].id);
-    ref.delete_node(ids);
+    $(function () {
+        let ref = $('#folder-tree-container').jstree(true);
+        let ids = [];
+        for (let i = 0; i < nodes.length; i++)
+            ids.push(nodes[i].id);
+        ref.delete_node(ids);
+    });
 }
 
 /***
@@ -161,7 +163,11 @@ function buildAndDisplayFolderTree(
     let data = [];
     fileList.forEach(file => {
         let paths = file.webkitRelativePath.split('/');
-        if (paths.at(-1).endsWith(".sif") || paths.at(-1).endsWith(".format") || paths.at(-1).endsWith(".nwt")) {
+        if (paths.at(-1).endsWith(".sif")
+            /*|| paths.at(-1).endsWith(".format") */
+            || paths.at(-1).endsWith(".nwt")
+            // || paths.at(-1).endsWith(".json")
+        ) {
             buildFolderTree(paths, data, file)
         }
     })
@@ -174,63 +180,69 @@ function buildAndDisplayFolderTree(
         }
     };
 
-    console.log('hierarchy');
-    console.log(hierarchy);
-
     $(function () {
-            jsFolderTree.jstree(hierarchy);
-            console.log('jsFolderTree');
-            console.log(jsFolderTree);
+            $('#folder-tree-container').jstree(hierarchy);
 
             // JSTREE node click event
-            jsFolderTree.on("dblclick.jstree", function (e) {
+            $('#folder-tree-container').on("dblclick.jstree", function (e) {
                 const instance = $.jstree.reference(this);
                 let node = instance.get_node(e.target)
 
                 console.log('node');
                 console.log(node);
+                console.log(node.data);
 
-                let makeRequest = () =>
-                    fetch('/api/getJsonAtPath', {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify(node.data),
-                    });
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log(e.target.result)
+                }
+                reader.readAsText(node.data);
 
-                let afterResolve = (fileContent) => {
-                    console.log('fileContent');
-                    console.log(fileContent);
-                };
-
-                let handleRequestError = (err) => {
-                    alert('The error message is: \n' + err);
-                    throw err;
-                };
-
-                makeRequest().then((res) =>
-                    handleResponse(res, afterResolve, handleRequestError)
-                );
+                // let makeRequest = () =>
+                //     fetch('/api/getJsonAtPath', {
+                //         method: 'POST',
+                //         headers: {
+                //             'content-type': 'application/json',
+                //         },
+                //         body: JSON.stringify(node.data),
+                //     });
+                //
+                // let afterResolve = (fileContent) => {
+                //     console.log('fileContent');
+                //     console.log(fileContent);
+                // };
+                //
+                // let handleRequestError = (err) => {
+                //     alert('The error message is: \n' + err);
+                //     throw err;
+                // };
+                //
+                // makeRequest().then((res) =>
+                //     handleResponse(res, afterResolve, handleRequestError)
+                // );
             });
 
-            jsFolderTree.on("loaded.jstree", function (e, data) {
-                let lonelySIFs = getLonelySifNodes(hierarchy.core.data);
-                let formatNodes = getFormatNodes(hierarchy.core.data);
-                let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
-
-                console.log('lonelyLeaves');
-                console.log(lonelyLeaves);
-
-                let toDeleteNodes = lonelySIFs.concat(formatNodes)
-                    // .concat(lonelyLeaves);
-
-                deleteNodesByID(toDeleteNodes);
-
-                // Remove empty dirs from the tree
-                // deleteEmptyDirs();
-
-            });
+            // After jsTree build is complete we can delete un-necessary nodes
+            // jsFolderTree.on("loaded.jstree", function (e, data) {
+            //     let lonelySIFs = getLonelySifNodes(hierarchy.core.data);
+            //     let formatNodes = getFormatNodes(hierarchy.core.data);
+            //     let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
+            //
+            //
+            //     let nodesToDelete = lonelySIFs.concat(formatNodes)
+            //     // .concat(lonelyLeaves);
+            //
+            //     // deleteNodesByID(nodesToDelete);
+            //     var ref = $('#folder-tree-container').jstree(true)
+            //     let ids = [];
+            //     for (let i = 0; i < nodesToDelete.length; i++)
+            //         ids.push(nodesToDelete[i].id);
+            //     ref.delete_node(ids);
+            //
+            //     // Remove empty dirs from the tree
+            //     // deleteEmptyDirs();
+            //
+            // });
         }
     );
 }
