@@ -854,7 +854,7 @@ module.exports = function () {
 				}
 
 				if (mapPropertiesExist) {
-					// set default colors(or background img) according to the specified color scheme style
+					// set default colors(or background images) according to the specified color scheme style
 					if (
 						currentGeneralProperties.mapColorSchemeStyle == 'solid'
 					) {
