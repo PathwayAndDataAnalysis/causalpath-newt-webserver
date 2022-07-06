@@ -30,28 +30,28 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___tumor___CausalPath-classical___causative.sif",
                                 "text": "causative.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___tumor___CausalPath-classical___conflicting.sif",
                                 "text": "conflicting.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___tumor___CausalPath-classical___causative.format",
                                 "text": "causative.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -70,14 +70,14 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___vehicle_epithelial___CausalPath-rank-based___vehicle_epithelial.TF-activity.format",
                                 "text": "vehicle_epithelial.TF-activity.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -90,28 +90,28 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___vehicle_epithelial___CausalPath-classical___causative.sif",
                                 "text": "causative.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___vehicle_epithelial___CausalPath-classical___conflicting.sif",
                                 "text": "conflicting.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___vehicle_epithelial___CausalPath-classical___causative.format",
                                 "text": "causative.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -130,14 +130,14 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___M-TPC___CausalPath-rank-based___M-TPC.TF-activity.sif",
                                 "text": "M-TPC.TF-activity.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -150,28 +150,28 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___M-TPC___CausalPath-classical___causative.sif",
                                 "text": "causative.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___M-TPC___CausalPath-classical___conflicting.sif",
                                 "text": "conflicting.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___M-TPC___CausalPath-classical___causative.format",
                                 "text": "causative.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -190,14 +190,14 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___T-TPC___CausalPath-rank-based___T-TPC.TF-activity.format",
                                 "text": "T-TPC.TF-activity.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -210,28 +210,28 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___T-TPC___CausalPath-classical___causative.sif",
                                 "text": "causative.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___T-TPC___CausalPath-classical___conflicting.sif",
                                 "text": "conflicting.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___T-TPC___CausalPath-classical___causative.format",
                                 "text": "causative.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -244,7 +244,7 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-newt-icon.png"
+                                "icon": "./img/tree-newt-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}
@@ -263,28 +263,28 @@ $(function () {
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___4nqo_epithelial___CausalPath-classical___causative.sif",
                                 "text": "causative.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___4nqo_epithelial___CausalPath-classical___conflicting.sif",
                                 "text": "conflicting.sif",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }, {
                                 "id": "___TPC___4nqo_epithelial___CausalPath-classical___causative.format",
                                 "text": "causative.format",
                                 "children": [],
                                 "state": {"opened": true},
                                 "data": {},
-                                "icon": "./images/tree-sif-icon.png"
+                                "icon": "./img/tree-sif-icon.png"
                             }],
                             "state": {"opened": true},
                             "data": {}

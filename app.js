@@ -10,7 +10,7 @@ const api = require('./lib/api');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 
 // init middlewares
 app.use(cors({origin: true, credentials: true}));
@@ -29,23 +29,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-
+app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist/jquery.min.js')));
 
 // init routers
 /* GET home page. */
 app.get('/', (req, res, next) => {
-    res.render('index', {
-        title: 'CausalPath Webserver'
-    });
+    // res.render('index', {
+    //     title: 'CausalPath Webserver',
+    //     name: 'CausalPath'
+    // });
+
+    res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
 // Network Diagram
-app.get('/graph', (req, res, next) => {
-    res.render('graph', {
-        title: 'Graph Network',
-        graphTree: {}
-    });
-});
+// app.get('/graph', (req, res, next) => {
+//     res.render('graph', {
+//         title: 'Graph Network',
+//         graphTree: {}
+//     });
+// });
 
 // end point
 app.post("/api/submitFolders", (req, res, next) => {

@@ -2,6 +2,7 @@ const graphChoiceEnum = {
     JSON: 1, ANALYSIS: 2,
     DEMO: 3,
 };
+
 let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
     let {statusText, status, ok} = res;
     if (!ok) {
@@ -45,14 +46,108 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
     };
 
     if (newNode.text.endsWith(".nwt"))
-        newNode.icon = "./images/tree-newt-icon.png"
-    if (newNode.text.endsWith(".sif"))
-        newNode.icon = "./images/tree-sif-icon.png"
-    if (newNode.text.endsWith(".format"))
-        newNode.icon = "./images/tree-sif-icon.png"
+        newNode.icon = "./img/tree-newt-icon.png"
+    else if (newNode.text.endsWith(".sif"))
+        newNode.icon = "./img/tree-sif-icon.png"
+    // else if (newNode.text.endsWith(".format"))
+    //     newNode.icon = "./img/tree-sif-icon.png"
+    else if (newNode.text.endsWith(".json"))
+        newNode.icon = "./img/tree-json-icon.png"
+    else
+        newNode.icon = ""
 
     treeNode.push(newNode);
     buildFolderTree(paths.splice(1, paths.length), newNode.children, file, nodeId);
+}
+
+function getLonelySifNodes(hierarchy, sifNodes = []) {
+    hierarchy.forEach(rootNode => {
+            if (rootNode.children.length !== 0) {
+                for (let i = 0; i < rootNode.children.length; i++) {
+                    if (rootNode.children[i].text.endsWith(".sif")) {
+                        let fileName = rootNode.children[i].text.substring(0, rootNode.children[i].text.length - 4);
+                        let lookUpFileName = fileName + ".format";
+
+                        let isFound = false;
+
+                        for (let j = 0; j < rootNode.children.length; j++) {
+                            if (rootNode.children[j].text === lookUpFileName) {
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if (!isFound)
+                            sifNodes.push(rootNode.children[i]);
+                    }
+                }
+            }
+            getLonelySifNodes(rootNode.children, sifNodes);
+        }
+    );
+    return sifNodes;
+}
+
+function getFormatNodes(hierarchy, formatNodes = []) {
+    hierarchy.forEach(rootNode => {
+            // this is leaf node
+            if (rootNode.children.length === 0) {
+                if (rootNode.data.name.endsWith(".format")) {
+                    formatNodes.push(rootNode);
+                }
+            }
+            getFormatNodes(rootNode.children, formatNodes);
+        }
+    );
+    return formatNodes;
+}
+
+function deleteEmptyDirs() {
+    let jsonNodes = $('#folder-tree-container').jstree(true).get_json('#', {flat: true});
+    console.log('jsonNodes');
+    console.log(jsonNodes);
+
+    $.each(jsonNodes, function (i, node) {
+        $.each(jsonNodes, function (i, otherNode) {
+            if (
+                !otherNode.id.includes(node.id)
+                && otherNode.id !== node.id
+                && !otherNode.id.includes('.format')
+                && !otherNode.id.includes('.sif')
+            ) {
+                console.log('deleting ' + node.id);
+                $('#folder-tree-container').jstree(true).delete_node(node.id);
+            }
+        });
+    });
+}
+
+function getLonelyLeaves(hierarchy, toDeleteNode = []) {
+    hierarchy.forEach(rootNode => {
+            let deleteNode = false;
+            // not a leaf node
+            if (rootNode.children.length !== 0) {
+                if (rootNode.children.length === 1
+                    && !rootNode.children[0].data.name.endsWith(".nwt")) {
+                    deleteNode = true;
+                }
+            }
+            if (deleteNode) {
+                toDeleteNode.push(rootNode);
+            }
+            getLonelyLeaves(rootNode.children, toDeleteNode);
+        }
+    );
+    return toDeleteNode;
+}
+
+function deleteNodesByID(nodes) {
+    $(function () {
+        let ref = $('#folder-tree-container').jstree(true);
+        let ids = [];
+        for (let i = 0; i < nodes.length; i++)
+            ids.push(nodes[i].id);
+        ref.delete_node(ids);
+    });
 }
 
 /***
@@ -60,32 +155,98 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
  * @param fileList: List of files to display
  * @param isFromClient: file list structure is different depending on whether it is coming from the server or client
  */
-function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
-
+function buildAndDisplayFolderTree(
+    fileList,
+    isFromClient,
+    chosenNodeId
+) {
     let data = [];
-
     fileList.forEach(file => {
         let paths = file.webkitRelativePath.split('/');
-        if (paths.at(-1).endsWith(".sif") || paths.at(-1).endsWith(".format") || paths.at(-1).endsWith(".nwt")) {
+        if (paths.at(-1).endsWith(".sif")
+            /*|| paths.at(-1).endsWith(".format") */
+            || paths.at(-1).endsWith(".nwt")
+            // || paths.at(-1).endsWith(".json")
+        ) {
             buildFolderTree(paths, data, file)
         }
     })
-
-    let hierarchy = {core: {data: data}};
+    let hierarchy = {
+        core: {
+            animation: 0,
+            check_callback: true,
+            force_text: true,
+            data: data
+        }
+    };
 
     $(function () {
-        $('#folder-tree-container').jstree(hierarchy);
+            $('#folder-tree-container').jstree(hierarchy);
 
-        // JSTREE node click event
-        $('#folder-tree-container').on("changed.jstree", function (e, data) {
-            const instance = $.jstree.reference(this);
-            let node = instance.get_node(e.target)
+            // JSTREE node click event
+            $('#folder-tree-container').on("dblclick.jstree", function (e) {
+                const instance = $.jstree.reference(this);
+                let node = instance.get_node(e.target)
 
-            console.log('node')
-            console.log(node)
-        });
-    });
+                console.log('node');
+                console.log(node);
+                console.log(node.data);
+
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log(e.target.result)
+                }
+                reader.readAsText(node.data);
+
+                // let makeRequest = () =>
+                //     fetch('/api/getJsonAtPath', {
+                //         method: 'POST',
+                //         headers: {
+                //             'content-type': 'application/json',
+                //         },
+                //         body: JSON.stringify(node.data),
+                //     });
+                //
+                // let afterResolve = (fileContent) => {
+                //     console.log('fileContent');
+                //     console.log(fileContent);
+                // };
+                //
+                // let handleRequestError = (err) => {
+                //     alert('The error message is: \n' + err);
+                //     throw err;
+                // };
+                //
+                // makeRequest().then((res) =>
+                //     handleResponse(res, afterResolve, handleRequestError)
+                // );
+            });
+
+            // After jsTree build is complete we can delete un-necessary nodes
+            // jsFolderTree.on("loaded.jstree", function (e, data) {
+            //     let lonelySIFs = getLonelySifNodes(hierarchy.core.data);
+            //     let formatNodes = getFormatNodes(hierarchy.core.data);
+            //     let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
+            //
+            //
+            //     let nodesToDelete = lonelySIFs.concat(formatNodes)
+            //     // .concat(lonelyLeaves);
+            //
+            //     // deleteNodesByID(nodesToDelete);
+            //     var ref = $('#folder-tree-container').jstree(true)
+            //     let ids = [];
+            //     for (let i = 0; i < nodesToDelete.length; i++)
+            //         ids.push(nodesToDelete[i].id);
+            //     ref.delete_node(ids);
+            //
+            //     // Remove empty dirs from the tree
+            //     // deleteEmptyDirs();
+            //
+            // });
+        }
+    );
 }
+
 
 /***
  * Load graph directories as a tree in json format
@@ -96,8 +257,23 @@ function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
-document.getElementById('graph-file-input').addEventListener('change', (event) => {
+// document.getElementById('graph-file-input').addEventListener('change', (event) => {
+//
+//     let files = event.target.files;
+//
+//     let fileList = Array.from(files);
+//
+//     event.target.value = null; //to make sure the same files can be loaded again
+//
+//     document.getElementById('back_menu').style.display = 'flex';
+//     document.getElementById('graph_canvas').style.display = 'flex';
+//     document.getElementById('body_text').style.display = 'none';
+//     document.getElementById('selection_menus').style.display = 'none';
+//
+//     this.loadAnalysisFilesFromClient(fileList);
+// });
 
+document.getElementById('picker').addEventListener('change', event => {
     let files = event.target.files;
 
     let fileList = Array.from(files);

@@ -11,19 +11,26 @@
         <%= title %>
     </title>
 
-    <link rel="icon" type="image/png" href="../images/logo.png"/>
+    <link rel="icon" type="image/png" href="../img/logo.png"/>
 
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="./css/bootstrap.min.css">-->
     <link rel="stylesheet" href="./stylesheets/index.css">
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css"/>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
+<!--    Bootstrap   -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<!--    Bootstrap   -->
+
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css"
           integrity="sha384-Tv5i09RULyHKMwX0E8wJUqSOaXlyu3SQxORObAI08iUwIalMmN5L6AvlPX2LMoSE" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
           integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
 
 
 </head>
@@ -33,7 +40,7 @@
 <div class="title-heading container-fluid align-items-center">
     <div class="row">
         <div class="col-2">
-            <img src="/images/logo.png" class="cp-logo" alt="CausalPath Logo">
+            <img src="/img/logo.png" class="cp-logo" alt="CausalPath Logo">
         </div>
         <div class="col-10">
             <h4>CausalPath: Causal Interactions from Proteomic Profiles</h4>
@@ -99,11 +106,20 @@
                            onclick="document.getElementById('graph-file-input').click();"/>
 
 
-                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory
-                           multiple/>
-                    <input class="edited-button btn btn-primary" type="button"
-                           value="Visualize results from previous analysis"
-                           onclick="document.getElementById('graph-file-input').click();"/>
+                    <div class="picker">
+                        <input type="file" id="picker" name="fileList" webkitdirectory multiple>
+                    </div>
+
+                    <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory multiple/>-->
+                    <!--                    <input class="edited-button btn btn-primary" type="file"-->
+                    <!--                           value="Visualize results from previous analysis"-->
+                    <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
+
+                    <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory-->
+                    <!--                           multiple/>-->
+                    <!--                    <input class="edited-button btn btn-primary" type="file"-->
+                    <!--                           value="Visualize results from previous analysis"-->
+                    <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
 
 
                     <button class="edited-button btn btn-primary" type="button">
@@ -135,15 +151,1545 @@
             </div>
         </div>
         <div class="col-lg-9">
-            <p>
-                Network graph here.
-            </p>
+
+
+            <div class="graph-container">
+
+                <div id="newt-graph-container">
+
+                    <div class="read-mode-off">
+                        <div class="nav-menu sbgn-nav-menu">
+                            <nav class="navbar navbar-default sbgn-nav-bar" role="navigation">
+                                <div>
+                                    <ul class="nav navbar-nav navbar-left" style="display:inline;">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                File
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <input id="file-input" type="file" style="display:none"/>
+                                                <li><a href="#" type="file" id="new-file">New</a></li>
+                                                <li><a href="#" type="file" id="load-file">Load...</a></li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Samples
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="title"><i>PD</i></a></li>
+                                                        <li class="divider" style="margin-top: 0"></li>
+                                                        <li><a href="#" id="load-sample1">Neuronal muscle signaling</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample2">CaM-CaMK dependent signaling
+                                                                to
+                                                                nucleus</a></li>
+                                                        <li><a href="#" id="load-sample3">ATM mediated phosphorylation
+                                                                of
+                                                                repair
+                                                                proteins</a></li>
+                                                        <li><a href="#" id="load-sample4">Activated STAT1alpha induction
+                                                                of
+                                                                the
+                                                                IRF1
+                                                                gene</a></li>
+                                                        <li><a href="#" id="load-sample5">Vitamins B6 activation to
+                                                                pyridoxal
+                                                                phosphate</a></li>
+                                                        <li><a href="#" id="load-sample6">Insulin-like growth factor
+                                                                (IGF)
+                                                                signaling</a></li>
+                                                        <li><a href="#" id="load-sample7">PolyQ proteins
+                                                                interference</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample8">Glycolysis</a></li>
+                                                        <li><a href="#" id="load-sample9">MAPK cascade</a></li>
+                                                        <li><a href="#" id="load-sample10">Drosophila cell cycle</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample11">Mammalian cholesterol
+                                                                biosynthesis</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample12">Two gene system behavior</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample19">PD Learner's Reference
+                                                                Card</a>
+                                                        </li>
+                                                        <li class="divider" style="margin-bottom: 0"></li>
+                                                        <li><a class="title"><i>AF</i></a></li>
+                                                        <li class="divider" style="margin-top: 0"></li>
+                                                        <li><a href="#" id="load-sample13">Transforming growth factor
+                                                                beta
+                                                                (TGFB)
+                                                                signaling</a></li>
+                                                        <li><a href="#" id="load-sample14">Repressilator</a></li>
+                                                        <li><a href="#" id="load-sample15">Epidermal growth factor
+                                                                receptor</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample16">Regulation of TGF-beta
+                                                                induced
+                                                                metastasis</a></li>
+                                                        <li><a href="#" id="load-sample20">AF Learner's Reference
+                                                                Card</a>
+                                                        </li>
+                                                        <li class="divider" style="margin-bottom: 0"></li>
+                                                        <li><a class="title"><i>SIF</i></a></li>
+                                                        <li class="divider" style="margin-top: 0"></li>
+                                                        <li><a href="#" id="load-sample17">RTN4 controllers and binding
+                                                                proteins</a>
+                                                        </li>
+                                                        <li><a href="#" id="load-sample18">Signaling downstream of
+                                                                AKT2/3</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#" id="save-as-nwt">Save...</a></li>
+                                                <li><a href="#" type="file" id="close-file">Close</a></li>
+                                                <li class="divider"></li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Import
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <input id="simple-af-file-input" type="file"
+                                                               style="display:none"/>
+                                                        <input id="sif-file-input" type="file" style="display:none"/>
+                                                        <input id="sif-style-input" type="file" style="display:none"/>
+                                                        <input id="sif-layout-input" type="file" style="display:none"/>
+                                                        <input id="sbml-file" type="file" style="display:none"/>
+                                                        <input id="celldesigner-file-input" type="file"
+                                                               style="display:none"/>
+                                                        <li><a href="#" id="import-simple-af-file">Simple AF</a></li>
+                                                        <li><a href="#" id="import-sif-file">SIF</a></li>
+                                                        <li><a href="#" id="import-sif-style">SIF Style</a></li>
+                                                        <li><a href="#" id="import-sif-layout">SIF Layout</a></li>
+                                                        <li><a href="#" id="import-SBML-file">SBML</a></li>
+                                                        <li><a href="#" id="import-celldesigner-file">CellDesigner</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Export
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="export-as-sbgnml-plain-file">SBGN-ML
+                                                                Plain</a>
+                                                        </li>
+                                                        <li><a href="#" id="export-as-sbgnml3-plain-file">SBGN-ML Plain
+                                                                0.3</a>
+                                                        </li>
+                                                        <li><a href="#" id="export-as-nwt3-file">NWT 0.3</a></li>
+                                                        <li><a href="#" id="export-to-plain-sif">SIF</a></li>
+                                                        <li><a href="#" id="export-to-sif-layout">SIF Layout</a></li>
+                                                        <li><a href="#" id="export-as-sbml">SBML</a></li>
+                                                        <li><a href="#"
+                                                               id="export-as-celldesigner-file">CellDesigner</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Export as Image
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="save-as-png">PNG</a></li>
+                                                        <li><a href="#" id="save-as-jpg">JPG</a></li>
+                                                        <li><a href="#" id="save-as-svg">SVG</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <input id="user-preferences-file-input" type="file"
+                                                       style="display:none"/>
+                                                <li><a href="#" id="load-user-preferences">Load Preferences...</a></li>
+                                                <li><a href="#" id="save-user-preferences">Save Preferences...</a></li>
+
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Edit
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" id="add-complex-for-selected">Add Complex for
+                                                        Selected</a>
+                                                </li>
+                                                <li><a href="#" id="add-compartment-for-selected">Add Compartment for
+                                                        Selected</a>
+                                                </li>
+                                                <li><a href="#" id="add-submap-for-selected">Add Submap for Selected</a>
+                                                </li>
+                                                <li><a href="#" id="create-reaction-template">Add from Template...</a>
+                                                </li>
+                                                <li><a href="#" id="clone-selected">Clone Selected</a></li>
+
+                                                <li class="divider"></li>
+                                                <li><a href="#" id="delete-selected-simple">Delete Selected Simple</a>
+                                                </li>
+                                                <li><a href="#" id="delete-selected-smart">Delete Selected Smart</a>
+                                                </li>
+
+                                                <li class="divider"></li>
+                                                <li><a href="#" id="resize-nodes-to-content">Resize Nodes To Content</a>
+                                                </li>
+                                                <li><a href="#" id="highlight-errors-of-validation"> Validate Map...</a>
+                                                </li>
+
+                                                <li class="divider"></li>
+                                                <li class="disabled"><a href="#" id="undo-last-action">Undo</a></li>
+                                                <li class="disabled"><a href="#" id="redo-last-action">Redo</a></li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                View
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Select
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="select-all">All Nodes and Edges</a></li>
+                                                        <li><a href="#" id="select-all-nodes">All Nodes</a></li>
+                                                        <li><a href="#" id="select-all-edges">All Edges</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Zoom
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="zoom-to-selected">Zoom to Selected</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Hide/Show
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="hide-selected">Hide Selected</a></li>
+                                                        <li><a href="#" id="show-selected">Show Selected</a></li>
+                                                        <li><a href="#" id="show-hidden-neighbors-of-selected">Show
+                                                                Hidden
+                                                                Neighbors
+                                                                of Selected</a></li>
+                                                        <li><a href="#" id="show-all">Show All</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                        Collapse/Expand
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="collapse-selected">Collapse Selected</a>
+                                                        </li>
+                                                        <li><a href="#" id="expand-selected">Expand Selected</a></li>
+                                                        <li><a href="#" id="collapse-complexes">Collapse Complexes</a>
+                                                        </li>
+                                                        <li><a href="#" id="expand-complexes">Expand Complexes</a></li>
+                                                        <li><a href="#" id="collapse-all">Collapse All</a></li>
+                                                        <li><a href="#" id="expand-all">Expand All</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" id="add-node-menu-option" class="dropdown-toggle"
+                                                       data-toggle="dropdown">
+                                                        Align
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu" id="add-node-submenu">
+                                                        <li class="dropdown-submenu">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                Horizontal
+                                                                <!--<b class="right-caret"></b>-->
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#" id="align-horizontal-top">Top</a></li>
+                                                                <li><a href="#" id="align-horizontal-middle">Middle</a>
+                                                                </li>
+                                                                <li><a href="#" id="align-horizontal-bottom">Bottom</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown-submenu">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                Vertical
+                                                                <!--<b class="right-caret"></b>-->
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#" id="align-vertical-left">Left</a></li>
+                                                                <li><a href="#" id="align-vertical-center">Center</a>
+                                                                </li>
+                                                                <li><a href="#" id="align-vertical-right">Right</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#" id="grid-properties" style="padding-right: 30px;">Grid
+                                                        and
+                                                        Guidelines...</a></li>
+                                                <li><a href="#" id="general-properties">Map Properties...</a></li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Highlight
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" id="highlight-search-menu-item">Search...</a></li>
+                                                <li><a href="#" id="highlight-selected">Selected</a></li>
+                                                <li><a href="#" id="highlight-neighbors-of-selected">Neighbors of
+                                                        Selected</a>
+                                                </li>
+                                                <li><a href="#" id="highlight-processes-of-selected">Processes of
+                                                        Selected</a>
+                                                </li>
+                                                <li><a href="#" id="remove-highlights">Remove Highlights</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Experiment
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" id="import-experimental-data">Load...</a></li>
+                                                <input id="overlay-data" type="file" style="display:none"/>
+                                                <li><a href="#" id="sample-experiment-data">Load Sample</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#" value="true" id="experiment-data-hide-all">Hide/Show
+                                                        All</a>
+                                                </li>
+                                                <li><a href="#" id="experiment-data-remove-all">Remove All</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Layout
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" id="perform-layout">Perform Layout</a></li>
+                                                <li><a href="#" id="perform-static-layout">Perform Static Layout</a>
+                                                </li>
+                                                <li><a href="#" id="layout-properties">Layout Properties...</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Query
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#" id="query-pathwaycommons" class="dropdown-toggle"
+                                                       data-toggle="dropdown">
+                                                        Pathway Commons
+                                                        <!--<b class="right-caret"></b>-->
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" id="query-pathsbetween">Paths Between...</a>
+                                                        </li>
+                                                        <li><a href="#" id="query-pathsfromto">Paths From To...</a></li>
+                                                        <li><a href="#" id="query-commonstream">Common Stream...</a>
+                                                        </li>
+                                                        <li><a href="#" id="query-neighborhood">Neighborhood...</a></li>
+                                                        <li><a href="#" id="query-pathsbyURI">By URI...</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Legend
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" id="PD-legend">Process Description</a></li>
+                                                <li><a href="#" id="AF-legend">Activity Flow</a></li>
+                                                <li><a href="#" id="SIF-legend">SIF</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Help
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" id="quick-help">Quick Help</a></li>
+                                                <li><a href="#" id="quick-tutorial">Quick Tutorial</a></li>
+                                                <li><a href="#" id="ui-guide">UI Guide</a></li>
+                                                <li><a href="#" id="about">About</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <span class="input-file" id="displayed-file-name"></span>
+                                    <span class="input-file" id="file-name"></span>
+                                </div>
+                            </nav>
+                        </div>
+
+                        <div id="sbgn-toolbar" class="read-mode-off">
+                            <div class="inside-menu">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="new-file-icon" src="img/toolbar/new.svg" title="New: Create a blank map">
+                                </div>
+
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="load-file-icon" src="img/toolbar/load.svg"
+                                         title="Load: Load a map from a Newt file">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="save-icon" src="img/toolbar/save.svg"
+                                         title="Save: Save current map to a Newt file">
+                                </div>
+                            </div>
+
+                            <div class="menu-break-large sbgn-toolbar-element"> &nbsp;</div>
+                            <div class="inside-menu">
+
+                                <div style="padding: 1px;" class="sbgn-toolbar-element"><img id="select-mode-icon"
+                                                                                             src="img/toolbar/select.svg"
+                                                                                             title="Select / Edit">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element"><img id="add-node-mode-icon"
+                                                                                             src="img/nodes/unspecified-entity.svg"
+                                                                                             title="Create a new Unspecified Entity">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element"><img id="add-edge-mode-icon"
+                                                                                             src="img/edges/consumption.svg"
+                                                                                             title="Create a new Consumption">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element"><img id="marquee-zoom-mode-icon"
+                                                                                             src="img/toolbar/marquee.svg"
+                                                                                             title="Marquee Zoom: Zoom to area specified by Shift + left click and drag">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="delete-selected-simple-icon" src="img/toolbar/delete-simple.svg"
+                                         title="Delete Selected Simple: Delete selected nodes and edges">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="delete-selected-smart-icon" src="img/toolbar/delete-smart.svg"
+                                         title="Delete Selected Smart: Delete selected nodes and any processes they are involved in">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="highlight-errors-of-validation-icon" src="img/toolbar/check.svg"
+                                         title="Validate Map: Validate SBGN PD map and fix problems">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="undo-icon" src="img/toolbar/undo.svg"
+                                         title="Undo: Undo the last operation">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="redo-icon" src="img/toolbar/redo.svg"
+                                         title="Redo: Redo the last undone operation">
+                                </div>
+
+                            </div>
+
+                            <div class="menu-break-large sbgn-toolbar-element">&nbsp;</div>
+                            <div class="inside-menu">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="hide-selected-icon" src="img/toolbar/hide-selected.svg"
+                                         title="Hide Selected: Hide selected nodes and any processes they are involved in">
+
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="show-selected-icon" src="img/toolbar/show-all.svg"
+                                         title="Show Selected: Show selected nodes and any processes they are involved in, hiding the remaining nodes and their edges">
+
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="collapse-selected-icon" src="img/toolbar/collapse-selected.svg"
+                                         title="Collapse Selected: Collapse selected compound node to hide its members">
+
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="expand-selected-icon" src="img/toolbar/expand-selected.svg"
+                                         title="Expand Selected: Expand selected collapsed node to show its members">
+
+                                </div>
+
+
+                                <div class="btn-group sbgn-toolbar-element sbgn-dd-list" role="group" id="align-list">
+                                    <button id="align-button" style="padding:3px"
+                                            title="Align to First Selected: Align positions of selected nodes based on the first (if any) selected node"
+                                            type="button" class="btn" aria-haspopup="true" aria-expanded="false">
+                                        <div style="height: 16px;">
+                                            <img style="height: 16px; width: auto;" id="sbgn-align-img"
+                                                 src="img/align/align.svg"/>
+                                            <!--<span style="float: right;" class="caret"></span>-->
+                                        </div>
+                                    </button>
+                                    <button id="align-dd-button" style="padding:3px; padding-top:4px;" type="button"
+                                            class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <div style="height: 16px;">
+                                            <span class="caret"></span>
+                                            <span class="sr-only"></span>
+                                        </div>
+                                    </button>
+                                    <ul id="align-menu" class="dropdown-menu">
+                                        <li><a class="dd-list-href" href="#" id="align-horizontal-top-icon">&nbsp;<img
+                                                        src="img/align/align-horizontal-top.svg"/>&nbsp;&nbsp;Align
+                                                Horizontal
+                                                Top</a></li>
+                                        <li><a class="dd-list-href" href="#"
+                                               id="align-horizontal-middle-icon">&nbsp;<img
+                                                        src="img/align/align-horizontal-middle.svg"/>&nbsp;&nbsp;Align
+                                                Horizontal Middle</a>
+                                        </li>
+                                        <li><a class="dd-list-href" href="#"
+                                               id="align-horizontal-bottom-icon">&nbsp;<img
+                                                        src="img/align/align-horizontal-bottom.svg"/>&nbsp;&nbsp;Align
+                                                Horizontal Bottom</a>
+                                        </li>
+                                        <li><a class="dd-list-href" href="#" id="align-vertical-left-icon">&nbsp;<img
+                                                        src="img/align/align-vertical-left.svg"/>&nbsp;&nbsp;Align
+                                                Vertical
+                                                Left</a></li>
+                                        <li><a class="dd-list-href" href="#" id="align-vertical-center-icon">&nbsp;<img
+                                                        src="img/align/align-vertical-center.svg"/>&nbsp;&nbsp;Align
+                                                Vertical
+                                                Center</a>
+                                        </li>
+                                        <li><a class="dd-list-href" href="#" id="align-vertical-right-icon">&nbsp;<img
+                                                        src="img/align/align-vertical-right.svg"/>&nbsp;&nbsp;Align
+                                                Vertical
+                                                Right</a></li>
+                                    </ul>
+                                </div>
+
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="toggle-grid-snapping-icon" src="img/toolbar/grid.svg"
+                                         title="Enable Grid: Show and snap to grid during drag">
+                                </div>
+                                <img id="toggle-guidelines-snapping-icon" class="sbgn-toolbar-element"
+                                     src="img/toolbar/guidelines.svg"
+                                     title="Enable Guidelines: Enable and snap to alignment guidelines during drag">
+                                <img id="properties-icon" class="sbgn-toolbar-element" src="img/toolbar/settings.svg"
+                                     title="Map Properties: Modify general properties of current SBGN map">
+                            </div>
+
+                            <div class="menu-break-large sbgn-toolbar-element">&nbsp;</div>
+                            <div class="inside-menu">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="search-by-label-icon" src="img/toolbar/search.svg"
+                                         title="Search: Search (case insensitive) and highlight all nodes with specified label text">
+
+                                </div>
+                                <input id="search-by-label-text-box" class="sbgn-toolbar-element" type="label">
+
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="highlight-selected-icon" src="img/toolbar/highlight-selected.svg"
+                                         title="Highlight Selected: Highlight selected nodes and edges">
+
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="remove-highlights-icon" src="img/toolbar/remove-highlights.svg"
+                                         title="Remove Highlights: Remove any highlights">
+
+                                </div>
+                            </div>
+
+                            <div class="menu-break-large sbgn-toolbar-element">&nbsp;</div>
+                            <div class="inside-menu">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="perform-layout-icon" src="img/toolbar/layout-cose.svg"
+                                         title="Perform Layout: Perform a force-directed layout of current map, maintaining compound structures">
+
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="perform-static-layout-icon" src="img/toolbar/layout-static.svg"
+                                         title="Perform Static Layout: Re-calculate layout of current map from scratch, ignoring current positions and maintaining compound structures">
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="layout-properties-icon" src="img/toolbar/layout-properties.svg"
+                                         title="Layout Properties: Modify parameters used during layout">
+                                </div>
+                            </div>
+
+                            <div class="menu-break-large sbgn-toolbar-element">&nbsp;</div>
+                            <div class="inside-menu">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="query-pathsbetween-icon" src="img/toolbar/PC-logo.svg"
+                                         title="Perform PC Query: Perform a PathwayCommons query to get a map of interest between specified genes">
+                                </div>
+                            </div>
+
+                            <div class="menu-break-large sbgn-toolbar-element">&nbsp;</div>
+                            <div class="inside-menu">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="quick-help-icon" src="img/toolbar/quick-help.svg" title="Quick Help">
+
+                                </div>
+                                <div style="padding: 1px;" class="sbgn-toolbar-element">
+                                    <img id="about-icon" src="img/toolbar/about.svg" title="About">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="sbgn-inspector-and-canvas">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div id="network-panels-container" class="tab-content read-mode-off"></div>
+                            </td>
+                            <td>
+                                <div id="sbgn-inspector">
+                                    <ul class="nav nav-tabs">
+                                        <li id='inspector-style-tab' class="chise-tab validation-mode-tab"><a
+                                                    data-toggle="tab" href="#sbgn-inspector-style"><img width="18px"
+                                                                                                        height="18px"
+                                                                                                        src="img/tabs/properties.svg"/>&nbsp;Object</a>
+                                        </li>
+                                        <li id='inspector-map-tab' class="chise-tab validation-mode-tab"><a
+                                                    data-toggle="tab" href="#sbgn-inspector-map"><img width="18px"
+                                                                                                      height="18px"
+                                                                                                      src="img/toolbar/settings.svg"/>&nbsp;Map</a>
+                                        </li>
+                                        <li id='inspector-palette-tab' class="chise-tab active validation-mode-tab"><a
+                                                    data-toggle="tab" href="#sbgn-inspector-palette"><img width="18px"
+                                                                                                          height="18px"
+                                                                                                          src="img/tabs/palette.svg"/>&nbsp;Palette</a>
+                                        </li>
+                                        <li id='inspector-console-tab' class="chise-tab validation-mode-tab"
+                                            style="display:none;">
+                                            <a data-toggle="tab" href="#sbgn-inspector-console"><img width="18px"
+                                                                                                     height="18px"
+                                                                                                     src="img/tabs/console.svg"/>&nbsp;Console</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="sbgn-inspector-style" class="tab-pane fade">
+                                            <div id="sbgn-inspector-style-panel-group" class="panel-group">
+                                            </div>
+                                        </div>
+                                        <div id="sbgn-inspector-map" class="tab-pane fade">
+                                            <div class="panel-group">
+                                                <div class="panel">
+                                                    <div class="panel-heading" data-toggle="collapse"
+                                                         data-target="#sbgn-inspector-map-properties-general">
+                                                        <p class="panel-title accordion-toggle">General</p>
+                                                    </div>
+                                                    <div id="sbgn-inspector-map-properties-general"
+                                                         class="panel-collapse collapse in">
+                                                        <div id="map-tab-general-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel">
+                                                    <div class="panel-heading collapsed" data-toggle="collapse"
+                                                         data-target="#sbgn-inspector-map-properties-label">
+                                                        <p class="panel-title accordion-toggle">Labels</p>
+                                                    </div>
+                                                    <div id="sbgn-inspector-map-properties-label"
+                                                         class="panel-collapse collapse">
+                                                        <div id="map-tab-label-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel">
+                                                    <div class="panel-heading collapsed" data-toggle="collapse"
+                                                         data-target="#sbgn-inspector-map-properties-rearrangement">
+                                                        <p class="panel-title accordion-toggle">Arrangement</p>
+                                                    </div>
+                                                    <div id="sbgn-inspector-map-properties-rearrangement"
+                                                         class="panel-collapse collapse">
+                                                        <div id="map-tab-rearrangement-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel">
+                                                    <div id="sbgn-inspector-map-properties-experiment-heading"
+                                                         class="panel-heading collapsed" data-toggle="collapse"
+                                                         data-target="#sbgn-inspector-map-properties-experiment">
+                                                        <p class="panel-title accordion-toggle">Experiment</p>
+                                                    </div>
+                                                    <div id="sbgn-inspector-map-properties-experiment"
+                                                         class="panel-collapse collapse">
+                                                        <div id="map-tab-experiment-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel">
+                                                    <div class="panel-heading collapsed" data-toggle="collapse"
+                                                         data-target="#sbgn-inspector-map-color-scheme">
+                                                        <p class="panel-title accordion-toggle">Color Scheme</p>
+                                                    </div>
+                                                    <div id="sbgn-inspector-map-color-scheme"
+                                                         class="panel-collapse collapse">
+                                                        <div id="color-scheme-template-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="sbgn-inspector-palette" class="tab-pane fade in active">
+                                            <div class="panel-group">
+                                                <div class="panel">
+                                                    <div id="PD-palette-heading" class="panel-heading"
+                                                         data-toggle="collapse"
+                                                         data-target="#expand-collapse-pd-nodes-palette">
+                                                        <p class="panel-title accordion-toggle">
+                                                            Process Description
+                                                        </p>
+                                                    </div>
+                                                    <div id="expand-collapse-pd-nodes-palette"
+                                                         class="panel-collapse collapse in">
+                                                        <div class="panel-body">
+                                                            <div id="pd-node-palette"
+                                                                 class="element-palette node-palette">
+                                                                <div class="paletteWrapper">
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/macromolecule.svg"
+                                                                                language="PD" value="macromolecule"
+                                                                                title="Macromolecule"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/complex.svg"
+                                                                                language="PD"
+                                                                                value="complex" title="Complex"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/simple-chemical.svg"
+                                                                                language="PD" value="simple-chemical"
+                                                                                title="Simple Chemical"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/unspecified-entity.svg"
+                                                                                language="PD" value="unspecified-entity"
+                                                                                title="Unspecified Entity"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/nucleic-acid-feature.svg"
+                                                                                language="PD"
+                                                                                value="nucleic-acid-feature"
+                                                                                title="Nucleic Acid Feature"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/perturbing-agent.svg"
+                                                                                language="PD" value="perturbing-agent"
+                                                                                title="Perturbing Agent"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/source-and-sink.svg"
+                                                                                language="PD" value="source-and-sink"
+                                                                                title="Source and Sink"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/phenotype.svg"
+                                                                                language="PD"
+                                                                                value="phenotype" title="Phenotype"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/process.svg"
+                                                                                language="PD"
+                                                                                value="process" title="Process"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/omitted-process.svg"
+                                                                                language="PD" value="omitted-process"
+                                                                                title="Omitted Process"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/uncertain-process.svg"
+                                                                                language="PD" value="uncertain-process"
+                                                                                title="Uncertain Process"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/association.svg"
+                                                                                language="PD" value="association"
+                                                                                title="Association"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/dissociation.svg"
+                                                                                language="PD" value="dissociation"
+                                                                                title="Dissociation"/></div>
+                                                                    <div class="paletteCol"><img src="img/nodes/tag.svg"
+                                                                                                 language="PD"
+                                                                                                 value="tag"
+                                                                                                 title="Tag"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/compartment.svg"
+                                                                                language="PD" value="compartment"
+                                                                                title="Compartment"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/submap.svg" language="PD"
+                                                                                value="submap" title="Submap"/></div>
+                                                                    <div class="paletteCol"><img src="img/nodes/and.svg"
+                                                                                                 language="PD"
+                                                                                                 value="and"
+                                                                                                 title="AND"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img src="img/nodes/or.svg"
+                                                                                                 language="PD"
+                                                                                                 value="or"
+                                                                                                 title="OR"/></div>
+                                                                    <div class="paletteCol"><img src="img/nodes/not.svg"
+                                                                                                 language="PD"
+                                                                                                 value="not"
+                                                                                                 title="NOT"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body" style="padding-bottom: 0px;">
+                                                            <div id="pd-edge-palette"
+                                                                 class="element-palette edge-palette">
+                                                                <div class="paletteWrapper">
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/consumption.svg"
+                                                                                language="PD" value="consumption"
+                                                                                title="Consumption"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/production.svg"
+                                                                                language="PD"
+                                                                                value="production" title="Production"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/modulation.svg"
+                                                                                language="PD"
+                                                                                value="modulation" title="Modulation"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/stimulation.svg"
+                                                                                language="PD" value="stimulation"
+                                                                                title="Stimulation"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/catalysis.svg"
+                                                                                language="PD"
+                                                                                value="catalysis" title="Catalysis"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/inhibition.svg"
+                                                                                language="PD"
+                                                                                value="inhibition" title="Inhibition"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/necessary-stimulation.svg"
+                                                                                language="PD"
+                                                                                value="necessary stimulation"
+                                                                                title="Necessary Stimulation"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/consumption.svg"
+                                                                                language="PD" value="logic arc"
+                                                                                title="Logic Arc"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/consumption.svg"
+                                                                                language="PD" value="equivalence arc"
+                                                                                title="Equivalence Arc"/></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- AF Nodes Panel -->
+                                                <div class="panel">
+                                                    <div id="AF-palette-heading" class="panel-heading collapsed"
+                                                         data-toggle="collapse"
+                                                         data-target="#expand-collapse-af-nodes-palette">
+                                                        <p class="panel-title accordion-toggle">
+                                                            Activity Flow
+                                                        </p>
+                                                    </div>
+                                                    <div id="expand-collapse-af-nodes-palette"
+                                                         class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <div id="af-node-palette"
+                                                                 class="element-palette node-palette">
+                                                                <div class="paletteWrapper">
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-plain.svg"
+                                                                                language="AF"
+                                                                                value="BA-plain"
+                                                                                title="Biological Activity"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-macromolecule.svg"
+                                                                                language="AF" value="BA-macromolecule"
+                                                                                title="Macromolecule"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-complex.svg"
+                                                                                language="AF"
+                                                                                value="BA-complex" title="Complex"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-simple-chemical.svg"
+                                                                                language="AF" value="BA-simple-chemical"
+                                                                                title="Simple Chemical"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-unspecified-entity.svg"
+                                                                                language="AF"
+                                                                                value="BA-unspecified-entity"
+                                                                                title="Unspecified Entity"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-nucleic-acid-feature.svg"
+                                                                                language="AF"
+                                                                                value="BA-nucleic-acid-feature"
+                                                                                title="Nucleic Acid Feature"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/BA-perturbing-agent.svg"
+                                                                                language="AF"
+                                                                                value="BA-perturbing-agent"
+                                                                                title="Perturbing Agent"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/phenotype.svg"
+                                                                                language="AF"
+                                                                                value="phenotype" title="Phenotype"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/compartment.svg"
+                                                                                language="AF" value="compartment"
+                                                                                title="Compartment"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/submap.svg" language="AF"
+                                                                                value="submap" title="Submap"/></div>
+                                                                    <div class="paletteCol"><img src="img/nodes/tag.svg"
+                                                                                                 language="AF"
+                                                                                                 value="tag"
+                                                                                                 title="Tag"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img src="img/nodes/and.svg"
+                                                                                                 language="AF"
+                                                                                                 value="and"
+                                                                                                 title="AND"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img src="img/nodes/or.svg"
+                                                                                                 language="AF"
+                                                                                                 value="or"
+                                                                                                 title="OR"/></div>
+                                                                    <div class="paletteCol"><img src="img/nodes/not.svg"
+                                                                                                 language="AF"
+                                                                                                 value="not"
+                                                                                                 title="NOT"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/delay.svg" language="AF"
+                                                                                value="delay" title="Delay"/></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- AF Edges Panel -->
+                                                        <div class="panel-body" style="padding-bottom: 0px;">
+                                                            <div id="af-edge-palette"
+                                                                 class="element-palette edge-palette">
+                                                                <div class="paletteWrapper">
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/stimulation.svg"
+                                                                                language="AF" value="positive influence"
+                                                                                title="Positive Influence"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/inhibition.svg"
+                                                                                language="AF"
+                                                                                value="negative influence"
+                                                                                title="Negative Influence"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/modulation.svg"
+                                                                                language="AF"
+                                                                                value="unknown influence"
+                                                                                title="Unknown Influence"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/necessary-stimulation.svg"
+                                                                                language="AF"
+                                                                                value="necessary stimulation"
+                                                                                title="Necessary Stimulation"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/consumption.svg"
+                                                                                language="AF" value="logic arc"
+                                                                                title="Logic Arc"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/consumption.svg"
+                                                                                language="AF" value="equivalence arc"
+                                                                                title="Equivalence Arc"/></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- AF Edges End -->
+
+                                                <!-- SIF Start -->
+                                                <div class="panel">
+                                                    <div id="SIF-palette-heading" class="panel-heading collapsed"
+                                                         data-toggle="collapse"
+                                                         data-target="#expand-collapse-sif-nodes-palette">
+                                                        <p class="panel-title accordion-toggle">
+                                                            SIF
+                                                        </p>
+                                                    </div>
+                                                    <div id="expand-collapse-sif-nodes-palette"
+                                                         class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <div id="sif-node-palette"
+                                                                 class="element-palette node-palette">
+                                                                <div class="paletteWrapper">
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/macromolecule.svg"
+                                                                                language="SIF" value="SIF-macromolecule"
+                                                                                title="Macromolecule"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/nodes/simple-chemical.svg"
+                                                                                language="SIF"
+                                                                                value="SIF-simple-chemical"
+                                                                                title="Simple Chemical"/></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-body" style="padding-bottom: 0px;">
+                                                            <div id="sif-edge-palette"
+                                                                 class="element-palette edge-palette">
+                                                                <div class="paletteWrapper">
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/controls-state-change-of.svg"
+                                                                                language="SIF"
+                                                                                value="controls-state-change-of"
+                                                                                title="Controls State Change of"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/controls-transport-of.svg"
+                                                                                language="SIF"
+                                                                                value="controls-transport-of"
+                                                                                title="Controls Transport of"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/controls-phosphorylation-of.svg"
+                                                                                language="SIF"
+                                                                                value="controls-phosphorylation-of"
+                                                                                title="Controls Phosphorylation of"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/controls-expression-of.svg"
+                                                                                language="SIF"
+                                                                                value="controls-expression-of"
+                                                                                title="Controls Expression of"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/catalysis-precedes.svg"
+                                                                                language="SIF"
+                                                                                value="catalysis-precedes"
+                                                                                title="Catalysis Precedes"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/in-complex-with.svg"
+                                                                                language="SIF" value="in-complex-with"
+                                                                                title="In Complex With"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/interacts-with.svg"
+                                                                                language="SIF" value="interacts-with"
+                                                                                title="Interacts With"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/neighbor-of.svg"
+                                                                                language="SIF" value="neighbor-of"
+                                                                                title="Neighbor of"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/consumption-controled-by.svg"
+                                                                                language="SIF"
+                                                                                value="consumption-controled-by"
+                                                                                title="Consumption Controled By"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/controls-production-of.svg"
+                                                                                language="SIF"
+                                                                                value="controls-production-of"
+                                                                                title="Controls Production of"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/controls-transport-of-chemical.svg"
+                                                                                language="SIF"
+                                                                                value="controls-transport-of-chemical"
+                                                                                title="Controls Transport of Chemical"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/chemical-affects.svg"
+                                                                                language="SIF" value="chemical-affects"
+                                                                                title="Chemical Affects"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/reacts-with.svg"
+                                                                                language="SIF" value="reacts-with"
+                                                                                title="Reacts With"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/used-to-produce.svg"
+                                                                                language="SIF" value="used-to-produce"
+                                                                                title="Used to Produce"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/activates.svg"
+                                                                                language="SIF"
+                                                                                value="activates" title="Activates"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/inhibits.svg"
+                                                                                language="SIF"
+                                                                                value="inhibits" title="Inhibits"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/phosphorylates.svg"
+                                                                                language="SIF" value="phosphorylates"
+                                                                                title="Phosphorylates"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/dephosphorylates.svg"
+                                                                                language="SIF" value="dephosphorylates"
+                                                                                title="Dephosphorylates"/>
+                                                                    </div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/upregulates-expression.svg"
+                                                                                language="SIF"
+                                                                                value="upregulates-expression"
+                                                                                title="Upregulates Expression"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                                src="img/edges/downregulates-expression.svg"
+                                                                                language="SIF"
+                                                                                value="downregulates-expression"
+                                                                                title="Downregulates Expression"/></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- SIF End -->
+
+                                            </div>
+                                        </div>
+                                        <div id="sbgn-inspector-console" class="tab-pane fade">
+                                            <div class="panel-group">
+                                                <div class="panel">
+                                                    <div class="panel-heading" data-toggle="collapse"
+                                                         data-target="#sbgn-inspector-console-panel-group">
+                                                        <p class="panel-title accordion-toggle">Validation Results</p>
+                                                    </div>
+                                                    <div id="sbgn-inspector-console-panel-group"
+                                                         class="panel-collapse collapse in">
+                                                        <div id="sbgn-inspector-tab-validation-container">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div id="network-tabs-list-container" class="read-mode-off">
+                        <ul id="network-tabs-list" class="nav nav-tabs">
+                        </ul>
+                    </div>
+
+                    <div id="layout-properties-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- sbgn layout table will be shown here -->
+                    </div>
+
+                    <div id="biogene-container" style="display: none">
+                    </div>
+
+                    <div id="chemical-container" style="display: none">
+                    </div>
+
+                    <div id="query-neighborhood-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- neighborhood query table will be shown here-->
+                    </div>
+
+                    <div id="query-pathsbetween-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- paths between query table will be shown here-->
+                    </div>
+
+                    <div id="query-pathsfromto-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- paths from to query table will be shown here-->
+                    </div>
+
+                    <div id="query-commonstream-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- common stream query table will be shown here-->
+                    </div>
+
+                    <div id="query-pathsbyURI-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- paths by URI query table will be shown here-->
+                    </div>
+
+                    <div id="prompt-save-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- sbgn properties table will be shown here-->
+                    </div>
+
+                    <div id="file-save-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- save dialog will be shown here-->
+                    </div>
+
+                    <div id="user-preferences-save-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- save dialog will be shown here-->
+                    </div>
+                    <div id="user-preferences-load-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- load dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-confirmation-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-mapType-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidQuery-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidLengthLimit-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidURI-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidFile-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-fileConversionError-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+                    <div id="prompt-sbmlConversionError-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidURL-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidImage-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="prompt-invalidEdge-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- map type change confirmation dialog will be shown here-->
+                    </div>
+
+                    <div id="reaction-template-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- reaction templatequery table will be shown here -->
+                    </div>
+
+                    <div id="grid-properties-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- grid properties table will be shown here -->
+                    </div>
+
+                    <div id="font-properties-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- sbgn properties table will be shown here -->
+                    </div>
+
+                    <div id="prompt-invalidSchematronFile-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- sbgn schematron validation message dialog will be shown here -->
+                    </div>
+
+                    <div id="infobox-properties-table" tabindex="-1" class="modal fade" role="dialog">
+                        <!-- infobox properties table will be shown here -->
+                    </div>
+
+
+                    <div id="box">
+                    </div>
+
+                    <textarea id="node-label-textbox" rows="1"></textarea>
+
+                    <!-- templates -->
+                    <div id='PD_legend_modal' class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog sbgn-modal-dialog" style="width: 540px;">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="sbgn-frame" style="text-align:center;">
+                                        <h2 class="sbgn-text">Process Description</h2>
+                                        <img src="img/pd-legend.svg" alt="" class="centered img-responsive sbgn-legend">
+                                        <p class="address-text" style="margin-top: 20px;margin-bottom: 10px;"><a
+                                                    href="https://sbgn.github.io/referencecards" target="_blank"
+                                                    rel="nofollow">Reference
+                                                Card</a> - <a href="https://sbgn.github.io/specifications"
+                                                              target="_blank"
+                                                              rel="nofollow">Specifications</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id='AF_legend_modal' class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog sbgn-modal-dialog" style="width: 600px;">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="sbgn-frame" style="text-align: center;">
+                                        <h2 class="sbgn-text">Activity Flow</h2>
+                                        <img src="img/af-legend.svg" alt="" class="centered img-responsive sbgn-legend">
+                                        <p class="address-text" style="margin-top: 20px; margin-bottom: 10px;"><a
+                                                    href="https://sbgn.github.io/referencecards" target="_blank"
+                                                    rel="nofollow">Reference
+                                                Card</a> - <a href="https://sbgn.github.io/specifications"
+                                                              target="_blank"
+                                                              rel="nofollow">Specifications</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id='SIF_legend_modal' class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog sbgn-modal-dialog" style="width: 750px;">
+                            <div class="modal-content">
+                                <div class="modal-body" style="text-align: center;">
+                                    <div class="sbgn-frame">
+                                        <h2 class="sbgn-text">Simple Interaction Format</h2>
+                                        <img src="img/sif-legend.svg" alt=""
+                                             class="centered img-responsive sbgn-legend">
+                                        <p class="address-text" style="margin-top: 20px; margin-bottom: 10px"><a
+                                                    href="http://www.pathwaycommons.org/pc2/formats#sif_relations"
+                                                    target="_blank" rel="nofollow">SIF Relations</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id='about_modal' class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog sbgn-modal-dialog" style="width: 360px;">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="sbgn-frame">
+                                        <h2 class="sbgn-text">About</h2>
+
+                                        <table width="100%" height="100%" align="center" valign="center">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <p id="about-newt-version" class="sbgn-text">Newt Editor version
+                                                        3.0.3</p>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <img src="/img/newt-logo.png" alt="" class="centered img-responsive"
+                                                         style="margin-bottom: 10px;">
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <p class="address-text marg">i-Vis Information Visualization
+                                                        Research Lab,
+                                                        Ankara, Turkey,</p>
+                                                    <p class="address-text">in collaboration with the Demir Lab at OHSU,
+                                                        USA</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class="address-text">
+                                                        See <a href="https://github.com/iVis-at-Bilkent/newt#credits"
+                                                               target="_blank">here</a> for third-party libraries used
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p class="address-text marg">
+                                                        <a href="mailto:ivis@cs.bilkent.edu.tr"
+                                                           target="_top">ivis@cs.bilkent.edu.tr</a>
+                                                    </p>
+                                                    <p class="address-text">
+                                                        <a href="http://newteditor.org/"
+                                                           target="_blank">http://newteditor.org/</a>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id='quick_help_modal' class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog sbgn-modal-dialog" style="width: 520px">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="sbgn-frame quick-help">
+                                        <h2 class="sbgn-text">Quick Help</h2>
+                                        <div class="quick-help-content">
+                                            <table align="center" valign="center">
+                                                <tbody>
+                                                <tr>
+                                                    <td><b>SBGN notation:</b>:
+                                                        <a href="https://sbgn.github.io/learning" target="_blank"
+                                                           rel="nofollow">Learning
+                                                            SBGN</a> - <a href="https://sbgn.github.io/learnerscards"
+                                                                          target="_blank" rel="nofollow">Learner's
+                                                            Cards</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>SIF notation:</b>:
+                                                        <a href="http://www.pathwaycommons.org/pc2/formats#sif_relations"
+                                                           target="_blank" rel="nofollow">SIF Relations</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>File > Samples</b>:
+                                                        Load a sample model
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Double-click on node</b>:
+                                                        Edit label
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Right-click</b>:
+                                                        Context menu for associated object
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Click + drag on selected edge</b>:
+                                                        Add and place a bend point
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Ctrl/Cmd + drag on a node</b>:
+                                                        Transfer a node in and out of a complex/compartment/submap
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Shift + drag</b>:
+                                                        Box selection (select touched nodes and included edges)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Ctrl/Cmd + Shift + drag</b>:
+                                                        Marquee zoom (zoom to marked area)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Shift + click</b>:
+                                                        Add/remove an element to/from the current selection
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Arrow keys</b>:
+                                                        Move selected nodes in arrow direction; use Shift (Alt) for
+                                                        faster (slower)
+                                                        move
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <h2 class="sbgn-text">Tips</h2>
+                                            <table align="center" valign="center">
+                                                <tbody>
+                                                <tr>
+                                                    <td><b>Edit > Add {Complex,Compartment,Submap} for Selected</b>:
+                                                        include all
+                                                        selected nodes inside a newly created complex or compartment or
+                                                        submap.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Convenient process creation</b>:
+                                                        When creating a new process node, click on substrate node and
+                                                        drag to and
+                                                        release on product node.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Enable grid</b>:
+                                                        Clicking on the Enable Grid tool on the toolbar shows and snaps
+                                                        to the grid
+                                                        during node dragging.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Enable guidelines</b>:
+                                                        Clicking on the Enable Guidelines tool on the toolbar enables
+                                                        and snaps to
+                                                        alignment guidelines during node dragging.
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <table align="center" valign="center" style="margin-top:15px;">
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span>For any issues or bug reports, please <a
+                                                                    href="http://newteditor.org/contact.html"
+                                                                    target="_blank"
+                                                                    rel="nofollow">contact us</a>.</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id='color_picker_modal' class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" style="width: 232px; height: 363px;">
+                            <div class="modal-content">
+                                <div id='color-picker-div' class='text-center' acp-show-hsl='no'
+                                     acp-palette-editable></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <script type="text/template" id="loading-small-template">
+                        <p class="sbgn-text"> <%= name %> </p>
+                        <img class="centered" src="img/loading-small.gif" height="auto" width="auto" align="middle">
+                    </script>
+
+
+
+                </div>
+
+            </div>
+
 
         </div>
     </div>
 
+</div>
 
-    <script src="../javascript/index.js"></script>
+
+<script src="../javascript/index.js"></script>
+<!--<script src="../build/newt-bundle.js"></script>-->
+<script src="../build/newt-bundle.js"></script>
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
+
 
 </body>
 
