@@ -281,18 +281,19 @@ document.getElementById('picker').addEventListener('change', event => {
     event.target.value = null; //to make sure the same files can be loaded again
 
     document.getElementById('menu-text-buttons').style.display = 'none';
-    document.getElementById('folder-trees-graphs').style.display = 'flex';
-    document.getElementById('back_menu').style.display = 'flex';
-    document.getElementById('graph-container').style.display = 'flex';
-    document.getElementById('folder-tree-container').style.display = 'flex';
+    document.getElementById('folder-trees-graphs').style.display = 'block';
+    document.getElementById('back_menu').style.display = 'block';
+    document.getElementById('graph-container').style.display = 'block';
+    document.getElementById('folder-tree-container').style.display = 'block';
 
     this.loadAnalysisFilesFromClient(fileList);
 });
 
 document.getElementById("back_button_label").addEventListener("click", (event) => {
-    document.getElementById('menu-text-buttons').style.display = 'flex';
+    document.getElementById('menu-text-buttons').style.display = 'block';
     document.getElementById('folder-trees-graphs').style.display = 'none';
     document.getElementById('back_menu').style.display = 'none';
     document.getElementById('graph-container').style.display = 'none';
     document.getElementById('folder-tree-container').style.display = 'none';
 });
+
