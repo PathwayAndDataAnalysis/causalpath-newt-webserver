@@ -49,7 +49,7 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
         newNode.icon = "./img/tree-newt-icon.png"
     else if (newNode.text.endsWith(".sif"))
         newNode.icon = "./img/tree-sif-icon.png"
-    // else if (newNode.text.endsWith(".format"))
+        // else if (newNode.text.endsWith(".format"))
     //     newNode.icon = "./img/tree-sif-icon.png"
     else if (newNode.text.endsWith(".json"))
         newNode.icon = "./img/tree-json-icon.png"
@@ -280,17 +280,19 @@ document.getElementById('picker').addEventListener('change', event => {
 
     event.target.value = null; //to make sure the same files can be loaded again
 
+    document.getElementById('menu-text-buttons').style.display = 'none';
+    document.getElementById('folder-trees-graphs').style.display = 'flex';
     document.getElementById('back_menu').style.display = 'flex';
-    document.getElementById('graph_canvas').style.display = 'flex';
-    document.getElementById('body_text').style.display = 'none';
-    document.getElementById('selection_menus').style.display = 'none';
+    document.getElementById('graph-container').style.display = 'flex';
+    document.getElementById('folder-tree-container').style.display = 'flex';
 
     this.loadAnalysisFilesFromClient(fileList);
 });
 
 document.getElementById("back_button_label").addEventListener("click", (event) => {
+    document.getElementById('menu-text-buttons').style.display = 'flex';
+    document.getElementById('folder-trees-graphs').style.display = 'none';
     document.getElementById('back_menu').style.display = 'none';
-    document.getElementById('graph_canvas').style.display = 'none';
-    document.getElementById('body_text').style.display = 'flex';
-    document.getElementById('selection_menus').style.display = 'flex';
+    document.getElementById('graph-container').style.display = 'none';
+    document.getElementById('folder-tree-container').style.display = 'none';
 });

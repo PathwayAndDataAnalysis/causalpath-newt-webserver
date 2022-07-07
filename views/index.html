@@ -18,24 +18,28 @@
 
 <body>
 
+
 <div class="title-heading container-fluid align-items-center">
     <div class="row">
-        <div class="col-2">
+        <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2">
             <img src="/img/logo.png" class="cp-logo" alt="CausalPath Logo">
         </div>
-        <div class="col-10">
-            <h4>CausalPath: Causal Interactions from Proteomic Profiles</h4>
+        <div class="col-lg-8 col-md-9 col-sm-10 col-xs-10">
+            <h2>CausalPath: Causal Interactions from Proteomic Profiles</h2>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
 
-        <div id="body_text" class="card" style="margin-top:20px;">
-            <div class="card-body">
-                <p>
+<div id="menu-text-buttons" class="body-content container-fluid">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+
+        <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+
+            <div id="body_text" class="row" style="margin-top:40px;">
+
+                <p class="body-paragraph">
                     CausalPath evaluates proteomic and other molecular measurements against our prior knowledge of
                     cellular signaling and identifies potential causality among detected changes.
                     The method uses prior knowledge in high precision, distinguishes between activating and
@@ -45,7 +49,7 @@
                     description of the method.
                 </p>
 
-                <p>
+                <p class="body-paragraph">
                     A <a href="https://github.com/PathwayAndDataAnalysis/causalpath">Java implementation</a> of
                     CausalPath is freely available. We also provide this web service for easy access to the method
                     and/or visualizing analysis results. Please note the web server does not support network
@@ -54,7 +58,7 @@
                     however, can still be visualized on this web server using option C below.
                 </p>
 
-                <p>
+                <p class="body-paragraph">
                     For a CausalPath analysis, please prepare your input files according to the
                     <a href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md">
                         guidelines</a>. If you already have results, please visualize them by uploading the related
@@ -64,83 +68,94 @@
                     This can be directly uploaded for analysis through option B below.
                 </p>
 
-                <p>
+                <p class="body-paragraph">
                     The <a href="https://github.com/PathwayAndDataAnalysis/causalpath-webserver">source code of this
                     web server</a> is freely available in a separate project.
                 </p>
 
-                <p>
+                <p class="body-paragraph">
                     Select one of the following options to start.
                 </p>
-
             </div>
-        </div>
 
-        <div id="selection_menus" class="card" style="margin-top: 70px;">
-            <div class="card-body">
-                <div class="d-grid gap-4 col-8 mx-auto">
+            <div id="selection_menus" class="row" style="margin-top: 70px;">
 
-                    <input id="graph-file-input" type="file" style="display:none;"
-                           accept=".txt, .zip" multiple/>
-                    <input class="edited-button btn btn-primary" type="button" style="height: auto;"
-                           value="Upload all input files for analysis"
-                           onclick="document.getElementById('graph-file-input').click();"/>
-
-                    <br>
-                    <br>
-
-                    <div class="picker">
-                        <input type="file" id="picker" name="fileList" webkitdirectory multiple>
+                <div class="row main-menu-buttons">
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+                        <input id="graph-file-input" type="file" style="display:none;"
+                               accept=".txt, .zip" multiple/>
+                        <input class="edited-button btn btn-primary" type="button" style="height: auto;"
+                               value="Upload all input files for analysis"
+                               onclick="document.getElementById('graph-file-input').click();"/>
                     </div>
-
-                    <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory multiple/>-->
-                    <!--                    <input class="edited-button btn btn-primary" type="file"-->
-                    <!--                           value="Visualize results from previous analysis"-->
-                    <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
-
-                    <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory-->
-                    <!--                           multiple/>-->
-                    <!--                    <input class="edited-button btn btn-primary" type="file"-->
-                    <!--                           value="Visualize results from previous analysis"-->
-                    <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
-
-                    <br>
-
-                    <button class="edited-button btn btn-primary" type="button">
-                        <a href="/graph" class="button-anchor">Display demo graphs</a>
-                    </button>
-
-
-                    <br>
-                    <br>
-                    <button class="edited-button btn btn-primary" type="button">
-                        Learn more
-                    </button>
-
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
                 </div>
+
+                <div class="row" style="margin-top: 40px;">
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+                        <div class="picker">
+                            <input type="file" id="picker" name="fileList" webkitdirectory multiple>
+                        </div>
+
+                        <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory multiple/>-->
+                        <!--                    <input class="edited-button btn btn-primary" type="file"-->
+                        <!--                           value="Visualize results from previous analysis"-->
+                        <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
+
+                        <!--                    <input id="graph-file-input" type="file" style="display:none;" webkitdirectory directory-->
+                        <!--                           multiple/>-->
+                        <!--                    <input class="edited-button btn btn-primary" type="file"-->
+                        <!--                           value="Visualize results from previous analysis"-->
+                        <!--                           onclick="document.getElementById('graph-file-input').click();"/>-->
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                </div>
+
+                <div class="row" style="margin-top: 40px;">
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+                        <button class="edited-button btn btn-primary" type="button">
+                            <a href="/graph" class="button-anchor">Display demo graphs</a>
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                </div>
+
+                <div class="row" style="margin-top: 40px;">
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                    <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+                        <button class="edited-button btn btn-primary" type="button">
+                            Learn more
+                        </button>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+                </div>
+
             </div>
+
         </div>
 
+        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
     </div>
-    <div class="col-sm-1"></div>
+</div>
 
-    <div id="back_menu" class="card">
-        <div class="card-body">
-            <label id="back_button_label" for="back-button"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
-        </div>
-    </div>
-
-
-    <div id="graph_canvas" class="row">
-        <div class="col-lg-3">
-            <div id="folder-tree-container">
+<div id="folder-trees-graphs" class="canvas-body-content container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <!-- Back Button -->
+            <div id="back_menu" >
+                <label id="back_button_label"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
             </div>
+
+            <!-- Folder Tree -->
+            <div id="folder-tree-container"></div>
+
         </div>
-        <div class="col-lg-9">
 
-
-            <!--  Newt Html -->
-
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <!-- Graph -->
             <div id="graph-container" class="graph-container">
 
                 <div id="newt-graph-container">
@@ -167,16 +182,20 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a class="title"><i>PD</i></a></li>
                                                         <li class="divider" style="margin-top: 0"></li>
-                                                        <li><a href="#" id="load-sample1">Neuronal muscle signaling</a>
+                                                        <li><a href="#" id="load-sample1">Neuronal muscle
+                                                            signaling</a>
                                                         </li>
-                                                        <li><a href="#" id="load-sample2">CaM-CaMK dependent signaling
+                                                        <li><a href="#" id="load-sample2">CaM-CaMK dependent
+                                                            signaling
                                                             to
                                                             nucleus</a></li>
-                                                        <li><a href="#" id="load-sample3">ATM mediated phosphorylation
+                                                        <li><a href="#" id="load-sample3">ATM mediated
+                                                            phosphorylation
                                                             of
                                                             repair
                                                             proteins</a></li>
-                                                        <li><a href="#" id="load-sample4">Activated STAT1alpha induction
+                                                        <li><a href="#" id="load-sample4">Activated STAT1alpha
+                                                            induction
                                                             of
                                                             the
                                                             IRF1
@@ -197,7 +216,8 @@
                                                         <li><a href="#" id="load-sample11">Mammalian cholesterol
                                                             biosynthesis</a>
                                                         </li>
-                                                        <li><a href="#" id="load-sample12">Two gene system behavior</a>
+                                                        <li><a href="#" id="load-sample12">Two gene system
+                                                            behavior</a>
                                                         </li>
                                                         <li><a href="#" id="load-sample19">PD Learner's Reference
                                                             Card</a>
@@ -205,7 +225,8 @@
                                                         <li class="divider" style="margin-bottom: 0"></li>
                                                         <li><a class="title"><i>AF</i></a></li>
                                                         <li class="divider" style="margin-top: 0"></li>
-                                                        <li><a href="#" id="load-sample13">Transforming growth factor
+                                                        <li><a href="#" id="load-sample13">Transforming growth
+                                                            factor
                                                             beta
                                                             (TGFB)
                                                             signaling</a></li>
@@ -222,7 +243,8 @@
                                                         <li class="divider" style="margin-bottom: 0"></li>
                                                         <li><a class="title"><i>SIF</i></a></li>
                                                         <li class="divider" style="margin-top: 0"></li>
-                                                        <li><a href="#" id="load-sample17">RTN4 controllers and binding
+                                                        <li><a href="#" id="load-sample17">RTN4 controllers and
+                                                            binding
                                                             proteins</a>
                                                         </li>
                                                         <li><a href="#" id="load-sample18">Signaling downstream of
@@ -241,18 +263,23 @@
                                                     <ul class="dropdown-menu">
                                                         <input id="simple-af-file-input" type="file"
                                                                style="display:none"/>
-                                                        <input id="sif-file-input" type="file" style="display:none"/>
-                                                        <input id="sif-style-input" type="file" style="display:none"/>
-                                                        <input id="sif-layout-input" type="file" style="display:none"/>
+                                                        <input id="sif-file-input" type="file"
+                                                               style="display:none"/>
+                                                        <input id="sif-style-input" type="file"
+                                                               style="display:none"/>
+                                                        <input id="sif-layout-input" type="file"
+                                                               style="display:none"/>
                                                         <input id="sbml-file" type="file" style="display:none"/>
                                                         <input id="celldesigner-file-input" type="file"
                                                                style="display:none"/>
-                                                        <li><a href="#" id="import-simple-af-file">Simple AF</a></li>
+                                                        <li><a href="#" id="import-simple-af-file">Simple AF</a>
+                                                        </li>
                                                         <li><a href="#" id="import-sif-file">SIF</a></li>
                                                         <li><a href="#" id="import-sif-style">SIF Style</a></li>
                                                         <li><a href="#" id="import-sif-layout">SIF Layout</a></li>
                                                         <li><a href="#" id="import-SBML-file">SBML</a></li>
-                                                        <li><a href="#" id="import-celldesigner-file">CellDesigner</a>
+                                                        <li><a href="#"
+                                                               id="import-celldesigner-file">CellDesigner</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -265,12 +292,14 @@
                                                         <li><a href="#" id="export-as-sbgnml-plain-file">SBGN-ML
                                                             Plain</a>
                                                         </li>
-                                                        <li><a href="#" id="export-as-sbgnml3-plain-file">SBGN-ML Plain
+                                                        <li><a href="#" id="export-as-sbgnml3-plain-file">SBGN-ML
+                                                            Plain
                                                             0.3</a>
                                                         </li>
                                                         <li><a href="#" id="export-as-nwt3-file">NWT 0.3</a></li>
                                                         <li><a href="#" id="export-to-plain-sif">SIF</a></li>
-                                                        <li><a href="#" id="export-to-sif-layout">SIF Layout</a></li>
+                                                        <li><a href="#" id="export-to-sif-layout">SIF Layout</a>
+                                                        </li>
                                                         <li><a href="#" id="export-as-sbml">SBML</a></li>
                                                         <li><a href="#"
                                                                id="export-as-celldesigner-file">CellDesigner</a>
@@ -291,8 +320,10 @@
                                                 <li class="divider"></li>
                                                 <input id="user-preferences-file-input" type="file"
                                                        style="display:none"/>
-                                                <li><a href="#" id="load-user-preferences">Load Preferences...</a></li>
-                                                <li><a href="#" id="save-user-preferences">Save Preferences...</a></li>
+                                                <li><a href="#" id="load-user-preferences">Load Preferences...</a>
+                                                </li>
+                                                <li><a href="#" id="save-user-preferences">Save Preferences...</a>
+                                                </li>
 
 
                                             </ul>
@@ -307,25 +338,31 @@
                                                 <li><a href="#" id="add-complex-for-selected">Add Complex for
                                                     Selected</a>
                                                 </li>
-                                                <li><a href="#" id="add-compartment-for-selected">Add Compartment for
+                                                <li><a href="#" id="add-compartment-for-selected">Add Compartment
+                                                    for
                                                     Selected</a>
                                                 </li>
-                                                <li><a href="#" id="add-submap-for-selected">Add Submap for Selected</a>
+                                                <li><a href="#" id="add-submap-for-selected">Add Submap for
+                                                    Selected</a>
                                                 </li>
-                                                <li><a href="#" id="create-reaction-template">Add from Template...</a>
+                                                <li><a href="#" id="create-reaction-template">Add from
+                                                    Template...</a>
                                                 </li>
                                                 <li><a href="#" id="clone-selected">Clone Selected</a></li>
 
                                                 <li class="divider"></li>
-                                                <li><a href="#" id="delete-selected-simple">Delete Selected Simple</a>
+                                                <li><a href="#" id="delete-selected-simple">Delete Selected
+                                                    Simple</a>
                                                 </li>
                                                 <li><a href="#" id="delete-selected-smart">Delete Selected Smart</a>
                                                 </li>
 
                                                 <li class="divider"></li>
-                                                <li><a href="#" id="resize-nodes-to-content">Resize Nodes To Content</a>
+                                                <li><a href="#" id="resize-nodes-to-content">Resize Nodes To
+                                                    Content</a>
                                                 </li>
-                                                <li><a href="#" id="highlight-errors-of-validation"> Validate Map...</a>
+                                                <li><a href="#" id="highlight-errors-of-validation"> Validate
+                                                    Map...</a>
                                                 </li>
 
                                                 <li class="divider"></li>
@@ -357,7 +394,8 @@
                                                         Zoom
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#" id="zoom-to-selected">Zoom to Selected</a></li>
+                                                        <li><a href="#" id="zoom-to-selected">Zoom to Selected</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
 
@@ -385,10 +423,13 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#" id="collapse-selected">Collapse Selected</a>
                                                         </li>
-                                                        <li><a href="#" id="expand-selected">Expand Selected</a></li>
-                                                        <li><a href="#" id="collapse-complexes">Collapse Complexes</a>
+                                                        <li><a href="#" id="expand-selected">Expand Selected</a>
                                                         </li>
-                                                        <li><a href="#" id="expand-complexes">Expand Complexes</a></li>
+                                                        <li><a href="#" id="collapse-complexes">Collapse
+                                                            Complexes</a>
+                                                        </li>
+                                                        <li><a href="#" id="expand-complexes">Expand Complexes</a>
+                                                        </li>
                                                         <li><a href="#" id="collapse-all">Collapse All</a></li>
                                                         <li><a href="#" id="expand-all">Expand All</a></li>
                                                     </ul>
@@ -402,28 +443,36 @@
                                                     </a>
                                                     <ul class="dropdown-menu" id="add-node-submenu">
                                                         <li class="dropdown-submenu">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                            <a href="#" class="dropdown-toggle"
+                                                               data-toggle="dropdown">
                                                                 Horizontal
                                                                 <!--<b class="right-caret"></b>-->
                                                             </a>
                                                             <ul class="dropdown-menu">
-                                                                <li><a href="#" id="align-horizontal-top">Top</a></li>
-                                                                <li><a href="#" id="align-horizontal-middle">Middle</a>
+                                                                <li><a href="#" id="align-horizontal-top">Top</a>
                                                                 </li>
-                                                                <li><a href="#" id="align-horizontal-bottom">Bottom</a>
+                                                                <li><a href="#"
+                                                                       id="align-horizontal-middle">Middle</a>
+                                                                </li>
+                                                                <li><a href="#"
+                                                                       id="align-horizontal-bottom">Bottom</a>
                                                                 </li>
                                                             </ul>
                                                         </li>
                                                         <li class="dropdown-submenu">
-                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                            <a href="#" class="dropdown-toggle"
+                                                               data-toggle="dropdown">
                                                                 Vertical
                                                                 <!--<b class="right-caret"></b>-->
                                                             </a>
                                                             <ul class="dropdown-menu">
-                                                                <li><a href="#" id="align-vertical-left">Left</a></li>
-                                                                <li><a href="#" id="align-vertical-center">Center</a>
+                                                                <li><a href="#" id="align-vertical-left">Left</a>
                                                                 </li>
-                                                                <li><a href="#" id="align-vertical-right">Right</a></li>
+                                                                <li><a href="#"
+                                                                       id="align-vertical-center">Center</a>
+                                                                </li>
+                                                                <li><a href="#" id="align-vertical-right">Right</a>
+                                                                </li>
                                                             </ul>
                                                         </li>
                                                     </ul>
@@ -499,10 +548,12 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#" id="query-pathsbetween">Paths Between...</a>
                                                         </li>
-                                                        <li><a href="#" id="query-pathsfromto">Paths From To...</a></li>
+                                                        <li><a href="#" id="query-pathsfromto">Paths From To...</a>
+                                                        </li>
                                                         <li><a href="#" id="query-commonstream">Common Stream...</a>
                                                         </li>
-                                                        <li><a href="#" id="query-neighborhood">Neighborhood...</a></li>
+                                                        <li><a href="#" id="query-neighborhood">Neighborhood...</a>
+                                                        </li>
                                                         <li><a href="#" id="query-pathsbyURI">By URI...</a></li>
                                                     </ul>
                                                 </li>
@@ -543,7 +594,8 @@
                         <div id="sbgn-toolbar" class="read-mode-off">
                             <div class="inside-menu">
                                 <div style="padding: 1px;" class="sbgn-toolbar-element">
-                                    <img id="new-file-icon" src="img/toolbar/new.svg" title="New: Create a blank map">
+                                    <img id="new-file-icon" src="img/toolbar/new.svg"
+                                         title="New: Create a blank map">
                                 </div>
 
                                 <div style="padding: 1px;" class="sbgn-toolbar-element">
@@ -571,9 +623,10 @@
                                                                                              src="img/edges/consumption.svg"
                                                                                              title="Create a new Consumption">
                                 </div>
-                                <div style="padding: 1px;" class="sbgn-toolbar-element"><img id="marquee-zoom-mode-icon"
-                                                                                             src="img/toolbar/marquee.svg"
-                                                                                             title="Marquee Zoom: Zoom to area specified by Shift + left click and drag">
+                                <div style="padding: 1px;" class="sbgn-toolbar-element"><img
+                                        id="marquee-zoom-mode-icon"
+                                        src="img/toolbar/marquee.svg"
+                                        title="Marquee Zoom: Zoom to area specified by Shift + left click and drag">
                                 </div>
                                 <div style="padding: 1px;" class="sbgn-toolbar-element">
                                     <img id="delete-selected-simple-icon" src="img/toolbar/delete-simple.svg"
@@ -622,7 +675,8 @@
                                 </div>
 
 
-                                <div class="btn-group sbgn-toolbar-element sbgn-dd-list" role="group" id="align-list">
+                                <div class="btn-group sbgn-toolbar-element sbgn-dd-list" role="group"
+                                     id="align-list">
                                     <button id="align-button" style="padding:3px"
                                             title="Align to First Selected: Align positions of selected nodes based on the first (if any) selected node"
                                             type="button" class="btn" aria-haspopup="true" aria-expanded="false">
@@ -641,8 +695,10 @@
                                         </div>
                                     </button>
                                     <ul id="align-menu" class="dropdown-menu">
-                                        <li><a class="dd-list-href" href="#" id="align-horizontal-top-icon">&nbsp;<img
-                                                src="img/align/align-horizontal-top.svg"/>&nbsp;&nbsp;Align Horizontal
+                                        <li><a class="dd-list-href" href="#"
+                                               id="align-horizontal-top-icon">&nbsp;<img
+                                                src="img/align/align-horizontal-top.svg"/>&nbsp;&nbsp;Align
+                                            Horizontal
                                             Top</a></li>
                                         <li><a class="dd-list-href" href="#"
                                                id="align-horizontal-middle-icon">&nbsp;<img
@@ -654,14 +710,18 @@
                                                 src="img/align/align-horizontal-bottom.svg"/>&nbsp;&nbsp;Align
                                             Horizontal Bottom</a>
                                         </li>
-                                        <li><a class="dd-list-href" href="#" id="align-vertical-left-icon">&nbsp;<img
+                                        <li><a class="dd-list-href" href="#"
+                                               id="align-vertical-left-icon">&nbsp;<img
                                                 src="img/align/align-vertical-left.svg"/>&nbsp;&nbsp;Align Vertical
                                             Left</a></li>
-                                        <li><a class="dd-list-href" href="#" id="align-vertical-center-icon">&nbsp;<img
-                                                src="img/align/align-vertical-center.svg"/>&nbsp;&nbsp;Align Vertical
+                                        <li><a class="dd-list-href" href="#"
+                                               id="align-vertical-center-icon">&nbsp;<img
+                                                src="img/align/align-vertical-center.svg"/>&nbsp;&nbsp;Align
+                                            Vertical
                                             Center</a>
                                         </li>
-                                        <li><a class="dd-list-href" href="#" id="align-vertical-right-icon">&nbsp;<img
+                                        <li><a class="dd-list-href" href="#"
+                                               id="align-vertical-right-icon">&nbsp;<img
                                                 src="img/align/align-vertical-right.svg"/>&nbsp;&nbsp;Align Vertical
                                             Right</a></li>
                                     </ul>
@@ -674,7 +734,8 @@
                                 <img id="toggle-guidelines-snapping-icon" class="sbgn-toolbar-element"
                                      src="img/toolbar/guidelines.svg"
                                      title="Enable Guidelines: Enable and snap to alignment guidelines during drag">
-                                <img id="properties-icon" class="sbgn-toolbar-element" src="img/toolbar/settings.svg"
+                                <img id="properties-icon" class="sbgn-toolbar-element"
+                                     src="img/toolbar/settings.svg"
                                      title="Map Properties: Modify general properties of current SBGN map">
                             </div>
 
@@ -757,10 +818,12 @@
                                                                                                   height="18px"
                                                                                                   src="img/toolbar/settings.svg"/>&nbsp;Map</a>
                                         </li>
-                                        <li id='inspector-palette-tab' class="chise-tab active validation-mode-tab"><a
-                                                data-toggle="tab" href="#sbgn-inspector-palette"><img width="18px"
-                                                                                                      height="18px"
-                                                                                                      src="img/tabs/palette.svg"/>&nbsp;Palette</a>
+                                        <li id='inspector-palette-tab' class="chise-tab active validation-mode-tab">
+                                            <a
+                                                    data-toggle="tab" href="#sbgn-inspector-palette"><img
+                                                    width="18px"
+                                                    height="18px"
+                                                    src="img/tabs/palette.svg"/>&nbsp;Palette</a>
                                         </li>
                                         <li id='inspector-console-tab' class="chise-tab validation-mode-tab"
                                             style="display:none;">
@@ -856,7 +919,8 @@
                                                                             language="PD" value="macromolecule"
                                                                             title="Macromolecule"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/nodes/complex.svg" language="PD"
+                                                                            src="img/nodes/complex.svg"
+                                                                            language="PD"
                                                                             value="complex" title="Complex"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/simple-chemical.svg"
@@ -869,7 +933,8 @@
                                                                     </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/nucleic-acid-feature.svg"
-                                                                            language="PD" value="nucleic-acid-feature"
+                                                                            language="PD"
+                                                                            value="nucleic-acid-feature"
                                                                             title="Nucleic Acid Feature"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/perturbing-agent.svg"
@@ -881,10 +946,13 @@
                                                                             language="PD" value="source-and-sink"
                                                                             title="Source and Sink"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/nodes/phenotype.svg" language="PD"
-                                                                            value="phenotype" title="Phenotype"/></div>
+                                                                            src="img/nodes/phenotype.svg"
+                                                                            language="PD"
+                                                                            value="phenotype" title="Phenotype"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/nodes/process.svg" language="PD"
+                                                                            src="img/nodes/process.svg"
+                                                                            language="PD"
                                                                             value="process" title="Process"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/omitted-process.svg"
@@ -903,10 +971,11 @@
                                                                             src="img/nodes/dissociation.svg"
                                                                             language="PD" value="dissociation"
                                                                             title="Dissociation"/></div>
-                                                                    <div class="paletteCol"><img src="img/nodes/tag.svg"
-                                                                                                 language="PD"
-                                                                                                 value="tag"
-                                                                                                 title="Tag"/>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/tag.svg"
+                                                                            language="PD"
+                                                                            value="tag"
+                                                                            title="Tag"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/compartment.svg"
@@ -915,19 +984,22 @@
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/submap.svg" language="PD"
                                                                             value="submap" title="Submap"/></div>
-                                                                    <div class="paletteCol"><img src="img/nodes/and.svg"
-                                                                                                 language="PD"
-                                                                                                 value="and"
-                                                                                                 title="AND"/>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/and.svg"
+                                                                            language="PD"
+                                                                            value="and"
+                                                                            title="AND"/>
                                                                     </div>
-                                                                    <div class="paletteCol"><img src="img/nodes/or.svg"
-                                                                                                 language="PD"
-                                                                                                 value="or"
-                                                                                                 title="OR"/></div>
-                                                                    <div class="paletteCol"><img src="img/nodes/not.svg"
-                                                                                                 language="PD"
-                                                                                                 value="not"
-                                                                                                 title="NOT"/>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/or.svg"
+                                                                            language="PD"
+                                                                            value="or"
+                                                                            title="OR"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/not.svg"
+                                                                            language="PD"
+                                                                            value="not"
+                                                                            title="NOT"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -941,11 +1013,13 @@
                                                                             language="PD" value="consumption"
                                                                             title="Consumption"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/production.svg" language="PD"
+                                                                            src="img/edges/production.svg"
+                                                                            language="PD"
                                                                             value="production" title="Production"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/modulation.svg" language="PD"
+                                                                            src="img/edges/modulation.svg"
+                                                                            language="PD"
                                                                             value="modulation" title="Modulation"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
@@ -953,15 +1027,19 @@
                                                                             language="PD" value="stimulation"
                                                                             title="Stimulation"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/catalysis.svg" language="PD"
-                                                                            value="catalysis" title="Catalysis"/></div>
+                                                                            src="img/edges/catalysis.svg"
+                                                                            language="PD"
+                                                                            value="catalysis" title="Catalysis"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/inhibition.svg" language="PD"
+                                                                            src="img/edges/inhibition.svg"
+                                                                            language="PD"
                                                                             value="inhibition" title="Inhibition"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/necessary-stimulation.svg"
-                                                                            language="PD" value="necessary stimulation"
+                                                                            language="PD"
+                                                                            value="necessary stimulation"
                                                                             title="Necessary Stimulation"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/consumption.svg"
@@ -992,7 +1070,8 @@
                                                                  class="element-palette node-palette">
                                                                 <div class="paletteWrapper">
                                                                     <div class="paletteCol"><img
-                                                                            src="img/nodes/BA-plain.svg" language="AF"
+                                                                            src="img/nodes/BA-plain.svg"
+                                                                            language="AF"
                                                                             value="BA-plain"
                                                                             title="Biological Activity"/></div>
                                                                     <div class="paletteCol"><img
@@ -1000,8 +1079,10 @@
                                                                             language="AF" value="BA-macromolecule"
                                                                             title="Macromolecule"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/nodes/BA-complex.svg" language="AF"
-                                                                            value="BA-complex" title="Complex"/></div>
+                                                                            src="img/nodes/BA-complex.svg"
+                                                                            language="AF"
+                                                                            value="BA-complex" title="Complex"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/BA-simple-chemical.svg"
                                                                             language="AF" value="BA-simple-chemical"
@@ -1009,7 +1090,8 @@
                                                                     </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/BA-unspecified-entity.svg"
-                                                                            language="AF" value="BA-unspecified-entity"
+                                                                            language="AF"
+                                                                            value="BA-unspecified-entity"
                                                                             title="Unspecified Entity"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/BA-nucleic-acid-feature.svg"
@@ -1018,12 +1100,15 @@
                                                                             title="Nucleic Acid Feature"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/BA-perturbing-agent.svg"
-                                                                            language="AF" value="BA-perturbing-agent"
+                                                                            language="AF"
+                                                                            value="BA-perturbing-agent"
                                                                             title="Perturbing Agent"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/nodes/phenotype.svg" language="AF"
-                                                                            value="phenotype" title="Phenotype"/></div>
+                                                                            src="img/nodes/phenotype.svg"
+                                                                            language="AF"
+                                                                            value="phenotype" title="Phenotype"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/compartment.svg"
                                                                             language="AF" value="compartment"
@@ -1031,24 +1116,28 @@
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/submap.svg" language="AF"
                                                                             value="submap" title="Submap"/></div>
-                                                                    <div class="paletteCol"><img src="img/nodes/tag.svg"
-                                                                                                 language="AF"
-                                                                                                 value="tag"
-                                                                                                 title="Tag"/>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/tag.svg"
+                                                                            language="AF"
+                                                                            value="tag"
+                                                                            title="Tag"/>
                                                                     </div>
-                                                                    <div class="paletteCol"><img src="img/nodes/and.svg"
-                                                                                                 language="AF"
-                                                                                                 value="and"
-                                                                                                 title="AND"/>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/and.svg"
+                                                                            language="AF"
+                                                                            value="and"
+                                                                            title="AND"/>
                                                                     </div>
-                                                                    <div class="paletteCol"><img src="img/nodes/or.svg"
-                                                                                                 language="AF"
-                                                                                                 value="or"
-                                                                                                 title="OR"/></div>
-                                                                    <div class="paletteCol"><img src="img/nodes/not.svg"
-                                                                                                 language="AF"
-                                                                                                 value="not"
-                                                                                                 title="NOT"/>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/or.svg"
+                                                                            language="AF"
+                                                                            value="or"
+                                                                            title="OR"/></div>
+                                                                    <div class="paletteCol"><img
+                                                                            src="img/nodes/not.svg"
+                                                                            language="AF"
+                                                                            value="not"
+                                                                            title="NOT"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/delay.svg" language="AF"
@@ -1066,16 +1155,19 @@
                                                                             language="AF" value="positive influence"
                                                                             title="Positive Influence"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/inhibition.svg" language="AF"
+                                                                            src="img/edges/inhibition.svg"
+                                                                            language="AF"
                                                                             value="negative influence"
                                                                             title="Negative Influence"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/modulation.svg" language="AF"
+                                                                            src="img/edges/modulation.svg"
+                                                                            language="AF"
                                                                             value="unknown influence"
                                                                             title="Unknown Influence"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/necessary-stimulation.svg"
-                                                                            language="AF" value="necessary stimulation"
+                                                                            language="AF"
+                                                                            value="necessary stimulation"
                                                                             title="Necessary Stimulation"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/consumption.svg"
@@ -1113,7 +1205,8 @@
                                                                             title="Macromolecule"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/nodes/simple-chemical.svg"
-                                                                            language="SIF" value="SIF-simple-chemical"
+                                                                            language="SIF"
+                                                                            value="SIF-simple-chemical"
                                                                             title="Simple Chemical"/></div>
                                                                 </div>
                                                             </div>
@@ -1129,13 +1222,15 @@
                                                                             title="Controls State Change of"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/controls-transport-of.svg"
-                                                                            language="SIF" value="controls-transport-of"
+                                                                            language="SIF"
+                                                                            value="controls-transport-of"
                                                                             title="Controls Transport of"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/controls-phosphorylation-of.svg"
                                                                             language="SIF"
                                                                             value="controls-phosphorylation-of"
-                                                                            title="Controls Phosphorylation of"/></div>
+                                                                            title="Controls Phosphorylation of"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/controls-expression-of.svg"
                                                                             language="SIF"
@@ -1143,7 +1238,8 @@
                                                                             title="Controls Expression of"/></div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/catalysis-precedes.svg"
-                                                                            language="SIF" value="catalysis-precedes"
+                                                                            language="SIF"
+                                                                            value="catalysis-precedes"
                                                                             title="Catalysis Precedes"/>
                                                                     </div>
                                                                     <div class="paletteCol"><img
@@ -1188,11 +1284,15 @@
                                                                             language="SIF" value="used-to-produce"
                                                                             title="Used to Produce"/></div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/activates.svg" language="SIF"
-                                                                            value="activates" title="Activates"/></div>
+                                                                            src="img/edges/activates.svg"
+                                                                            language="SIF"
+                                                                            value="activates" title="Activates"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
-                                                                            src="img/edges/inhibits.svg" language="SIF"
-                                                                            value="inhibits" title="Inhibits"/></div>
+                                                                            src="img/edges/inhibits.svg"
+                                                                            language="SIF"
+                                                                            value="inhibits" title="Inhibits"/>
+                                                                    </div>
                                                                     <div class="paletteCol"><img
                                                                             src="img/edges/phosphorylates.svg"
                                                                             language="SIF" value="phosphorylates"
@@ -1226,7 +1326,8 @@
                                                 <div class="panel">
                                                     <div class="panel-heading" data-toggle="collapse"
                                                          data-target="#sbgn-inspector-console-panel-group">
-                                                        <p class="panel-title accordion-toggle">Validation Results</p>
+                                                        <p class="panel-title accordion-toggle">Validation
+                                                            Results</p>
                                                     </div>
                                                     <div id="sbgn-inspector-console-panel-group"
                                                          class="panel-collapse collapse in">
@@ -1370,11 +1471,13 @@
                                 <div class="modal-body">
                                     <div class="sbgn-frame" style="text-align:center;">
                                         <h2 class="sbgn-text">Process Description</h2>
-                                        <img src="img/pd-legend.svg" alt="" class="centered img-responsive sbgn-legend">
+                                        <img src="img/pd-legend.svg" alt=""
+                                             class="centered img-responsive sbgn-legend">
                                         <p class="address-text" style="margin-top: 20px;margin-bottom: 10px;"><a
                                                 href="https://sbgn.github.io/referencecards" target="_blank"
                                                 rel="nofollow">Reference
-                                            Card</a> - <a href="https://sbgn.github.io/specifications" target="_blank"
+                                            Card</a> - <a href="https://sbgn.github.io/specifications"
+                                                          target="_blank"
                                                           rel="nofollow">Specifications</a></p>
                                     </div>
                                 </div>
@@ -1388,11 +1491,13 @@
                                 <div class="modal-body">
                                     <div class="sbgn-frame" style="text-align: center;">
                                         <h2 class="sbgn-text">Activity Flow</h2>
-                                        <img src="img/af-legend.svg" alt="" class="centered img-responsive sbgn-legend">
+                                        <img src="img/af-legend.svg" alt=""
+                                             class="centered img-responsive sbgn-legend">
                                         <p class="address-text" style="margin-top: 20px; margin-bottom: 10px;"><a
                                                 href="https://sbgn.github.io/referencecards" target="_blank"
                                                 rel="nofollow">Reference
-                                            Card</a> - <a href="https://sbgn.github.io/specifications" target="_blank"
+                                            Card</a> - <a href="https://sbgn.github.io/specifications"
+                                                          target="_blank"
                                                           rel="nofollow">Specifications</a></p>
                                     </div>
                                 </div>
@@ -1435,7 +1540,8 @@
 
                                             <tr>
                                                 <td>
-                                                    <img src="/img/newt-logo.png" alt="" class="centered img-responsive"
+                                                    <img src="/img/newt-logo.png" alt=""
+                                                         class="centered img-responsive"
                                                          style="margin-bottom: 10px;">
                                                 </td>
                                             </tr>
@@ -1445,15 +1551,17 @@
                                                     <p class="address-text marg">i-Vis Information Visualization
                                                         Research Lab,
                                                         Ankara, Turkey,</p>
-                                                    <p class="address-text">in collaboration with the Demir Lab at OHSU,
+                                                    <p class="address-text">in collaboration with the Demir Lab at
+                                                        OHSU,
                                                         USA</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <p class="address-text">
-                                                        See <a href="https://github.com/iVis-at-Bilkent/newt#credits"
-                                                               target="_blank">here</a> for third-party libraries used
+                                                        See <a
+                                                            href="https://github.com/iVis-at-Bilkent/newt#credits"
+                                                            target="_blank">here</a> for third-party libraries used
                                                     </p>
                                                 </td>
                                             </tr>
@@ -1490,8 +1598,9 @@
                                                     <td><b>SBGN notation:</b>:
                                                         <a href="https://sbgn.github.io/learning" target="_blank"
                                                            rel="nofollow">Learning
-                                                            SBGN</a> - <a href="https://sbgn.github.io/learnerscards"
-                                                                          target="_blank" rel="nofollow">Learner's
+                                                            SBGN</a> - <a
+                                                                href="https://sbgn.github.io/learnerscards"
+                                                                target="_blank" rel="nofollow">Learner's
                                                             Cards</a>
                                                     </td>
                                                 </tr>
@@ -1556,27 +1665,31 @@
                                                 <tr>
                                                     <td><b>Edit > Add {Complex,Compartment,Submap} for Selected</b>:
                                                         include all
-                                                        selected nodes inside a newly created complex or compartment or
+                                                        selected nodes inside a newly created complex or compartment
+                                                        or
                                                         submap.
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Convenient process creation</b>:
-                                                        When creating a new process node, click on substrate node and
+                                                        When creating a new process node, click on substrate node
+                                                        and
                                                         drag to and
                                                         release on product node.
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Enable grid</b>:
-                                                        Clicking on the Enable Grid tool on the toolbar shows and snaps
+                                                        Clicking on the Enable Grid tool on the toolbar shows and
+                                                        snaps
                                                         to the grid
                                                         during node dragging.
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Enable guidelines</b>:
-                                                        Clicking on the Enable Guidelines tool on the toolbar enables
+                                                        Clicking on the Enable Guidelines tool on the toolbar
+                                                        enables
                                                         and snaps to
                                                         alignment guidelines during node dragging.
                                                     </td>
@@ -1659,11 +1772,13 @@
 
                                         <tr>
                                             <td>
-                                                <span class="add-on layout-text" title="Divisor to compute edge forces"> Edge Elasticity </span>
+                                                    <span class="add-on layout-text"
+                                                          title="Divisor to compute edge forces"> Edge Elasticity </span>
                                             </td>
                                             <td>
                                                 <input id="edge-elasticity" type="number" min="0"
-                                                       class="sbgn-input-small layout-text" value=<%= edgeElasticity %>
+                                                       class="sbgn-input-small layout-text" value=<%= edgeElasticity
+                                                       %>
                                                 >
                                             </td>
                                         </tr>
@@ -1675,13 +1790,15 @@
                                             </td>
                                             <td>
                                                 <input id="nesting-factor" type="number" min="0"
-                                                       class="sbgn-input-small layout-text" value=<%= nestingFactor %> >
+                                                       class="sbgn-input-small layout-text" value=<%= nestingFactor
+                                                       %> >
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td>
-                                                <span class="add-on layout-text" title="Gravity force (constant)"> Gravity </span>
+                                            <span class="add-on layout-text"
+                                                  title="Gravity force (constant)"> Gravity </span>
                                             </td>
                                             <td>
                                                 <input id="gravity" type="number" min="0"
@@ -1709,7 +1826,8 @@
                                             </td>
                                             <td>
                                                 <input id="gravity-compound" type="number" min="0"
-                                                       class="sbgn-input-small layout-text" value=<%= gravityCompound %>
+                                                       class="sbgn-input-small layout-text" value=<%=
+                                                       gravityCompound %>
                                                 >
                                             </td>
                                         </tr>
@@ -1769,7 +1887,8 @@
                                             </td>
 
                                             <td>
-                                                <input id="tile" type="checkbox" class="layout-text" <% if (tile){ %>
+                                                <input id="tile" type="checkbox" class="layout-text" <% if (tile){
+                                                %>
                                                 checked<%}%>>
                                             </td>
                                         </tr>
@@ -1781,7 +1900,8 @@
                                             </td>
 
                                             <td>
-                                                <input id="pack-components" type="checkbox" class="layout-text" <% if
+                                                <input id="pack-components" type="checkbox" class="layout-text" <%
+                                                if
                                                 (packComponents){ %> checked<%}%>>
                                             </td>
                                         </tr>
@@ -1851,7 +1971,8 @@
 
                             <tr>
                                 <td class="header">
-                                    <span class="add-on layout-text" title="Description of the map"> Description </span>
+                                        <span class="add-on layout-text"
+                                              title="Description of the map"> Description </span>
                                 </td>
 
                                 <td>
@@ -1893,11 +2014,13 @@
 
                             <tr>
                                 <td class="header">
-                                    <span class="add-on layout-text" title="Size of various types of arrows on edges"> Edge Arrow Size </span>
+                                        <span class="add-on layout-text"
+                                              title="Size of various types of arrows on edges"> Edge Arrow Size </span>
                                 </td>
 
                                 <td>
-                                    <input id="arrow-scale" type='range' class="sbgn-input-small" step='0.01' min='0.5'
+                                    <input id="arrow-scale" type='range' class="sbgn-input-small" step='0.01'
+                                           min='0.5'
                                            max='2'
                                            value=<%= arrowScale %> >
                                 </td>
@@ -1934,7 +2057,8 @@
                                 </td>
 
                                 <td>
-                                    <input id="enable-ports" type="checkbox" class="layout-text" <% if (enablePorts){ %>
+                                    <input id="enable-ports" type="checkbox" class="layout-text" <% if
+                                    (enablePorts){ %>
                                     checked<%}%>>
                                 </td>
                             </tr>
@@ -1946,14 +2070,16 @@
                                 </td>
 
                                 <td>
-                                    <input id="enable-sif-topology-grouping" type="checkbox" class="layout-text" <% if
+                                    <input id="enable-sif-topology-grouping" type="checkbox" class="layout-text" <%
+                                    if
                                     (enableSIFTopologyGrouping){ %> checked<%}%>>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td class="header">
-                                    <span class="add-on layout-text" title="Highlight thickness and color">Highlight Style</span>
+                                <span class="add-on layout-text"
+                                      title="Highlight thickness and color">Highlight Style</span>
                                 </td>
 
                                 <td>
@@ -2052,7 +2178,8 @@
                         </table>
 
                         <div style='text-align: center; margin-top: 5px;'>
-                            <button class='btn btn-default' style='align: center;' id='map-label-default-button'>Default
+                            <button class='btn btn-default' style='align: center;' id='map-label-default-button'>
+                                Default
                             </button>
                             <div>
                     </script>
@@ -2080,7 +2207,8 @@
                                 </td>
 
                                 <td>
-                                    <input id="rearrange-on-complexity-management" type="checkbox" class="layout-text"
+                                    <input id="rearrange-on-complexity-management" type="checkbox"
+                                           class="layout-text"
                                     <% if
                                     (rearrangeOnComplexityManagement){ %> checked<%}%>>
                                 </td>
@@ -2110,15 +2238,17 @@
 
                     <script type="text/template" id="map-tab-experiment-template">
                         <table align="center" class="table-condensed layout-table dialog-table map-panel-table">
-                            <div align="center" style='margin-top: 10px; text-align: center'> Load... <img width='16px'
-                                                                                                           height='16px'
-                                                                                                           id='load-exp-data-util'
-                                                                                                           title="Load experiment data from a tab-delimited file"
-                                                                                                           src='img/add.svg'
-                                                                                                           style="margin: 5px;"/>
+                            <div align="center" style='margin-top: 10px; text-align: center'> Load... <img
+                                    width='16px'
+                                    height='16px'
+                                    id='load-exp-data-util'
+                                    title="Load experiment data from a tab-delimited file"
+                                    src='img/add.svg'
+                                    style="margin: 5px;"/>
                             </div>
 
-                            <% if( experimentDescription.length <= 0 || Object.entries(experimentDescription).length ==
+                            <% if( experimentDescription.length <= 0 || Object.entries(experimentDescription).length
+                            ==
                             0){
                             %>
                             <% } else { %>
@@ -2183,9 +2313,10 @@
                                             <div>
                                                 <button class='btn btn-default' value="true"
                                                         style='align: center; border-width: 0px !important; padding:3px; overflow: hidden; text-overflow: ellipsis; max-width: 80%;'
-                                                        title="Hide/show " id='experiment-file-vis-<%= filename %>'><b><%=
-                                                    filename
-                                                    %></b></button>
+                                                        title="Hide/show " id='experiment-file-vis-<%= filename %>'>
+                                                    <b><%=
+                                                        filename
+                                                        %></b></button>
                                             </div>
                                         </td>
                                         <td style="width:50% !important">
@@ -2477,7 +2608,8 @@
                                         <tr>
                                             <td>Enter URI of a pathway</td>
                                             <td style="padding: 10px;"><input id="query-pathsbyURI-URI" type="text"
-                                                                              style="width: 300px;" value=<%= URI %> >
+                                                                              style="width: 300px;" value=<%= URI %>
+                                                >
                                             </td>
                                         </tr>
                                         </tbody>
@@ -2490,7 +2622,6 @@
                             </div>
                         </div>
                     </script>
-
 
                     <script type="text/template" id="prompt-save-template">
                         <div class="modal-dialog sbgn-modal-dialog" style="width: 350px;">
@@ -2508,7 +2639,8 @@
                                             </th>
                                         </tr>
 
-                                        <tr id="prompt-save-buttons" style="padding-bottom: 0px; margin-bottom: 0px;">
+                                        <tr id="prompt-save-buttons"
+                                            style="padding-bottom: 0px; margin-bottom: 0px;">
                                             <td>
                                             </td>
                                         </tr>
@@ -2557,6 +2689,7 @@
                             </div>
                         </div>
                     </script>
+
                     <script type="text/template" id="save-user-preferences-template">
                         <div class="modal-dialog modal-sm sbgn-modal-dialog">
                             <div class="modal-content">
@@ -2641,7 +2774,8 @@
                                                       title="Save <%= element %> properties preferences"> <%= element %> </span>
                                             </td>
                                             <td>
-                                                <input id="user-prefrences-object-<%= element %>-check" type="checkbox"
+                                                <input id="user-prefrences-object-<%= element %>-check"
+                                                       type="checkbox"
                                                        disabled="disabled"
                                                        class="layout-text save-preferences-object-styles"
                                                        checked>
@@ -2655,7 +2789,8 @@
                                 </div>
                                 <div class="modal-footer" style="text-align: center">
                                     <button id="save-user-preferences-accept" class="btn btn-default">Save</button>
-                                    <button id="save-user-preferences-cancel" class="btn btn-default">Cancel</button>
+                                    <button id="save-user-preferences-cancel" class="btn btn-default">Cancel
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -2693,7 +2828,8 @@
                                             <td>
                                                 <input id="load-user-prefrences-grid-check" type="checkbox"
                                                        class="layout-text" <%
-                                                if(typeof currentGridProperties !== 'undefined') { %> checked <% }else{
+                                                if(typeof currentGridProperties !== 'undefined') { %> checked <%
+                                                }else{
                                                 %>
                                                 disabled
                                                 <% } %>>
@@ -2775,7 +2911,8 @@
                                 </div>
                                 <div class="modal-footer" style="text-align: center">
                                     <button id="load-user-preferences-accept" class="btn btn-default">Load</button>
-                                    <button id="load-user-preferences-cancel" class="btn btn-default">Cancel</button>
+                                    <button id="load-user-preferences-cancel" class="btn btn-default">Cancel
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -2906,7 +3043,8 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer" style="text-align: center">
-                                    <button id="prompt-invalidLengthLimit-confirm" class="btn btn-default">OK</button>
+                                    <button id="prompt-invalidLengthLimit-confirm" class="btn btn-default">OK
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -3002,7 +3140,8 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer" style="text-align: center">
-                                    <button id="prompt-fileConversionError-confirm" class="btn btn-default">OK</button>
+                                    <button id="prompt-fileConversionError-confirm" class="btn btn-default">OK
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -3043,6 +3182,7 @@
                             </div>
                         </div>
                     </script>
+
                     <!-- Invalid URL warning -->
                     <script type="text/template" id="prompt-invalidURL-template">
                         <div class="modal-dialog sbgn-modal-dialog" style="width: 300px;">
@@ -3159,7 +3299,8 @@
                                                         class='sbgn-output-medium layout-text'
                                                         name="reaction-template-type" align="center" valign="middle"
                                                         style="width: 18%">
-                                                    <option id="reaction-template-type-association" value="association"
+                                                    <option id="reaction-template-type-association"
+                                                            value="association"
                                                             selected>
                                                         Association
                                                     </option>
@@ -3167,7 +3308,8 @@
                                                             value="dissociation">
                                                         Dissociation
                                                     </option>
-                                                    <option id="reaction-template-type-reversible" value="reversible">
+                                                    <option id="reaction-template-type-reversible"
+                                                            value="reversible">
                                                         Reversible
                                                     </option>
                                                 </select>
@@ -3200,13 +3342,15 @@
                                                         <td>
                                                             <select class='template-reaction-molecule-type sbgn-output-medium layout-text'
                                                                     name="1" style='width: 120px'>
-                                                                <option value="Macromolecule" selected> Macromolecule
+                                                                <option value="Macromolecule" selected>
+                                                                    Macromolecule
                                                                 </option>
                                                                 <option value="Simple Chemical"> Simple Chemical
                                                                 </option>
                                                         </td>
                                                         <td><img style='vertical-align: text-bottom;'
-                                                                 class='template-reaction-delete-button' width='16px'
+                                                                 class='template-reaction-delete-button'
+                                                                 width='16px'
                                                                  height='16px'
                                                                  name='1' src='img/toolbar/delete-simple.svg'/>
                                                         </td>
@@ -3220,13 +3364,15 @@
                                                         <td>
                                                             <select class='template-reaction-molecule-type sbgn-output-medium layout-text'
                                                                     name="2" style='width: 120px'>
-                                                                <option value="Macromolecule" selected> Macromolecule
+                                                                <option value="Macromolecule" selected>
+                                                                    Macromolecule
                                                                 </option>
                                                                 <option value="Simple Chemical"> Simple Chemical
                                                                 </option>
                                                         </td>
                                                         <td><img style='vertical-align: text-bottom;'
-                                                                 class='template-reaction-delete-button' width='16px'
+                                                                 class='template-reaction-delete-button'
+                                                                 width='16px'
                                                                  height='16px'
                                                                  name='2' src='img/toolbar/delete-simple.svg'/>
                                                         </td>
@@ -3251,7 +3397,8 @@
                                                         <td style="width: 50px; margin-left: 50%;"></td>
                                                         <td>
                                                             <input type='text' class='sbgn-input-medium layout-text'
-                                                                   id='template-reaction-complex-name' value=''></input>
+                                                                   id='template-reaction-complex-name'
+                                                                   value=''></input>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -3270,7 +3417,8 @@
                                                         <td>
                                                             <select class='template-reaction-molecule-type sbgn-output-medium layout-text'
                                                                     name="1" style='width: 120px'>
-                                                                <option value="Macromolecule"> Macromolecule</option>
+                                                                <option value="Macromolecule"> Macromolecule
+                                                                </option>
                                                                 <option value="Simple Chemical" selected> Simple
                                                                     Chemical
                                                                 </option>
@@ -3308,7 +3456,8 @@
                                                         <td>
                                                             <select class='template-reaction-molecule-type sbgn-output-medium layout-text'
                                                                     name="1" style='width: 120px'>
-                                                                <option value="Macromolecule"> Macromolecule</option>
+                                                                <option value="Macromolecule"> Macromolecule
+                                                                </option>
                                                                 <option value="Simple Chemical" selected> Simple
                                                                     Chemical
                                                                 </option>
@@ -3374,12 +3523,14 @@
                                             </td>
                                             <td style="padding-right: 25px;">
                                                 <span class="add-on layout-text"> Color </span>
-                                                <input id="grid-color" type="color" class="sbgn-input-small layout-text"
+                                                <input id="grid-color" type="color"
+                                                       class="sbgn-input-small layout-text"
                                                        value=<%=
                                                        gridColor %> >
                                             </td>
                                             <td>
-                                                <input id="auto-resize-nodes" type="checkbox" class="layout-text" <% if
+                                                <input id="auto-resize-nodes" type="checkbox" class="layout-text" <%
+                                                if
                                                 (autoResizeNodes){ %> checked<%}%>>
                                                 <span class="add-on layout-text"> Auto  Resize Nodes </span>
                                             </td>
@@ -3394,7 +3545,8 @@
                                         </tr>
                                         <tr>
                                             <td style="padding-right: 10px">
-                                                <input id="no-snap" type="radio" name="snap-policy" class="layout-text"
+                                                <input id="no-snap" type="radio" name="snap-policy"
+                                                       class="layout-text"
                                                 <%
                                                 if
                                                 (!snapToGridDuringDrag && !snapToGridOnRelease &&
@@ -3408,7 +3560,8 @@
                                             <td style="padding-left: 0px; padding-right: 10px;">
                                                 <select id="snap-to-grid">
                                                     <option value="disabled"
-                                                    <% if (!snapToGridDuringDrag && !snapToGridOnRelease){ %> selected<%
+                                                    <% if (!snapToGridDuringDrag && !snapToGridOnRelease){ %>
+                                                    selected<%
                                                     }%>
                                                     >
                                                     Disabled </option>
@@ -3452,7 +3605,8 @@
                                                 <span class="add-on layout-text"> Reference Guideline</span>
                                             </td>
                                             <td style="padding-bottom: 20px !important;">
-                                                <input id="show-init-Pos-Alignment" type="checkbox" class="layout-text"
+                                                <input id="show-init-Pos-Alignment" type="checkbox"
+                                                       class="layout-text"
                                                 <% if
                                                 (showInitPosAlignment){ %> checked<%}%>>
                                             </td>
@@ -3468,11 +3622,13 @@
                                             <td style="padding-bottom: 20px !important;">
                                                 <select name="init-Pos-Alignment-Line">
                                                     <option value="0,0"
-                                                    <% if (initPosAlignmentLine[0] == 0 && initPosAlignmentLine[1] ==
+                                                    <% if (initPosAlignmentLine[0] == 0 && initPosAlignmentLine[1]
+                                                    ==
                                                     0){ %>
                                                     selected<% }%> > Solid </option>
                                                     <option value="3,5"
-                                                    <% if (initPosAlignmentLine[0] != 0 || initPosAlignmentLine[1] !=
+                                                    <% if (initPosAlignmentLine[0] != 0 || initPosAlignmentLine[1]
+                                                    !=
                                                     0){ %>
                                                     selected<% }%> > Dashed </option>
                                                 </select>
@@ -3494,16 +3650,19 @@
                                             </td>
                                             <td style="padding-bottom: 20px !important;">
                                                 <input id="geometric-guideline-color" type="color"
-                                                       class="sbgn-input-small layout-text" value=<%= guidelineColor %>
+                                                       class="sbgn-input-small layout-text" value=<%= guidelineColor
+                                                       %>
                                                 >
                                             </td>
                                             <td style="padding-bottom: 20px !important;">
                                                 <select id="geometric-Alignment-Line">
                                                     <option value="0,0"
-                                                    <% if (lineDash[0] == 0 && lineDash[1] == 0){ %> selected<% }%> >
+                                                    <% if (lineDash[0] == 0 && lineDash[1] == 0){ %> selected<% }%>
+                                                    >
                                                     Solid </option>
                                                     <option value="3,5"
-                                                    <% if (lineDash[0] != 0 || lineDash[1] != 0){ %> selected<% }%> >
+                                                    <% if (lineDash[0] != 0 || lineDash[1] != 0){ %> selected<% }%>
+                                                    >
                                                     Dashed </option>
                                                 </select>
                                             </td>
@@ -3541,11 +3700,13 @@
                                             <td>
                                                 <select name="horizontal-Dist-Alignment-Line">
                                                     <option value="0,0"
-                                                    <% if (horizontalDistLine[0] == 0 && horizontalDistLine[1] == 0){ %>
+                                                    <% if (horizontalDistLine[0] == 0 && horizontalDistLine[1] ==
+                                                    0){ %>
                                                     selected<%
                                                     }%> > Solid </option>
                                                     <option value="3,5"
-                                                    <% if (horizontalDistLine[0] != 0 || horizontalDistLine[1] != 0){ %>
+                                                    <% if (horizontalDistLine[0] != 0 || horizontalDistLine[1] !=
+                                                    0){ %>
                                                     selected<%
                                                     }%> > Dashed </option>
                                                 </select>
@@ -3696,64 +3857,6 @@
                         </div>
                     </script>
 
-                    <!-- since biogene service from PC is not available any more, we now give link to gene properties in My Cancer Genome organization -->
-                    <!-- BioGeneView template for backbone.js -->
-                    <!--
-                        <script type="text/template" id="biogene-template">
-                            <div class='node-details-text'>
-                            <table class="table table-condensed table-striped object-panel-table" cellspacing="10">
-                            <tbody>
-                            <tr class="biogene-info biogene-description node-details-summary">
-                            <th valign="top">Gene Summary:</th>
-                            <td colspan="2" class="expandable">
-                            <%=geneSummary %>
-                            </td>
-                            </tr>
-                            <tr class="biogene-info biogene-aliases">
-                            <th valign="top">Aliases:</th>
-                            <td>
-                            <%=geneAliases %>
-                            </td>
-                            </tr>
-                            <tr class="biogene-info biogene-description">
-                            <th>Description:</th>
-                            <td class="expandable">
-                            <%=geneDescription %>
-                            </td>
-                            </tr>
-                            <tr class="biogene-info biogene-location">
-                            <th valign="top">Chromosome Location:</th>
-                            <td>
-                            <%=geneLocation %>
-                            </td>
-                            </tr>
-                            <tr class="biogene-info biogene-uniprot-links">
-                            <th valign="top">UniProt ID:</th>
-                            <td>
-                            <a href='http://www.uniprot.org/uniprot/<%= geneUniprotId %>' target='blank'>
-                            <%=geneUniprotId %>
-                            </a>
-                        -->
-                    <!--<span class='biogene-uniprot-links-extra'> -->
-                    <!--<%= geneUniprotLinks %> -->
-                    <!--</span>-->
-                    <!--
-                            </td>
-                            </tr>
-                            <tr class="biogene-info biogene-id">
-                            <th valign="top">Gene ID:</th>
-                            <td>
-                            <a href='http://www.ncbi.nlm.nih.gov/gene?term=<%= geneId %>' target='blank'>
-                            <%=geneId %>
-                            </a>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
-                            </div>
-                        </script>
-                        -->
-
                     <!-- ChemicalView template for backbone.js -->
                     <script type="text/template" id="chemical-template">
                         <!--<div class='node-details-text'>-->
@@ -3861,7 +3964,8 @@
 
                                     <% if (vocabulary[selectedRelation].controlled){ %>
                                     <!-- reflect status of validation with icon -->
-                                    <div style="float:left;margin-top:5px;" id="annotations-status-icon-<%= index %>">
+                                    <div style="float:left;margin-top:5px;"
+                                         id="annotations-status-icon-<%= index %>">
                                         <% if (status == "unchecked"){ %>
                                         <i style="color:#E6E6E6;" class="fa fa-check fa-lg"
                                            title="No validation was done. Fill the input on the left or change the database to trigger validation."></i>
@@ -3991,12 +4095,14 @@
                         </div>
 
                         <div style='text-align: center; margin-top: 5px;'>
-                            <button class='btn btn-default' style='align: center;' id='map-color-scheme-default-button'>
+                            <button class='btn btn-default' style='align: center;'
+                                    id='map-color-scheme-default-button'>
                                 Default
                             </button>
                             <div>
 
                     </script>
+
                     <script type="text/template" id="prompt-invalidSchematronFile-template">
                         <div class="modal-dialog sbgn-modal-dialog" style="width: 300px;">
                             <div class="modal-content">
@@ -4031,11 +4137,9 @@
                     </script>
                 </div>
             </div>
-
-
         </div>
-    </div>
 
+    </div>
 </div>
 
 
