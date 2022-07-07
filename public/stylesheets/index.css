@@ -289,7 +289,6 @@ p.body-paragraph {
 }
 
 #network-tabs-list-container {
-    width: 90%;
     margin: auto;
     background-color: #eaeaea;
     padding-bottom: 0.2%;
@@ -305,24 +304,24 @@ p.body-paragraph {
 }
 
 #network-panels-container {
-    margin: 0;
+    margin: 3px;
     padding: 0;
     border: 1px solid #ddd;
-    height: 700px;
-    width: 800px;
+    height: 1000px;
+    width: 1000px;
     overflow: auto !important;
     border-radius: 0.25em;
     float: left;
 }
 
 #sbgn-inspector {
-    margin: 0;
+    margin: 3px;
+    padding: 0;
     border: 1px solid #ddd;
-    height: 800px;
+    height: 1000px;
     width: 300px;
     overflow: auto !important;
     border-radius: 0.25em;
-    padding-right: 2px;
     float: right;
 }
 
@@ -932,7 +931,7 @@ img#template-reversible-output-add-button:hover {
 }
 
 .read-mode-off {
-    position: static;
+    position: inherit;
 }
 
 .save-load-prefrences-object-name {
