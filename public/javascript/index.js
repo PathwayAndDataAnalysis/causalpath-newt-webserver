@@ -1,5 +1,3 @@
-import appUtilities from "../../newt/app-utilities";
-
 const graphChoiceEnum = {
     JSON: 1, ANALYSIS: 2,
     DEMO: 3,
@@ -201,28 +199,15 @@ function buildAndDisplayFolderTree(
                 // }
                 // reader.readAsText(node.data);
 
+                console.log("clickedfile")
+                console.log(file)
+                $("#sif-file-input").trigger('click');
 
-
-                $('#sif-file-input').trigger('click');
-
-
-
-                // const chiseInstance = appUtilities.getActiveChiseInstance();
-                // console.log(`chiseInstance:  ${chiseInstance}`);
-                //
-                // // use cy instance associated with chise instance
-                // const cy = appUtilities.getActiveCy();
-                //
-                // const layoutBy = function () {
-                //     appUtilities.triggerLayout(cy, true);
-                // };
-                //
-                // chiseInstance.loadSIFFile(
-                //     file,
-                //     layoutBy
-                // );
 
             });
+
+
+
 
             // After jsTree build is complete we can delete un-necessary nodes
             // jsFolderTree.on("loaded.jstree", function (e, data) {
@@ -248,7 +233,6 @@ function buildAndDisplayFolderTree(
         }
     );
 }
-
 
 /***
  * Load graph directories as a tree in json format
