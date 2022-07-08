@@ -1,4 +1,4 @@
-var introJs = require('../node_modules/intro.js/intro');
+var introJs = require('intro.js');
 
 var tutorial = {};
 
