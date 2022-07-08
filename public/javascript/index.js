@@ -1,3 +1,5 @@
+import appUtilities from "../../newt/app-utilities";
+
 const graphChoiceEnum = {
     JSON: 1, ANALYSIS: 2,
     DEMO: 3,
@@ -199,20 +201,26 @@ function buildAndDisplayFolderTree(
                 // }
                 // reader.readAsText(node.data);
 
-                const chiseInstance = appUtilities.getActiveChiseInstance();
-                console.log(`chiseInstance:  ${chiseInstance}`);
 
-                // use cy instance associated with chise instance
-                const cy = appUtilities.getActiveCy();
 
-                const layoutBy = function () {
-                    appUtilities.triggerLayout(cy, true);
-                };
+                $('#sif-file-input').trigger('click');
 
-                chiseInstance.loadSIFFile(
-                    file,
-                    layoutBy
-                );
+
+
+                // const chiseInstance = appUtilities.getActiveChiseInstance();
+                // console.log(`chiseInstance:  ${chiseInstance}`);
+                //
+                // // use cy instance associated with chise instance
+                // const cy = appUtilities.getActiveCy();
+                //
+                // const layoutBy = function () {
+                //     appUtilities.triggerLayout(cy, true);
+                // };
+                //
+                // chiseInstance.loadSIFFile(
+                //     file,
+                //     layoutBy
+                // );
 
             });
 
