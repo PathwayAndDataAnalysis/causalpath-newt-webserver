@@ -188,38 +188,32 @@ function buildAndDisplayFolderTree(
                 const instance = $.jstree.reference(this);
                 let node = instance.get_node(e.target)
 
-                console.log('node');
-                console.log(node);
-                console.log(node.data);
+                let file = node.data;
+                // console.log('node');
+                // console.log(node);
+                // console.log(node.data);
+                //
+                // let reader = new FileReader();
+                // reader.onload = function (e) {
+                //     console.log(e.target.result)
+                // }
+                // reader.readAsText(node.data);
 
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    console.log(e.target.result)
-                }
-                reader.readAsText(node.data);
+                const chiseInstance = appUtilities.getActiveChiseInstance();
+                console.log(`chiseInstance:  ${chiseInstance}`);
 
-                // let makeRequest = () =>
-                //     fetch('/api/getJsonAtPath', {
-                //         method: 'POST',
-                //         headers: {
-                //             'content-type': 'application/json',
-                //         },
-                //         body: JSON.stringify(node.data),
-                //     });
-                //
-                // let afterResolve = (fileContent) => {
-                //     console.log('fileContent');
-                //     console.log(fileContent);
-                // };
-                //
-                // let handleRequestError = (err) => {
-                //     alert('The error message is: \n' + err);
-                //     throw err;
-                // };
-                //
-                // makeRequest().then((res) =>
-                //     handleResponse(res, afterResolve, handleRequestError)
-                // );
+                // use cy instance associated with chise instance
+                const cy = appUtilities.getActiveCy();
+
+                const layoutBy = function () {
+                    appUtilities.triggerLayout(cy, true);
+                };
+
+                chiseInstance.loadSIFFile(
+                    file,
+                    layoutBy
+                );
+
             });
 
             // After jsTree build is complete we can delete un-necessary nodes
