@@ -677,7 +677,41 @@ module.exports = function () {
 			}
 		});
 
+		// // TODO: eliminate code replication in similar functions.
+		// $('#sif-file-input').change(function () {
+		// 	const chiseInstance = appUtilities.getActiveChiseInstance();
+		// 	console.log(`chiseInstance:  ${chiseInstance}`);
+		//
+		// 	// use cy instance associated with chise instance
+		// 	const cy = appUtilities.getActiveCy();
+		//
+		// 	const loadCallbackInvalidityWarning = function () {
+		// 		promptInvalidFileView.render();
+		// 	};
+		//
+		// 	if ($(this).val() !== '') {
+		// 		const file = this.files[0];
+		// 		console.log(file)
+		// 		const loadFcn = function () {
+		// 			const layoutBy = function () {
+		// 				appUtilities.triggerLayout(cy, true);
+		// 			};
+		// 			chiseInstance.loadSIFFile(
+		// 				file,
+		// 				layoutBy,
+		// 				loadCallbackInvalidityWarning
+		// 			);
+		// 		};
+		// 		if (cy.elements().length !== 0)
+		// 			promptConfirmationView.render(loadFcn);
+		// 		else loadFcn();
+		//
+		// 		$(this).val('');
+		// 	}
+		// });
+
 		// TODO: eliminate code replication in similar functions.
+		// Custom function
 		$('#sif-file-input').change(function () {
 			const chiseInstance = appUtilities.getActiveChiseInstance();
 			console.log(`chiseInstance:  ${chiseInstance}`);
@@ -709,6 +743,7 @@ module.exports = function () {
 				$(this).val('');
 			}
 		});
+
 
 		// get and set map properties from file
 		$(document).on(
