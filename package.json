@@ -1,7 +1,9 @@
 {
   "name": "causalpath-webserver",
   "version": "1.0.0",
-  "private": true,
+  "description": "",
+  "author": "",
+  "license": "LGPL-3.0",
   "scripts": {
     "start": "npm run bundle:css && npm run bundle-js && nodemon server/server.js",
     "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css",
