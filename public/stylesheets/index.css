@@ -15,8 +15,12 @@ a {
 }
 
 img.cp-logo {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
+}
+
+p.body-paragraph {
+    font-size: 16px;
 }
 
 .edited-button {
@@ -34,8 +38,11 @@ img.cp-logo {
 }
 
 #folder-tree-container {
+    display: none;
     position: absolute;
     width: fit-content;
+    margin-top: 20px;
+    overflow: hidden;
 }
 
 #graph_canvas {
@@ -45,28 +52,22 @@ img.cp-logo {
 
 #back_menu {
     display: none;
-    margin: 5px;
+    margin: 10px 5px 5px;
 }
 
 #back_button_label {
-    font-size: 18px;
-    padding: 5px;
-    border-radius: 5px;
+    background-color: #d8d8d8;
+    font-size: 20px;
+    padding: 10px 30px 10px 20px;
+    border-radius: 8px;
+    stroke: #040000;
+    stroke-width: 2px;
 }
 
 #back_button_label:hover {
     background-color: #617d8a;
     color: floralwhite;
 }
-
-
-
-
-
-
-
-
-
 
 
 /*Newt styles*/
@@ -77,9 +78,10 @@ img.cp-logo {
 }
 
 .graph-container {
+    margin-top: 10px;
     flex-direction: column;
     align-items: center;
-
+    display: none;
     justify-content: center;
 }
 
@@ -287,7 +289,6 @@ img.cp-logo {
 }
 
 #network-tabs-list-container {
-    width: 90%;
     margin: auto;
     background-color: #eaeaea;
     padding-bottom: 0.2%;
@@ -303,24 +304,24 @@ img.cp-logo {
 }
 
 #network-panels-container {
-    margin: 0;
+    margin: 3px;
     padding: 0;
     border: 1px solid #ddd;
-    height: 700px;
-    width: 800px;
+    height: 1000px;
+    width: 1000px;
     overflow: auto !important;
     border-radius: 0.25em;
     float: left;
 }
 
 #sbgn-inspector {
-    margin: 0;
+    margin: 3px;
+    padding: 0;
     border: 1px solid #ddd;
-    height: 800px;
+    height: 1000px;
     width: 300px;
     overflow: auto !important;
     border-radius: 0.25em;
-    padding-right: 2px;
     float: right;
 }
 
@@ -930,7 +931,7 @@ img#template-reversible-output-add-button:hover {
 }
 
 .read-mode-off {
-    position: static;
+    position: inherit;
 }
 
 .save-load-prefrences-object-name {

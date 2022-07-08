@@ -68,4 +68,6 @@ $(document).ready(function () {
 
 	// launch with model file if exists
 	appUtilities.launchWithModelFile();
+
+	appMenu.dyna
 });

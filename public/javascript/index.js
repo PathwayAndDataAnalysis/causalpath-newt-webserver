@@ -49,7 +49,7 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = '') {
         newNode.icon = "./img/tree-newt-icon.png"
     else if (newNode.text.endsWith(".sif"))
         newNode.icon = "./img/tree-sif-icon.png"
-    // else if (newNode.text.endsWith(".format"))
+        // else if (newNode.text.endsWith(".format"))
     //     newNode.icon = "./img/tree-sif-icon.png"
     else if (newNode.text.endsWith(".json"))
         newNode.icon = "./img/tree-json-icon.png"
@@ -188,38 +188,32 @@ function buildAndDisplayFolderTree(
                 const instance = $.jstree.reference(this);
                 let node = instance.get_node(e.target)
 
-                console.log('node');
-                console.log(node);
-                console.log(node.data);
+                let file = node.data;
+                // console.log('node');
+                // console.log(node);
+                // console.log(node.data);
+                //
+                // let reader = new FileReader();
+                // reader.onload = function (e) {
+                //     console.log(e.target.result)
+                // }
+                // reader.readAsText(node.data);
 
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    console.log(e.target.result)
-                }
-                reader.readAsText(node.data);
+                const chiseInstance = appUtilities.getActiveChiseInstance();
+                console.log(`chiseInstance:  ${chiseInstance}`);
 
-                // let makeRequest = () =>
-                //     fetch('/api/getJsonAtPath', {
-                //         method: 'POST',
-                //         headers: {
-                //             'content-type': 'application/json',
-                //         },
-                //         body: JSON.stringify(node.data),
-                //     });
-                //
-                // let afterResolve = (fileContent) => {
-                //     console.log('fileContent');
-                //     console.log(fileContent);
-                // };
-                //
-                // let handleRequestError = (err) => {
-                //     alert('The error message is: \n' + err);
-                //     throw err;
-                // };
-                //
-                // makeRequest().then((res) =>
-                //     handleResponse(res, afterResolve, handleRequestError)
-                // );
+                // use cy instance associated with chise instance
+                const cy = appUtilities.getActiveCy();
+
+                const layoutBy = function () {
+                    appUtilities.triggerLayout(cy, true);
+                };
+
+                chiseInstance.loadSIFFile(
+                    file,
+                    layoutBy
+                );
+
             });
 
             // After jsTree build is complete we can delete un-necessary nodes
@@ -280,17 +274,20 @@ document.getElementById('picker').addEventListener('change', event => {
 
     event.target.value = null; //to make sure the same files can be loaded again
 
-    document.getElementById('back_menu').style.display = 'flex';
-    document.getElementById('graph_canvas').style.display = 'flex';
-    document.getElementById('body_text').style.display = 'none';
-    document.getElementById('selection_menus').style.display = 'none';
+    document.getElementById('menu-text-buttons').style.display = 'none';
+    document.getElementById('folder-trees-graphs').style.display = 'block';
+    document.getElementById('back_menu').style.display = 'block';
+    document.getElementById('graph-container').style.display = 'block';
+    document.getElementById('folder-tree-container').style.display = 'block';
 
     this.loadAnalysisFilesFromClient(fileList);
 });
 
 document.getElementById("back_button_label").addEventListener("click", (event) => {
+    document.getElementById('menu-text-buttons').style.display = 'block';
+    document.getElementById('folder-trees-graphs').style.display = 'none';
     document.getElementById('back_menu').style.display = 'none';
-    document.getElementById('graph_canvas').style.display = 'none';
-    document.getElementById('body_text').style.display = 'flex';
-    document.getElementById('selection_menus').style.display = 'flex';
+    document.getElementById('graph-container').style.display = 'none';
+    document.getElementById('folder-tree-container').style.display = 'none';
 });
+
