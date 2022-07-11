@@ -683,7 +683,6 @@ appUtilities.createPhysicalNetworkComponents = function (
 appUtilities.getActiveChiseInstance = function () {
     // get the networkId of the active network that is at the top of networkIdsStack
     const activeNetworkId = this.networkIdsStack[this.networkIdsStack.length - 1];
-    console.log(`activeNetworkId: ${activeNetworkId}`);
 
     // return the chise instance mapped for active network id that is the active networks itself
     return this.getChiseInstance(activeNetworkId);
