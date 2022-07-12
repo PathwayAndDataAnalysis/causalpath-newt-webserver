@@ -1,12 +1,15 @@
 {
   "name": "causalpath-webserver",
   "version": "1.0.0",
-  "private": true,
+  "description": "",
+  "author": "",
+  "license": "LGPL-3.0",
+  "main": "app.js",
   "scripts": {
     "start": "npm run bundle:css && npm run bundle-js && nodemon server/server.js",
     "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css",
     "watch:css": "postcss --watch public/stylesheets/main.css -o public/build/bundle.css",
-    "bundle-js": "browserify newt/main.js -o public/build/newt-bundle.js --debug"
+    "bundle-js": "browserify public/javascript/newt/main.js -o public/build/newt-bundle.js --debug"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
