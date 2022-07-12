@@ -171,7 +171,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-general-properties',
 				content: 'Properties...',
 				image: {
-					src: 'img/toolbar/settings.svg',
+					src: 'app/img/toolbar/settings.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -186,7 +186,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-delete',
 				content: 'Delete',
 				image: {
-					src: 'img/toolbar/delete-simple.svg',
+					src: 'app/img/toolbar/delete-simple.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -206,7 +206,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-delete-selected',
 				content: 'Delete Selected',
 				image: {
-					src: 'img/toolbar/delete-simple.svg',
+					src: 'app/img/toolbar/delete-simple.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -221,7 +221,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-hide-selected',
 				content: 'Hide Selected',
 				image: {
-					src: 'img/toolbar/hide-selected.svg',
+					src: 'app/img/toolbar/hide-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -236,7 +236,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-show-all',
 				content: 'Show All',
 				image: {
-					src: 'img/toolbar/show-all.svg',
+					src: 'app/img/toolbar/show-all.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -292,7 +292,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-highlight-selected',
 				content: 'Highlight Selected',
 				image: {
-					src: 'img/toolbar/highlight-selected.svg',
+					src: 'app/img/toolbar/highlight-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -315,7 +315,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-expand', // ID of menu item
 				content: 'Expand', // Title of menu item
 				image: {
-					src: 'img/toolbar/expand-selected.svg',
+					src: 'app/img/toolbar/expand-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -334,7 +334,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-collapse',
 				content: 'Collapse',
 				image: {
-					src: 'img/toolbar/collapse-selected.svg',
+					src: 'app/img/toolbar/collapse-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -350,7 +350,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-perform-layout',
 				content: 'Perform Layout',
 				image: {
-					src: 'img/toolbar/layout-cose.svg',
+					src: 'app/img/toolbar/layout-cose.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -819,7 +819,7 @@ module.exports = function (chiseInstance) {
 				// See http://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
 				// May take any "cursor" css property
 				default: 'default', // to be set after resizing finished or mouseleave
-				inactive: "url('img/cancel.svg') 6 6, not-allowed",
+				inactive: "url('app/img/cancel.svg') 6 6, not-allowed",
 				nw: 'nw-resize',
 				n: 'n-resize',
 				ne: 'ne-resize',
