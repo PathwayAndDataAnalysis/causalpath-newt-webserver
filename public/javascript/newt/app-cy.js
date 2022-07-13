@@ -805,7 +805,7 @@ module.exports = function (chiseInstance) {
 				return chiseInstance.elementUtilities.mustBeSquare(sbgnclass);
 			}, // with only 4 active grapples (at corners)
 			isNoResizeMode: function (node) {
-				var currentGeneralProperties = appUtilities.getScratch(
+				const currentGeneralProperties = appUtilities.getScratch(
 					cy,
 					'currentGeneralProperties'
 				);
