@@ -1,18 +1,19 @@
-var jquery = ($ = require('jquery'));
-var BackboneViews = require('./backbone-views');
-var appUtilities = require('./app-utilities');
-var appUndoActionsFactory = require('./app-undo-actions-factory');
-var modeHandler = require('./app-mode-handler');
-var keyboardShortcuts = require('./keyboard-shortcuts');
-var inspectorUtilities = require('./inspector-utilities');
-var tutorial = require('./tutorial');
-var sifStyleFactory = require('./sif-style-factory');
-var _ = require('underscore');
+const jquery = ($ = require('jquery'));
+const BackboneViews = require('./backbone-views');
+const appUtilities = require('./app-utilities');
+const appUndoActionsFactory = require('./app-undo-actions-factory');
+const modeHandler = require('./app-mode-handler');
+const keyboardShortcuts = require('./keyboard-shortcuts');
+const inspectorUtilities = require('./inspector-utilities');
+const tutorial = require('./tutorial');
+const sifStyleFactory = require('./sif-style-factory');
+const _ = require('underscore');
+
 // Handle sbgnviz menu functions which are to be triggered on events
 module.exports = function () {
-    var dynamicResize = appUtilities.dynamicResize.bind(appUtilities);
+    const dynamicResize = appUtilities.dynamicResize.bind(appUtilities);
 
-    var layoutPropertiesView,
+    let layoutPropertiesView,
         generalPropertiesView,
         neighborhoodQueryView,
         pathsBetweenQueryView,
@@ -2069,38 +2070,46 @@ module.exports = function () {
             // Load newt file
             if (file.name.endsWith(".nwt")) {
                 chiseInstance.loadNwtFile(file)
-            }
-            else if (file.name.endsWith(".sif")) {
+            } else if (file.name.endsWith(".sif")) {
                 // Load sif file
                 let loadCallbackInvalidityWarning = function () {
                     promptInvalidFileView.render();
                 };
 
-                let layoutBy = function () {
-                    appUtilities.triggerLayout(cy, true);
-                    console.log("layout by sif")
+
+                    const loadFcn = function () {
+                        let layoutBy = function () {
+                            appUtilities.triggerLayout(cy, true);
+                            console.log("layout by sif")
 
 
-                    // Load .format file of corresponding sif file
-                    let formatNode = instance.get_node(e.target.id.replace(".sif", ".format"));
+                            // Load .format file of corresponding sif file
+                            let formatNode = instance.get_node(e.target.id.replace(".sif", ".format"));
 
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const text = e.target.result;
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const text = e.target.result;
 
-                        const sifStyle = sifStyleFactory();
-                        sifStyle(chiseInstance)
-                        sifStyle.apply(text);
-                    }
-                    reader.readAsText(formatNode.data);
+                                const sifStyle = sifStyleFactory();
+                                sifStyle(chiseInstance)
+                                sifStyle.apply(text);
+                            }
+                            reader.readAsText(formatNode.data);
 
+                        };
+                        chiseInstance.loadSIFFile(
+                            file,
+                            layoutBy,
+                            loadCallbackInvalidityWarning
+                        );
+                    };
 
-                };
-                chiseInstance.loadSIFFile(
-                    file,
-                    layoutBy,
-                    loadCallbackInvalidityWarning
-                );
+                    if (cy.elements().length !== 0)
+                        promptConfirmationView.render(loadFcn);
+                    else
+                        loadFcn();
+
+                    $(this).val("");
 
 
             }

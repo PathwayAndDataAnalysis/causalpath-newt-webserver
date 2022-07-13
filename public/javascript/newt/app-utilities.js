@@ -3,8 +3,8 @@
  * Common utilities for sample application. Includes functions and variables.
  * You can directly utilize this object also you can use this object to set a variable in a file and access it in another file.
  */
-var jquery = ($ = require('jquery'));
-var chroma = require('chroma-js');
+const jquery = ($ = require('jquery'));
+const chroma = require('chroma-js');
 var chise = require('chise');
 var tutorial = require('./tutorial');
 

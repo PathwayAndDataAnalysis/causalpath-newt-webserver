@@ -1,14 +1,14 @@
-var jquery = ($ = require('jquery'));
-var lo_get = require('lodash.get');
-var lo_set = require('lodash.set');
-var appUtilities = require('./app-utilities');
+const jquery = ($ = require('jquery'));
+const lo_get = require('lodash.get');
+const lo_set = require('lodash.set');
+const appUtilities = require('./app-utilities');
 
 module.exports = function (cy) {
-	var appUndoActions = {};
+	const appUndoActions = {};
 
 	appUndoActions.changeDataDirty = function (param) {
-		var result = {};
-		var eles = param.eles; // a pure array of nodes, not a cy collection
+		const result = {};
+		const eles = param.eles; // a pure array of nodes, not a cy collection
 		result.name = param.name;
 		result.valueMap = {};
 		result.eles = eles;
