@@ -10,7 +10,7 @@ const api = require('./lib/api');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
+// app.set('view engine', "ejs");
 
 // init middlewares
 app.use(cors({origin: true, credentials: true}));
@@ -22,7 +22,7 @@ app.use('/api', api);
 
 
 // init static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 
 // user bootstrap styles
@@ -34,27 +34,17 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist/jqu
 // init routers
 /* GET home page. */
 app.get('/', (req, res, next) => {
-    // res.render('index', {
-    //     title: 'CausalPath Webserver',
-    //     name: 'CausalPath'
-    // });
-
     res.sendFile(path.join(__dirname, 'views/index.html'));
 });
-
-// Network Diagram
-// app.get('/graph', (req, res, next) => {
-//     res.render('graph', {
-//         title: 'Graph Network',
-//         graphTree: {}
-//     });
-// });
 
 // end point
 app.post("/api/submitFolders", (req, res, next) => {
     console.log("/api/submitFolders");
     console.log(req.body);
+});
 
+app.get("/node_modules/cytoscape-node-resize/resizeCue.svg", (req, res) => {
+    res.sendFile(path.join(__dirname, 'node_modules/cytoscape-node-resize/resizeCue.svg'));
 });
 
 // catch 404 and forward to error handler

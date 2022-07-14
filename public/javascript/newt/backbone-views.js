@@ -2078,6 +2078,38 @@ String.prototype.replaceAll = function (search, replace) {
 //Clicking Ok in Error dialog will redirect to opening of that certain dialog again
 var PCdialog = '';
 
+
+/*
+  Simple Yes/No confirmation modal box. See PromptSaveView.
+*/
+const PromptConfirmationView = Backbone.View.extend({
+	initialize: function () {
+		var self = this;
+		self.template = _.template($('#prompt-confirmation-template').html());
+	},
+	render: function (afterFunction) {
+		var self = this;
+		self.template = _.template($('#prompt-confirmation-template').html());
+
+		$(self.el).html(self.template);
+		$(self.el).modal('show');
+
+		$(document)
+			.off('click', '#prompt-confirmation-accept')
+			.on('click', '#prompt-confirmation-accept', function (evt) {
+				afterFunction();
+				$(self.el).modal('toggle');
+			});
+
+		$(document)
+			.off('click', '#prompt-confirmation-cancel')
+			.on('click', '#prompt-confirmation-cancel', function (evt) {
+				$(self.el).modal('toggle');
+			});
+
+		return this;
+	},
+});
 /**
  * Neighborhood Query view for the Sample Application.
  */
@@ -4219,38 +4251,6 @@ var LoadUserPreferencesView = Backbone.View.extend({
 			.on('click', '#load-user-preferences-cancel', function (evt) {
 				$(self.el).modal('toggle');
 			});
-		return this;
-	},
-});
-
-/*
-  Simple Yes/No confirmation modal box. See PromptSaveView.
-*/
-var PromptConfirmationView = Backbone.View.extend({
-	initialize: function () {
-		var self = this;
-		self.template = _.template($('#prompt-confirmation-template').html());
-	},
-	render: function (afterFunction) {
-		var self = this;
-		self.template = _.template($('#prompt-confirmation-template').html());
-
-		$(self.el).html(self.template);
-		$(self.el).modal('show');
-
-		$(document)
-			.off('click', '#prompt-confirmation-accept')
-			.on('click', '#prompt-confirmation-accept', function (evt) {
-				afterFunction();
-				$(self.el).modal('toggle');
-			});
-
-		$(document)
-			.off('click', '#prompt-confirmation-cancel')
-			.on('click', '#prompt-confirmation-cancel', function (evt) {
-				$(self.el).modal('toggle');
-			});
-
 		return this;
 	},
 });

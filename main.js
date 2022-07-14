@@ -11,8 +11,8 @@ require('bootstrap');
 
 // const appUtilities = require("./js/app-utilities");
 // const appMenu = require("./js/app-menu");
-const appUtilities = require('./app-utilities');
-const appMenu = require('./app-menu');
+const appUtilities = require('./public/javascript/newt/app-utilities');
+const appMenu = require('./public/javascript/newt/app-menu');
 
 // Get cy extension instances
 const cyPanzoom = require('cytoscape-panzoom');
@@ -69,5 +69,4 @@ $(document).ready(function () {
 	// launch with model file if exists
 	appUtilities.launchWithModelFile();
 
-	appMenu.dyna
 });
