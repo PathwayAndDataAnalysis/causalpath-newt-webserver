@@ -330,7 +330,7 @@
       <bbox x="46" y="498.70669999999996" w="36" h="36"/>
     </glyph>
     <glyph id="n35" class="macromolecule">
-      <label text="Empty set&#xA;(previously - &#xA;source/sink)"/>
+      <label text="empty set&#xA;(previously - &#xA;source/sink)"/>
       <bbox x="115" y="496.70669999999996" w="145.5" h="40"/>
     </glyph>
     <glyph id="n36" class="macromolecule">
