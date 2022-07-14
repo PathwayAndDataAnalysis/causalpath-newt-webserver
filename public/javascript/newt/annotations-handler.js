@@ -6,11 +6,11 @@
 const jquery = ($ = require('jquery'));
 const AnnotationListView = require('./backbone-views').AnnotationListView;
 const Backbone = require('backbone');
-var _ = require('underscore');
+const _ = require('underscore');
 
 const ns = {};
 
-var prefixes = {
+const prefixes = {
 	rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 	bqmodel: 'http://biomodels.net/model-qualifiers/',
 	bqbiol: 'http://biomodels.net/biology-qualifiers/',

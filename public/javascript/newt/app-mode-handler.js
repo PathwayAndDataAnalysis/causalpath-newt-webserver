@@ -1,6 +1,6 @@
-var appUtilities = require('./app-utilities');
+const appUtilities = require('./app-utilities');
 
-var modeHandler = {
+const modeHandler = {
 	initialMode: 'selection-mode',
 	initialSustainMode: false,
 	initialSelectedNodeType: 'macromolecule',
@@ -11,10 +11,10 @@ var modeHandler = {
 	// inilizes modeProperties field in the scratch pad of cy
 	initModeProperties: function (_cy) {
 		// if _cy param is not set use the active cy instance
-		var cy = _cy || appUtilities.getActiveCy();
+		const cy = _cy || appUtilities.getActiveCy();
 
 		// create an object for mode properties of cy
-		var modeProperties = {
+		const modeProperties = {
 			mode: modeHandler.initialMode,
 			sustainMode: modeHandler.initialSustainMode,
 			selectedNodeType: modeHandler.initialSelectedNodeType,
@@ -32,22 +32,22 @@ var modeHandler = {
 	// so that users will be able to add the current node type in a sustainable way.
 	setAddNodeMode: function (nodeType, language, _cy) {
 		// if _cy param is not set use the active cy instance
-		var cy = _cy || appUtilities.getActiveCy();
+		const cy = _cy || appUtilities.getActiveCy();
 		$(cy.container()).find('canvas').removeClass('add-edge-cursor');
 		$(cy.container()).find('canvas').removeClass('zoom-cursor');
 		$(cy.container()).find('canvas').addClass('add-node-cursor');
 		// access mode properties of the cy
-		var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
+		const modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 
-		var typeChange =
-			nodeType && nodeType != modeProperties.selectedNodeType; // See if the type will change
+		const typeChange =
+			nodeType && nodeType !== modeProperties.selectedNodeType; // See if the type will change
 		// Handle sustainable mode
 		$('.selected-mode-sustainable').removeClass(
 			'selected-mode-sustainable'
 		);
 		if (
 			!typeChange &&
-			modeProperties.mode == 'add-node-mode' &&
+			modeProperties.mode === 'add-node-mode' &&
 			!modeProperties.sustainMode
 		) {
 			modeProperties.sustainMode = true;
@@ -103,15 +103,15 @@ var modeHandler = {
 	// so that users will be able to add the current edge type in a sustainable way.
 	setAddEdgeMode: function (edgeType, language, _cy) {
 		// if _cy param is not set use the active cy instance
-		var cy = _cy || appUtilities.getActiveCy();
+		const cy = _cy || appUtilities.getActiveCy();
 		$(cy.container()).find('canvas').removeClass('add-node-cursor');
 		$(cy.container()).find('canvas').removeClass('zoom-cursor');
 		$(cy.container()).find('canvas').addClass('add-edge-cursor');
 		// access mode properties of the cy
-		var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
+		const modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 
-		var typeChange =
-			edgeType && edgeType != modeProperties.selectedEdgeType; // See if the type will change
+		const typeChange =
+			edgeType && edgeType !== modeProperties.selectedEdgeType; // See if the type will change
 
 		// Handle sustainable mode
 		$('.selected-mode-sustainable').removeClass(
@@ -119,7 +119,7 @@ var modeHandler = {
 		);
 		if (
 			!typeChange &&
-			modeProperties.mode == 'add-edge-mode' &&
+			modeProperties.mode === 'add-edge-mode' &&
 			!modeProperties.sustainMode
 		) {
 			modeProperties.sustainMode = true;
@@ -133,12 +133,12 @@ var modeHandler = {
 			modeProperties.sustainMode = false;
 		}
 
-		if (modeProperties.mode == 'marquee-zoom-mode') {
+		if (modeProperties.mode === 'marquee-zoom-mode') {
 			var viewUtilities = cy.viewUtilities('get');
 			viewUtilities.disableMarqueeZoom();
 		}
 
-		if (modeProperties.mode != 'add-edge-mode') {
+		if (modeProperties.mode !== 'add-edge-mode') {
 			cy.elements().unselect();
 			modeProperties.mode = 'add-edge-mode';
 
@@ -172,19 +172,19 @@ var modeHandler = {
 	// Set selection mode, disables sustainable mode.
 	setSelectionMode: function (_cy) {
 		// if _cy param is not set use the active cy instance
-		var cy = _cy || appUtilities.getActiveCy();
+		const cy = _cy || appUtilities.getActiveCy();
 		$(cy.container()).find('canvas').removeClass('add-edge-cursor');
 		$(cy.container()).find('canvas').removeClass('zoom-cursor');
 		$(cy.container()).find('canvas').removeClass('add-node-cursor');
 		// access mode properties of the cy
-		var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
+		const modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 
-		if (modeProperties.mode == 'marquee-zoom-mode') {
-			var viewUtilities = cy.viewUtilities('get');
+		if (modeProperties.mode === 'marquee-zoom-mode') {
+			const viewUtilities = cy.viewUtilities('get');
 			viewUtilities.disableMarqueeZoom();
 		}
 
-		if (modeProperties.mode != 'selection-mode') {
+		if (modeProperties.mode !== 'selection-mode') {
 			$('#select-mode-icon').parent().addClass('selected-mode');
 			$('#add-edge-mode-icon').parent().removeClass('selected-mode');
 			$('#add-node-mode-icon').parent().removeClass('selected-mode');
@@ -212,14 +212,14 @@ var modeHandler = {
 	// Set marquee zoom mode, disables sustainable mode.
 	setMarqueeZoomMode: function (_cy) {
 		// if _cy param is not set use the active cy instance
-		var cy = _cy || appUtilities.getActiveCy();
+		const cy = _cy || appUtilities.getActiveCy();
 		$(cy.container()).find('canvas').removeClass('add-edge-cursor');
 		$(cy.container()).find('canvas').removeClass('add-node-cursor');
 		$(cy.container()).find('canvas').addClass('zoom-cursor');
 		// access mode properties of the cy
-		var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
+		const modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 
-		if (modeProperties.mode != 'marquee-zoom-mode') {
+		if (modeProperties.mode !== 'marquee-zoom-mode') {
 			$('#select-mode-icon').parent().removeClass('selected-mode');
 			$('#add-edge-mode-icon').parent().removeClass('selected-mode');
 			$('#add-node-mode-icon').parent().removeClass('selected-mode');
@@ -229,9 +229,9 @@ var modeHandler = {
 
 			modeProperties.mode = 'marquee-zoom-mode';
 
-			var viewUtilities = cy.viewUtilities('get');
+			const viewUtilities = cy.viewUtilities('get');
 
-			var setSelectionAfterAnimation = function () {
+			const setSelectionAfterAnimation = function () {
 				modeHandler.setSelectionMode(cy);
 				viewUtilities.disableMarqueeZoom();
 			};
@@ -254,11 +254,11 @@ var modeHandler = {
 
 	//function to set the mode to the previous mode
 	setPreviousMode: function () {
-		if (modeHandler.perviousMode == 'selection-mode') {
+		if (modeHandler.perviousMode === 'selection-mode') {
 			modeHandler.setSelectionMode();
-		} else if (modeHandler.perviousMode == 'add-node-mode') {
+		} else if (modeHandler.perviousMode === 'add-node-mode') {
 			modeHandler.setAddNodeMode();
-		} else if (modeHandler.perviousMode == 'add-edge-mode') {
+		} else if (modeHandler.perviousMode === 'add-edge-mode') {
 			modeHandler.setAddEdgeMode();
 		} else {
 			//marquee zoom mode
@@ -272,18 +272,18 @@ var modeHandler = {
 	perviousMode: 'selection-mode',
 	setShortcutZoomMode: function (_cy) {
 		//shift+control pressed tracking variable
-		var ctrlShiftKeyDown = true;
+		let ctrlShiftKeyDown = true;
 
 		//reset handlers
 		modeHandler.zoomShortcutTabStartHandler = undefined;
 		modeHandler.zoomShortcutTabEndHandler = undefined;
 		modeHandler.zoomShortcutKeyUpHandler = undefined;
 
-		var rect_start_pos_x, rect_start_pos_y, rect_end_pos_x, rect_end_pos_y;
-		var cy = _cy || appUtilities.getActiveCy();
+		let rect_start_pos_x, rect_start_pos_y, rect_end_pos_x, rect_end_pos_y;
+		const cy = _cy || appUtilities.getActiveCy();
 
 		//store the current mode to return to it after zoom shortcut terminates
-		var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
+		const modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 		modeHandler.perviousMode = modeProperties.mode;
 		modeHandler.setSelectionMode();
 		//disable cytoscape shift+drage selection
@@ -312,12 +312,12 @@ var modeHandler = {
 				if (
 					event.shiftKey ||
 					event.ctrlKey ||
-					event.keyCode == '91' ||
-					event.keyCode == '93' ||
-					event.keyCode == '224'
+					event.keyCode === '91' ||
+					event.keyCode === '93' ||
+					event.keyCode === '224'
 				) {
 					ctrlShiftKeyDown = false;
-					var cy = appUtilities.getActiveCy();
+					const cy = appUtilities.getActiveCy();
 					cy.autounselectify(false);
 					modeHandler.endShorcutZoomMode();
 				}
@@ -398,7 +398,7 @@ var modeHandler = {
 						(zoomLevel * (rect_start_pos_y + rect_end_pos_y)) / 2);
 
 				cy.animate({
-					panBy: { x: diff_x, y: diff_y },
+					panBy: {x: diff_x, y: diff_y},
 					zoom: zoomLevel,
 					duration: options.zoomAnimationDuration,
 					complete: function () {

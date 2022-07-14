@@ -1,50 +1,32 @@
-var jquery = ($ = require('jquery'));
-var BackboneViews = require('./backbone-views');
-var appUtilities = require('./app-utilities');
-var appUndoActionsFactory = require('./app-undo-actions-factory');
-var modeHandler = require('./app-mode-handler');
-var keyboardShortcuts = require('./keyboard-shortcuts');
-var inspectorUtilities = require('./inspector-utilities');
-var tutorial = require('./tutorial');
-var sifStyleFactory = require('./sif-style-factory');
-var _ = require('underscore');
+const jquery = ($ = require('jquery'));
+const BackboneViews = require('./backbone-views');
+const appUtilities = require('./app-utilities');
+const appUndoActionsFactory = require('./app-undo-actions-factory');
+const modeHandler = require('./app-mode-handler');
+const keyboardShortcuts = require('./keyboard-shortcuts');
+const inspectorUtilities = require('./inspector-utilities');
+const tutorial = require('./tutorial');
+const sifStyleFactory = require('./sif-style-factory');
+const _ = require('underscore');
+
 // Handle sbgnviz menu functions which are to be triggered on events
 module.exports = function () {
-    var dynamicResize = appUtilities.dynamicResize.bind(appUtilities);
+    const dynamicResize = appUtilities.dynamicResize.bind(appUtilities);
 
-    var layoutPropertiesView,
-        generalPropertiesView,
-        neighborhoodQueryView,
-        pathsBetweenQueryView,
-        pathsFromToQueryView,
-        commonStreamQueryView,
-        pathsByURIQueryView,
-        promptSaveView,
-        promptConfirmationView,
-        promptMapTypeView,
-        promptInvalidFileView,
-        promptFileConversionErrorView,
-        promptInvalidURIWarning,
-        reactionTemplateView,
-        gridPropertiesView,
-        fontPropertiesView,
-        fileSaveView,
-        saveUserPreferencesView,
-        loadUserPreferencesView;
+    let layoutPropertiesView, generalPropertiesView, neighborhoodQueryView, pathsBetweenQueryView, pathsFromToQueryView,
+        commonStreamQueryView, pathsByURIQueryView, promptSaveView, promptConfirmationView, promptMapTypeView,
+        promptInvalidFileView, promptFileConversionErrorView, promptInvalidURIWarning, reactionTemplateView,
+        gridPropertiesView, fontPropertiesView, fileSaveView, saveUserPreferencesView, loadUserPreferencesView;
 
     function validateSBGNML(xml) {
         $.ajax({
-            type: 'post',
-            url: '/utilities/validateSBGNML',
-            data: {sbgnml: xml},
-            success: function (data) {
+            type: 'post', url: '/utilities/validateSBGNML', data: {sbgnml: xml}, success: function (data) {
                 if (data.length == 0) {
                     console.log('Xsd validation OK');
                 } else {
                     console.error('Xsd validation failed. Errors:', data);
                 }
-            },
-            error: function (req, status, err) {
+            }, error: function (req, status, err) {
                 console.error('Error during file validation', status, err);
             },
         });
@@ -52,9 +34,7 @@ module.exports = function () {
 
     function loadSample(filename, callback) {
         const chiseInstance = appUtilities.getActiveChiseInstance();
-        const textXml = new XMLSerializer().serializeToString(
-            chiseInstance.loadXMLDoc('newt-samples/' + filename)
-        );
+        const textXml = new XMLSerializer().serializeToString(chiseInstance.loadXMLDoc('newt-samples/' + filename));
         validateSBGNML(textXml);
         return chiseInstance.loadSample(filename, 'newt-samples/', callback);
     }
@@ -65,264 +45,214 @@ module.exports = function () {
 
     dynamicResize();
 
-    layoutPropertiesView = appUtilities.layoutPropertiesView =
-        new BackboneViews.LayoutPropertiesView({
-            el: '#layout-properties-table',
-        });
-    colorSchemeInspectorView = appUtilities.colorSchemeInspectorView =
-        new BackboneViews.ColorSchemeInspectorView({
-            el: '#color-scheme-template-container',
-        });
+    layoutPropertiesView = appUtilities.layoutPropertiesView = new BackboneViews.LayoutPropertiesView({
+        el: '#layout-properties-table',
+    });
+    colorSchemeInspectorView = appUtilities.colorSchemeInspectorView = new BackboneViews.ColorSchemeInspectorView({
+        el: '#color-scheme-template-container',
+    });
     //generalPropertiesView = appUtilities.generalPropertiesView = new BackboneViews.GeneralPropertiesView({el: '#general-properties-table'});
-    mapTabGeneralPanel = appUtilities.mapTabGeneralPanel =
-        new BackboneViews.MapTabGeneralPanel({
-            el: '#map-tab-general-container',
-        });
-    mapTabLabelPanel = appUtilities.mapTabLabelPanel =
-        new BackboneViews.MapTabLabelPanel({el: '#map-tab-label-container'});
-    mapTabRearrangementPanel = appUtilities.mapTabRearrangementPanel =
-        new BackboneViews.MapTabRearrangementPanel({
-            el: '#map-tab-rearrangement-container',
-        });
-    experimentTabPanel = appUtilities.experimentTabPanel =
-        new BackboneViews.experimentTabPanel({
-            el: '#map-tab-experiment-container',
-        });
-    neighborhoodQueryView = appUtilities.neighborhoodQueryView =
-        new BackboneViews.NeighborhoodQueryView({
-            el: '#query-neighborhood-table',
-        });
-    pathsBetweenQueryView = appUtilities.pathsBetweenQueryView =
-        new BackboneViews.PathsBetweenQueryView({
-            el: '#query-pathsbetween-table',
-        });
-    pathsFromToQueryView = appUtilities.pathsFromToQueryView =
-        new BackboneViews.PathsFromToQueryView({
-            el: '#query-pathsfromto-table',
-        });
-    commonStreamQueryView = appUtilities.commonStreamQueryView =
-        new BackboneViews.CommonStreamQueryView({
-            el: '#query-commonstream-table',
-        });
-    pathsByURIQueryView = appUtilities.pathsByURIQueryView =
-        new BackboneViews.PathsByURIQueryView({
-            el: '#query-pathsbyURI-table',
-        });
+    mapTabGeneralPanel = appUtilities.mapTabGeneralPanel = new BackboneViews.MapTabGeneralPanel({
+        el: '#map-tab-general-container',
+    });
+    mapTabLabelPanel = appUtilities.mapTabLabelPanel = new BackboneViews.MapTabLabelPanel({el: '#map-tab-label-container'});
+    mapTabRearrangementPanel = appUtilities.mapTabRearrangementPanel = new BackboneViews.MapTabRearrangementPanel({
+        el: '#map-tab-rearrangement-container',
+    });
+    experimentTabPanel = appUtilities.experimentTabPanel = new BackboneViews.experimentTabPanel({
+        el: '#map-tab-experiment-container',
+    });
+    neighborhoodQueryView = appUtilities.neighborhoodQueryView = new BackboneViews.NeighborhoodQueryView({
+        el: '#query-neighborhood-table',
+    });
+    pathsBetweenQueryView = appUtilities.pathsBetweenQueryView = new BackboneViews.PathsBetweenQueryView({
+        el: '#query-pathsbetween-table',
+    });
+    pathsFromToQueryView = appUtilities.pathsFromToQueryView = new BackboneViews.PathsFromToQueryView({
+        el: '#query-pathsfromto-table',
+    });
+    commonStreamQueryView = appUtilities.commonStreamQueryView = new BackboneViews.CommonStreamQueryView({
+        el: '#query-commonstream-table',
+    });
+    pathsByURIQueryView = appUtilities.pathsByURIQueryView = new BackboneViews.PathsByURIQueryView({
+        el: '#query-pathsbyURI-table',
+    });
     //promptSaveView = appUtilities.promptSaveView = new BackboneViews.PromptSaveView({el: '#prompt-save-table'}); // see PromptSaveView in backbone-views.js
     fileSaveView = appUtilities.fileSaveView = new BackboneViews.FileSaveView({
         el: '#file-save-table',
     });
-    saveUserPreferencesView = appUtilities.saveUserPreferencesView =
-        new BackboneViews.SaveUserPreferencesView({
-            el: '#user-preferences-save-table',
-        });
-    loadUserPreferencesView = appUtilities.loadUserPreferencesView =
-        new BackboneViews.LoadUserPreferencesView({
-            el: '#user-preferences-load-table',
-        });
-    promptConfirmationView = appUtilities.promptConfirmationView =
-        new BackboneViews.PromptConfirmationView({
-            el: '#prompt-confirmation-table',
-        });
-    promptMapTypeView = appUtilities.promptMapTypeView =
-        new BackboneViews.PromptMapTypeView({el: '#prompt-mapType-table'});
-    promptInvalidFileView = appUtilities.promptInvalidFileView =
-        new BackboneViews.PromptInvalidFileView({
-            el: '#prompt-invalidFile-table',
-        });
-    promptFileConversionErrorView = appUtilities.promptFileConversionErrorView =
-        new BackboneViews.PromptFileConversionErrorView({
-            el: '#prompt-fileConversionError-table',
-        });
-    reactionTemplateView = appUtilities.reactionTemplateView =
-        new BackboneViews.ReactionTemplateView({
-            el: '#reaction-template-table',
-        });
-    gridPropertiesView = appUtilities.gridPropertiesView =
-        new BackboneViews.GridPropertiesView({el: '#grid-properties-table'});
-    fontPropertiesView = appUtilities.fontPropertiesView =
-        new BackboneViews.FontPropertiesView({el: '#font-properties-table'});
-    infoboxPropertiesView = appUtilities.infoboxPropertiesView =
-        new BackboneViews.InfoboxPropertiesView({
-            el: '#infobox-properties-table',
-        });
-    promptInvalidURIView = appUtilities.promptInvalidURIView =
-        new BackboneViews.PromptInvalidURIView({
-            el: '#prompt-invalidURI-table',
-        });
-    promptInvalidURIWarning = appUtilities.promptInvalidURIWarning =
-        new BackboneViews.PromptInvalidURIWarning({
-            el: '#prompt-invalidURI-table',
-        });
-    promptInvalidURLWarning = appUtilities.promptInvalidURLWarning =
-        new BackboneViews.PromptInvalidURLWarning({
-            el: '#prompt-invalidURL-table',
-        });
-    promptInvalidImageWarning = appUtilities.promptInvalidImageWarning =
-        new BackboneViews.PromptInvalidImageWarning({
-            el: '#prompt-invalidImage-table',
-        });
-    promptInvalidEdgeWarning = appUtilities.promptInvalidEdgeWarning =
-        new BackboneViews.PromptInvalidEdgeWarning({
-            el: '#prompt-invalidEdge-table',
-        });
+    saveUserPreferencesView = appUtilities.saveUserPreferencesView = new BackboneViews.SaveUserPreferencesView({
+        el: '#user-preferences-save-table',
+    });
+    loadUserPreferencesView = appUtilities.loadUserPreferencesView = new BackboneViews.LoadUserPreferencesView({
+        el: '#user-preferences-load-table',
+    });
+    promptConfirmationView = appUtilities.promptConfirmationView = new BackboneViews.PromptConfirmationView({
+        el: '#prompt-confirmation-table',
+    });
+    promptMapTypeView = appUtilities.promptMapTypeView = new BackboneViews.PromptMapTypeView({el: '#prompt-mapType-table'});
+    promptInvalidFileView = appUtilities.promptInvalidFileView = new BackboneViews.PromptInvalidFileView({
+        el: '#prompt-invalidFile-table',
+    });
+    promptFileConversionErrorView = appUtilities.promptFileConversionErrorView = new BackboneViews.PromptFileConversionErrorView({
+        el: '#prompt-fileConversionError-table',
+    });
+    reactionTemplateView = appUtilities.reactionTemplateView = new BackboneViews.ReactionTemplateView({
+        el: '#reaction-template-table',
+    });
+    gridPropertiesView = appUtilities.gridPropertiesView = new BackboneViews.GridPropertiesView({el: '#grid-properties-table'});
+    fontPropertiesView = appUtilities.fontPropertiesView = new BackboneViews.FontPropertiesView({el: '#font-properties-table'});
+    infoboxPropertiesView = appUtilities.infoboxPropertiesView = new BackboneViews.InfoboxPropertiesView({
+        el: '#infobox-properties-table',
+    });
+    promptInvalidURIView = appUtilities.promptInvalidURIView = new BackboneViews.PromptInvalidURIView({
+        el: '#prompt-invalidURI-table',
+    });
+    promptInvalidURIWarning = appUtilities.promptInvalidURIWarning = new BackboneViews.PromptInvalidURIWarning({
+        el: '#prompt-invalidURI-table',
+    });
+    promptInvalidURLWarning = appUtilities.promptInvalidURLWarning = new BackboneViews.PromptInvalidURLWarning({
+        el: '#prompt-invalidURL-table',
+    });
+    promptInvalidImageWarning = appUtilities.promptInvalidImageWarning = new BackboneViews.PromptInvalidImageWarning({
+        el: '#prompt-invalidImage-table',
+    });
+    promptInvalidEdgeWarning = appUtilities.promptInvalidEdgeWarning = new BackboneViews.PromptInvalidEdgeWarning({
+        el: '#prompt-invalidEdge-table',
+    });
 
     toolbarButtonsAndMenu();
     keyboardShortcuts();
 
     // Events triggered by sbgnviz module
-    $(document).on(
-        'sbgnvizLoadSample sbgnvizLoadFile',
-        function (event, filename, cy) {
-            // check if the event is triggered for the active instance
-            var isActiveInstance = cy == appUtilities.getActiveCy();
+    $(document).on('sbgnvizLoadSample sbgnvizLoadFile', function (event, filename, cy) {
+        // check if the event is triggered for the active instance
+        var isActiveInstance = cy == appUtilities.getActiveCy();
 
-            var chiseInstance = appUtilities.getChiseInstance(cy);
+        var chiseInstance = appUtilities.getChiseInstance(cy);
 
-            // set the current file name for cy
-            appUtilities.setScratch(cy, 'currentFileName', filename);
-            //clean and reset things
-            cy.elements().unselect();
-            appUtilities.disableInfoBoxRelocation();
+        // set the current file name for cy
+        appUtilities.setScratch(cy, 'currentFileName', filename);
+        //clean and reset things
+        cy.elements().unselect();
+        appUtilities.disableInfoBoxRelocation();
 
-            // a new file is being loaded clear the applied flag of topologyGrouping
-            var topologyGrouping = chiseInstance.sifTopologyGrouping;
-            topologyGrouping.clearAppliedFlag();
+        // a new file is being loaded clear the applied flag of topologyGrouping
+        var topologyGrouping = chiseInstance.sifTopologyGrouping;
+        topologyGrouping.clearAppliedFlag();
 
-            // unlock graph topology in case it is locked
-            chiseInstance.elementUtilities.unlockGraphTopology();
+        // unlock graph topology in case it is locked
+        chiseInstance.elementUtilities.unlockGraphTopology();
 
-            // if the event is triggered for the active instance do the followings
-            if (isActiveInstance) {
-                // set file content accordingly
-                appUtilities.setFileContent(filename);
+        // if the event is triggered for the active instance do the followings
+        if (isActiveInstance) {
+            // set file content accordingly
+            appUtilities.setFileContent(filename);
 
-                if (!$('#inspector-map-tab').hasClass('active')) {
-                    $('#inspector-map-tab a').tab('show');
-                }
+            if (!$('#inspector-map-tab').hasClass('active')) {
+                $('#inspector-map-tab a').tab('show');
+            }
 
-                if ($('#inspector-console-tab')[0].style.display == 'block') {
-                    $('#inspector-console-tab')[0].style.display = 'none';
-                }
+            if ($('#inspector-console-tab')[0].style.display == 'block') {
+                $('#inspector-console-tab')[0].style.display = 'none';
             }
         }
-    );
+    });
 
     // Event triggered before file loaded by URL/URI
-    $(document).on(
-        'sbgnvizLoadFromURL sbgnvizLoadFromURI',
-        function (event, filename, cy) {
-            var chiseInstance = appUtilities.getChiseInstance(cy);
+    $(document).on('sbgnvizLoadFromURL sbgnvizLoadFromURI', function (event, filename, cy) {
+        var chiseInstance = appUtilities.getChiseInstance(cy);
 
-            var urlParams = appUtilities.getScratch(cy, 'urlParams');
+        var urlParams = appUtilities.getScratch(cy, 'urlParams');
 
-            // get current general properties for cy
-            var currentGeneralProperties = appUtilities.getScratch(
-                cy,
-                'currentGeneralProperties'
-            );
+        // get current general properties for cy
+        var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
-            // inferNestingOnLoad and compoundPadding must be set before file loaded
-            if (urlParams) {
-                // filter map properties from the url parameters
-                var mapPropsFromUrl =
-                    appUtilities.filterMapProperties(urlParams);
+        // inferNestingOnLoad and compoundPadding must be set before file loaded
+        if (urlParams) {
+            // filter map properties from the url parameters
+            var mapPropsFromUrl = appUtilities.filterMapProperties(urlParams);
 
-                if ('inferNestingOnLoad' in mapPropsFromUrl) {
-                    currentGeneralProperties.inferNestingOnLoad =
-                        mapPropsFromUrl.inferNestingOnLoad == 'true';
-                } else {
-                    currentGeneralProperties.inferNestingOnLoad = false;
-                }
-
-                if ('compoundPadding' in mapPropsFromUrl) {
-                    currentGeneralProperties.compoundPadding = Number(
-                        mapPropsFromUrl.compoundPadding
-                    );
-                    chiseInstance.setCompoundPadding(
-                        Number(mapPropsFromUrl.compoundPadding)
-                    );
-                } else {
-                    currentGeneralProperties.compoundPadding = 0;
-                    chiseInstance.setCompoundPadding(
-                        currentGeneralProperties.compoundPadding
-                    );
-                }
+            if ('inferNestingOnLoad' in mapPropsFromUrl) {
+                currentGeneralProperties.inferNestingOnLoad = mapPropsFromUrl.inferNestingOnLoad == 'true';
+            } else {
+                currentGeneralProperties.inferNestingOnLoad = false;
             }
 
-            // set 'currentGeneralProperties' on scratchpad of cy
-            appUtilities.setScratch(
-                cy,
-                'currentGeneralProperties',
-                currentGeneralProperties
-            );
+            if ('compoundPadding' in mapPropsFromUrl) {
+                currentGeneralProperties.compoundPadding = Number(mapPropsFromUrl.compoundPadding);
+                chiseInstance.setCompoundPadding(Number(mapPropsFromUrl.compoundPadding));
+            } else {
+                currentGeneralProperties.compoundPadding = 0;
+                chiseInstance.setCompoundPadding(currentGeneralProperties.compoundPadding);
+            }
         }
-    );
+
+        // set 'currentGeneralProperties' on scratchpad of cy
+        appUtilities.setScratch(cy, 'currentGeneralProperties', currentGeneralProperties);
+    });
 
     $(document).on('updateGraphEnd', function (event, cy) {
         appUtilities.resetUndoRedoButtons();
         modeHandler.setSelectionMode(cy);
     });
 
-    $(document).on(
-        'sbgnvizLoadFileEnd sbgnvizLoadSampleEnd',
-        function (event, filename, cy) {
-            // check if the event is triggered for the active instance
-            var isActiveInstance = cy == appUtilities.getActiveCy();
+    $(document).on('sbgnvizLoadFileEnd sbgnvizLoadSampleEnd', function (event, filename, cy) {
+        // check if the event is triggered for the active instance
+        var isActiveInstance = cy == appUtilities.getActiveCy();
 
-            // get chise instance for cy
-            var chiseInstance = appUtilities.getChiseInstance(cy);
+        // get chise instance for cy
+        var chiseInstance = appUtilities.getChiseInstance(cy);
 
-            // Do the followings if the event is triggered for the active instance
-            if (isActiveInstance) {
-                // select appropriate palette depending on the map
-                if (chiseInstance.elementUtilities.mapType == 'AF') {
-                    if ($('#AF-palette-heading').hasClass('collapsed')) {
-                        // expand AF
-                        $('#AF-palette-heading').click();
-                    }
-                    if (!$('#PD-palette-heading').hasClass('collapsed')) {
-                        // collapse PD
-                        $('#PD-palette-heading').click();
-                    }
-                    if (!$('#SIF-palette-heading').hasClass('collapsed')) {
-                        // collapse SIF
-                        $('#SIF-palette-heading').click();
-                    }
-                } else if (chiseInstance.elementUtilities.mapType == 'PD') {
-                    if ($('#PD-palette-heading').hasClass('collapsed')) {
-                        // expand PD
-                        $('#PD-palette-heading').click();
-                    }
-                    if (!$('#AF-palette-heading').hasClass('collapsed')) {
-                        // collapse AF
-                        $('#AF-palette-heading').click();
-                    }
-                    if (!$('#SIF-palette-heading').hasClass('collapsed')) {
-                        // collapse SIF
-                        $('#SIF-palette-heading').click();
-                    }
-                } else if (chiseInstance.elementUtilities.mapType == 'SIF') {
-                    if ($('#SIF-palette-heading').hasClass('collapsed')) {
-                        // expand SIF
-                        $('#SIF-palette-heading').click();
-                    }
-                    if (!$('#PD-palette-heading').hasClass('collapsed')) {
-                        // collapse PD
-                        $('#PD-palette-heading').click();
-                    }
-                    if (!$('#AF-palette-heading').hasClass('collapsed')) {
-                        // collapse AF
-                        $('#AF-palette-heading').click();
-                    }
-                } else {
-                    console.warn('invalid map type!');
+        // Do the followings if the event is triggered for the active instance
+        if (isActiveInstance) {
+            // select appropriate palette depending on the map
+            if (chiseInstance.elementUtilities.mapType == 'AF') {
+                if ($('#AF-palette-heading').hasClass('collapsed')) {
+                    // expand AF
+                    $('#AF-palette-heading').click();
                 }
+                if (!$('#PD-palette-heading').hasClass('collapsed')) {
+                    // collapse PD
+                    $('#PD-palette-heading').click();
+                }
+                if (!$('#SIF-palette-heading').hasClass('collapsed')) {
+                    // collapse SIF
+                    $('#SIF-palette-heading').click();
+                }
+            } else if (chiseInstance.elementUtilities.mapType == 'PD') {
+                if ($('#PD-palette-heading').hasClass('collapsed')) {
+                    // expand PD
+                    $('#PD-palette-heading').click();
+                }
+                if (!$('#AF-palette-heading').hasClass('collapsed')) {
+                    // collapse AF
+                    $('#AF-palette-heading').click();
+                }
+                if (!$('#SIF-palette-heading').hasClass('collapsed')) {
+                    // collapse SIF
+                    $('#SIF-palette-heading').click();
+                }
+            } else if (chiseInstance.elementUtilities.mapType == 'SIF') {
+                if ($('#SIF-palette-heading').hasClass('collapsed')) {
+                    // expand SIF
+                    $('#SIF-palette-heading').click();
+                }
+                if (!$('#PD-palette-heading').hasClass('collapsed')) {
+                    // collapse PD
+                    $('#PD-palette-heading').click();
+                }
+                if (!$('#AF-palette-heading').hasClass('collapsed')) {
+                    // collapse AF
+                    $('#AF-palette-heading').click();
+                }
+            } else {
+                console.warn('invalid map type!');
             }
-
-            cy.fit(cy.elements(':visible'), 20);
         }
-    );
+
+        cy.fit(cy.elements(':visible'), 20);
+    });
 
     function toolbarButtonsAndMenu() {
         // menu behavior: on first click, triggers the other menus on hover.
@@ -336,11 +266,7 @@ module.exports = function () {
             }
         });
         $(document.body).on('click', function (e) {
-            if (
-                $(e.target).is(
-                    'ul.navbar-nav > li.dropdown > a.dropdown-toggle'
-                )
-            ) {
+            if ($(e.target).is('ul.navbar-nav > li.dropdown > a.dropdown-toggle')) {
                 isMenuHoverMode = true;
             } else {
                 isMenuHoverMode = false;
@@ -400,7 +326,7 @@ module.exports = function () {
             // use cy instance for active chise instance
             var cy = chiseInstance.getCy();
 
-            if (cy.elements().length != 0) {
+            if (cy.elements().length !== 0) {
                 promptConfirmationView.render(
                     appUtilities.closeActiveNetwork.bind(appUtilities)
                 );
@@ -420,7 +346,7 @@ module.exports = function () {
             // use cy instance assocated with chise instance
             var cy = appUtilities.getActiveCy();
 
-            if ($(this).val() != '' || fileObject) {
+            if ($(this).val() !== '' || fileObject) {
                 var file = this.files[0] || fileObject;
                 var loadCallbackSBGNMLValidity = function (text) {
                     validateSBGNML(text);
@@ -428,20 +354,12 @@ module.exports = function () {
                 var loadCallbackInvalidityWarning = function () {
                     promptInvalidFileView.render();
                 };
-                if (cy.elements().length != 0) {
+                if (cy.elements().length !== 0) {
                     promptConfirmationView.render(function () {
-                        chiseInstance.loadNwtFile(
-                            file,
-                            loadCallbackSBGNMLValidity,
-                            loadCallbackInvalidityWarning
-                        );
+                    chiseInstance.loadNwtFile(file, loadCallbackSBGNMLValidity, loadCallbackInvalidityWarning);
                     });
                 } else {
-                    chiseInstance.loadNwtFile(
-                        file,
-                        loadCallbackSBGNMLValidity,
-                        loadCallbackInvalidityWarning
-                    );
+                    chiseInstance.loadNwtFile(file, loadCallbackSBGNMLValidity, loadCallbackInvalidityWarning);
                 }
                 $(this).val('');
             }
@@ -454,37 +372,21 @@ module.exports = function () {
         $('#celldesigner-file-input').change(function (e, fileObject) {
             var chiseInstance = appUtilities.getActiveChiseInstance();
             var cy = appUtilities.getActiveCy();
-            if ($(this).val() != '') {
+            if ($(this).val() !== '') {
                 var file = this.files[0];
                 appUtilities.setFileContent(file.name);
-                chiseInstance.loadCellDesigner(
-                    file,
-                    (success = function (data) {
-                        if (cy.elements().length !== 0) {
-                            promptConfirmationView.render(function () {
-                                chiseInstance.loadSBGNMLText(
-                                    data,
-                                    true,
-                                    file.name,
-                                    cy
-                                );
-                            });
-                        } else {
-                            chiseInstance.loadSBGNMLText(
-                                data,
-                                true,
-                                file.name,
-                                cy
-                            );
-                        }
-                    }),
-                    (error = function (data) {
-                        promptFileConversionErrorView.render();
-                        document.getElementById(
-                            'file-conversion-error-message'
-                        ).innerText = 'Conversion service is not available!';
-                    })
-                );
+                chiseInstance.loadCellDesigner(file, (success = function (data) {
+                    if (cy.elements().length !== 0) {
+                        promptConfirmationView.render(function () {
+                            chiseInstance.loadSBGNMLText(data, true, file.name, cy);
+                        });
+                    } else {
+                        chiseInstance.loadSBGNMLText(data, true, file.name, cy);
+                    }
+                }), (error = function (data) {
+                    promptFileConversionErrorView.render();
+                    document.getElementById('file-conversion-error-message').innerText = 'Conversion service is not available!';
+                }));
 
                 $(this).val('');
             }
@@ -527,9 +429,7 @@ module.exports = function () {
                     };
                     var fileName = file.name;
                     params = {
-                        data: data,
-                        fileName: fileName,
-                        errorCallback: errorCallback,
+                        data: data, fileName: fileName, errorCallback: errorCallback,
                     };
                     experimentTabPanel.loadExperiment(params);
                     experimentTabPanel.render();
@@ -547,20 +447,17 @@ module.exports = function () {
             var cy = appUtilities.getActiveCy();
             var overlayExperimentData = function () {
                 var chiseInstance = appUtilities.getActiveChiseInstance();
-                var data =
-                    'name\tsample experiment data\r\ndescription\tAdenoid Cystic Carcinoma 2014 vs 2019\r\nel\t2014\t2019\r\nRB1\t36\t12\r\nTP53\t36\t72\r\nCDKN2A\t0\t14\r\nMDM2\t0\t5\r\nCCNE\t0\t7\r';
+                var data = 'name\tsample experiment data\r\ndescription\tAdenoid Cystic Carcinoma 2014 vs 2019\r\nel\t2014\t2019\r\nRB1\t36\t12\r\nTP53\t36\t72\r\nCDKN2A\t0\t14\r\nMDM2\t0\t5\r\nCCNE\t0\t7\r';
                 var errorCallback = function () {
                     promptInvalidFileView.render();
                 };
                 params = {
-                    data: data,
-                    fileName: 'acc_2014vs2019.txt',
-                    errorCallback: errorCallback,
+                    data: data, fileName: 'acc_2014vs2019.txt', errorCallback: errorCallback,
                 };
                 experimentTabPanel.loadExperiment(params);
                 experimentTabPanel.render();
             };
-            if (cy.elements().length != 0) {
+            if (cy.elements().length !== 0) {
                 promptConfirmationView.render(function () {
                     loadSample('tp53_rb_pathway.nwt', overlayExperimentData);
                 });
@@ -574,37 +471,21 @@ module.exports = function () {
         $('#sbml-file').change(function () {
             var chiseInstance = appUtilities.getActiveChiseInstance();
             var cy = appUtilities.getActiveCy();
-            if ($(this).val() != '') {
+            if ($(this).val() !== '') {
                 var file = this.files[0];
                 appUtilities.setFileContent(file.name);
-                chiseInstance.loadSbml(
-                    file,
-                    (success = function (data) {
-                        if (cy.elements().length !== 0) {
-                            promptConfirmationView.render(function () {
-                                chiseInstance.loadSBGNMLText(
-                                    data.message,
-                                    false,
-                                    file.name,
-                                    cy
-                                );
-                            });
-                        } else {
-                            chiseInstance.loadSBGNMLText(
-                                data.message,
-                                false,
-                                file.name,
-                                cy
-                            );
-                        }
-                    }),
-                    (error = function (data) {
-                        promptFileConversionErrorView.render();
-                        document.getElementById(
-                            'file-conversion-error-message'
-                        ).innerText = 'Conversion service is not available!';
-                    })
-                );
+                chiseInstance.loadSbml(file, (success = function (data) {
+                    if (cy.elements().length !== 0) {
+                        promptConfirmationView.render(function () {
+                            chiseInstance.loadSBGNMLText(data.message, false, file.name, cy);
+                        });
+                    } else {
+                        chiseInstance.loadSBGNMLText(data.message, false, file.name, cy);
+                    }
+                }), (error = function (data) {
+                    promptFileConversionErrorView.render();
+                    document.getElementById('file-conversion-error-message').innerText = 'Conversion service is not available!';
+                }));
 
                 $(this).val('');
             }
@@ -619,21 +500,12 @@ module.exports = function () {
                 promptInvalidFileView.render();
             };
 
-            if ($(this).val() != '') {
+            if ($(this).val() !== '') {
                 var file = this.files[0];
 
-                if (cy.elements().length != 0)
-                    promptConfirmationView.render(function () {
-                        chiseInstance.loadTDFile(
-                            file,
-                            loadCallbackInvalidityWarning
-                        );
-                    });
-                else
-                    chiseInstance.loadTDFile(
-                        file,
-                        loadCallbackInvalidityWarning
-                    );
+                if (cy.elements().length !== 0) promptConfirmationView.render(function () {
+                    chiseInstance.loadTDFile(file, loadCallbackInvalidityWarning);
+                }); else chiseInstance.loadTDFile(file, loadCallbackInvalidityWarning);
 
                 $(this).val('');
             }
@@ -698,313 +570,175 @@ module.exports = function () {
                     const layoutBy = function () {
                         appUtilities.triggerLayout(cy, true);
                     };
-                    chiseInstance.loadSIFFile(
-                        file,
-                        layoutBy,
-                        loadCallbackInvalidityWarning
-                    );
+                    chiseInstance.loadSIFFile(file, layoutBy, loadCallbackInvalidityWarning);
                 };
-                if (cy.elements().length !== 0)
-                    promptConfirmationView.render(loadFcn);
-                else loadFcn();
+                if (cy.elements().length !== 0) promptConfirmationView.render(loadFcn); else loadFcn();
 
                 $(this).val('');
             }
         });
 
-        // TODO: eliminate code replication in similar functions.
-        // Custom function
-        // $('#sif-file-input').change(function () {
-        // 	const chiseInstance = appUtilities.getActiveChiseInstance();
-        // 	console.log(`chiseInstance:  ${chiseInstance}`);
-        //
-        // 	// use cy instance associated with chise instance
-        // 	const cy = appUtilities.getActiveCy();
-        //
-        // 	const loadCallbackInvalidityWarning = function () {
-        // 		promptInvalidFileView.render();
-        // 	};
-        //
-        // 	if ($(this).val() !== '') {
-        // 		const file = this.files[0];
-        // 		console.log(file)
-        // 		const loadFcn = function () {
-        // 			const layoutBy = function () {
-        // 				appUtilities.triggerLayout(cy, true);
-        // 			};
-        // 			chiseInstance.loadSIFFile(
-        // 				file,
-        // 				layoutBy,
-        // 				loadCallbackInvalidityWarning
-        // 			);
-        // 		};
-        // 		if (cy.elements().length !== 0)
-        // 			promptConfirmationView.render(loadFcn);
-        // 		else loadFcn();
-        //
-        // 		$(this).val('');
-        // 	}
-        // });
-
-
         // get and set map properties from file
-        $(document).on(
-            'sbgnvizLoadFileEnd sbgnvizLoadSampleEnd',
-            function (evt, filename, cy) {
-                // check if the event is triggered for the active instance
-                var isActiveInstance = cy == appUtilities.getActiveCy();
+        $(document).on('sbgnvizLoadFileEnd sbgnvizLoadSampleEnd', function (evt, filename, cy) {
+            // check if the event is triggered for the active instance
+            var isActiveInstance = cy == appUtilities.getActiveCy();
 
-                // get chise instance for cy
-                var chiseInstance = appUtilities.getChiseInstance(cy);
+            // get chise instance for cy
+            var chiseInstance = appUtilities.getChiseInstance(cy);
 
-                // get current general properties for cy
-                var currentGeneralProperties = appUtilities.getScratch(
-                    cy,
-                    'currentGeneralProperties'
-                );
+            // get current general properties for cy
+            var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
-                // needing an appUndoActions instance here is something unexpected
-                // but since appUndoActions.refreshColorSchemeMenu is used below in an unfortunate way we need an instance of it
-                // that uses cy instance here
-                var appUndoActions = appUndoActionsFactory(cy);
+            // needing an appUndoActions instance here is something unexpected
+            // but since appUndoActions.refreshColorSchemeMenu is used below in an unfortunate way we need an instance of it
+            // that uses cy instance here
+            var appUndoActions = appUndoActionsFactory(cy);
 
-                // get the network id for cy
-                var networkId = cy.container().id;
+            // get the network id for cy
+            var networkId = cy.container().id;
 
-                // unlock graph topolpgy in case it is locked
-                chiseInstance.elementUtilities.unlockGraphTopology();
+            // unlock graph topolpgy in case it is locked
+            chiseInstance.elementUtilities.unlockGraphTopology();
 
-                // reset map name and description
-                // default map name should be a string that contains the network id
-                currentGeneralProperties.mapName =
-                    appUtilities.getDefaultMapName(networkId);
-                currentGeneralProperties.mapDescription =
-                    appUtilities.defaultGeneralProperties.mapDescription;
+            // reset map name and description
+            // default map name should be a string that contains the network id
+            currentGeneralProperties.mapName = appUtilities.getDefaultMapName(networkId);
+            currentGeneralProperties.mapDescription = appUtilities.defaultGeneralProperties.mapDescription;
 
-                // set recalculate layout on complexity management based on map size
-                if (cy.nodes().length > 1250) {
-                    currentGeneralProperties.recalculateLayoutOnComplexityManagement = false;
-                }
-
-                // get and set properties from file
-                var properties = chiseInstance.getMapProperties();
-                // init map properties
-                var mapProperties =
-                    properties && properties.mapProperties
-                        ? properties.mapProperties
-                        : {};
-
-                var urlParams = appUtilities.getScratch(cy, 'urlParams');
-
-                if (urlParams) {
-                    // clear urlParams from scratch
-                    appUtilities.setScratch(cy, 'urlParams', undefined);
-
-                    // get applyLayout value before map properties are filtered, apply layout
-                    // isn't really a map property so its not added to sbgnviz
-                    // validMapProperties
-                    const applyLayout = urlParams.applyLayoutOnURL === 'true';
-                    const fromURL = urlParams.url !== undefined;
-
-                    if (urlParams.compoundPadding) {
-                        const compoundPadding = urlParams.compoundPadding;
-                        chiseInstance.setCompoundPadding(
-                            Number(compoundPadding)
-                        );
-                    }
-
-                    // filter map properties from the url parameters
-                    var mapPropsFromUrl =
-                        appUtilities.filterMapProperties(urlParams);
-
-                    if (!('inferNestingOnLoad' in mapPropsFromUrl)) {
-                        mapPropsFromUrl.inferNestingOnLoad = false;
-                    }
-
-                    if (!('compoundPadding' in mapPropsFromUrl)) {
-                        mapPropsFromUrl.compoundPadding = 0;
-                    }
-
-                    if (fromURL && applyLayout) {
-                        let currentLayoutProperties = appUtilities.getScratch(
-                            cy,
-                            'currentLayoutProperties'
-                        );
-
-                        // Below is copied from sbgnviz.graphUtilities.updateGraph
-                        let preferences = {};
-                        if (
-                            cy.nodes().length > 3000 ||
-                            cy.edges().length > 3000
-                        ) {
-                            preferences.quality = 'draft';
-                        }
-                        preferences.animate = false;
-                        preferences.randomize = true;
-                        preferences = $.extend(
-                            {},
-                            currentLayoutProperties,
-                            preferences
-                        );
-                        layoutPropertiesView.applyLayout(preferences);
-                    }
-
-                    if (urlParams.mapColorScheme) {
-                        appUtilities.applyMapColorScheme(
-                            urlParams.mapColorScheme,
-                            currentGeneralProperties.mapColorSchemeStyle,
-                            appUtilities.colorSchemeInspectorView
-                        );
-                    }
-
-                    // merge the map properties coming from url into
-                    // the map properties read from file
-                    for (var prop in mapPropsFromUrl) {
-                        mapProperties[prop] = mapPropsFromUrl[prop];
-                    }
-                }
-                //BURAYA EKLE --
-                // some operations are to be performed if there is any map property
-                // that comes from URL or read from file
-                var mapPropertiesExist = !$.isEmptyObject(mapProperties);
-
-                if (mapPropertiesExist) {
-                    appUtilities.setMapProperties(mapProperties);
-                }
-
-                // some operations are to be done if the event is triggered for the active instance
-                if (isActiveInstance) {
-                    // update map panel
-                    mapTabGeneralPanel.render();
-                    mapTabRearrangementPanel.render();
-                    mapTabLabelPanel.render();
-                    experimentTabPanel.render();
-                    if (mapPropertiesExist) {
-                        // update map panel
-                        appUndoActions.refreshColorSchemeMenu({
-                            value: currentGeneralProperties.mapColorScheme,
-                            self: colorSchemeInspectorView,
-                            scheme_type:
-                            currentGeneralProperties.mapColorSchemeStyle,
-                        });
-                    }
-                }
-
-                if (mapPropertiesExist) {
-                    // set default colors(or background images) according to the specified color scheme style
-                    if (
-                        currentGeneralProperties.mapColorSchemeStyle == 'solid'
-                    ) {
-                        for (var nodeClass in appUtilities.mapColorSchemes[
-                            currentGeneralProperties.mapColorScheme
-                            ]['values']) {
-                            classBgColor =
-                                appUtilities.mapColorSchemes[
-                                    currentGeneralProperties.mapColorScheme
-                                    ]['values'][nodeClass];
-                            // nodeClass may not be defined in the defaultProperties (for edges, for example)
-                            if (
-                                nodeClass in
-                                chiseInstance.elementUtilities.getDefaultProperties()
-                            ) {
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-image',
-                                        value: '',
-                                    }
-                                );
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-color',
-                                        value: classBgColor,
-                                    }
-                                );
-                            }
-                        }
-                    } else {
-                        for (var nodeClass in appUtilities.mapColorSchemes[
-                            currentGeneralProperties.mapColorScheme
-                            ]['values']) {
-                            classBgColor =
-                                appUtilities.mapColorSchemes[
-                                    currentGeneralProperties.mapColorScheme
-                                    ]['values'][nodeClass];
-                            classBgImg =
-                                currentGeneralProperties.mapColorSchemeStyle ==
-                                'gradient'
-                                    ? appUtilities.colorCodeToGradientImage[
-                                        appUtilities.mapColorSchemes[
-                                            currentGeneralProperties
-                                                .mapColorScheme
-                                            ]['values'][nodeClass]
-                                        ]
-                                    : appUtilities.colorCodeTo3DImage[
-                                        appUtilities.mapColorSchemes[
-                                            currentGeneralProperties
-                                                .mapColorScheme
-                                            ]['values'][nodeClass]
-                                        ];
-                            // nodeClass may not be defined in the defaultProperties (for edges, for example)
-                            if (
-                                nodeClass in
-                                chiseInstance.elementUtilities.getDefaultProperties()
-                            ) {
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-color',
-                                        value: '#ffffff',
-                                    }
-                                );
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-fit',
-                                        value: 'cover',
-                                    }
-                                );
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-opacity',
-                                        value: '1',
-                                    }
-                                );
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-position-x',
-                                        value: '50%',
-                                    }
-                                );
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-position-y',
-                                        value: '50%',
-                                    }
-                                );
-                                chiseInstance.undoRedoActionFunctions.setDefaultProperty(
-                                    {
-                                        class: nodeClass,
-                                        name: 'background-image',
-                                        value: classBgImg,
-                                    }
-                                );
-                            }
-                        }
-                    }
-                }
-                // reset current general properties at the scratch pad of cy
-                appUtilities.setScratch(
-                    cy,
-                    'currentGeneralProperties',
-                    currentGeneralProperties
-                );
+            // set recalculate layout on complexity management based on map size
+            if (cy.nodes().length > 1250) {
+                currentGeneralProperties.recalculateLayoutOnComplexityManagement = false;
             }
-        );
+
+            // get and set properties from file
+            var properties = chiseInstance.getMapProperties();
+            // init map properties
+            var mapProperties = properties && properties.mapProperties ? properties.mapProperties : {};
+
+            var urlParams = appUtilities.getScratch(cy, 'urlParams');
+
+            if (urlParams) {
+                // clear urlParams from scratch
+                appUtilities.setScratch(cy, 'urlParams', undefined);
+
+                // get applyLayout value before map properties are filtered, apply layout
+                // isn't really a map property so its not added to sbgnviz
+                // validMapProperties
+                const applyLayout = urlParams.applyLayoutOnURL === 'true';
+                const fromURL = urlParams.url !== undefined;
+
+                if (urlParams.compoundPadding) {
+                    const compoundPadding = urlParams.compoundPadding;
+                    chiseInstance.setCompoundPadding(Number(compoundPadding));
+                }
+
+                // filter map properties from the url parameters
+                var mapPropsFromUrl = appUtilities.filterMapProperties(urlParams);
+
+                if (!('inferNestingOnLoad' in mapPropsFromUrl)) {
+                    mapPropsFromUrl.inferNestingOnLoad = false;
+                }
+
+                if (!('compoundPadding' in mapPropsFromUrl)) {
+                    mapPropsFromUrl.compoundPadding = 0;
+                }
+
+                if (fromURL && applyLayout) {
+                    let currentLayoutProperties = appUtilities.getScratch(cy, 'currentLayoutProperties');
+
+                    // Below is copied from sbgnviz.graphUtilities.updateGraph
+                    let preferences = {};
+                    if (cy.nodes().length > 3000 || cy.edges().length > 3000) {
+                        preferences.quality = 'draft';
+                    }
+                    preferences.animate = false;
+                    preferences.randomize = true;
+                    preferences = $.extend({}, currentLayoutProperties, preferences);
+                    layoutPropertiesView.applyLayout(preferences);
+                }
+
+                if (urlParams.mapColorScheme) {
+                    appUtilities.applyMapColorScheme(urlParams.mapColorScheme, currentGeneralProperties.mapColorSchemeStyle, appUtilities.colorSchemeInspectorView);
+                }
+
+                // merge the map properties coming from url into
+                // the map properties read from file
+                for (var prop in mapPropsFromUrl) {
+                    mapProperties[prop] = mapPropsFromUrl[prop];
+                }
+            }
+            //BURAYA EKLE --
+            // some operations are to be performed if there is any map property
+            // that comes from URL or read from file
+            var mapPropertiesExist = !$.isEmptyObject(mapProperties);
+
+            if (mapPropertiesExist) {
+                appUtilities.setMapProperties(mapProperties);
+            }
+
+            // some operations are to be done if the event is triggered for the active instance
+            if (isActiveInstance) {
+                // update map panel
+                mapTabGeneralPanel.render();
+                mapTabRearrangementPanel.render();
+                mapTabLabelPanel.render();
+                experimentTabPanel.render();
+                if (mapPropertiesExist) {
+                    // update map panel
+                    appUndoActions.refreshColorSchemeMenu({
+                        value: currentGeneralProperties.mapColorScheme,
+                        self: colorSchemeInspectorView,
+                        scheme_type: currentGeneralProperties.mapColorSchemeStyle,
+                    });
+                }
+            }
+
+            if (mapPropertiesExist) {
+                // set default colors(or background images) according to the specified color scheme style
+                if (currentGeneralProperties.mapColorSchemeStyle == 'solid') {
+                    for (var nodeClass in appUtilities.mapColorSchemes[currentGeneralProperties.mapColorScheme]['values']) {
+                        classBgColor = appUtilities.mapColorSchemes[currentGeneralProperties.mapColorScheme]['values'][nodeClass];
+                        // nodeClass may not be defined in the defaultProperties (for edges, for example)
+                        if (nodeClass in chiseInstance.elementUtilities.getDefaultProperties()) {
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-image', value: '',
+                            });
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-color', value: classBgColor,
+                            });
+                        }
+                    }
+                } else {
+                    for (var nodeClass in appUtilities.mapColorSchemes[currentGeneralProperties.mapColorScheme]['values']) {
+                        classBgColor = appUtilities.mapColorSchemes[currentGeneralProperties.mapColorScheme]['values'][nodeClass];
+                        classBgImg = currentGeneralProperties.mapColorSchemeStyle == 'gradient' ? appUtilities.colorCodeToGradientImage[appUtilities.mapColorSchemes[currentGeneralProperties.mapColorScheme]['values'][nodeClass]] : appUtilities.colorCodeTo3DImage[appUtilities.mapColorSchemes[currentGeneralProperties.mapColorScheme]['values'][nodeClass]];
+                        // nodeClass may not be defined in the defaultProperties (for edges, for example)
+                        if (nodeClass in chiseInstance.elementUtilities.getDefaultProperties()) {
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-color', value: '#ffffff',
+                            });
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-fit', value: 'cover',
+                            });
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-opacity', value: '1',
+                            });
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-position-x', value: '50%',
+                            });
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-position-y', value: '50%',
+                            });
+                            chiseInstance.undoRedoActionFunctions.setDefaultProperty({
+                                class: nodeClass, name: 'background-image', value: classBgImg,
+                            });
+                        }
+                    }
+                }
+            }
+            // reset current general properties at the scratch pad of cy
+            appUtilities.setScratch(cy, 'currentGeneralProperties', currentGeneralProperties);
+        });
 
         $('#PD-legend').click(function (e) {
             e.preventDefault();
@@ -1048,12 +782,9 @@ module.exports = function () {
         const selectorToSampleFileName = {
             '#load-sample1': 'neuronal_muscle_signaling.nwt',
             '#load-sample2': 'cam-camk_dependent_signaling_to_the_nucleus.nwt',
-            '#load-sample3':
-                'atm_mediated_phosphorylation_of_repair_proteins.nwt',
-            '#load-sample4':
-                'activated_stat1alpha_induction_of_the_irf1_gene.nwt',
-            '#load-sample5':
-                'vitamins_b6_activation_to_pyridoxal_phosphate.nwt',
+            '#load-sample3': 'atm_mediated_phosphorylation_of_repair_proteins.nwt',
+            '#load-sample4': 'activated_stat1alpha_induction_of_the_irf1_gene.nwt',
+            '#load-sample5': 'vitamins_b6_activation_to_pyridoxal_phosphate.nwt',
             '#load-sample6': 'insulin-like_growth_factor_signaling.nwt',
             '#load-sample7': 'polyq_proteins_interference.nwt',
             '#load-sample8': 'glycolysis.sbgn',
@@ -1130,8 +861,7 @@ module.exports = function () {
             if (cy.nodes(':selected').length === 0) return;
             var nodes = cy.nodes(':selected');
             var allNodes = cy.elements();
-            var nodesToShow =
-                chiseInstance.elementUtilities.extendNodeList(nodes);
+            var nodesToShow = chiseInstance.elementUtilities.extendNodeList(nodes);
             var nodesToHide = allNodes.not(nodesToShow);
             appUtilities.hideNodesSmart(nodesToHide);
         });
@@ -1150,24 +880,18 @@ module.exports = function () {
             appUtilities.showAll();
         });
 
-        $('#delete-selected-smart, #delete-selected-smart-icon').click(
-            function (e) {
-                // use active chise instance
-                var chiseInstance = appUtilities.getActiveChiseInstance();
+        $('#delete-selected-smart, #delete-selected-smart-icon').click(function (e) {
+            // use active chise instance
+            var chiseInstance = appUtilities.getActiveChiseInstance();
 
-                // use cy instance associated with chise instance
-                var cy = chiseInstance.getCy();
+            // use cy instance associated with chise instance
+            var cy = chiseInstance.getCy();
 
-                var selectedNodeSize = cy.nodes(':selected').length;
+            var selectedNodeSize = cy.nodes(':selected').length;
 
-                chiseInstance.deleteNodesSmart(cy.nodes(':selected'));
-                if (
-                    !chiseInstance.elementUtilities.isGraphTopologyLocked() &&
-                    selectedNodeSize > 0
-                )
-                    $('#inspector-palette-tab a').tab('show');
-            }
-        );
+            chiseInstance.deleteNodesSmart(cy.nodes(':selected'));
+            if (!chiseInstance.elementUtilities.isGraphTopologyLocked() && selectedNodeSize > 0) $('#inspector-palette-tab a').tab('show');
+        });
 
         $('#resize-nodes-to-content').click(function (e) {
             // use active chise instance
@@ -1179,9 +903,7 @@ module.exports = function () {
             //Remove processes and other nodes which cannot be resized according to content
             var toBeResized = cy
                 .nodes()
-                .difference(
-                    'node[class*="process"],[class*="association"],[class*="dissociation"],[class="source and sink"],[class="and"],[class="or"],[class="not"],[class="delay"],:parent'
-                );
+                .difference('node[class*="process"],[class*="association"],[class*="dissociation"],[class="source and sink"],[class="and"],[class="or"],[class="not"],[class="delay"],:parent');
 
             appUtilities.resizeNodesToContent(toBeResized);
         });
@@ -1234,9 +956,7 @@ module.exports = function () {
             chiseInstance.highlightProcesses(cy.nodes(':selected'));
         });
 
-        $(
-            '#highlight-errors-of-validation, #highlight-errors-of-validation-icon'
-        ).click(function (e) {
+        $('#highlight-errors-of-validation, #highlight-errors-of-validation-icon').click(function (e) {
             modeHandler.enableReadMode();
             // use active chise instance
             var chiseInstance = appUtilities.getActiveChiseInstance();
@@ -1246,18 +966,10 @@ module.exports = function () {
                 inspectorUtilities.handleSBGNConsole([], 0, cy, file, true);
             } else {
                 var errors = chiseInstance.doValidation(file);
-                inspectorUtilities.handleSBGNConsole(
-                    errors,
-                    0,
-                    cy,
-                    file,
-                    false
-                );
+                inspectorUtilities.handleSBGNConsole(errors, 0, cy, file, false);
             }
 
-            var tabContents = document.getElementsByClassName(
-                'validation-mode-tab'
-            );
+            var tabContents = document.getElementsByClassName('validation-mode-tab');
             for (var i = 0; i < tabContents.length; i++) {
                 $(tabContents[i]).removeClass('active');
                 $($(tabContents[i]).children('a')[0]).removeAttr('data-toggle');
@@ -1280,20 +992,17 @@ module.exports = function () {
             layoutPropertiesView.render();
         });
 
-        $('#delete-selected-simple, #delete-selected-simple-icon').click(
-            function (e) {
-                // use active chise instance
-                var chiseInstance = appUtilities.getActiveChiseInstance();
+        $('#delete-selected-simple, #delete-selected-simple-icon').click(function (e) {
+            // use active chise instance
+            var chiseInstance = appUtilities.getActiveChiseInstance();
 
-                // use cy instance associated with chise instance
-                var cy = chiseInstance.getCy();
+            // use cy instance associated with chise instance
+            var cy = chiseInstance.getCy();
 
-                chiseInstance.deleteElesSimple(cy.elements(':selected'));
+            chiseInstance.deleteElesSimple(cy.elements(':selected'));
 
-                if (!chiseInstance.elementUtilities.isGraphTopologyLocked())
-                    $('#inspector-palette-tab a').tab('show');
-            }
-        );
+            if (!chiseInstance.elementUtilities.isGraphTopologyLocked()) $('#inspector-palette-tab a').tab('show');
+        });
 
         $('#general-properties, #properties-icon').click(function (e) {
             // Go to inspector map tab
@@ -1364,21 +1073,13 @@ module.exports = function () {
             var cy = appUtilities.getActiveCy();
 
             // Toggle show grid and snap to grid, if not initialized yet initialize by false
-            var toggleShowGridEnableSnap =
-                appUtilities.getScratch(cy, 'toggleShowGridEnableSnap') ||
-                false;
+            var toggleShowGridEnableSnap = appUtilities.getScratch(cy, 'toggleShowGridEnableSnap') || false;
 
             // get current grid properties for cy
-            var currentGridProperties = appUtilities.getScratch(
-                cy,
-                'currentGridProperties'
-            );
+            var currentGridProperties = appUtilities.getScratch(cy, 'currentGridProperties');
 
             // get toggleEnableGuidelineAndSnap for cy
-            var toggleEnableGuidelineAndSnap = appUtilities.getScratch(
-                cy,
-                'toggleEnableGuidelineAndSnap'
-            );
+            var toggleEnableGuidelineAndSnap = appUtilities.getScratch(cy, 'toggleEnableGuidelineAndSnap');
 
             if (toggleEnableGuidelineAndSnap) {
                 $('#toggle-guidelines-snapping-icon').click();
@@ -1386,36 +1087,22 @@ module.exports = function () {
 
             toggleShowGridEnableSnap = !toggleShowGridEnableSnap;
             currentGridProperties.showGrid = toggleShowGridEnableSnap;
-            currentGridProperties.snapToGridDuringDrag =
-                toggleShowGridEnableSnap;
+            currentGridProperties.snapToGridDuringDrag = toggleShowGridEnableSnap;
 
             cy.gridGuide({
                 drawGrid: currentGridProperties.showGrid,
-                snapToGridDuringDrag:
-                currentGridProperties.snapToGridDuringDrag,
+                snapToGridDuringDrag: currentGridProperties.snapToGridDuringDrag,
             });
 
             if (toggleShowGridEnableSnap) {
-                $('#toggle-grid-snapping-icon').addClass(
-                    'toggle-mode-sustainable'
-                );
+                $('#toggle-grid-snapping-icon').addClass('toggle-mode-sustainable');
             } else {
-                $('#toggle-grid-snapping-icon').removeClass(
-                    'toggle-mode-sustainable'
-                );
+                $('#toggle-grid-snapping-icon').removeClass('toggle-mode-sustainable');
             }
 
             // update 'toggleShowGridEnableSnap' and 'currentGridProperties' for cy
-            appUtilities.setScratch(
-                cy,
-                'toggleShowGridEnableSnap',
-                toggleShowGridEnableSnap
-            );
-            appUtilities.setScratch(
-                cy,
-                'currentGridProperties',
-                currentGridProperties
-            );
+            appUtilities.setScratch(cy, 'toggleShowGridEnableSnap', toggleShowGridEnableSnap);
+            appUtilities.setScratch(cy, 'currentGridProperties', currentGridProperties);
         });
 
         $('#toggle-guidelines-snapping-icon').click(function () {
@@ -1426,65 +1113,39 @@ module.exports = function () {
             var cy = chiseInstance.getCy();
 
             // Toggle guidelines and snap to alignment location, if not initialized yet initialize by false
-            var toggleEnableGuidelineAndSnap =
-                appUtilities.getScratch(cy, 'toggleEnableGuidelineAndSnap') ||
-                false;
+            var toggleEnableGuidelineAndSnap = appUtilities.getScratch(cy, 'toggleEnableGuidelineAndSnap') || false;
 
             // get current grid properties for cy
-            var currentGridProperties = appUtilities.getScratch(
-                cy,
-                'currentGridProperties'
-            );
+            var currentGridProperties = appUtilities.getScratch(cy, 'currentGridProperties');
 
             // get toggleShowGridEnableSnap for cy
-            var toggleShowGridEnableSnap = appUtilities.getScratch(
-                cy,
-                'toggleShowGridEnableSnap'
-            );
+            var toggleShowGridEnableSnap = appUtilities.getScratch(cy, 'toggleShowGridEnableSnap');
 
             if (toggleShowGridEnableSnap) {
                 $('#toggle-grid-snapping-icon').click();
             }
 
             toggleEnableGuidelineAndSnap = !toggleEnableGuidelineAndSnap;
-            currentGridProperties.showGeometricGuidelines =
-                toggleEnableGuidelineAndSnap;
-            currentGridProperties.showDistributionGuidelines =
-                toggleEnableGuidelineAndSnap;
-            currentGridProperties.snapToAlignmentLocationDuringDrag =
-                toggleEnableGuidelineAndSnap;
+            currentGridProperties.showGeometricGuidelines = toggleEnableGuidelineAndSnap;
+            currentGridProperties.showDistributionGuidelines = toggleEnableGuidelineAndSnap;
+            currentGridProperties.snapToAlignmentLocationDuringDrag = toggleEnableGuidelineAndSnap;
 
             cy.gridGuide({
-                geometricGuideline:
-                currentGridProperties.showGeometricGuidelines,
+                geometricGuideline: currentGridProperties.showGeometricGuidelines,
                 initPosAlignment: currentGridProperties.showInitPosAlignment,
-                distributionGuidelines:
-                currentGridProperties.showDistributionGuidelines,
-                snapToAlignmentLocationDuringDrag:
-                currentGridProperties.snapToAlignmentLocationDuringDrag,
+                distributionGuidelines: currentGridProperties.showDistributionGuidelines,
+                snapToAlignmentLocationDuringDrag: currentGridProperties.snapToAlignmentLocationDuringDrag,
             });
 
             if (toggleEnableGuidelineAndSnap) {
-                $('#toggle-guidelines-snapping-icon').addClass(
-                    'toggle-mode-sustainable'
-                );
+                $('#toggle-guidelines-snapping-icon').addClass('toggle-mode-sustainable');
             } else {
-                $('#toggle-guidelines-snapping-icon').removeClass(
-                    'toggle-mode-sustainable'
-                );
+                $('#toggle-guidelines-snapping-icon').removeClass('toggle-mode-sustainable');
             }
 
             // update 'toggleEnableGuidelineAndSnap' and 'currentGridProperties' for cy
-            appUtilities.setScratch(
-                cy,
-                'toggleEnableGuidelineAndSnap',
-                toggleEnableGuidelineAndSnap
-            );
-            appUtilities.setScratch(
-                cy,
-                'currentGridProperties',
-                currentGridProperties
-            );
+            appUtilities.setScratch(cy, 'toggleEnableGuidelineAndSnap', toggleEnableGuidelineAndSnap);
+            appUtilities.setScratch(cy, 'currentGridProperties', currentGridProperties);
         });
 
         $('#collapse-all').click(function (e) {
@@ -1523,60 +1184,43 @@ module.exports = function () {
             }
 
             // get current general properties for cy
-            var currentGeneralProperties = appUtilities.getScratch(
-                cy,
-                'currentGeneralProperties'
-            );
+            var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
             // TODO think whether here is the right place to start the spinner
             chiseInstance.startSpinner('layout-spinner');
 
             var preferences = {
-                animate:
-                    cy.nodes().length > 3000 || cy.edges().length > 3000
-                        ? false
-                        : currentGeneralProperties.animateOnDrawingChanges,
+                animate: cy.nodes().length > 3000 || cy.edges().length > 3000 ? false : currentGeneralProperties.animateOnDrawingChanges,
             };
 
             layoutPropertiesView.applyLayout(preferences);
         });
 
-        $('#perform-static-layout, #perform-static-layout-icon').click(
-            function (e) {
-                // use active chise instance
-                var chiseInstance = appUtilities.getActiveChiseInstance();
+        $('#perform-static-layout, #perform-static-layout-icon').click(function (e) {
+            // use active chise instance
+            var chiseInstance = appUtilities.getActiveChiseInstance();
 
-                // use the associated cy instance
-                var cy = chiseInstance.getCy();
+            // use the associated cy instance
+            var cy = chiseInstance.getCy();
 
-                // if there is no element in the cy instance, then return directly
-                if (cy.elements().length == 0) {
-                    return;
-                }
-                // get current general properties for cy
-                var currentGeneralProperties = appUtilities.getScratch(
-                    cy,
-                    'currentGeneralProperties'
-                );
-
-                // TODO think whether here is the right place to start the spinner
-                chiseInstance.startSpinner('layout-spinner');
-
-                var preferences = {
-                    quality:
-                        cy.nodes().length > 3000 || cy.edges().length > 3000
-                            ? 'draft'
-                            : 'default',
-                    animate:
-                        cy.nodes().length > 3000 || cy.edges().length > 3000
-                            ? false
-                            : currentGeneralProperties.animateOnDrawingChanges,
-                    randomize: true,
-                };
-
-                layoutPropertiesView.applyLayout(preferences);
+            // if there is no element in the cy instance, then return directly
+            if (cy.elements().length == 0) {
+                return;
             }
-        );
+            // get current general properties for cy
+            var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
+
+            // TODO think whether here is the right place to start the spinner
+            chiseInstance.startSpinner('layout-spinner');
+
+            var preferences = {
+                quality: cy.nodes().length > 3000 || cy.edges().length > 3000 ? 'draft' : 'default',
+                animate: cy.nodes().length > 3000 || cy.edges().length > 3000 ? false : currentGeneralProperties.animateOnDrawingChanges,
+                randomize: true,
+            };
+
+            layoutPropertiesView.applyLayout(preferences);
+        });
 
         $('#undo-last-action, #undo-icon').click(function (e) {
             // use active cy instance
@@ -1597,8 +1241,7 @@ module.exports = function () {
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
             var filename = document.getElementById('file-name').innerHTML;
-            filename =
-                filename.substring(0, filename.lastIndexOf('.')) + '.png';
+            filename = filename.substring(0, filename.lastIndexOf('.')) + '.png';
             chiseInstance.saveAsPng(filename); // the default filename is 'network.png'
         });
 
@@ -1607,8 +1250,7 @@ module.exports = function () {
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
             var filename = document.getElementById('file-name').innerHTML;
-            filename =
-                filename.substring(0, filename.lastIndexOf('.')) + '.jpg';
+            filename = filename.substring(0, filename.lastIndexOf('.')) + '.jpg';
             chiseInstance.saveAsJpg(filename); // the default filename is 'network.jpg'
         });
 
@@ -1617,8 +1259,7 @@ module.exports = function () {
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
             var filename = document.getElementById('file-name').innerHTML;
-            filename =
-                filename.substring(0, filename.lastIndexOf('.')) + '.svg';
+            filename = filename.substring(0, filename.lastIndexOf('.')) + '.svg';
             chiseInstance.saveAsSvg(filename); // the default filename is 'network.jpg'
         });
 
@@ -1666,16 +1307,14 @@ module.exports = function () {
         $('#export-to-sif-layout').click(function (evt) {
             var chiseInstance = appUtilities.getActiveChiseInstance();
             var filename = document.getElementById('file-name').innerHTML;
-            filename =
-                filename.substring(0, filename.lastIndexOf('.')) + '.txt';
+            filename = filename.substring(0, filename.lastIndexOf('.')) + '.txt';
             chiseInstance.exportLayoutData(filename, true);
         });
 
         $('#export-to-plain-sif').click(function (evt) {
             var chiseInstance = appUtilities.getActiveChiseInstance();
             var filename = document.getElementById('file-name').innerHTML;
-            filename =
-                filename.substring(0, filename.lastIndexOf('.')) + '.sif';
+            filename = filename.substring(0, filename.lastIndexOf('.')) + '.sif';
             chiseInstance.saveAsPlainSif(filename, true);
         });
 
@@ -1697,10 +1336,7 @@ module.exports = function () {
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.createCompoundForGivenNodes(
-                cy.nodes(':selected'),
-                'complex'
-            );
+            chiseInstance.createCompoundForGivenNodes(cy.nodes(':selected'), 'complex');
             inspectorUtilities.handleSBGNInspector();
         });
 
@@ -1716,10 +1352,7 @@ module.exports = function () {
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.createCompoundForGivenNodes(
-                cy.nodes(':selected'),
-                'compartment'
-            );
+            chiseInstance.createCompoundForGivenNodes(cy.nodes(':selected'), 'compartment');
             inspectorUtilities.handleSBGNInspector();
         });
 
@@ -1735,10 +1368,7 @@ module.exports = function () {
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.createCompoundForGivenNodes(
-                cy.nodes(':selected'),
-                'submap'
-            );
+            chiseInstance.createCompoundForGivenNodes(cy.nodes(':selected'), 'submap');
             inspectorUtilities.handleSBGNInspector();
         });
 
@@ -1769,56 +1399,35 @@ module.exports = function () {
         /*
          * Align selected nodes w.r.t the first selected node start
          */
-        $('#align-horizontal-top,#align-horizontal-top-icon').click(function (
-            e
-        ) {
+        $('#align-horizontal-top,#align-horizontal-top-icon').click(function (e) {
             // use active chise instance
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.align(
-                cy.nodes(':selected'),
-                'top',
-                'none',
-                appUtilities.firstSelectedNode
-            );
+            chiseInstance.align(cy.nodes(':selected'), 'top', 'none', appUtilities.firstSelectedNode);
         });
 
-        $('#align-horizontal-middle,#align-horizontal-middle-icon').click(
-            function (e) {
-                // use active chise instance
-                var chiseInstance = appUtilities.getActiveChiseInstance();
+        $('#align-horizontal-middle,#align-horizontal-middle-icon').click(function (e) {
+            // use active chise instance
+            var chiseInstance = appUtilities.getActiveChiseInstance();
 
-                // use cy instance associated with chise instance
-                var cy = chiseInstance.getCy();
+            // use cy instance associated with chise instance
+            var cy = chiseInstance.getCy();
 
-                chiseInstance.align(
-                    cy.nodes(':selected'),
-                    'center',
-                    'none',
-                    appUtilities.firstSelectedNode
-                );
-            }
-        );
+            chiseInstance.align(cy.nodes(':selected'), 'center', 'none', appUtilities.firstSelectedNode);
+        });
 
-        $('#align-horizontal-bottom,#align-horizontal-bottom-icon').click(
-            function (e) {
-                // use active chise instance
-                var chiseInstance = appUtilities.getActiveChiseInstance();
+        $('#align-horizontal-bottom,#align-horizontal-bottom-icon').click(function (e) {
+            // use active chise instance
+            var chiseInstance = appUtilities.getActiveChiseInstance();
 
-                // use cy instance associated with chise instance
-                var cy = chiseInstance.getCy();
+            // use cy instance associated with chise instance
+            var cy = chiseInstance.getCy();
 
-                chiseInstance.align(
-                    cy.nodes(':selected'),
-                    'bottom',
-                    'none',
-                    appUtilities.firstSelectedNode
-                );
-            }
-        );
+            chiseInstance.align(cy.nodes(':selected'), 'bottom', 'none', appUtilities.firstSelectedNode);
+        });
 
         $('#align-vertical-left,#align-vertical-left-icon').click(function (e) {
             // use active chise instance
@@ -1827,46 +1436,27 @@ module.exports = function () {
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.align(
-                cy.nodes(':selected'),
-                'none',
-                'left',
-                appUtilities.firstSelectedNode
-            );
+            chiseInstance.align(cy.nodes(':selected'), 'none', 'left', appUtilities.firstSelectedNode);
         });
 
-        $('#align-vertical-center,#align-vertical-center-icon').click(function (
-            e
-        ) {
+        $('#align-vertical-center,#align-vertical-center-icon').click(function (e) {
             // use active chise instance
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.align(
-                cy.nodes(':selected'),
-                'none',
-                'center',
-                appUtilities.firstSelectedNode
-            );
+            chiseInstance.align(cy.nodes(':selected'), 'none', 'center', appUtilities.firstSelectedNode);
         });
 
-        $('#align-vertical-right,#align-vertical-right-icon').click(function (
-            e
-        ) {
+        $('#align-vertical-right,#align-vertical-right-icon').click(function (e) {
             // use active chise instance
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
             // use cy instance associated with chise instance
             var cy = chiseInstance.getCy();
 
-            chiseInstance.align(
-                cy.nodes(':selected'),
-                'none',
-                'right',
-                appUtilities.firstSelectedNode
-            );
+            chiseInstance.align(cy.nodes(':selected'), 'none', 'right', appUtilities.firstSelectedNode);
         });
 
         /*
@@ -1881,11 +1471,7 @@ module.exports = function () {
             e.preventDefault(); // needed for dragging, otherwise the mouse release event cannot be fired on another element
             dragAndDropPlacement = true;
             var imgPath = appUtilities.getDragImagePath($(this).attr('value'));
-            appUtilities.addDragImage(
-                imgPath,
-                $(this).css('width'),
-                $(this).css('height')
-            );
+            appUtilities.addDragImage(imgPath, $(this).css('width'), $(this).css('height'));
 
             $('.node-palette img').removeClass('selected-mode'); // Make any image inside node palettes non selected
             $(this).addClass('selected-mode'); // Make clicked element selected
@@ -1966,34 +1552,30 @@ module.exports = function () {
             }
         });
 
-        $(document).on(
-            'click',
-            '.biogene-info .expandable .network-panel',
-            function (evt) {
-                // get the recently active tab
-                var activeTab = appUtilities.getActiveNetworkPanel();
+        $(document).on('click', '.biogene-info .expandable .network-panel', function (evt) {
+            // get the recently active tab
+            var activeTab = appUtilities.getActiveNetworkPanel();
 
-                // if the event is not triggered for the active tab return directly
-                if ($(this).attr('id') !== activeTab.id) {
-                    return;
-                }
-
-                var expanderOpts = {
-                    slicePoint: 150,
-                    expandPrefix: ' ',
-                    expandText: ' (...)',
-                    userCollapseText: ' (show less)',
-                    moreClass: 'expander-read-more',
-                    lessClass: 'expander-read-less',
-                    detailClass: 'expander-details',
-                    expandEffect: 'fadeIn',
-                    collapseEffect: 'fadeOut',
-                };
-                $('.biogene-info .expandable').expander(expanderOpts);
-                expanderOpts.slicePoint = 2;
-                expanderOpts.widow = 0;
+            // if the event is not triggered for the active tab return directly
+            if ($(this).attr('id') !== activeTab.id) {
+                return;
             }
-        );
+
+            var expanderOpts = {
+                slicePoint: 150,
+                expandPrefix: ' ',
+                expandText: ' (...)',
+                userCollapseText: ' (show less)',
+                moreClass: 'expander-read-more',
+                lessClass: 'expander-read-less',
+                detailClass: 'expander-details',
+                expandEffect: 'fadeIn',
+                collapseEffect: 'fadeOut',
+            };
+            $('.biogene-info .expandable').expander(expanderOpts);
+            expanderOpts.slicePoint = 2;
+            expanderOpts.widow = 0;
+        });
 
         // this is used to detect a drag and drop of nodes from the palette
         // cy doesn't provide a clean way to handle events from the outside of cy
@@ -2026,12 +1608,7 @@ module.exports = function () {
                     //left command key code in webkit browsers (chrome, safari, opera) = 91
                     //right command key code in webkit browsers = 93
                     //command key code in firefox = 224
-                    if (
-                        event.ctrlKey ||
-                        event.keyCode == '91' ||
-                        event.keyCode == '93' ||
-                        event.keyCode == '224'
-                    ) {
+                    if (event.ctrlKey || event.keyCode == '91' || event.keyCode == '93' || event.keyCode == '224') {
                         //variable toggle to prevent multiple calls at the same time
                         appUtilities.zoomShortcut = true;
                         //enable zoom shortcut mode
@@ -2042,16 +1619,12 @@ module.exports = function () {
         });
 
         // on active network tab change
-        $(document).on(
-            'shown.bs.tab',
-            '#network-tabs-list  a[data-toggle="tab"]',
-            function (e) {
-                var target = $(e.target).attr('href'); // activated tab
-                console.log(target);
-                appUtilities.setActiveNetwork(target);
-                inspectorUtilities.handleSBGNInspector();
-            }
-        );
+        $(document).on('shown.bs.tab', '#network-tabs-list  a[data-toggle="tab"]', function (e) {
+            var target = $(e.target).attr('href'); // activated tab
+            console.log(target);
+            appUtilities.setActiveNetwork(target);
+            inspectorUtilities.handleSBGNInspector();
+        });
 
         // jsTree events
         $("#folder-tree-container").on('dblclick.jstree', function (e, data) {
@@ -2064,43 +1637,56 @@ module.exports = function () {
             console.log(file)
 
             let chiseInstance = appUtilities.getActiveChiseInstance();
+            console.log("chiseInstance:")
+            console.log(chiseInstance)
             let cy = appUtilities.getActiveCy();
+            console.log("cy:")
+            console.log(cy)
 
             // Load newt file
             if (file.name.endsWith(".nwt")) {
                 chiseInstance.loadNwtFile(file)
-            }
-            else if (file.name.endsWith(".sif")) {
+            } else if (file.name.endsWith(".sif")) {
                 // Load sif file
                 let loadCallbackInvalidityWarning = function () {
                     promptInvalidFileView.render();
                 };
 
-                let layoutBy = function () {
-                    appUtilities.triggerLayout(cy, true);
-                    console.log("layout by sif")
 
+                const loadFcn = function () {
+                    let layoutBy = function () {
+                        appUtilities.triggerLayout(cy, false);
 
-                    // Load .format file of corresponding sif file
-                    let formatNode = instance.get_node(e.target.id.replace(".sif", ".format"));
+                        // Perform layout
+                        $('#perform-layout-icon').trigger('click');
 
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const text = e.target.result;
+                        // Load .format file of corresponding sif file
+                        let formatNode = instance.get_node(e.target.id.replace(".sif", ".format"));
 
-                        const sifStyle = sifStyleFactory();
-                        sifStyle(chiseInstance)
-                        sifStyle.apply(text);
-                    }
-                    reader.readAsText(formatNode.data);
+                        // Check if format file exists
+                        if (formatNode) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const text = e.target.result;
 
+                                const sifStyle = sifStyleFactory();
+                                sifStyle(chiseInstance)
+                                sifStyle.apply(text);
+                            }
+                            reader.readAsText(formatNode.data);
+                        }
 
+                    };
+                    chiseInstance.loadSIFFile(file, layoutBy, loadCallbackInvalidityWarning);
                 };
-                chiseInstance.loadSIFFile(
-                    file,
-                    layoutBy,
-                    loadCallbackInvalidityWarning
-                );
+
+                // if (cy.elements().length !== 0)
+                //     promptConfirmationView.render(
+                //     loadFcn
+                // ); else
+                loadFcn();
+
+                $(this).val("");
 
 
             }
