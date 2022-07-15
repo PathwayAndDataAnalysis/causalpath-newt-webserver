@@ -116,26 +116,26 @@ exports.sendEmail = function (req, res) {
 		secure: true,
 		auth: {
 			// should be replaced with real sender's account
-			user: ' newtforminerva@gmail.com',
-			pass: 'reportbug',
+			user: 'newtforminerva@gmail.com',
+			pass: process.env.newtforminerva_pwd,
 		},
 	});
 	const attachment = fileContent !== 'no-data';
 	let mailOptions = {
 		// should be replaced with real recipient's account
-		to: 'replyto.lcsb.gitlab+minerva-core-499-3hxqgkf3oh3yq2zb9veolqjo6-issue@gmail.com',
-		//to: "newteditor@gmail.com",
+		//to: 'replyto.lcsb.gitlab+minerva-core-499-3hxqgkf3oh3yq2zb9veolqjo6-issue@gmail.com',
+		to: 'newteditor@gmail.com',
 		cc: 'newteditor@gmail.com',
 		subject: 'Error Report From Newt',
 		text: req.body.message,
 		attachments: !attachment
 			? []
 			: [
-					{
-						filename: 'input.txt',
-						content: fileContent,
-					},
-			  ],
+				{
+					filename: 'input.txt',
+					content: fileContent,
+				},
+			],
 	};
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {
@@ -147,7 +147,7 @@ exports.sendEmail = function (req, res) {
 
 exports.ServerRequest = function (req, res) {
 	let options;
-//request for taking authentication from minerva api
+	//request for taking authentication from minerva api
 	if (req.body.postType === 'auth') {
 		options = {
 			url: req.body.address,

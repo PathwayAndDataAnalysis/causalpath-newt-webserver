@@ -31,7 +31,6 @@
     "cytoscape-fcose": "github:iVis-at-Bilkent/cytoscape.js-fcose#unstable",
     "cytoscape-grid-guide": "github:iVis-at-Bilkent/cytoscape.js-grid-guide#unstable",
     "cytoscape-layout-utilities": "github:iVis-at-Bilkent/cytoscape.js-layout-utilities#unstable",
-    "cytoscape-node-resize": "3.2.1",
     "cytoscape-node-editing": "github:iVis-at-Bilkent/cytoscape.js-node-editing#unstable",
     "cytoscape-panzoom": "~2.5.2",
     "cytoscape-popper": "^1.0.2",
