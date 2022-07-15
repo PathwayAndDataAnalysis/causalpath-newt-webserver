@@ -272,14 +272,14 @@ p.body-paragraph {
 }
 
 #network-panels-container {
-    margin: auto;
+    margin: 3px;
+    padding: 0;
     border: 1px solid #ddd;
-    height: 680px;
-    width: 800px;
-    /*overflow: auto !important;*/
-    overflow: hidden;
+    height: 1000px;
+    width: 1000px;
+    overflow: auto !important;
     border-radius: 0.25em;
-    /*float: left;*/
+    float: left;
 }
 
 .network-panel {
@@ -748,7 +748,7 @@ menu:not([title]):before {
 
 .panel-heading {
     cursor: pointer;
-    height: 17px;
+    height: 42px;
     margin: 0px;
     padding: 0px;
     text-align: center;
