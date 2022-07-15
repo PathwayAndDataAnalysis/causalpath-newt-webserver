@@ -56,8 +56,7 @@ module.exports = function (cy) {
 		var chiseInstance = appUtilities.getActiveChiseInstance();
 		var fileName = param.fileName;
 		var params = { fileName };
-		var neededparams =
-			chiseInstance.undoRedoActionFunctions.removeFile(params);
+		var neededparams = chiseInstance.undoRedoActionFunctions.removeFile(params);
 		neededparams.self = param.self;
 		neededparams.document = param.document;
 		var fileNames = chiseInstance.getGroupedDataMap();
@@ -88,8 +87,7 @@ module.exports = function (cy) {
 		var fileName = param.fileName;
 		var expName = param.expName;
 		var params = { fileName, expName };
-		var neededparams =
-			chiseInstance.undoRedoActionFunctions.removeExp(params);
+		var neededparams = chiseInstance.undoRedoActionFunctions.removeExp(params);
 		neededparams.self = param.self;
 		neededparams.document = param.document;
 		var fileNames = chiseInstance.getGroupedDataMap();
@@ -244,8 +242,7 @@ module.exports = function (cy) {
 	appUndoActions.unhideFileUIredo = function (param) {
 		var cy = appUtilities.getActiveCy();
 		var chiseInstance = appUtilities.getActiveChiseInstance();
-		var params =
-			chiseInstance.undoRedoActionFunctions.unhideFileUndo(param);
+		var params = chiseInstance.undoRedoActionFunctions.unhideFileUndo(param);
 		params.self = param.self;
 		var fileNames = chiseInstance.getGroupedDataMap();
 		param.self.params.experimentDescription.value = fileNames;
@@ -272,7 +269,8 @@ module.exports = function (cy) {
 		var result = chiseInstance.parseData(
 			param.data,
 			param.fileName,
-			param.errorCallback
+			param.errorCallback,
+			param.sampleExperiment
 		);
 		if (result != 'Error') {
 			appUndoActions.changeMenu(param.self.params.experimentDescription);
@@ -286,11 +284,7 @@ module.exports = function (cy) {
 	appUndoActions.loadMore = function (param) {
 		var cy = appUtilities.getActiveCy();
 		var chiseInstance = appUtilities.getActiveChiseInstance();
-		var result = chiseInstance.parseData(
-			param.data,
-			param.fileName,
-			param.errorCallback
-		);
+		var result = chiseInstance.parseData(param.data, param.fileName, param.errorCallback);
 		if (result != 'Error') {
 			appUndoActions.changeMenu(param.self.params.experimentDescription);
 		}
@@ -305,8 +299,7 @@ module.exports = function (cy) {
 		var chiseInstance = appUtilities.getActiveChiseInstance();
 		var fileName = param.fileName;
 		var params = { fileName };
-		var neededparams =
-			chiseInstance.undoRedoActionFunctions.removeFile(params);
+		var neededparams = chiseInstance.undoRedoActionFunctions.removeFile(params);
 		var fileNames = chiseInstance.getGroupedDataMap();
 		param.self.params.experimentDescription.value = fileNames;
 		appUndoActions.changeMenu(param.self.params.experimentDescription);
@@ -320,8 +313,7 @@ module.exports = function (cy) {
 		var chiseInstance = appUtilities.getActiveChiseInstance();
 		var fileName = param.fileName;
 		var params = { fileName };
-		var neededparams =
-			chiseInstance.undoRedoActionFunctions.removeAll(params);
+		var neededparams = chiseInstance.undoRedoActionFunctions.removeAll(params);
 		var fileNames = chiseInstance.getGroupedDataMap();
 		param.self.params.experimentDescription.value = fileNames;
 		appUndoActions.changeMenu(param.self.params.experimentDescription);
@@ -362,20 +354,18 @@ module.exports = function (cy) {
 		if (param.update) {
 			param.update.call();
 		}
+
 		if (id == 'highlight-color' || id == 'highlight-thickness') {
 			var viewUtilities = cy.viewUtilities('get');
 			var highlightColor = $('#highlight-color').val();
-			var extraHighlightThickness = Number(
-				$('#highlight-thickness').val()
-			);
+			var extraHighlightThickness = Number($('#highlight-thickness').val());
 
 			viewUtilities.changeHighlightStyle(
 				0,
 				{
 					'border-width': function (ele) {
 						return Math.max(
-							parseFloat(ele.data('border-width')) +
-								extraHighlightThickness,
+							parseFloat(ele.data('border-width')) + extraHighlightThickness,
 							3
 						);
 					},
@@ -383,13 +373,11 @@ module.exports = function (cy) {
 				},
 				{
 					width: function (ele) {
-						return Math.max(
-							parseFloat(ele.data('width')) +
-								extraHighlightThickness,
-							3
-						);
+						return Math.max(parseFloat(ele.data('width')) + extraHighlightThickness, 3);
 					},
 					'line-color': highlightColor,
+					color: highlightColor,
+					'text-border-color': highlightColor,
 					'source-arrow-color': highlightColor,
 					'target-arrow-color': highlightColor,
 				}
@@ -401,10 +389,7 @@ module.exports = function (cy) {
 
 	appUndoActions.refreshColorSchemeMenu = function (param) {
 		// get 'currentGeneralProperties' for cy
-		var currentGeneralProperties = appUtilities.getScratch(
-			cy,
-			'currentGeneralProperties'
-		);
+		var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
 		// return the old values of map color scheme and map color scheme style to undo
 		var result = {
@@ -424,11 +409,7 @@ module.exports = function (cy) {
 			// update 'currentGeneralProperties' in scratchpad before rendering the color scheme view
 			currentGeneralProperties.mapColorScheme = param.value;
 			currentGeneralProperties.mapColorSchemeStyle = param.scheme_type;
-			appUtilities.setScratch(
-				cy,
-				'currentGeneralProperties',
-				currentGeneralProperties
-			);
+			appUtilities.setScratch(cy, 'currentGeneralProperties', currentGeneralProperties);
 			param.self.render();
 		} else if (param.scheme_type == 'gradient') {
 			var inverted_id = param.self.schemes_gradient[param.value].invert;
@@ -441,11 +422,7 @@ module.exports = function (cy) {
 			// update 'currentGeneralProperties' in scratchpad before rendering the color scheme view
 			currentGeneralProperties.mapColorScheme = param.value;
 			currentGeneralProperties.mapColorSchemeStyle = param.scheme_type;
-			appUtilities.setScratch(
-				cy,
-				'currentGeneralProperties',
-				currentGeneralProperties
-			);
+			appUtilities.setScratch(cy, 'currentGeneralProperties', currentGeneralProperties);
 			param.self.render();
 		} else {
 			var inverted_id = param.self.schemes[param.value].invert;
@@ -458,11 +435,7 @@ module.exports = function (cy) {
 			// update 'currentGeneralProperties' in scratchpad before rendering the color scheme view
 			currentGeneralProperties.mapColorScheme = param.value;
 			currentGeneralProperties.mapColorSchemeStyle = param.scheme_type;
-			appUtilities.setScratch(
-				cy,
-				'currentGeneralProperties',
-				currentGeneralProperties
-			);
+			appUtilities.setScratch(cy, 'currentGeneralProperties', currentGeneralProperties);
 			param.self.render();
 		}
 		return result;

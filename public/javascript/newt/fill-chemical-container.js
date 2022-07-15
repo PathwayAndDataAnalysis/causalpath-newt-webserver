@@ -2,7 +2,7 @@ var jquery = ($ = require('jquery'));
 var _ = require('underscore');
 var ChemicalView = require('./backbone-views').ChemicalView;
 
-var fillChemicalContainer = function (node) {
+var fillChemicalContainer = function (node, dataFetchSuccessCallback) {
 	var geneClass = node.data('class');
 	if (
 		geneClass != 'simple chemical' &&
@@ -37,18 +37,19 @@ var fillChemicalContainer = function (node) {
 		url: '/utilities/testURL',
 		data: { url: queryScriptURL, qs: queryParams },
 		success: function (data) {
-			if (
-				!data.error &&
-				data.response.statusCode == 200 &&
-				data.response.body
-			) {
+			if (!data.error && data.response.statusCode == 200 && data.response.body) {
 				var json = JSON.parse(data.response.body);
 				if (json.response.numFound > 0) {
 					new ChemicalView({
 						el: '#chemical-container',
 						model: json.response.docs[0],
 					}).render();
+				} else {
+					$('#chemical-container').html(
+						"<span style='padding-left: 3px;'>No information found!</span>"
+					);
 				}
+				dataFetchSuccessCallback();
 			} else {
 				$('#chemical-container').html(
 					"<span style='padding-left: 3px;'>No additional information available for the selected node!</span>"
@@ -57,9 +58,7 @@ var fillChemicalContainer = function (node) {
 		},
 		error: function (xhr, options, err) {
 			$('#chemical-container').html(
-				"<span style='padding-left: 3px;'>Error retrieving data: " +
-					err +
-					'</span>'
+				"<span style='padding-left: 3px;'>Error retrieving data: " + err + '</span>'
 			);
 		},
 	});

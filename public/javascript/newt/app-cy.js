@@ -6,15 +6,14 @@ const appUndoActionsFactory = require('./app-undo-actions-factory');
 const _ = require('underscore');
 
 module.exports = function (chiseInstance) {
-	const getExpandCollapseOptions =
-		appUtilities.getExpandCollapseOptions.bind(appUtilities);
+	const getExpandCollapseOptions = appUtilities.getExpandCollapseOptions.bind(appUtilities);
 	//  var nodeQtipFunction = appUtilities.nodeQtipFunction.bind(appUtilities);
 	const refreshUndoRedoButtonsStatus =
 		appUtilities.refreshUndoRedoButtonsStatus.bind(appUtilities);
 
 	// use chise instance associated with chise instance
-	const cy = chiseInstance.getCy();
-
+	var cy = chiseInstance.getCy();
+	window.cy = cy;
 	// register extensions and bind events when cy is ready
 	cy.ready(function () {
 		cytoscapeExtensionsAndContextMenu();
@@ -40,11 +39,7 @@ module.exports = function (chiseInstance) {
 			appUndoActions.changeDataDirty,
 			appUndoActions.changeDataDirty
 		);
-		ur.action(
-			'changeMenu',
-			appUndoActions.changeMenu,
-			appUndoActions.changeMenu
-		);
+		ur.action('changeMenu', appUndoActions.changeMenu, appUndoActions.changeMenu);
 		ur.action(
 			'refreshColorSchemeMenu',
 			appUndoActions.refreshColorSchemeMenu,
@@ -65,16 +60,8 @@ module.exports = function (chiseInstance) {
 			appUndoActions.updateExperimentPanel2,
 			appUndoActions.updateExperimentPanel
 		);
-		ur.action(
-			'updateRemoveAll',
-			appUndoActions.updateRemoveAll,
-			appUndoActions.updateRestore
-		);
-		ur.action(
-			'updateRestore',
-			appUndoActions.updateRestore,
-			appUndoActions.updateRemoveAll
-		);
+		ur.action('updateRemoveAll', appUndoActions.updateRemoveAll, appUndoActions.updateRestore);
+		ur.action('updateRestore', appUndoActions.updateRestore, appUndoActions.updateRemoveAll);
 		ur.action(
 			'unhideExperimentPanel',
 			appUndoActions.unhideExperimentPanel,
@@ -85,57 +72,25 @@ module.exports = function (chiseInstance) {
 			appUndoActions.hideExperimentPanel,
 			appUndoActions.unhideExperimentPanel
 		);
-		ur.action(
-			'deleteFile',
-			appUndoActions.expFileDel,
-			appUndoActions.expFileUndoDel
-		);
-		ur.action(
-			'undodeleteFile',
-			appUndoActions.expFileUndoDel,
-			appUndoActions.expFileDel
-		);
-		ur.action(
-			'expOnLoad',
-			appUndoActions.expOnLoad,
-			appUndoActions.expOnLoad
-		);
-		ur.action(
-			'fileHide',
-			appUndoActions.hideFileUI,
-			appUndoActions.hideFileUIredo
-		);
-		ur.action(
-			'fileUnhide',
-			appUndoActions.unhideFileUI,
-			appUndoActions.unhideFileUIredo
-		);
-		ur.action(
-			'hideAll',
-			appUndoActions.hideAllUI,
-			appUndoActions.hideAllUIUndo
-		);
-		ur.action(
-			'unhideAll',
-			appUndoActions.unhideAllUI,
-			appUndoActions.unhideAllUIUndo
-		);
+		ur.action('deleteFile', appUndoActions.expFileDel, appUndoActions.expFileUndoDel);
+		ur.action('undodeleteFile', appUndoActions.expFileUndoDel, appUndoActions.expFileDel);
+		ur.action('expOnLoad', appUndoActions.expOnLoad, appUndoActions.expOnLoad);
+		ur.action('fileHide', appUndoActions.hideFileUI, appUndoActions.hideFileUIredo);
+		ur.action('fileUnhide', appUndoActions.unhideFileUI, appUndoActions.unhideFileUIredo);
+		ur.action('hideAll', appUndoActions.hideAllUI, appUndoActions.hideAllUIUndo);
+		ur.action('unhideAll', appUndoActions.unhideAllUI, appUndoActions.unhideAllUIUndo);
 		ur.action(
 			'loadExperiment',
 			appUndoActions.loadExperimentData,
 			appUndoActions.undoLoadExperiment
 		);
-		ur.action(
-			'loadMore',
-			appUndoActions.loadMore,
-			appUndoActions.loadMoreUndo
-		);
+		ur.action('loadMore', appUndoActions.loadMore, appUndoActions.loadMoreUndo);
 	}
 
 	function cytoscapeExtensionsAndContextMenu() {
 		cy.expandCollapse(getExpandCollapseOptions(cy));
 
-		const contextMenus = cy.contextMenus({
+		var contextMenus = cy.contextMenus({
 			menuItemClasses: ['custom-menu-item'],
 		});
 
@@ -148,12 +103,17 @@ module.exports = function (chiseInstance) {
 			},
 			// whether the bend editing operations are undoable (requires cytoscape-undo-redo.js)
 			undoable: appUtilities.undoable,
-			// title of remove bend point menu item
-			removeBendMenuItemTitle: 'Delete Bend Point',
 			// whether to initilize bend points on creation of this extension automatically
-			initBendPointsAutomatically: false,
+			initAnchorsAutomatically: false,
 			// function to validate edge source and target on reconnection
-			validateEdge: chiseInstance.elementUtilities.validateArrowEnds,
+			validateEdge: function (edge, newSource, newTarget) {
+				return chiseInstance.elementUtilities.validateArrowEnds(
+					edge,
+					newSource,
+					newTarget,
+					true
+				);
+			},
 			// function to be called on invalid edge reconnection
 			actOnUnsuccessfulReconnection: function () {
 				if (appUtilities.promptInvalidEdgeWarning) {
@@ -162,23 +122,21 @@ module.exports = function (chiseInstance) {
 			},
 			// function that handles edge reconnection
 			handleReconnectEdge: chiseInstance.elementUtilities.addEdge,
-			zIndex: 900,
-			// whether to start the plugin in the enabled state
+			zIndex: 999,
+			enableMultipleAnchorRemovalOption: true,
 		});
 
 		contextMenus.appendMenuItems([
 			{
 				id: 'ctx-menu-general-properties',
 				content: 'Properties...',
-				image: {
-					src: 'img/toolbar/settings.svg',
-					width: 16,
-					height: 16,
-					x: 2,
-					y: 3,
-				},
+				image: { src: 'app/img/toolbar/settings.svg', width: 16, height: 16, x: 2, y: 3 },
 				coreAsWell: true,
 				onClickFunction: function (event) {
+					// take focus away from other tabs before showing properties tab
+					$('a[data-toggle="tab"]').one('show.bs.tab', function (e) {
+						e.relatedTarget.blur();
+					});
 					$('#general-properties').trigger('click');
 				},
 			},
@@ -186,7 +144,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-delete',
 				content: 'Delete',
 				image: {
-					src: 'img/toolbar/delete-simple.svg',
+					src: 'app/img/toolbar/delete-simple.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -206,7 +164,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-delete-selected',
 				content: 'Delete Selected',
 				image: {
-					src: 'img/toolbar/delete-simple.svg',
+					src: 'app/img/toolbar/delete-simple.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -221,29 +179,31 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-hide-selected',
 				content: 'Hide Selected',
 				image: {
-					src: 'img/toolbar/hide-selected.svg',
+					src: 'app/img/toolbar/hide-selected-smart.svg',
 					width: 16,
 					height: 16,
 					x: 2,
 					y: 3,
 				},
 				onClickFunction: function () {
-					$('#hide-selected').trigger('click');
+					$('#hide-selected-smart').trigger('click');
 				},
 				coreAsWell: true, // Whether core instance have this item on cxttap
 			},
 			{
 				id: 'ctx-menu-show-all',
 				content: 'Show All',
-				image: {
-					src: 'img/toolbar/show-all.svg',
-					width: 16,
-					height: 16,
-					x: 2,
-					y: 3,
-				},
+				image: { src: 'app/img/toolbar/show-all.svg', width: 16, height: 16, x: 2, y: 3 },
 				onClickFunction: function () {
 					$('#show-all').trigger('click');
+				},
+				coreAsWell: true, // Whether core instance have this item on cxttap
+			},
+			{
+				id: 'ctx-menu-pd2af',
+				content: 'Convert PD map to AF map',
+				onClickFunction: function () {
+					$('#highlight-errors-of-pd2af').trigger('click');
 				},
 				coreAsWell: true, // Whether core instance have this item on cxttap
 			},
@@ -259,10 +219,10 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-tile-all-information-boxes',
 				content: 'Tile Information Boxes',
 				onClickFunction: function () {
-					const cy = appUtilities.getActiveCy();
-					const eles = cy.nodes();
-					const ur = cy.undoRedo();
-					const actions = [];
+					var cy = appUtilities.getActiveCy();
+					var eles = cy.nodes();
+					var ur = cy.undoRedo();
+					var actions = [];
 
 					eles.forEach(function (node) {
 						if (
@@ -273,12 +233,7 @@ module.exports = function (chiseInstance) {
 								name: 'fitUnits',
 								param: {
 									node: node,
-									locations: [
-										'top',
-										'bottom',
-										'right',
-										'left',
-									],
+									locations: ['top', 'bottom', 'right', 'left'],
 								},
 							});
 						}
@@ -292,7 +247,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-highlight-selected',
 				content: 'Highlight Selected',
 				image: {
-					src: 'img/toolbar/highlight-selected.svg',
+					src: 'app/img/toolbar/highlight-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -315,7 +270,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-expand', // ID of menu item
 				content: 'Expand', // Title of menu item
 				image: {
-					src: 'img/toolbar/expand-selected.svg',
+					src: 'app/img/toolbar/expand-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -326,7 +281,7 @@ module.exports = function (chiseInstance) {
 				selector: 'node.cy-expand-collapse-collapsed-node',
 				onClickFunction: function (event) {
 					// The function to be executed on click
-					const node = event.target || event.cyTarget;
+					var node = event.target || event.cyTarget;
 					chiseInstance.expandNodes(node);
 				},
 			},
@@ -334,7 +289,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-collapse',
 				content: 'Collapse',
 				image: {
-					src: 'img/toolbar/collapse-selected.svg',
+					src: 'app/img/toolbar/collapse-selected.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -342,7 +297,7 @@ module.exports = function (chiseInstance) {
 				},
 				selector: 'node:parent',
 				onClickFunction: function (event) {
-					const node = event.target || event.cyTarget;
+					var node = event.target || event.cyTarget;
 					chiseInstance.collapseNodes(node);
 				},
 			},
@@ -350,7 +305,7 @@ module.exports = function (chiseInstance) {
 				id: 'ctx-menu-perform-layout',
 				content: 'Perform Layout',
 				image: {
-					src: 'img/toolbar/layout-cose.svg',
+					src: 'app/img/toolbar/layout-cose.svg',
 					width: 16,
 					height: 16,
 					x: 2,
@@ -366,11 +321,8 @@ module.exports = function (chiseInstance) {
 				content: 'Select Objects of This Type',
 				selector: 'node, edge',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
-					const sbgnclass = cyTarget.data('class');
-
-					cy.elements().unselect();
-					cy.elements('[class="' + sbgnclass + '"]').select();
+					var cyTarget = event.target || event.cyTarget;
+					appUtilities.selectAllElementsOfSameType(cyTarget);
 				},
 			},
 			{
@@ -378,11 +330,8 @@ module.exports = function (chiseInstance) {
 				content: 'Show Hidden Neighbors',
 				selector: 'node[thickBorder]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
-					appUtilities.showHiddenNeighbors(
-						cyTarget,
-						appUtilities.getChiseInstance(cy)
-					);
+					var cyTarget = event.target || event.cyTarget;
+					appUtilities.showHiddenNeighbors(cyTarget, appUtilities.getChiseInstance(cy));
 				},
 			},
 			{
@@ -391,7 +340,7 @@ module.exports = function (chiseInstance) {
 				selector:
 					'node[class="process"],[class="omitted process"],[class="uncertain process"],[class="association"],[class="dissociation"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
+					var cyTarget = event.target || event.cyTarget;
 					cyTarget.select();
 					$('#highlight-neighbors-of-selected').trigger('click');
 				},
@@ -402,7 +351,7 @@ module.exports = function (chiseInstance) {
 				selector:
 					'node[class="unspecified entity"],[class^="simple chemical"],[class^="macromolecule"],[class^="nucleic acid feature"],[class^="complex"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
+					var cyTarget = event.target || event.cyTarget;
 					cyTarget.select();
 					$('#highlight-processes-of-selected').trigger('click');
 				},
@@ -412,7 +361,7 @@ module.exports = function (chiseInstance) {
 				content: 'Navigate to Other End',
 				selector: 'edge',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
+					var cyTarget = event.target || event.cyTarget;
 					appUtilities.navigateToOtherEnd(
 						cyTarget,
 						event.renderedPosition,
@@ -425,8 +374,8 @@ module.exports = function (chiseInstance) {
 				content: 'Convert into Reversible Reaction',
 				selector: 'node[class="process"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
-					const consumptionEdges = cyTarget._private.edges.filter(
+					var cyTarget = event.target || event.cyTarget;
+					var consumptionEdges = cyTarget._private.edges.filter(
 						(edge) => edge._private.data.class === 'consumption'
 					);
 
@@ -438,10 +387,8 @@ module.exports = function (chiseInstance) {
 							mapType: 'HybridAny',
 						});
 					}
-					const currentArrowScale = Number($('#arrow-scale').val());
-					cyTarget
-						.connectedEdges()
-						.style('arrow-scale', currentArrowScale);
+					var currentArrowScale = Number($('#arrow-scale').val());
+					cyTarget.connectedEdges().style('arrow-scale', currentArrowScale);
 				},
 			},
 			{
@@ -450,7 +397,7 @@ module.exports = function (chiseInstance) {
 				selector:
 					'node[class^="macromolecule"],[class^="complex"],[class^="simple chemical"],[class^="nucleic acid feature"],[class^="compartment"],[class="SIF macromolecule"],[class="SIF simple chemical"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
+					var cyTarget = event.target || event.cyTarget;
 					appUtilities.relocateInfoBoxes(cyTarget);
 				},
 			},
@@ -460,8 +407,8 @@ module.exports = function (chiseInstance) {
 				selector:
 					'node[class^="macromolecule"],[class^="complex"],[class^="simple chemical"],[class^="nucleic acid feature"],[class^="compartment"],[class="SIF macromolecule"],[class="SIF simple chemical"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
-					const locations = ['top', 'bottom', 'right', 'left']; //Fit all locations
+					var cyTarget = event.target || event.cyTarget;
+					var locations = ['top', 'bottom', 'right', 'left']; //Fit all locations
 					chiseInstance.fitUnits(cyTarget, locations); //Force fit
 				},
 			},
@@ -472,9 +419,9 @@ module.exports = function (chiseInstance) {
 					'node[class^="macromolecule"],[class^="complex"],[class^="simple chemical"],[class^="nucleic acid feature"],' +
 					'[class^="unspecified entity"], [class^="perturbing agent"],[class^="phenotype"],[class^="tag"],[class^="compartment"],[class^="submap"],[class^="BA"],[class="SIF macromolecule"],[class="SIF simple chemical"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
+					var cyTarget = event.target || event.cyTarget;
 					//Collection holds the element and is used to generalize resizeNodeToContent function (which is used from Edit-> Menu)
-					let collection = cy.collection();
+					var collection = cy.collection();
 					collection = collection.add(cyTarget);
 					appUtilities.resizeNodesToContent(collection);
 				},
@@ -484,9 +431,9 @@ module.exports = function (chiseInstance) {
 				content: 'Query PC IDs',
 				selector: 'edge',
 				onClickFunction: function (event) {
-					const edge = event.target || event.cyTarget;
-					let qUrl = 'http://www.pathwaycommons.org/pc2/get?';
-					const pcIDSet = edge.data('pcIDSet');
+					var edge = event.target || event.cyTarget;
+					var qUrl = 'http://www.pathwaycommons.org/pc2/get?';
+					var pcIDSet = edge.data('pcIDSet');
 
 					for (var pcID in pcIDSet) {
 						qUrl += 'uri=' + pcID + '&';
@@ -506,13 +453,11 @@ module.exports = function (chiseInstance) {
 							) {
 								var xml = $.parseXML(data.response.body);
 								appUtilities.createNewNetwork();
-								var activeChise =
-									appUtilities.getActiveChiseInstance();
-								var currentLayoutProperties =
-									appUtilities.getScratch(
-										cy,
-										'currentLayoutProperties'
-									);
+								var activeChise = appUtilities.getActiveChiseInstance();
+								var currentLayoutProperties = appUtilities.getScratch(
+									cy,
+									'currentLayoutProperties'
+								);
 								activeChise.updateGraph(
 									chiseInstance.convertSbgnmlToJson(xml),
 									undefined,
@@ -531,7 +476,7 @@ module.exports = function (chiseInstance) {
 				content: 'Clone',
 				selector: '[class="simple chemical"]',
 				onClickFunction: function (event) {
-					const cyTarget = event.target || event.cyTarget;
+					var cyTarget = event.target || event.cyTarget;
 					if (cyTarget.connectedEdges().length > 1) {
 						cy.undoRedo().do('cloneHighDegreeNode', cyTarget);
 					}
@@ -548,10 +493,7 @@ module.exports = function (chiseInstance) {
 			afterPaste: function (eles) {
 				eles.nodes().forEach(function (ele) {
 					// skip nodes without any auxiliary units
-					if (
-						!ele.data('statesandinfos') ||
-						ele.data('statesandinfos').length == 0
-					) {
+					if (!ele.data('statesandinfos') || ele.data('statesandinfos').length == 0) {
 						return;
 					}
 
@@ -559,40 +501,35 @@ module.exports = function (chiseInstance) {
 					// Since during clone operation the reference of object is changed we cannot use .indexOf() method
 					// Instead we compare the objects by stringifing them. However, string representation of the objects may be the same.
 					// To prevent conflictions in such cases we need to keep used incdices here and pass the already used indices.
-					const usedIndices = {};
+					var usedIndices = {};
 
 					// maintain consistency of layouts, and infoboxes through them
 					// we need to replace the layouts contained in ele by new cloned layouts
-					let globalInfoboxCount = 0;
-					for (const side in ele.data('auxunitlayouts')) {
-						const layout = ele.data('auxunitlayouts')[side];
-						const newLayout =
-							chiseInstance.classes.AuxUnitLayout.copy(
-								layout,
-								cy,
-								ele
-							); // get a new layout
+					var globalInfoboxCount = 0;
+					for (var side in ele.data('auxunitlayouts')) {
+						var layout = ele.data('auxunitlayouts')[side];
+						var newLayout = chiseInstance.classes.AuxUnitLayout.copy(layout, cy, ele); // get a new layout
 
 						// copy each infobox of the layout
-						for (let i = 0; i < layout.units.length; i++) {
-							const auxunit = layout.units[i];
-							const auxunitStr = JSON.stringify(auxunit);
+						for (var i = 0; i < layout.units.length; i++) {
+							var auxunit = layout.units[i];
+							var auxunitStr = JSON.stringify(auxunit);
 							// keep the new infobox at exactly the same position in the statesandinfos list
 							// var statesandinfosIndex = ele.data('statesandinfos').indexOf(auxunit);
 
-							const statesandinfos = ele.data('statesandinfos');
+							var statesandinfos = ele.data('statesandinfos');
 
 							// keep the new infobox at exactly the same position in the statesandinfos list
-							let statesandinfosIndex;
+							var statesandinfosIndex;
 
 							// Go through the not used indices of statesandinfos to get the index of aucilary unit
-							for (let j = 0; j < statesandinfos.length; j++) {
+							for (var j = 0; j < statesandinfos.length; j++) {
 								// Already used pass it
 								if (usedIndices[j]) {
 									continue;
 								}
 
-								const currentBox = statesandinfos[j];
+								var currentBox = statesandinfos[j];
 
 								// Found out the correct index
 								if (JSON.stringify(currentBox) === auxunitStr) {
@@ -603,17 +540,11 @@ module.exports = function (chiseInstance) {
 							}
 
 							// copy the current infobox
-							const newAuxunit = chiseInstance.classes
+							var newAuxunit = chiseInstance.classes
 								.getAuxUnitClass(auxunit)
-								.copy(
-									auxunit,
-									cy,
-									ele,
-									ele.data('id') + '_' + globalInfoboxCount
-								);
+								.copy(auxunit, cy, ele, ele.data('id') + '_' + globalInfoboxCount);
 							// update statesandinfos list
-							ele.data('statesandinfos')[statesandinfosIndex] =
-								newAuxunit;
+							ele.data('statesandinfos')[statesandinfosIndex] = newAuxunit;
 							// update layout's infobox list
 							newLayout.units[i] = newAuxunit;
 							globalInfoboxCount++;
@@ -625,26 +556,49 @@ module.exports = function (chiseInstance) {
 			},
 		});
 
+		function getProcessBasedNeighbors(node) {
+			var nodesToSelect = node;
+			if (
+				chiseInstance.elementUtilities.isPNClass(node) ||
+				chiseInstance.elementUtilities.isLogicalOperator(node)
+			) {
+				nodesToSelect = nodesToSelect.union(node.openNeighborhood());
+			}
+			node.openNeighborhood().forEach(function (ele) {
+				if (
+					chiseInstance.elementUtilities.isPNClass(ele) ||
+					chiseInstance.elementUtilities.isLogicalOperator(ele)
+				) {
+					nodesToSelect = nodesToSelect.union(ele.closedNeighborhood());
+					ele.openNeighborhood().forEach(function (ele2) {
+						if (
+							chiseInstance.elementUtilities.isPNClass(ele2) ||
+							chiseInstance.elementUtilities.isLogicalOperator(ele2)
+						) {
+							nodesToSelect = nodesToSelect.union(ele2.closedNeighborhood());
+						}
+					});
+				}
+			});
+			return nodesToSelect;
+		}
+
 		cy.viewUtilities({
 			highlightStyles: [
 				{
 					node: {
 						'border-width': function (ele) {
-							return Math.max(
-								parseFloat(ele.data('border-width')) + 2,
-								3
-							);
+							return Math.max(parseFloat(ele.data('border-width')) + 2, 3);
 						},
 						'border-color': '#0B9BCD',
 					},
 					edge: {
 						width: function (ele) {
-							return Math.max(
-								parseFloat(ele.data('width')) + 2,
-								3
-							);
+							return Math.max(parseFloat(ele.data('width')) + 2, 3);
 						},
 						'line-color': '#0B9BCD',
+						color: '#0B9BCD',
+						'text-border-color': '#0B9BCD',
 						'source-arrow-color': '#0B9BCD',
 						'target-arrow-color': '#0B9BCD',
 					},
@@ -677,57 +631,33 @@ module.exports = function (chiseInstance) {
 				},
 				edge: {
 					'line-color': '#d67614',
+					color: '#d67614',
+					'text-border-color': '#d67614',
 					'source-arrow-color': '#d67614',
 					'target-arrow-color': '#d67614',
 				},
 			},
-			neighbor: function (node) {
+			neighbor: function (ele) {
 				//select and return process-based neighbors
-				var nodesToSelect = node;
-				if (
-					chiseInstance.elementUtilities.isPNClass(node) ||
-					chiseInstance.elementUtilities.isLogicalOperator(node)
-				) {
-					nodesToSelect = nodesToSelect.union(
-						node.openNeighborhood()
+				if (ele.isNode()) {
+					return getProcessBasedNeighbors(ele);
+				} else if (ele.isEdge()) {
+					var sourceNode = ele.source();
+					var targetNode = ele.target();
+					var elementsToSelect = getProcessBasedNeighbors(sourceNode).union(
+						getProcessBasedNeighbors(targetNode)
 					);
+					return elementsToSelect;
 				}
-				node.openNeighborhood().forEach(function (ele) {
-					if (
-						chiseInstance.elementUtilities.isPNClass(ele) ||
-						chiseInstance.elementUtilities.isLogicalOperator(ele)
-					) {
-						nodesToSelect = nodesToSelect.union(
-							ele.closedNeighborhood()
-						);
-						ele.openNeighborhood().forEach(function (ele2) {
-							if (
-								chiseInstance.elementUtilities.isPNClass(
-									ele2
-								) ||
-								chiseInstance.elementUtilities.isLogicalOperator(
-									ele2
-								)
-							) {
-								nodesToSelect = nodesToSelect.union(
-									ele2.closedNeighborhood()
-								);
-							}
-						});
-					}
-				});
-				return nodesToSelect;
 			},
 			neighborSelectTime: 500, //ms
 		});
 
 		cy.layoutUtilities({
-			componentSpacing: 30,
-			desiredAspectRatio:
-				$(cy.container()).width() / $(cy.container()).height(),
+			desiredAspectRatio: $(cy.container()).width() / $(cy.container()).height(),
 		});
 
-		cy.nodeResize({
+		cy.nodeEditing({
 			padding: 2, // spacing between node and grapples/rectangle
 			undoable: appUtilities.undoable, // and if cy.undoRedo exists
 
@@ -782,18 +712,15 @@ module.exports = function (chiseInstance) {
 			setCompoundMinHeightBiasTop: function (node, minHeightBiasTop) {
 				node.data('minHeightBiasTop', minHeightBiasTop);
 			},
-			setCompoundMinHeightBiasBottom: function (
-				node,
-				minHeightBiasBottom
-			) {
+			setCompoundMinHeightBiasBottom: function (node, minHeightBiasBottom) {
 				node.data('minHeightBiasBottom', minHeightBiasBottom);
 			},
 			minWidth: function (node) {
-				const data = node.data('resizeMinWidth');
+				var data = node.data('resizeMinWidth');
 				return data ? data : 10;
 			}, // a function returns min width of node
 			minHeight: function (node) {
-				const data = node.data('resizeMinHeight');
+				var data = node.data('resizeMinHeight');
 				return data ? data : 10;
 			}, // a function returns min height of node
 
@@ -801,25 +728,22 @@ module.exports = function (chiseInstance) {
 				//Initially checks if Aspect ratio in Object properties is checked
 				if (appUtilities.nodeResizeUseAspectRatio) return true;
 				//Otherwise it checks 'processes', 'and', 'or' etc. which have fixedAspectRatio as default
-				const sbgnclass = node.data('class');
+				var sbgnclass = node.data('class');
 				return chiseInstance.elementUtilities.mustBeSquare(sbgnclass);
 			}, // with only 4 active grapples (at corners)
 			isNoResizeMode: function (node) {
-				const currentGeneralProperties = appUtilities.getScratch(
+				var currentGeneralProperties = appUtilities.getScratch(
 					cy,
 					'currentGeneralProperties'
 				);
-				return (
-					node.is(':parent') &&
-					!currentGeneralProperties.allowCompoundNodeResize
-				);
+				return node.is(':parent') && !currentGeneralProperties.allowCompoundNodeResize;
 			}, // no active grapples
 
 			cursors: {
 				// See http://www.w3schools.com/cssref/tryit.asp?filename=trycss_cursor
 				// May take any "cursor" css property
 				default: 'default', // to be set after resizing finished or mouseleave
-				inactive: "url('img/cancel.svg') 6 6, not-allowed",
+				inactive: "url('app/img/cancel.svg') 6 6, not-allowed",
 				nw: 'nw-resize',
 				n: 'n-resize',
 				ne: 'ne-resize',
@@ -831,7 +755,7 @@ module.exports = function (chiseInstance) {
 			},
 
 			resizeToContentCueEnabled: function (node) {
-				const enabled_classes = [
+				var enabled_classes = [
 					'macromolecule',
 					'complex',
 					'simple chemical',
@@ -844,8 +768,8 @@ module.exports = function (chiseInstance) {
 					'submap',
 					'BA',
 				];
-				const node_class = node.data('class');
-				let result = false;
+				var node_class = node.data('class');
+				var result = false;
 
 				enabled_classes.forEach(function (enabled_class) {
 					if (node_class.indexOf(enabled_class) > -1) result = true;
@@ -870,10 +794,7 @@ module.exports = function (chiseInstance) {
 					return;
 				}
 
-				const modeProperties = appUtilities.getScratch(
-					cy,
-					'modeProperties'
-				);
+				var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 
 				// We need to remove interactively added entities because we should add the edge with the chise api
 				addedEntities.remove();
@@ -883,25 +804,22 @@ module.exports = function (chiseInstance) {
 				 */
 				if (modeProperties.mode === 'add-edge-mode') {
 					// fired when edgehandles is done and entities are added
-					const source = sourceNode.id();
-					const target = targetNodes[0].id();
-					const edgeParams = {
+					var source = sourceNode.id();
+					var target = targetNodes[0].id();
+					var edgeParams = {
 						class: modeProperties.selectedEdgeType,
 						language: modeProperties.selectedEdgeLanguage,
 					};
-					const promptInvalidEdge = function () {
+					var promptInvalidEdge = function () {
 						appUtilities.promptInvalidEdgeWarning.render();
 					};
 
-					let isMapTypeValid = false;
-					const currentMapType = chiseInstance.getMapType();
+					var isMapTypeValid = false;
+					var currentMapType = chiseInstance.getMapType();
 					if (currentMapType == 'HybridAny') {
 						isMapTypeValid = true;
 					} else if (currentMapType == 'HybridSbgn') {
-						if (
-							edgeParams.language == 'PD' ||
-							edgeParams.language == 'AF'
-						) {
+						if (edgeParams.language == 'PD' || edgeParams.language == 'AF') {
 							isMapTypeValid = true;
 						}
 					} else if (currentMapType == edgeParams.language) {
@@ -912,14 +830,10 @@ module.exports = function (chiseInstance) {
 					if (chiseInstance.getMapType() && !isMapTypeValid) {
 						appUtilities.promptMapTypeView.render(
 							'You cannot add element of type ' +
-								appUtilities.mapTypesToViewableText[
-									edgeParams.language
-								] +
-								' to a map of type ' +
-								appUtilities.mapTypesToViewableText[
-									currentMapType
-								] +
-								'!',
+							appUtilities.mapTypesToViewableText[edgeParams.language] +
+							' to a map of type ' +
+							appUtilities.mapTypesToViewableText[currentMapType] +
+							'!',
 							'You can change map type from Map Properties.'
 						);
 						/*  appUtilities.promptMapTypeView.render(function(){
@@ -929,12 +843,7 @@ module.exports = function (chiseInstance) {
                              addedEdge.style('arrow-scale', currentArrowScale);
                          }); */
 					} else {
-						chiseInstance.addEdge(
-							source,
-							target,
-							edgeParams,
-							promptInvalidEdge
-						);
+						chiseInstance.addEdge(source, target, edgeParams, promptInvalidEdge);
 						var addedEdge = cy.elements()[cy.elements().length - 1];
 						var currentArrowScale = Number($('#arrow-scale').val());
 						addedEdge.style('arrow-scale', currentArrowScale);
@@ -957,10 +866,7 @@ module.exports = function (chiseInstance) {
 
 		cy.edgehandles('drawoff');
 
-		var gridProperties = appUtilities.getScratch(
-			cy,
-			'currentGridProperties'
-		);
+		var gridProperties = appUtilities.getScratch(cy, 'currentGridProperties');
 
 		cy.gridGuide({
 			drawGrid: gridProperties.showGrid,
@@ -974,10 +880,8 @@ module.exports = function (chiseInstance) {
 			geometricGuideline: gridProperties.showGeometricGuidelines,
 			initPosAlignment: gridProperties.showInitPosAlignment,
 			distributionGuidelines: gridProperties.showDistributionGuidelines,
-			snapToAlignmentLocationOnRelease:
-				gridProperties.snapToAlignmentLocationOnRelease,
-			snapToAlignmentLocationDuringDrag:
-				gridProperties.snapToAlignmentLocationDuringDrag,
+			snapToAlignmentLocationOnRelease: gridProperties.snapToAlignmentLocationOnRelease,
+			snapToAlignmentLocationDuringDrag: gridProperties.snapToAlignmentLocationDuringDrag,
 			lineWidth: gridProperties.lineWidth,
 			guidelinesStyle: {
 				initPosAlignmentLine: gridProperties.initPosAlignmentLine,
@@ -1018,9 +922,9 @@ module.exports = function (chiseInstance) {
 	function bindCyEvents() {
 		// Expand collapse extension is supposed to clear expand collapse cue on node position event.
 		// If compounds are resized position event is not triggered though the position of the node is changed.
-		// Therefore, we listen to noderesize.resizedrag event here and if the node is a compound we need to call clearVisualCue() method of
+		// Therefore, we listen to nodeediting.resizedrag event here and if the node is a compound we need to call clearVisualCue() method of
 		// expand collapse extension.
-		cy.on('noderesize.resizedrag', function (e, type, node) {
+		cy.on('nodeediting.resizedrag', function (e, type, node) {
 			if (node.isParent()) {
 				cy.expandCollapse('get').clearVisualCue();
 			}
@@ -1049,29 +953,20 @@ module.exports = function (chiseInstance) {
          }); */
 
 		//Fixes info box locations after expand collapse
-		cy.on(
-			'expandcollapse.aftercollapse expandcollapse.afterexpand',
-			function (e, type, node) {
-				cy.nodeResize('get').refreshGrapples();
-			}
-		);
+		cy.on('expandcollapse.aftercollapse expandcollapse.afterexpand', function (e, type, node) {
+			cy.nodeEditing('get').refreshGrapples();
+		});
 
 		cy.on('expandcollapse.beforeexpand', function (event) {
-			var currentGeneralProperties = appUtilities.getScratch(
-				cy,
-				'currentGeneralProperties'
-			);
-			if (
-				currentGeneralProperties.recalculateLayoutOnComplexityManagement
-			) {
+			var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
+			if (currentGeneralProperties.recalculateLayoutOnComplexityManagement) {
 				var node = cy.nodes(':selected');
-				if (node.length == 1 && event.target.selected())
-					node[0].data('onLayout', true);
+				if (node.length == 1 && event.target.selected()) node[0].data('onLayout', true);
 			}
 		});
 
 		// To redraw expand/collapse cue after resize
-		cy.on('noderesize.resizeend', function (e, type, node) {
+		cy.on('nodeediting.resizeend', function (e, type, node) {
 			if (node.isParent() && node.selected()) node.trigger('select');
 		});
 
@@ -1110,6 +1005,11 @@ module.exports = function (chiseInstance) {
 			cy.style().update();
 			inspectorUtilities.handleSBGNInspector();
 
+			var chiseInstance = appUtilities.getActiveChiseInstance();
+			if (chiseInstance.getMapType()) {
+				document.getElementById('map-type').value = chiseInstance.getMapType();
+			}
+
 			if (actionName == 'resize') {
 				var node = res.node;
 				// ensure consistency of infoboxes through resizing
@@ -1132,6 +1032,11 @@ module.exports = function (chiseInstance) {
 			refreshUndoRedoButtonsStatus(cy);
 			cy.style().update();
 			inspectorUtilities.handleSBGNInspector();
+
+			var chiseInstance = appUtilities.getActiveChiseInstance();
+			if (chiseInstance.getMapType()) {
+				document.getElementById('map-type').value = chiseInstance.getMapType();
+			}
 
 			if (actionName == 'resize') {
 				var node = res.node;
@@ -1157,10 +1062,7 @@ module.exports = function (chiseInstance) {
 			// get mode properties for cy
 			var modeProperties = appUtilities.getScratch(cy, 'modeProperties');
 
-			if (
-				modeProperties.mode == 'selection-mode' &&
-				appUtilities.ctrlKeyDown
-			) {
+			if (modeProperties.mode == 'selection-mode' && appUtilities.ctrlKeyDown) {
 				if (appUtilities.zoomShortcut) {
 					return;
 				}
@@ -1168,19 +1070,10 @@ module.exports = function (chiseInstance) {
 
 				appUtilities.setScratch(cy, 'mouseDownNode', self);
 				var nodesToDragAndDrop = self.union(cy.nodes(':selected'));
-				appUtilities.setScratch(
-					cy,
-					'nodesToDragAndDrop',
-					nodesToDragAndDrop
-				);
+				appUtilities.setScratch(cy, 'nodesToDragAndDrop', nodesToDragAndDrop);
 
-				var dragAndDropStartPosition =
-					event.position || event.cyPosition;
-				appUtilities.setScratch(
-					cy,
-					'dragAndDropStartPosition',
-					dragAndDropStartPosition
-				);
+				var dragAndDropStartPosition = event.position || event.cyPosition;
+				appUtilities.setScratch(cy, 'dragAndDropStartPosition', dragAndDropStartPosition);
 			}
 		});
 
@@ -1208,10 +1101,7 @@ module.exports = function (chiseInstance) {
 
 					appUtilities.disableDragAndDropMode(cy);
 
-					var mouseDownNode = appUtilities.getScratch(
-						cy,
-						'mouseDownNode'
-					);
+					var mouseDownNode = appUtilities.getScratch(cy, 'mouseDownNode');
 					var pos = event.position || event.cyPosition;
 					var dragAndDropStartPosition = appUtilities.getScratch(
 						cy,
@@ -1227,19 +1117,11 @@ module.exports = function (chiseInstance) {
 						);
 					}
 
-					appUtilities.setScratch(
-						cy,
-						'dragAndDropStartPosition',
-						null
-					);
+					appUtilities.setScratch(cy, 'dragAndDropStartPosition', null);
 					appUtilities.setScratch(cy, 'nodesToDragAndDrop', null);
 				} else {
 					appUtilities.disableDragAndDropMode(cy);
-					appUtilities.setScratch(
-						cy,
-						'dragAndDropStartPosition',
-						null
-					);
+					appUtilities.setScratch(cy, 'dragAndDropStartPosition', null);
 					appUtilities.setScratch(cy, 'nodesToDragAndDrop', null);
 				}
 			}
@@ -1308,9 +1190,7 @@ module.exports = function (chiseInstance) {
 
 			if (
 				modeProperties.mode === 'add-node-mode' &&
-				chiseInstance.elementUtilities.isPNClass(
-					modeProperties.selectedNodeType
-				) &&
+				chiseInstance.elementUtilities.isPNClass(modeProperties.selectedNodeType) &&
 				chiseInstance.elementUtilities.isEPNClass(node) &&
 				!convenientProcessSource
 			) {
@@ -1320,6 +1200,16 @@ module.exports = function (chiseInstance) {
 		});
 
 		cy.on('tapend', function (event, relPos) {
+			// This is a bit of a patch
+			// Without this the alt + taphold shortcut for selection of objects of same type doesn't work
+			// as all the elements except the original event target will be unselected without this
+			if (altTapholdSelection) {
+				setTimeout(function () {
+					cy.autounselectify(false);
+				}, 100);
+				altTapholdSelection = null;
+			}
+
 			relPos = relPos || false;
 			$('input').blur();
 
@@ -1330,8 +1220,7 @@ module.exports = function (chiseInstance) {
 
 			if (relPos) {
 				// drag and drop case
-				var nodesAtRelpos =
-					chiseInstance.elementUtilities.getNodesAt(relPos);
+				var nodesAtRelpos = chiseInstance.elementUtilities.getNodesAt(relPos);
 				if (nodesAtRelpos.length == 0) {
 					// when element is placed in the background
 					cyTarget = cy;
@@ -1351,10 +1240,7 @@ module.exports = function (chiseInstance) {
 			// else just create a new node with the current selected node type
 			if (modeProperties.mode === 'add-node-mode') {
 				var nodeType = modeProperties.selectedNodeType;
-				var nodeParams = {
-					class: nodeType,
-					language: modeProperties.selectedNodeLanguage,
-				};
+				var nodeParams = { class: nodeType, language: modeProperties.selectedNodeLanguage };
 
 				if (
 					convenientProcessSource &&
@@ -1363,14 +1249,10 @@ module.exports = function (chiseInstance) {
 					cyTarget.id() !== convenientProcessSource.id() &&
 					chiseInstance.elementUtilities.isPNClass(nodeType) &&
 					chiseInstance.elementUtilities.isEPNClass(cyTarget) &&
-					chiseInstance.elementUtilities.isEPNClass(
-						convenientProcessSource
-					) &&
+					chiseInstance.elementUtilities.isEPNClass(convenientProcessSource) &&
 					!(
 						(cyTarget.parent()[0] != undefined &&
-							chiseInstance.elementUtilities.isEPNClass(
-								cyTarget.parent()[0]
-							)) ||
+							chiseInstance.elementUtilities.isEPNClass(cyTarget.parent()[0])) ||
 						(convenientProcessSource.parent()[0] != undefined &&
 							chiseInstance.elementUtilities.isEPNClass(
 								convenientProcessSource.parent()[0]
@@ -1390,10 +1272,7 @@ module.exports = function (chiseInstance) {
 					var cyPosX;
 					var cyPosY;
 					if (relPos) {
-						modelPos =
-							chiseInstance.elementUtilities.convertToModelPosition(
-								relPos
-							);
+						modelPos = chiseInstance.elementUtilities.convertToModelPosition(relPos);
 						cyPosX = modelPos.x;
 						cyPosY = modelPos.y;
 					} else {
@@ -1427,22 +1306,14 @@ module.exports = function (chiseInstance) {
 					}
 
 					// If the parent class is valid for the node type then add the node
-					if (
-						chiseInstance.elementUtilities.isValidParent(
-							nodeType,
-							parentClass
-						)
-					) {
+					if (chiseInstance.elementUtilities.isValidParent(nodeType, parentClass)) {
 						var isMapTypeValid = false;
 
 						var currentMapType = chiseInstance.getMapType();
 						if (currentMapType == 'HybridAny') {
 							isMapTypeValid = true;
 						} else if (currentMapType == 'HybridSbgn') {
-							if (
-								nodeParams.language == 'PD' ||
-								nodeParams.language == 'AF'
-							) {
+							if (nodeParams.language == 'PD' || nodeParams.language == 'AF') {
 								isMapTypeValid = true;
 							}
 						} else if (currentMapType == nodeParams.language) {
@@ -1452,54 +1323,40 @@ module.exports = function (chiseInstance) {
 						if (chiseInstance.getMapType() && !isMapTypeValid) {
 							appUtilities.promptMapTypeView.render(
 								'You cannot add element of type ' +
-									appUtilities.mapTypesToViewableText[
-										nodeParams.language
-									] +
-									' to a map of type ' +
-									appUtilities.mapTypesToViewableText[
-										currentMapType
-									] +
-									'!',
+								appUtilities.mapTypesToViewableText[nodeParams.language] +
+								' to a map of type ' +
+								appUtilities.mapTypesToViewableText[currentMapType] +
+								'!',
 								'You can change map type from Map Properties.'
 							);
-							/*  appUtilities.promptMapTypeView.render(function(){
-                                 chiseInstance.addNode(cyPosX, cyPosY, nodeParams, undefined, parentId);}); */
 						} else {
-							chiseInstance.addNode(
-								cyPosX,
-								cyPosY,
-								nodeParams,
-								undefined,
-								parentId
-							);
-						}
-						if (
-							nodeType === 'process' ||
-							nodeType === 'omitted process' ||
-							nodeType === 'uncertain process' ||
-							nodeType === 'association' ||
-							nodeType === 'dissociation' ||
-							nodeType === 'and' ||
-							nodeType === 'or' ||
-							nodeType === 'not'
-						) {
-							var newEle = cy.nodes()[cy.nodes().length - 1];
-							var defaultPortsOrdering =
-								chiseInstance.elementUtilities.getDefaultProperties(
-									nodeType
-								)['ports-ordering'];
-							chiseInstance.elementUtilities.setPortsOrdering(
-								newEle,
-								defaultPortsOrdering
-									? defaultPortsOrdering
-									: 'L-to-R'
-							);
-						}
+							chiseInstance.addNode(cyPosX, cyPosY, nodeParams, undefined, parentId);
+							if (
+								nodeType === 'process' ||
+								nodeType === 'omitted process' ||
+								nodeType === 'uncertain process' ||
+								nodeType === 'association' ||
+								nodeType === 'dissociation' ||
+								nodeType === 'and' ||
+								nodeType === 'or' ||
+								nodeType === 'not'
+							) {
+								var newEle = cy.nodes()[cy.nodes().length - 1];
+								var defaultPortsOrdering =
+									chiseInstance.elementUtilities.getDefaultProperties(nodeType)[
+										'ports-ordering'
+										];
+								chiseInstance.elementUtilities.setPortsOrdering(
+									newEle,
+									defaultPortsOrdering ? defaultPortsOrdering : 'L-to-R'
+								);
+							}
 
-						// If the node will not be added to the root then the parent node may be resized and the top left corner pasition may change after
-						// the node is added. Therefore, we may need to clear the expand collapse viusal cue.
-						if (parent) {
-							cy.expandCollapse('get').clearVisualCue();
+							// If the node will not be added to the root then the parent node may be resized and the top left corner pasition may change after
+							// the node is added. Therefore, we may need to clear the expand collapse viusal cue.
+							if (parent) {
+								cy.expandCollapse('get').clearVisualCue();
+							}
 						}
 					}
 				}
@@ -1578,15 +1435,9 @@ module.exports = function (chiseInstance) {
 				if (left < containerPos.left) {
 					left = containerPos.left + 5;
 				}
-				if (
-					left + nodeLabelTextbox.width() >
-					containerPos.left + containerWidth
-				) {
+				if (left + nodeLabelTextbox.width() > containerPos.left + containerWidth) {
 					left -=
-						left +
-						nodeLabelTextbox.width() -
-						(containerPos.left + containerWidth) +
-						5;
+						left + nodeLabelTextbox.width() - (containerPos.left + containerWidth) + 5;
 				}
 
 				left = left.toString() + 'px';
@@ -1608,15 +1459,9 @@ module.exports = function (chiseInstance) {
 				if (top < containerPos.top) {
 					top = containerPos.top + 5;
 				}
-				if (
-					top + nodeLabelTextbox.height() >
-					containerPos.top + containerHeight
-				) {
+				if (top + nodeLabelTextbox.height() > containerPos.top + containerHeight) {
 					top -=
-						top +
-						nodeLabelTextbox.height() -
-						(containerPos.top + containerHeight) +
-						5;
+						top + nodeLabelTextbox.height() - (containerPos.top + containerHeight) + 5;
 				}
 
 				top = top.toString() + 'px';
@@ -1653,7 +1498,7 @@ module.exports = function (chiseInstance) {
 			// }
 			//Remove grapples while node-label-textbox is visible
 			if ($('#node-label-textbox').is(':visible')) {
-				cy.nodeResize('get').removeGrapples();
+				cy.nodeEditing('get').removeGrapples();
 			}
 		});
 
@@ -1690,7 +1535,7 @@ module.exports = function (chiseInstance) {
 		});
 
 		// infobox refresh when resize happen, for simple nodes
-		/* cy.on('noderesize.resizedrag', function(e, type, node) {
+		/* cy.on('nodeediting.resizedrag', function(e, type, node) {
           if(node.data('statesandinfos').length > 0) {
             updateInfoBox(node);
           }
@@ -1708,10 +1553,7 @@ module.exports = function (chiseInstance) {
 			 * If the layout is not one of these (normally it is supposed to be 'cose-bilkent')
 			 * stop layout spinner for the related chise instance.
 			 */
-			if (
-				event.layout.options.name !== 'preset' &&
-				event.layout.options.name !== 'grid'
-			) {
+			if (event.layout.options.name !== 'preset' && event.layout.options.name !== 'grid') {
 				appUtilities.getChiseInstance(cy).endSpinner('layout-spinner');
 			}
 			/*   var nodesToConsider = cy.nodes().filter(function(node){
@@ -1748,7 +1590,7 @@ module.exports = function (chiseInstance) {
 			currentPos = parent.position();
 			if (currentPos.x != oldPos.x || currentPos.y != oldPos.y) {
 				oldPos = { x: currentPos.x, y: currentPos.y };
-				cy.trigger('noderesize.resizedrag', ['unknown', parent]);
+				cy.trigger('nodeediting.resizedrag', ['unknown', parent]);
 			}
 		});
 
@@ -1776,6 +1618,17 @@ module.exports = function (chiseInstance) {
 			node.style(opt);
 		});
 
+		// Select elements of same type (sbgn class) on taphold + alt key down
+		var altTapholdSelection;
+		cy.on('taphold', 'node, edge', function (event) {
+			if (appUtilities.altKeyDown) {
+				var cyTarget = event.target || event.cyTarget;
+				appUtilities.selectAllElementsOfSameType(cyTarget);
+				cy.autounselectify(true);
+				altTapholdSelection = true;
+			}
+		});
+
 		/* removed coz of  complications
         cy.on('remove', 'node', function(event) {
           if(cy.elements().length < 1){
@@ -1791,9 +1644,8 @@ module.exports = function (chiseInstance) {
 			var firstTime = true;
 			for (var i = 0; i < locations.length; i++) {
 				if (
-					chiseInstance.classes.AuxUnitLayout.getCurrentGap(
-						locations[i]
-					) < chiseInstance.classes.AuxUnitLayout.unitGap
+					chiseInstance.classes.AuxUnitLayout.getCurrentGap(locations[i]) <
+					chiseInstance.classes.AuxUnitLayout.unitGap
 				) {
 					firstTime = false;
 					break;
