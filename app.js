@@ -43,8 +43,8 @@ app.post("/api/submitFolders", (req, res, next) => {
     console.log(req.body);
 });
 
-app.get("/node_modules/cytoscape-node-resize/resizeCue.svg", (req, res) => {
-    res.sendFile(path.join(__dirname, 'node_modules/cytoscape-node-resize/resizeCue.svg'));
+app.get("/node_modules/cytoscape-node-editing/resizeCue.svg", (req, res) => {
+    res.sendFile(path.join(__dirname, 'node_modules/cytoscape-node-editing/resizeCue.svg'));
 });
 
 // catch 404 and forward to error handler

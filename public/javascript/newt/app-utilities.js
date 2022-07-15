@@ -53,6 +53,7 @@ appUtilities.adjustUIComponents = function (_cy) {
     const cy = _cy || appUtilities.getActiveCy();
 
     // adjust UI components in inspector map tab
+
     appUtilities.colorSchemeInspectorView.render();
     appUtilities.mapTabGeneralPanel.render();
     appUtilities.mapTabLabelPanel.render();
@@ -65,10 +66,7 @@ appUtilities.adjustUIComponents = function (_cy) {
     const appUndoActions = appUndoActionsFactory(appUtilities.getActiveCy());
 
     // get current general properties for cy
-    const generalProperties = appUtilities.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    const generalProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
     // refresh color schema menu
     appUndoActions.refreshColorSchemeMenu({
@@ -102,32 +100,14 @@ appUtilities.adjustUIComponents = function (_cy) {
     $('.edge-palette img').removeClass('selected-mode');
 
     // Get images for node/edge palettes
-    var nodeImg = $(
-        '.node-palette img[value="' +
-        nodeVal +
-        '"][language="' +
-        nodeLang +
-        '"]'
-    );
-    var edgeImg = $(
-        '.edge-palette img[value="' +
-        edgeVal +
-        '"][language="' +
-        edgeLang +
-        '"]'
-    );
+    var nodeImg = $('.node-palette img[value="' + nodeVal + '"][language="' + nodeLang + '"]');
+    var edgeImg = $('.edge-palette img[value="' + edgeVal + '"][language="' + edgeLang + '"]');
 
     // also set the icons in toolbar accordingly
     $('#add-node-mode-icon').attr('src', nodeImg.attr('src'));
-    $('#add-node-mode-icon').attr(
-        'title',
-        'Create a new ' + nodeImg.attr('title')
-    );
+    $('#add-node-mode-icon').attr('title', 'Create a new ' + nodeImg.attr('title'));
     $('#add-edge-mode-icon').attr('src', edgeImg.attr('src'));
-    $('#add-edge-mode-icon').attr(
-        'title',
-        'Create a new ' + edgeImg.attr('title')
-    );
+    $('#add-edge-mode-icon').attr('title', 'Create a new ' + edgeImg.attr('title'));
 
     // unactivate all UI components
     $('#select-mode-icon').parent().removeClass('selected-mode');
@@ -136,6 +116,7 @@ appUtilities.adjustUIComponents = function (_cy) {
     $('#add-edge-mode-icon').parent().removeClass('selected-mode-sustainable');
     $('#add-node-mode-icon').parent().removeClass('selected-mode-sustainable');
     $('#marquee-zoom-mode-icon').parent().removeClass('selected-mode');
+    $('#lasso-mode-icon').parent().removeClass('selected-mode');
     $('.node-palette img').addClass('inactive-palette-element');
     $('.edge-palette img').addClass('inactive-palette-element');
     $('.selected-mode-sustainable').removeClass('selected-mode-sustainable');
@@ -158,12 +139,8 @@ appUtilities.adjustUIComponents = function (_cy) {
         modeHandler.autoEnableMenuItems(false);
 
         if (sustainMode) {
-            $('#add-node-mode-icon')
-                .parent()
-                .addClass('selected-mode-sustainable');
-            $('.node-palette .selected-mode').addClass(
-                'selected-mode-sustainable'
-            );
+            $('#add-node-mode-icon').parent().addClass('selected-mode-sustainable');
+            $('.node-palette .selected-mode').addClass('selected-mode-sustainable');
         }
     } else if (mode === 'add-edge-mode') {
         $('#add-edge-mode-icon').parent().addClass('selected-mode');
@@ -172,38 +149,26 @@ appUtilities.adjustUIComponents = function (_cy) {
         modeHandler.autoEnableMenuItems(false);
 
         if (sustainMode) {
-            $('#add-edge-mode-icon')
-                .parent()
-                .addClass('selected-mode-sustainable');
-            $('.edge-palette .selected-mode').addClass(
-                'selected-mode-sustainable'
-            );
+            $('#add-edge-mode-icon').parent().addClass('selected-mode-sustainable');
+            $('.edge-palette .selected-mode').addClass('selected-mode-sustainable');
         }
     } else if (mode === 'marquee-zoom-mode') {
         $('#marquee-zoom-mode-icon').parent().addClass('selected-mode');
+    } else if (mode === 'lasso-mode') {
+        $('#lasso-mode-icon').parent().addClass('selected-mode');
     }
 
     // adjust status of grid guide related icons in toolbar
 
     // get the current status of related variables for cy
-    var toggleEnableGuidelineAndSnap = appUtilities.getScratch(
-        cy,
-        'toggleEnableGuidelineAndSnap'
-    );
-    var toggleShowGridEnableSnap = appUtilities.getScratch(
-        cy,
-        'toggleShowGridEnableSnap'
-    );
+    var toggleEnableGuidelineAndSnap = appUtilities.getScratch(cy, 'toggleEnableGuidelineAndSnap');
+    var toggleShowGridEnableSnap = appUtilities.getScratch(cy, 'toggleShowGridEnableSnap');
 
     // adjust toggle-guidelines-snapping-icon icons accordingly
     if (toggleEnableGuidelineAndSnap) {
-        $('#toggle-guidelines-snapping-icon').addClass(
-            'toggle-mode-sustainable'
-        );
+        $('#toggle-guidelines-snapping-icon').addClass('toggle-mode-sustainable');
     } else {
-        $('#toggle-guidelines-snapping-icon').removeClass(
-            'toggle-mode-sustainable'
-        );
+        $('#toggle-guidelines-snapping-icon').removeClass('toggle-mode-sustainable');
     }
 
     // adjust oggle-grid-snapping-icon accordingly
@@ -233,13 +198,13 @@ appUtilities.getNetworkId = function (networkKey) {
     }
 
     // get the last index of '-'
-    const index = networkKey.lastIndexOf('-');
+    var index = networkKey.lastIndexOf('-');
 
     // get the remaining part of string after the last occurance of '-'
-    const rem = networkKey.substring(index + 1);
+    var rem = networkKey.substring(index + 1);
 
     // id is the integer representation of the remaining string
-    const id = parseInt(rem);
+    var id = parseInt(rem);
 
     // return the obtained id
     return id;
@@ -329,7 +294,7 @@ appUtilities.removeFromChiseInstances = function (key) {
 // if key param is a cy instance or tab/panel id/selector use the actual network id
 appUtilities.getChiseInstance = function (key) {
     // if key is a cy instance go for its container id
-    let networkId = typeof key === 'object' ? key.container().id : key;
+    var networkId = typeof key === 'object' ? key.container().id : key;
 
     // if the network id parameter is the network tab/panel id/selector get the actual network id
     networkId = this.getNetworkId(networkId);
@@ -341,63 +306,43 @@ appUtilities.getChiseInstance = function (key) {
 // If there is just one network then network tabs should not be rendered.
 // This function is to adjust that.
 appUtilities.adjustVisibilityOfNetworkTabs = function () {
-    const tabsContainer = $('#network-tabs-list-container');
+    var tabsContainer = $('#network-tabs-list-container');
 
     // if there is just one tab hide tabs container else show it
     if (this.networkIdsStack.length === 1) {
-        // tabsContainer.hide();
-        tabsContainer.show();
+        tabsContainer.hide();
     } else {
         tabsContainer.show();
     }
 };
 
 // creates a new network and returns the new chise.js instance that is created for this network
-appUtilities.createNewNetwork = function () {
+appUtilities.createNewNetwork = function (networkName, networkDescription) {
     // id of the div panel associated with the new network
-    var networkPanelId = appUtilities.getNetworkPanelId(
-        appUtilities.nextNetworkId
-    );
+    var networkPanelId = appUtilities.getNetworkPanelId(appUtilities.nextNetworkId);
 
     // id of the tab for the new network
     var networkTabId = appUtilities.getNetworkTabId(appUtilities.nextNetworkId);
 
-    // use the default map name for the given next network id
-    var mapName = appUtilities.getDefaultMapName(appUtilities.nextNetworkId);
+    var mapName;
+    if (networkName) mapName = networkName;
+    else mapName = appUtilities.getDefaultMapName(appUtilities.nextNetworkId);
 
     // create physical html components for the new network
     // use map name as the tab description
-    appUtilities.createPhysicalNetworkComponents(
-        networkPanelId,
-        networkTabId,
-        mapName
-    );
+    appUtilities.createPhysicalNetworkComponents(networkPanelId, networkTabId, mapName);
 
     // generate network panel selector from the network panel id
-    var networkPanelSelector = appUtilities.getNetworkPanelSelector(
-        appUtilities.nextNetworkId
-    );
+    var networkPanelSelector = appUtilities.getNetworkPanelSelector(appUtilities.nextNetworkId);
 
     // initialize current properties for the new instance by copying the default properties
-    var currentLayoutProperties = jquery.extend(
-        true,
-        {},
-        appUtilities.defaultLayoutProperties
-    );
-    var currentGridProperties = jquery.extend(
-        true,
-        {},
-        appUtilities.defaultGridProperties
-    );
-    var currentGeneralProperties = jquery.extend(
-        true,
-        {},
-        appUtilities.defaultGeneralProperties
-    );
+    var currentLayoutProperties = jquery.extend(true, {}, appUtilities.defaultLayoutProperties);
+    var currentGridProperties = jquery.extend(true, {}, appUtilities.defaultGridProperties);
+    var currentGeneralProperties = jquery.extend(true, {}, appUtilities.defaultGeneralProperties);
 
     // update the map name with the default map name specific for network id
     currentGeneralProperties.mapName = mapName;
-
+    if (networkDescription) currentGeneralProperties.mapDescription = networkDescription;
     // Create a new chise.js instance
     var newInst = chise({
         networkContainerSelector: networkPanelSelector,
@@ -447,8 +392,7 @@ appUtilities.createNewNetwork = function () {
             );
             return currentGeneralProperties.arrowScale;
         },
-        extraCompartmentPadding:
-        currentGeneralProperties.extraCompartmentPadding,
+        extraCompartmentPadding: currentGeneralProperties.extraCompartmentPadding,
         extraComplexPadding: currentGeneralProperties.extraComplexPadding,
         showComplexName: currentGeneralProperties.showComplexName,
         // Whether to adjust node label font size automatically.
@@ -474,26 +418,13 @@ appUtilities.createNewNetwork = function () {
             return appUtilities.ctrlKeyDown !== true;
         },
         highlightColor: currentGeneralProperties.highlightColor,
-        extraHighlightThickness:
-        currentGeneralProperties.extraHighlightThickness,
+        extraHighlightThickness: currentGeneralProperties.extraHighlightThickness,
     });
 
     // set scracth pad of the related cy instance with these properties
-    appUtilities.setScratch(
-        newInst.getCy(),
-        'currentLayoutProperties',
-        currentLayoutProperties
-    );
-    appUtilities.setScratch(
-        newInst.getCy(),
-        'currentGridProperties',
-        currentGridProperties
-    );
-    appUtilities.setScratch(
-        newInst.getCy(),
-        'currentGeneralProperties',
-        currentGeneralProperties
-    );
+    appUtilities.setScratch(newInst.getCy(), 'currentLayoutProperties', currentLayoutProperties);
+    appUtilities.setScratch(newInst.getCy(), 'currentGridProperties', currentGridProperties);
+    appUtilities.setScratch(newInst.getCy(), 'currentGeneralProperties', currentGeneralProperties);
 
     // init the current file name for the map
     appUtilities.setScratch(newInst.getCy(), 'currentFileName', 'new_file.nwt');
@@ -531,7 +462,6 @@ appUtilities.createNewNetwork = function () {
 
     // adjust the visibility of network tabs
     appUtilities.adjustVisibilityOfNetworkTabs();
-
     // return the new instance
     return newInst;
 };
@@ -555,8 +485,7 @@ appUtilities.closeActiveNetwork = function () {
         this.createNewNetwork();
     } else {
         // get the new active network id from the top of the stack
-        var newActiveNetworkId =
-            this.networkIdsStack[this.networkIdsStack.length - 1];
+        var newActiveNetworkId = this.networkIdsStack[this.networkIdsStack.length - 1];
 
         // choose the network tab for the new active network
         this.chooseNetworkTab(newActiveNetworkId);
@@ -620,16 +549,11 @@ function removeDragData(ev) {
     }
 }
 
-appUtilities.createPhysicalNetworkComponents = function (
-    panelId,
-    tabId,
-    tabDesc
-) {
+appUtilities.createPhysicalNetworkComponents = function (panelId, tabId, tabDesc) {
     // the component that includes the tab panels
     var panelsParent = $('#network-panels-container');
 
-    var newPanelStr =
-        '<div id="' + panelId + '" class="tab-pane fade network-panel"></div>';
+    var newPanelStr = '<div id="' + panelId + '" class="tab-pane fade network-panel"></div>';
 
     // create new panel inside the panels parent
     panelsParent.append(newPanelStr);
@@ -670,7 +594,7 @@ appUtilities.createPhysicalNetworkComponents = function (
 
     $('ul').on('mousedown', '#' + tabId, function (e) {
         if (e.which == 2) {
-            const networkId = tabId.substring(17);
+            var networkId = tabId.substring(17);
             appUtilities.setActiveNetwork(networkId);
             appUtilities.closeActiveNetwork();
         }
@@ -682,7 +606,7 @@ appUtilities.createPhysicalNetworkComponents = function (
 // basically get the active chise instance
 appUtilities.getActiveChiseInstance = function () {
     // get the networkId of the active network that is at the top of networkIdsStack
-    const activeNetworkId = this.networkIdsStack[this.networkIdsStack.length - 1];
+    var activeNetworkId = this.networkIdsStack[this.networkIdsStack.length - 1];
 
     // return the chise instance mapped for active network id that is the active networks itself
     return this.getChiseInstance(activeNetworkId);
@@ -737,7 +661,7 @@ appUtilities.getActiveSbgnvizInstance = function () {
 
 // returns the cy instance associated with the currently active network
 appUtilities.getActiveCy = function () {
-    const chiseInstance = this.getActiveChiseInstance();
+    var chiseInstance = this.getActiveChiseInstance();
 
     return chiseInstance ? chiseInstance.getCy() : false;
 };
@@ -853,10 +777,7 @@ appUtilities.setFileContent = function (fileName) {
             document.createTextNode(
                 fileName.substring(0, 34) +
                 '...' +
-                fileName.substring(
-                    fileName.lastIndexOf('.') + 1,
-                    fileName.length
-                )
+                fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length)
             )
         );
     }
@@ -867,25 +788,17 @@ appUtilities.setFileContent = function (fileName) {
 
 appUtilities.triggerLayout = function (_cy, randomize) {
     // use parametrized cy if exists. Otherwise use the recently active cy
-    const cy = _cy || this.getActiveCy();
+    var cy = _cy || this.getActiveCy();
 
     // access the current general properties of cy
-    const currentGeneralProperties = this.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    var currentGeneralProperties = this.getScratch(cy, 'currentGeneralProperties');
 
     // access the current layout properties of cy
-    const currentLayoutProperties = this.getScratch(
-        cy,
-        'currentLayoutProperties'
-    );
+    var currentLayoutProperties = this.getScratch(cy, 'currentLayoutProperties');
 
     // If 'animate-on-drawing-changes' is true then animate option must be true instead of false
-    const preferences = {
-        animate: currentGeneralProperties.animateOnDrawingChanges
-            ? true
-            : false,
+    var preferences = {
+        animate: currentGeneralProperties.animateOnDrawingChanges ? true : false,
     };
 
     // if randomize parameter is defined set it as a preference
@@ -901,7 +814,7 @@ appUtilities.triggerLayout = function (_cy, randomize) {
     //  }
 
     // access chise instance related to cy
-    const chiseInstance = appUtilities.getChiseInstance(cy);
+    var chiseInstance = appUtilities.getChiseInstance(cy);
 
     // layout must not be undoable
     this.layoutPropertiesView.applyLayout(preferences, true, chiseInstance);
@@ -915,15 +828,13 @@ appUtilities.getExpandCollapseOptions = function (_cy) {
             // use parametrized cy if exists. Otherwise use the recently active cy
             var cy = _cy || self.getActiveCy();
 
-            return self.getScratch(cy, 'currentGeneralProperties')
-                .rearrangeOnComplexityManagement;
+            return self.getScratch(cy, 'currentGeneralProperties').rearrangeOnComplexityManagement;
         },
         animate: function () {
             // use parametrized cy if exists. Otherwise use the recently active cy
             var cy = _cy || self.getActiveCy();
 
-            return self.getScratch(cy, 'currentGeneralProperties')
-                .animateOnDrawingChanges;
+            return self.getScratch(cy, 'currentGeneralProperties').animateOnDrawingChanges;
         },
         layoutBy: function () {
             // use parametrized cy if exists. Otherwise use the recently active cy
@@ -946,8 +857,7 @@ appUtilities.getExpandCollapseOptions = function (_cy) {
 
             var offset = 1,
                 rectSize = 12; // this is the expandCollapseCueSize;
-            var size =
-                cy.zoom() < 1 ? rectSize / (2 * cy.zoom()) : rectSize / 2;
+            var size = cy.zoom() < 1 ? rectSize / (2 * cy.zoom()) : rectSize / 2;
             var x =
                 node.position('x') -
                 node.width() / 2 -
@@ -971,7 +881,8 @@ appUtilities.getExpandCollapseOptions = function (_cy) {
                     size +
                     offset;
             }
-            return {x: x, y: y};
+
+            return { x: x, y: y };
         },
     };
 };
@@ -993,9 +904,7 @@ appUtilities.dynamicResize = function () {
         //This is the margin on left and right of the main content when the page is
         //displayed
         var mainContentMargin = 10;
-        $('#network-panels-container').width(
-            windowWidth * 0.8 - mainContentMargin
-        );
+        $('#network-panels-container').width(windowWidth * 0.8 - mainContentMargin);
         $('#sbgn-inspector').width(windowWidth * 0.2 - mainContentMargin);
 
         var w = $('#sbgn-inspector-and-canvas').width();
@@ -1007,8 +916,8 @@ appUtilities.dynamicResize = function () {
     }
 
     if (windowHeight > canvasHeight) {
-    	$('#network-panels-container').height(windowHeight * 0.95);
-    	$('#sbgn-inspector').height(windowHeight * 0.95);
+        $('#network-panels-container').height(windowHeight * 0.95);
+        $('#sbgn-inspector').height(windowHeight * 0.95);
     }
     // $('#network-panels-container').width(($("#newt-graph-container").width() - 10) * 0.75);
     // $('#sbgn-inspector').width(($("#newt-graph-container").width() -10) * 0.25);
@@ -1016,8 +925,6 @@ appUtilities.dynamicResize = function () {
     // trigger an event to notify that newt components are dynamically resized
     $(document).trigger('newtAfterDynamicResize');
 };
-
-
 
 /*
 appUtilities.nodeQtipFunction = function (node) {
@@ -1120,10 +1027,7 @@ appUtilities.showHiddenNeighbors = function (eles, _chiseInstance) {
     var cy = chiseInstance.getCy();
 
     // get current general properties for assocated cy instance
-    var currentGeneralProperties = appUtilities.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
     var extendedList = chiseInstance.elementUtilities.extendNodeList(eles);
     if (currentGeneralProperties.recalculateLayoutOnComplexityManagement) {
@@ -1148,46 +1052,53 @@ appUtilities.showAll = function (_chiseInstance) {
     var cy = chiseInstance.getCy();
 
     // get current general properties for cy instance
-    var currentGeneralProperties = appUtilities.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
     if (currentGeneralProperties.recalculateLayoutOnComplexityManagement) {
         //Show all and perform incremental layout
-        chiseInstance.showAllAndPerformLayout(
-            this.triggerLayout.bind(this, cy, false)
-        );
+        chiseInstance.showAllAndPerformLayout(this.triggerLayout.bind(this, cy, false));
     } else {
         //Just show them all
         chiseInstance.showAll();
     }
 };
 
-// Hides nodes and perform incremental layout afterward if Rearrange option is checked
-appUtilities.hideNodesSmart = function (eles, _chiseInstance) {
-    // check _chiseInstance param if it is set use it else use recently active chise instance
-    var chiseInstance = _chiseInstance || appUtilities.getActiveChiseInstance();
-
-    // get the associated cy instance
+appUtilities.deleteNodesSmart = function (nodes) {
+    var chiseInstance = appUtilities.getActiveChiseInstance();
     var cy = chiseInstance.getCy();
-
-    // get current general properties for cy instance
-    var currentGeneralProperties = appUtilities.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
     if (currentGeneralProperties.recalculateLayoutOnComplexityManagement) {
         //Put them near node and perform incremental layout
-        chiseInstance.hideAndPerformLayout(
-            eles,
-            this.triggerLayout.bind(this, cy, false)
-        );
+        chiseInstance.deleteAndPerformLayout(nodes, this.triggerLayout.bind(this, cy, false));
     } else {
         //Just show them
-        chiseInstance.hideNodesSmart(eles);
+        chiseInstance.deleteNodesSmart(nodes);
     }
+};
+
+// Hides nodes and perform incremental layout afterward if Rearrange option is checked
+appUtilities.hideNodesSmart = function (nodes, _chiseInstance) {
+    // check _chiseInstance param if it is set use it else use recently active chise instance
+    var chiseInstance = _chiseInstance || appUtilities.getActiveChiseInstance();
+
+    var cy = chiseInstance.getCy();
+
+    var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
+
+    if (currentGeneralProperties.recalculateLayoutOnComplexityManagement) {
+        chiseInstance.hideAndPerformLayout(nodes, this.triggerLayout.bind(this, cy, false));
+    } else {
+        chiseInstance.hideNodesSmart(nodes);
+    }
+};
+
+// Hides nodes and perform incremental layout afterward if Rearrange option is checked
+appUtilities.hideElesSimple = function (eles, _chiseInstance) {
+    // check _chiseInstance param if it is set use it else use recently active chise instance
+    var chiseInstance = _chiseInstance || appUtilities.getActiveChiseInstance();
+
+    chiseInstance.hideElesSimple(eles);
 };
 
 appUtilities.colorCodeToGradientImage = colorCodeToGradientImage = {
@@ -1262,7 +1173,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#ffffff',
             'nucleic acid feature': '#ffffff',
             'perturbing agent': '#ffffff',
-            'source and sink': '#ffffff',
+            'empty set': '#ffffff',
             complex: '#ffffff',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1309,7 +1220,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#bdbdbd',
             'nucleic acid feature': '#bdbdbd',
             'perturbing agent': '#bdbdbd',
-            'source and sink': '#ffffff',
+            'empty set': '#ffffff',
             complex: '#d9d9d9',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1356,7 +1267,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#f0f0f0',
             'nucleic acid feature': '#f0f0f0',
             'perturbing agent': '#f0f0f0',
-            'source and sink': '#f0f0f0',
+            'empty set': '#f0f0f0',
             complex: '#d9d9d9',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1403,7 +1314,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#9ecae1',
             'nucleic acid feature': '#9ecae1',
             'perturbing agent': '#9ecae1',
-            'source and sink': '#9ecae1',
+            'empty set': '#9ecae1',
             complex: '#c6dbef',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1450,7 +1361,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#eff3ff',
             'nucleic acid feature': '#eff3ff',
             'perturbing agent': '#eff3ff',
-            'source and sink': '#eff3ff',
+            'empty set': '#eff3ff',
             complex: '#c6dbef',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1497,7 +1408,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#92c5de',
             'nucleic acid feature': '#f4a582',
             'perturbing agent': '#f7f7f7',
-            'source and sink': '#f7f7f7',
+            'empty set': '#f7f7f7',
             complex: '#d1e5f0',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1544,7 +1455,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#f4a582',
             'nucleic acid feature': '#92c5de',
             'perturbing agent': '#f7f7f7',
-            'source and sink': '#f7f7f7',
+            'empty set': '#f7f7f7',
             complex: '#fddbc7',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1591,7 +1502,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#80cdc1',
             'nucleic acid feature': '#dfc27d',
             'perturbing agent': '#f5f5f5',
-            'source and sink': '#f5f5f5',
+            'empty set': '#f5f5f5',
             complex: '#c7eae5',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1638,7 +1549,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#dfc27d',
             'nucleic acid feature': '#80cdc1',
             'perturbing agent': '#f5f5f5',
-            'source and sink': '#f5f5f5',
+            'empty set': '#f5f5f5',
             complex: '#f6e8c3',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1685,7 +1596,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#b2abd2',
             'nucleic acid feature': '#fdb863',
             'perturbing agent': '#f7f7f7',
-            'source and sink': '#f7f7f7',
+            'empty set': '#f7f7f7',
             complex: '#d8daeb',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1732,7 +1643,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#fdb863',
             'nucleic acid feature': '#b2abd2',
             'perturbing agent': '#f7f7f7',
-            'source and sink': '#f7f7f7',
+            'empty set': '#f7f7f7',
             complex: '#fee0b6',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1779,7 +1690,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#c2a5cf',
             'nucleic acid feature': '#a6dba0',
             'perturbing agent': '#f7f7f7',
-            'source and sink': '#f7f7f7',
+            'empty set': '#f7f7f7',
             complex: '#e7d4e8',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1826,7 +1737,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#a6dba0',
             'nucleic acid feature': '#c2a5cf',
             'perturbing agent': '#f7f7f7',
-            'source and sink': '#f7f7f7',
+            'empty set': '#f7f7f7',
             complex: '#d9f0d3',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1873,7 +1784,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#f4a582',
             'nucleic acid feature': '#bababa',
             'perturbing agent': '#ffffff',
-            'source and sink': '#ffffff',
+            'empty set': '#ffffff',
             complex: '#fddbc7',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1920,7 +1831,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#bababa',
             'nucleic acid feature': '#f4a582',
             'perturbing agent': '#ffffff',
-            'source and sink': '#ffffff',
+            'empty set': '#ffffff',
             complex: '#e0e0e0',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -1966,7 +1877,7 @@ appUtilities.mapColorSchemes = mapColorSchemes = {
             macromolecule: '#ffffff',
             'nucleic acid feature': '#ffffff',
             'perturbing agent': '#ffffff',
-            'source and sink': '#ffffff',
+            'empty set': '#ffffff',
             complex: '#ffffff',
             process: '#ffffff',
             'omitted process': '#ffffff',
@@ -2034,17 +1945,12 @@ appUtilities.mapEleClassToId = function (eles, classMap) {
 // not have a default background image.
 // classMap is of the form: {ele.data().class: value}
 // return object of the form: {ele.id: value}
-appUtilities.mapEleClassToBackgroundImage = function (
-    eles,
-    classMap,
-    scheme_type
-) {
+appUtilities.mapEleClassToBackgroundImage = function (eles, classMap, scheme_type) {
     result = {};
     if (scheme_type == 'gradient') {
         for (var i = 0; i < eles.length; i++) {
             ele = eles[i];
-            result[ele.id()] =
-                colorCodeToGradientImage[classMap[ele.data().class]];
+            result[ele.id()] = colorCodeToGradientImage[classMap[ele.data().class]];
         }
     } else if (scheme_type == '3D') {
         for (var i = 0; i < eles.length; i++) {
@@ -2065,12 +1971,7 @@ appUtilities.mapBgImgCoverToEle = function () {
 };
 
 // use this function to change the global style of the map by applying the current color scheme
-appUtilities.applyMapColorScheme = function (
-    newColorScheme,
-    scheme_type,
-    self,
-    _cy
-) {
+appUtilities.applyMapColorScheme = function (newColorScheme, scheme_type, self, _cy) {
     var actions = appUtilities.getActionsToApplyMapColorScheme(
         newColorScheme,
         scheme_type,
@@ -2082,21 +1983,22 @@ appUtilities.applyMapColorScheme = function (
 };
 
 // get the actions required to change the global style of the map by applying the current color scheme
-appUtilities.getActionsToApplyMapColorScheme = function (
-    newColorScheme,
-    scheme_type,
-    self,
-    _cy
-) {
+appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_type, self, _cy) {
     // if _cy param is set use it else use the recently active cy instance
     var cy = _cy || appUtilities.getActiveCy();
     var eles = cy.nodes();
 
+    var mapIdToValue = function (eles, value) {
+        result = {};
+        for (var i = 0; i < eles.length; i++) {
+            ele = eles[i];
+            result[ele.id()] = value;
+        }
+        return result;
+    };
+
     if (scheme_type == 'solid') {
-        var idMap = appUtilities.mapEleClassToId(
-            eles,
-            mapColorSchemes[newColorScheme]['values']
-        );
+        var idMap = appUtilities.mapEleClassToId(eles, mapColorSchemes[newColorScheme]['values']);
         var collapsedChildren = cy
             .expandCollapse('get')
             .getAllCollapsedChildrenRecursively()
@@ -2107,76 +2009,128 @@ appUtilities.getActionsToApplyMapColorScheme = function (
         );
         var chiseInstance = appUtilities.getActiveChiseInstance();
 
-        var clearBgImg = function (eles) {
-            result = {};
-            for (var i = 0; i < eles.length; i++) {
-                ele = eles[i];
-                result[ele.id()] = '';
-            }
-            return result;
-        };
-
         var actions = [];
 
         // first clear the background images of already present elements
         actions.push({
             name: 'changeData',
-            param: {
-                eles: eles,
-                name: 'background-image',
-                valueMap: clearBgImg(eles),
-            },
+            param: { eles: eles, name: 'background-image', valueMap: mapIdToValue(eles, '') },
         });
-        // edit style of the current map elements
         actions.push({
             name: 'changeData',
-            param: {eles: eles, name: 'background-color', valueMap: idMap},
+            param: { eles: eles, name: 'background-fit', valueMap: mapIdToValue(eles, '') },
         });
+        actions.push({
+            name: 'changeData',
+            param: { eles: eles, name: 'background-position-x', valueMap: mapIdToValue(eles, '') },
+        });
+        actions.push({
+            name: 'changeData',
+            param: { eles: eles, name: 'background-position-y', valueMap: mapIdToValue(eles, '') },
+        });
+        actions.push({
+            name: 'changeData',
+            param: { eles: eles, name: 'background-width', valueMap: mapIdToValue(eles, '') },
+        });
+        actions.push({
+            name: 'changeData',
+            param: { eles: eles, name: 'background-height', valueMap: mapIdToValue(eles, '') },
+        });
+        actions.push({
+            name: 'changeData',
+            param: {
+                eles: eles,
+                name: 'background-image-opacity',
+                valueMap: mapIdToValue(eles, ''),
+            },
+        });
+
+        // edit style of the current map elements, in solid scheme just change background-color
+        actions.push({
+            name: 'changeData',
+            param: { eles: eles, name: 'background-color', valueMap: idMap },
+        });
+
         // first clear the background images of already present collapsed elements
         actions.push({
             name: 'changeDataDirty',
             param: {
                 eles: collapsedChildren,
                 name: 'background-image',
-                valueMap: clearBgImg(collapsedChildren),
+                valueMap: mapIdToValue(collapsedChildren, ''),
             },
         });
-        // collapsed nodes' style should also be changed, special edge case
         actions.push({
             name: 'changeDataDirty',
             param: {
                 eles: collapsedChildren,
-                name: 'background-color',
-                valueMap: collapsedIdMap,
+                name: 'background-fit',
+                valueMap: mapIdToValue(collapsedChildren, ''),
             },
         });
+        actions.push({
+            name: 'changeDataDirty',
+            param: {
+                eles: collapsedChildren,
+                name: 'background-position-x',
+                valueMap: mapIdToValue(collapsedChildren, ''),
+            },
+        });
+        actions.push({
+            name: 'changeDataDirty',
+            param: {
+                eles: collapsedChildren,
+                name: 'background-position-y',
+                valueMap: mapIdToValue(collapsedChildren, ''),
+            },
+        });
+        actions.push({
+            name: 'changeDataDirty',
+            param: {
+                eles: collapsedChildren,
+                name: 'background-width',
+                valueMap: mapIdToValue(collapsedChildren, ''),
+            },
+        });
+        actions.push({
+            name: 'changeDataDirty',
+            param: {
+                eles: collapsedChildren,
+                name: 'background-height',
+                valueMap: mapIdToValue(collapsedChildren, ''),
+            },
+        });
+        actions.push({
+            name: 'changeDataDirty',
+            param: {
+                eles: collapsedChildren,
+                name: 'background-image-opacity',
+                valueMap: mapIdToValue(collapsedChildren, ''),
+            },
+        });
+
+        // collapsed nodes' style should also be changed, special edge case
+        actions.push({
+            name: 'changeDataDirty',
+            param: { eles: collapsedChildren, name: 'background-color', valueMap: collapsedIdMap },
+        });
+
         // if background-image isn't deleted from css, it is shown as soon as the node is expanded until the end of animation
         actions.push({
             name: 'changeCss',
-            param: {
-                eles: collapsedChildren,
-                name: 'background-image',
-                valueMap: '',
-            },
+            param: { eles: collapsedChildren, name: 'background-image', valueMap: '' },
         });
 
         actions.push({
             name: 'refreshColorSchemeMenu',
-            param: {
-                value: newColorScheme,
-                self: self,
-                scheme_type: scheme_type,
-            },
+            param: { value: newColorScheme, self: self, scheme_type: scheme_type },
         });
 
         // set to be the default as well
         for (var nodeClass in mapColorSchemes[newColorScheme]['values']) {
             classBgColor = mapColorSchemes[newColorScheme]['values'][nodeClass];
             // nodeClass may not be defined in the defaultProperties (for edges, for example)
-            if (
-                nodeClass in
-                chiseInstance.elementUtilities.getDefaultProperties()
-            ) {
+            if (nodeClass in chiseInstance.elementUtilities.getDefaultProperties()) {
                 actions.push({
                     name: 'setDefaultProperty',
                     param: {
@@ -2227,11 +2181,11 @@ appUtilities.getActionsToApplyMapColorScheme = function (
                 });
                 actions.push({
                     name: 'setDefaultProperty',
-                    param: {
-                        class: nodeClass,
-                        name: 'background-height',
-                        value: '',
-                    },
+                    param: { class: nodeClass, name: 'background-height', value: '' },
+                });
+                actions.push({
+                    name: 'setDefaultProperty',
+                    param: { class: nodeClass, name: 'background-image-opacity', value: '' },
                 });
             }
         }
@@ -2256,12 +2210,11 @@ appUtilities.getActionsToApplyMapColorScheme = function (
             collapsedChildren,
             mapColorSchemes[newColorScheme]['values']
         );
-        var collapsedBackgroundImgMap =
-            appUtilities.mapEleClassToBackgroundImage(
-                collapsedChildren,
-                mapColorSchemes[newColorScheme]['values'],
-                scheme_type
-            );
+        var collapsedBackgroundImgMap = appUtilities.mapEleClassToBackgroundImage(
+            collapsedChildren,
+            mapColorSchemes[newColorScheme]['values'],
+            scheme_type
+        );
         var chiseInstance = appUtilities.getActiveChiseInstance();
 
         //utility functions to set background image Properties
@@ -2343,6 +2296,14 @@ appUtilities.getActionsToApplyMapColorScheme = function (
                 valueMap: mapPercentToPosition(eles, 100),
             },
         });
+        actions.push({
+            name: 'changeData',
+            param: {
+                eles: eles,
+                name: 'background-image-opacity',
+                valueMap: mapIdToValue(eles, '1'),
+            },
+        });
 
         // collapsed nodes' style should also be changed, special edge case
         actions.push({
@@ -2401,6 +2362,14 @@ appUtilities.getActionsToApplyMapColorScheme = function (
                 valueMap: mapPercentToPosition(collapsedChildren, 100),
             },
         });
+        actions.push({
+            name: 'changeDataDirty',
+            param: {
+                eles: collapsedChildren,
+                name: 'background-image-opacity',
+                valueMap: mapIdToValue(eles, '1'),
+            },
+        });
         // if background-image isn't brought back into css, it isn't shown as soon as the node is expanded until the end of animation
         // the reason of for loop is that changeCss function cannot find collapsed nodes if valueMap is an object, but it works if it is a string
         for (var i = 0; i < collapsedChildren.length; i++) {
@@ -2409,8 +2378,7 @@ appUtilities.getActionsToApplyMapColorScheme = function (
                 param: {
                     eles: collapsedChildren[i],
                     name: 'background-image',
-                    valueMap:
-                        collapsedBackgroundImgMap[collapsedChildren[i].id()],
+                    valueMap: collapsedBackgroundImgMap[collapsedChildren[i].id()],
                 },
             });
         }
@@ -2429,17 +2397,10 @@ appUtilities.getActionsToApplyMapColorScheme = function (
             classBgColor = mapColorSchemes[newColorScheme]['values'][nodeClass];
             classBgImg =
                 scheme_type == 'gradient'
-                    ? colorCodeToGradientImage[
-                        mapColorSchemes[newColorScheme]['values'][nodeClass]
-                        ]
-                    : colorCodeTo3DImage[
-                        mapColorSchemes[newColorScheme]['values'][nodeClass]
-                        ];
+                    ? colorCodeToGradientImage[mapColorSchemes[newColorScheme]['values'][nodeClass]]
+                    : colorCodeTo3DImage[mapColorSchemes[newColorScheme]['values'][nodeClass]];
             // nodeClass may not be defined in the defaultProperties (for edges, for example)
-            if (
-                nodeClass in
-                chiseInstance.elementUtilities.getDefaultProperties()
-            ) {
+            if (nodeClass in chiseInstance.elementUtilities.getDefaultProperties()) {
                 actions.push({
                     name: 'setDefaultProperty',
                     param: {
@@ -2490,11 +2451,11 @@ appUtilities.getActionsToApplyMapColorScheme = function (
                 });
                 actions.push({
                     name: 'setDefaultProperty',
-                    param: {
-                        class: nodeClass,
-                        name: 'background-height',
-                        value: '100%',
-                    },
+                    param: { class: nodeClass, name: 'background-height', value: '100%' },
+                });
+                actions.push({
+                    name: 'setDefaultProperty',
+                    param: { class: nodeClass, name: 'background-image-opacity', value: '1' },
                 });
             }
         }
@@ -2506,7 +2467,7 @@ appUtilities.getActionsToApplyMapColorScheme = function (
 // the 3 following functions are related to the handling of the dynamic image
 // used during drag and drop of palette nodes
 appUtilities.dragImageMouseMoveHandler = function (e) {
-    $('#drag-image').css({left: e.pageX, top: e.pageY});
+    $('#drag-image').css({ left: e.pageX, top: e.pageY });
 };
 
 // get drag image for the given html value
@@ -2519,7 +2480,7 @@ appUtilities.getDragImagePath = function (htmlValue) {
     };
 
     var imgName = imgNameMap[htmlValue] || htmlValue;
-    var imgPath = 'img/nodes/' + imgName + '.svg';
+    var imgPath = 'app/img/nodes/' + imgName + '.svg';
 
     return imgPath;
 };
@@ -2551,8 +2512,7 @@ appUtilities.getAllStyles = function (_cy, _nodes, _edges) {
     var nodes = _nodes || cy.nodes();
     var edges = _edges || cy.edges();
 
-    var collapsedChildren =
-        elementUtilities.getAllCollapsedChildrenRecursively(nodes);
+    var collapsedChildren = elementUtilities.getAllCollapsedChildrenRecursively(nodes);
     var collapsedChildrenNodes = collapsedChildren.filter('node');
     var allNodes = nodes.union(collapsedChildrenNodes);
     var collapsedChildrenEdges = collapsedChildren.filter('edge');
@@ -2625,28 +2585,21 @@ appUtilities.getAllStyles = function (_cy, _nodes, _edges) {
         getFcn = _getFcn || getElementData;
         var props = {};
         for (var cssProp in properties) {
-            if (getFcn(member, cssProp)) {
+            if (getFcn(member, cssProp) !== undefined || getFcn(member, cssProp) !== null) {
                 //if it is a color property, replace it with corresponding id
                 if (
                     cssProp == 'background-color' ||
                     cssProp == 'border-color' ||
                     cssProp == 'line-color'
                 ) {
-                    var validColor = appUtilities.getValidColor(
-                        member,
-                        cssProp,
-                        getFcn
-                    );
+                    var validColor = appUtilities.getValidColor(member, cssProp, getFcn);
                     var colorID = colorUsed[validColor];
                     props[properties[cssProp]] = colorID;
                 }
                 //if it is background image property, replace it with corresponding id
                 else if (cssProp == 'background-image') {
                     var imgs = appUtilities.getValidImages(member);
-                    props[properties[cssProp]] = appUtilities.getValidImageIDs(
-                        imgs,
-                        imagesUsed
-                    );
+                    props[properties[cssProp]] = appUtilities.getValidImageIDs(imgs, imagesUsed);
                 } else {
                     props[properties[cssProp]] = getFcn(member, cssProp);
                 }
@@ -2666,16 +2619,10 @@ appUtilities.getAllStyles = function (_cy, _nodes, _edges) {
         for (var i = 0; i < list.length; i++) {
             // a member is either an element or infobox
             var member = list[i];
-            var styleKey =
-                getKeyPrefix(type) +
-                getStyleHash(member, propertiesToXml, getFcn);
+            var styleKey = getKeyPrefix(type) + getStyleHash(member, propertiesToXml, getFcn);
             if (!styles.hasOwnProperty(styleKey)) {
                 // new style encountered, init this new style
-                var properties = getStyleProperties(
-                    member,
-                    propertiesToXml,
-                    getFcn
-                );
+                var properties = getStyleProperties(member, propertiesToXml, getFcn);
                 styles[styleKey] = {
                     idList: [],
                     properties: properties,
@@ -2688,11 +2635,7 @@ appUtilities.getAllStyles = function (_cy, _nodes, _edges) {
 
             if (type === 'node') {
                 var infoboxes = member.data('statesandinfos');
-                populateStyleStructure(
-                    infoboxes,
-                    infoboxPropertiesToXml,
-                    'infobox'
-                );
+                populateStyleStructure(infoboxes, infoboxPropertiesToXml, 'infobox');
             }
         }
     }
@@ -2847,10 +2790,7 @@ appUtilities.setMapProperties = function (mapProperties, _chiseInstance) {
     var cy = chiseInstance.getCy();
 
     // get current general properties for cy
-    var currentGeneralProperties = appUtilities.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
     for (property in mapProperties) {
         var value = mapProperties[property];
@@ -2873,22 +2813,17 @@ appUtilities.setMapProperties = function (mapProperties, _chiseInstance) {
     //setMapProperties function is called in sbgnvizLoadFileEnd sbgnvizLoadSampleEnd
     //event handler
 
-    if (
-        'highlightColor' in mapProperties &&
-        'extraHighlightThickness' in mapProperties
-    ) {
+    if ('highlightColor' in mapProperties && 'extraHighlightThickness' in mapProperties) {
         var viewUtilities = cy.viewUtilities('get');
         var highlightColor = currentGeneralProperties.highlightColor[0];
-        var extraHighlightThickness =
-            currentGeneralProperties.extraHighlightThickness;
+        var extraHighlightThickness = currentGeneralProperties.extraHighlightThickness;
 
         viewUtilities.changeHighlightStyle(
             0,
             {
                 'border-width': function (ele) {
                     return Math.max(
-                        parseFloat(ele.data('border-width')) +
-                        extraHighlightThickness,
+                        parseFloat(ele.data('border-width')) + extraHighlightThickness,
                         3
                     );
                 },
@@ -2896,12 +2831,11 @@ appUtilities.setMapProperties = function (mapProperties, _chiseInstance) {
             },
             {
                 width: function (ele) {
-                    return Math.max(
-                        parseFloat(ele.data('width')) + extraHighlightThickness,
-                        3
-                    );
+                    return Math.max(parseFloat(ele.data('width')) + extraHighlightThickness, 3);
                 },
                 'line-color': highlightColor,
+                color: highlightColor,
+                'text-border-color': highlightColor,
                 'source-arrow-color': highlightColor,
                 'target-arrow-color': highlightColor,
             }
@@ -2928,11 +2862,7 @@ appUtilities.setMapProperties = function (mapProperties, _chiseInstance) {
     }
 
     // reset 'currentGeneralProperties' on scratchpad of cy
-    appUtilities.setScratch(
-        cy,
-        'currentGeneralProperties',
-        currentGeneralProperties
-    );
+    appUtilities.setScratch(cy, 'currentGeneralProperties', currentGeneralProperties);
 
     // use the panel id as the network key
     var networkKey = cy.container().id;
@@ -2973,19 +2903,18 @@ appUtilities.launchWithModelFile = function () {
     var promptInvalidURIWarning = this.promptInvalidURIWarning;
     var promptInvalidURLWarning = this.promptInvalidURLWarning;
 
-    if (url_path != undefined)
-        loadFromURL(url_path, chiseInstance, promptInvalidURLWarning);
-    else if (uri_path != undefined)
-        loadFromURI(uri_path, chiseInstance, promptInvalidURIWarning);
-
-    // else tutorial.introduction(true);
+    if (url_path != undefined) loadFromURL(url_path, chiseInstance, promptInvalidURLWarning);
+    else if (uri_path != undefined) loadFromURI(uri_path, chiseInstance, promptInvalidURIWarning);
+    else tutorial.introduction(true);
 
     function loadFromURL(filepath, chiseInstance, promptInvalidURLWarning) {
+        chiseInstance.startSpinner('paths-byURL-spinner');
+
         var loadCallbackSBGNMLValidity = function (text) {
             $.ajax({
                 type: 'post',
                 url: '/utilities/validateSBGNML',
-                data: {sbgnml: text},
+                data: { sbgnml: text },
                 success: function (data) {
                     if (data.length == 0) {
                         console.log('Xsd validation OK');
@@ -3020,57 +2949,94 @@ appUtilities.launchWithModelFile = function () {
         $.ajax({
             type: 'get',
             url: '/utilities/testURL',
-            data: {url: filepath},
-            success: function (data) {
+            data: { url: filepath },
+            success: async function (data) {
                 // here we can get 404 as well, for example, so there are still error cases to handle
-                if (
-                    !data.error &&
-                    data.response.statusCode == 200 &&
-                    data.response.body
-                ) {
-                    $(document).trigger('sbgnvizLoadFromURL', [
-                        filename,
-                        cyInstance,
-                    ]);
-                    var fileToLoad = new File([data.response.body], filename, {
+                if (!data.error && data.response.statusCode == 200 && data.response.body) {
+                    $(document).trigger('sbgnvizLoadFromURL', [filename, cyInstance]);
+                    const fileContents = data.response.body;
+                    const file = new File([fileContents], filename, {
                         type: 'text/' + fileExtension,
                         lastModified: Date.now(),
                     });
 
-                    if (
-                        fileExtension === 'xml' ||
-                        fileExtension === 'xml#' ||
-                        fileExtension === 'sbml' ||
-                        fileExtension === 'sbml#'
-                    ) {
-                        chiseInstance.loadSbml(
-                            fileToLoad,
-                            (success = function (data) {
-                                var cy = appUtilities.getActiveCy();
-                                if (cy.elements().length !== 0) {
-                                    promptConfirmationView.render(function () {
+                    const xmlObject = chiseInstance.textToXmlObject(fileContents);
+
+                    if (fileExtension === 'sif') {
+                        var loadFcn = function () {
+                            var layoutBy = function () {
+                                appUtilities.triggerLayout(cyInstance, true);
+                            };
+                            chiseInstance.loadSIFFile(
+                                file,
+                                layoutBy,
+                                loadCallbackInvalidityWarning
+                            );
+                        };
+                        if (cyInstance.elements().length != 0)
+                            promptConfirmationView.render(loadFcn);
+                        else loadFcn();
+                    } else if (fileExtension === 'xml' || fileExtension === 'sbml') {
+                        // CD file
+                        if (xmlObject.children.item(0).getAttribute('xmlns:celldesigner')) {
+                            chiseInstance.loadCellDesigner(
+                                file,
+                                (success = function (data) {
+                                    if (cyInstance.elements().length !== 0) {
+                                        promptConfirmationView.render(function () {
+                                            chiseInstance.loadSBGNMLText(
+                                                data,
+                                                false,
+                                                filename,
+                                                cy,
+                                                paramObj
+                                            );
+                                            chiseInstance.endSpinner('paths-byURL-spinner');
+                                        });
+                                    } else {
                                         chiseInstance.loadSBGNMLText(
+                                            data,
+                                            false,
+                                            filename,
+                                            cy,
+                                            paramObj
+                                        );
+                                        chiseInstance.endSpinner('paths-byURL-spinner');
+                                    }
+                                })
+                            );
+                        } else {
+                            // sbml file
+                            await chiseInstance.loadSbml(
+                                file,
+                                (success = async function (data) {
+                                    if (cyInstance.elements().length !== 0) {
+                                        await promptConfirmationView.render(async function () {
+                                            await chiseInstance.loadSBGNMLText(
+                                                data.message,
+                                                false,
+                                                filename,
+                                                cy,
+                                                paramObj
+                                            );
+                                        });
+                                        chiseInstance.endSpinner('paths-byURL-spinner');
+                                    } else {
+                                        await chiseInstance.loadSBGNMLText(
                                             data.message,
                                             false,
                                             filename,
                                             cy,
                                             paramObj
                                         );
-                                    });
-                                } else {
-                                    chiseInstance.loadSBGNMLText(
-                                        data.message,
-                                        false,
-                                        filename,
-                                        cy,
-                                        paramObj
-                                    );
-                                }
-                            })
-                        );
+                                        chiseInstance.endSpinner('paths-byURL-spinner');
+                                    }
+                                })
+                            );
+                        }
                     } else {
                         chiseInstance.loadNwtFile(
-                            fileToLoad,
+                            file,
                             loadCallbackSBGNMLValidity,
                             loadCallbackInvalidityWarning,
                             paramObj
@@ -3082,13 +3048,13 @@ appUtilities.launchWithModelFile = function () {
             },
             error: function (xhr, options, err) {
                 loadCallbackInvalidityWarning();
+                chiseInstance.endSpinner('paths-byURL-spinner');
             },
         });
     }
 
     function loadFromURI(uri, chiseInstance, promptInvalidURIWarning) {
-        var queryURL =
-            'http://www.pathwaycommons.org/pc2/get?uri=' + uri + '&format=SBGN';
+        var queryURL = 'http://www.pathwaycommons.org/pc2/get?uri=' + uri + '&format=SBGN';
 
         var filename = uri + '.nwt';
         var cyInstance = chiseInstance.getCy();
@@ -3103,29 +3069,20 @@ appUtilities.launchWithModelFile = function () {
         $.ajax({
             type: 'get',
             url: '/utilities/testURL',
-            data: {url: queryURL},
+            data: { url: queryURL },
             success: function (data) {
                 // here we can get 404 as well, for example, so there are still error cases to handle
                 if (data.response.statusCode == 200 && data.response.body) {
                     var xml = $.parseXML(data.response.body);
-                    $(document).trigger('sbgnvizLoadFile', [
-                        filename,
-                        cyInstance,
-                    ]);
-                    $(document).trigger('sbgnvizLoadFromURI', [
-                        filename,
-                        cyInstance,
-                    ]);
+                    $(document).trigger('sbgnvizLoadFile', [filename, cyInstance]);
+                    $(document).trigger('sbgnvizLoadFromURI', [filename, cyInstance]);
                     chiseInstance.updateGraph(
                         chiseInstance.convertSbgnmlToJson(xml, paramObj),
                         undefined,
                         currentLayoutProperties
                     );
                     chiseInstance.endSpinner('paths-byURI-spinner');
-                    $(document).trigger('sbgnvizLoadFileEnd', [
-                        filename,
-                        cyInstance,
-                    ]);
+                    $(document).trigger('sbgnvizLoadFileEnd', [filename, cyInstance]);
                 } else {
                     chiseInstance.endSpinner('paths-byURI-spinner');
                     promptInvalidURIWarning.render();
@@ -3147,19 +3104,16 @@ appUtilities.launchWithModelFile = function () {
         var queryParams = {};
         // Parse the query sting into an object please see:
         // https://stevenbenner.com/2010/03/javascript-regex-trick-parse-a-query-string-into-an-object/
-        url.replace(
-            new RegExp('([^?=&]+)(=([^&#]*))?', 'g'),
-            function ($0, name, $2, value) {
-                if (value !== undefined) {
-                    var lowerCaseName = name.toLowerCase();
-                    // for 'uri' and 'url' parameters provide case insensitivity by converting to lower case
-                    if (lowerCaseName === 'url' || lowerCaseName === 'uri') {
-                        name = lowerCaseName;
-                    }
-                    queryParams[name] = value;
+        url.replace(new RegExp('([^?=&]+)(=([^&#]*))?', 'g'), function ($0, name, $2, value) {
+            if (value !== undefined) {
+                var lowerCaseName = name.toLowerCase();
+                // for 'uri' and 'url' parameters provide case insensitivity by converting to lower case
+                if (lowerCaseName === 'url' || lowerCaseName === 'uri') {
+                    name = lowerCaseName;
                 }
+                queryParams[name] = value;
             }
-        );
+        });
 
         return queryParams;
     }
@@ -3176,11 +3130,8 @@ appUtilities.navigateToOtherEnd = function (edge, mouse_rend, mouse_normal) {
     var source_node = edge.source();
     var target_node = edge.target();
 
-    var source_position = {x: edge_pts[0], y: edge_pts[1]};
-    var target_position = {
-        x: edge_pts[edge_pts.length - 2],
-        y: edge_pts[edge_pts.length - 1],
-    };
+    var source_position = { x: edge_pts[0], y: edge_pts[1] };
+    var target_position = { x: edge_pts[edge_pts.length - 2], y: edge_pts[edge_pts.length - 1] };
 
     var source_loc =
         Math.pow(mouse_normal.x - source_position.x, 2) +
@@ -3241,12 +3192,11 @@ appUtilities.navigateToOtherEnd = function (edge, mouse_rend, mouse_normal) {
 
         cy.animate({
             duration: 1400,
-            panBy: {x: mouse_rend.x - rend_x, y: mouse_rend.y - rend_y},
+            panBy: { x: mouse_rend.x - rend_x, y: mouse_rend.y - rend_y },
             easing: 'ease',
             complete: function () {
                 finished--;
-                if (finished <= 0)
-                    (source_to_target ? target_node : source_node).select();
+                if (finished <= 0) (source_to_target ? target_node : source_node).select();
             },
         });
     }
@@ -3276,16 +3226,11 @@ appUtilities.relocateInfoBoxes = function (node) {
     relocatedNode = node;
 
     //Call undo-redo relocate function
-    cy.undoRedo().do('relocateInfoBoxes', {node});
+    cy.undoRedo().do('relocateInfoBoxes', { node });
 };
 
 //Checks whether a info-box is selected in a given mouse position
-appUtilities.checkMouseContainsInfoBox = function (
-    cy,
-    unit,
-    mouse_down_x,
-    mouse_down_y
-) {
+appUtilities.checkMouseContainsInfoBox = function (cy, unit, mouse_down_x, mouse_down_y) {
     var box = unit.bbox;
     var instance = this.getActiveSbgnvizInstance();
     var coords = instance.classes.AuxiliaryUnit.getAbsoluteCoord(unit, cy);
@@ -3323,17 +3268,11 @@ appUtilities.enableInfoBoxRelocation = function (node) {
             var containerHeight = $(cy.container()).height();
 
             //Get mouse positions
-            var mouse_down_x =
-                (event.pageX - containerPos.left - cy.pan().x) / cy.zoom();
-            var mouse_down_y =
-                (event.pageY - containerPos.top - cy.pan().y) / cy.zoom();
+            var mouse_down_x = (event.pageX - containerPos.left - cy.pan().x) / cy.zoom();
+            var mouse_down_y = (event.pageY - containerPos.top - cy.pan().y) / cy.zoom();
             var instance = appUtilities.getActiveSbgnvizInstance();
             var oldAnchorSide; //Hold old anchor side to modify units
-            for (
-                var i = 0;
-                i < statesandinfos.length && selectedBox === undefined;
-                i++
-            ) {
+            for (var i = 0; i < statesandinfos.length && selectedBox === undefined; i++) {
                 if (
                     appUtilities.checkMouseContainsInfoBox(
                         cy,
@@ -3408,17 +3347,13 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                         }
                         //If box is at margin points allow it to change anchor side
                         //If it on left it can pass left anchor side
-                        var absoluteCoords =
-                            instance.classes.AuxiliaryUnit.convertToAbsoluteCoord(
-                                selectedBox,
-                                selectedBox.bbox.x,
-                                selectedBox.bbox.y,
-                                cy
-                            ); //Get current absolute coords
-                        if (
-                            Number(absoluteCoords.x.toFixed(2)) ===
-                            Number(parentX1.toFixed(2))
-                        ) {
+                        var absoluteCoords = instance.classes.AuxiliaryUnit.convertToAbsoluteCoord(
+                            selectedBox,
+                            selectedBox.bbox.x,
+                            selectedBox.bbox.y,
+                            cy
+                        ); //Get current absolute coords
+                        if (Number(absoluteCoords.x.toFixed(2)) === Number(parentX1.toFixed(2))) {
                             //If it is on the left margin allow it to change anchor sides
                             //If it is in the top and mouse moves bottom it can go left anchor
                             if (last_mouse_y < drag_y && anchorSide === 'top') {
@@ -3432,10 +3367,7 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                                     );
                                 selectedBox.bbox.x = newRelativeCoords.x;
                                 selectedBox.bbox.y = newRelativeCoords.y;
-                            } else if (
-                                last_mouse_y > drag_y &&
-                                anchorSide === 'bottom'
-                            ) {
+                            } else if (last_mouse_y > drag_y && anchorSide === 'bottom') {
                                 //If it is in the bottom and mouse moves up it can go left anchor side
                                 selectedBox.anchorSide = 'left'; //Set new anchor side
                                 newRelativeCoords =
@@ -3451,8 +3383,7 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                         }
                         //If it on right it can pass right anchor side
                         else if (
-                            Number(absoluteCoords.x.toFixed(2)) ===
-                            Number(parentX2.toFixed(2))
+                            Number(absoluteCoords.x.toFixed(2)) === Number(parentX2.toFixed(2))
                         ) {
                             if (last_mouse_y < drag_y && anchorSide === 'top') {
                                 selectedBox.anchorSide = 'right'; //Set new anchor side
@@ -3465,10 +3396,7 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                                     );
                                 selectedBox.bbox.x = newRelativeCoords.x;
                                 selectedBox.bbox.y = newRelativeCoords.y;
-                            } else if (
-                                last_mouse_y > drag_y &&
-                                anchorSide === 'bottom'
-                            ) {
+                            } else if (last_mouse_y > drag_y && anchorSide === 'bottom') {
                                 //If it is in the bottom and mouse moves up it can go left anchor side
                                 selectedBox.anchorSide = 'right'; //Set new anchor side
                                 newRelativeCoords =
@@ -3507,24 +3435,17 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                             selectedBox.bbox.y = newRelativeCoords.y;
                         }
 
-                        var absoluteCoords =
-                            instance.classes.AuxiliaryUnit.convertToAbsoluteCoord(
-                                selectedBox,
-                                selectedBox.bbox.x,
-                                selectedBox.bbox.y,
-                                cy
-                            );
+                        var absoluteCoords = instance.classes.AuxiliaryUnit.convertToAbsoluteCoord(
+                            selectedBox,
+                            selectedBox.bbox.x,
+                            selectedBox.bbox.y,
+                            cy
+                        );
                         //Set anchor side changes
-                        if (
-                            Number(absoluteCoords.y.toFixed(2)) ===
-                            Number(parentY1.toFixed(2))
-                        ) {
+                        if (Number(absoluteCoords.y.toFixed(2)) === Number(parentY1.toFixed(2))) {
                             //If it is on the top margin allow it to change anchor sides
                             //If it is in the top and mouse moves bottom it can go left anchor
-                            if (
-                                last_mouse_x < drag_x &&
-                                anchorSide === 'left'
-                            ) {
+                            if (last_mouse_x < drag_x && anchorSide === 'left') {
                                 selectedBox.anchorSide = 'top'; //Set new anchor side
                                 newRelativeCoords =
                                     instance.classes.AuxiliaryUnit.convertToRelativeCoord(
@@ -3535,10 +3456,7 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                                     );
                                 selectedBox.bbox.x = newRelativeCoords.x;
                                 selectedBox.bbox.y = newRelativeCoords.y;
-                            } else if (
-                                last_mouse_x > drag_x &&
-                                anchorSide === 'right'
-                            ) {
+                            } else if (last_mouse_x > drag_x && anchorSide === 'right') {
                                 //If it is in the right and mouse moves up it can go top anchor side
                                 selectedBox.anchorSide = 'top'; //Set new anchor side
                                 newRelativeCoords =
@@ -3554,13 +3472,9 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                         }
                         //If it on right it can pass right anchor side
                         else if (
-                            Number(absoluteCoords.y.toFixed(2)) ===
-                            Number(parentY2.toFixed(2))
+                            Number(absoluteCoords.y.toFixed(2)) === Number(parentY2.toFixed(2))
                         ) {
-                            if (
-                                last_mouse_x < drag_x &&
-                                anchorSide === 'left'
-                            ) {
+                            if (last_mouse_x < drag_x && anchorSide === 'left') {
                                 selectedBox.anchorSide = 'bottom'; //Set new anchor side
                                 newRelativeCoords =
                                     instance.classes.AuxiliaryUnit.convertToRelativeCoord(
@@ -3571,10 +3485,7 @@ appUtilities.enableInfoBoxRelocation = function (node) {
                                     );
                                 selectedBox.bbox.x = newRelativeCoords.x;
                                 selectedBox.bbox.y = newRelativeCoords.y;
-                            } else if (
-                                last_mouse_x > drag_x &&
-                                anchorSide === 'right'
-                            ) {
+                            } else if (last_mouse_x > drag_x && anchorSide === 'right') {
                                 //If it is in the bottom and mouse moves up it can go left anchor side
                                 selectedBox.anchorSide = 'bottom'; //Set new anchor side
                                 newRelativeCoords =
@@ -3622,10 +3533,7 @@ appUtilities.getDefaultEmptyInfoboxObj = function (type) {
     var cy = appUtilities.getActiveCy();
 
     // access current general properties for active instance
-    var currentGeneralProperties = appUtilities.getScratch(
-        cy,
-        'currentGeneralProperties'
-    );
+    var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
 
     var obj = {};
     obj.clazz = type;
@@ -3693,12 +3601,10 @@ appUtilities.resizeNodesToContent = function (nodes) {
     }
 
     if (!chiseInstance.areCompoundSizesConsidered()) {
-        collection = collection.difference(
-            ":parent,[class*='compartment'],[class*='submap']"
-        );
+        collection = collection.difference(":parent,[class*='compartment'],[class*='submap']");
     }
     chiseInstance.resizeNodesToContent(collection, false);
-    cy.nodeResize('get').refreshGrapples();
+    cy.nodeEditing('get').refreshGrapples();
     cy.expandCollapse('get').clearVisualCue();
     // To redraw expand/collapse cue after resize to content
     if (
@@ -3753,5 +3659,14 @@ appUtilities.transformClassInfo = function (classInfo) {
 // appUtilities.hideExperiments = function(){
 //   console.log("inapputil");
 // }
+
+// unselect all elements and then select all elements with
+// sbgn class matching the given element
+appUtilities.selectAllElementsOfSameType = function (ele) {
+    var cy = appUtilities.getActiveCy();
+    var sbgnclass = ele.data('class');
+    cy.elements().unselect();
+    cy.elements('[class="' + sbgnclass + '"]').select();
+};
 
 module.exports = appUtilities;
