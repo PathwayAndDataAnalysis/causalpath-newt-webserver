@@ -20,13 +20,7 @@ inspectorUtilities.updateInputBoxesFromSet = function (
 	}
 
 	var callback = function () {
-		inspectorUtilities.updateInputBoxesFromSet(
-			ele,
-			fieldName,
-			parentSelector,
-			subId,
-			width
-		);
+		inspectorUtilities.updateInputBoxesFromSet(ele, fieldName, parentSelector, subId, width);
 	};
 
 	var chiseInstance = appUtilities.getActiveChiseInstance();
@@ -64,7 +58,7 @@ inspectorUtilities.updateInputBoxesFromSet = function (
 				delId +
 				"'" +
 				" class='pointer-button'" +
-				" src='img/toolbar/delete-simple.svg'" +
+				" src='app/img/toolbar/delete-simple.svg'" +
 				'>' +
 				'</img>';
 
@@ -76,13 +70,7 @@ inspectorUtilities.updateInputBoxesFromSet = function (
 				.unbind('click')
 				.click(function (event) {
 					var oldVal = key;
-					chiseInstance.updateSetField(
-						ele,
-						fieldName,
-						oldVal,
-						null,
-						callback
-					);
+					chiseInstance.updateSetField(ele, fieldName, oldVal, null, callback);
 				});
 
 			$('#' + id)
@@ -90,13 +78,7 @@ inspectorUtilities.updateInputBoxesFromSet = function (
 				.on('change', function () {
 					var oldVal = key;
 					var newVal = $(this).val();
-					chiseInstance.updateSetField(
-						ele,
-						fieldName,
-						oldVal,
-						newVal,
-						callback
-					);
+					chiseInstance.updateSetField(ele, fieldName, oldVal, newVal, callback);
 				});
 		})(key, i);
 	});
@@ -104,8 +86,8 @@ inspectorUtilities.updateInputBoxesFromSet = function (
 	var addId = 'inspector-add-' + subId;
 	parentComponent.append(
 		"<img width='16px' height='16px' id='" +
-			addId +
-			"' src='img/add.svg' class='pointer-button'/>"
+		addId +
+		"' src='app/img/add.svg' class='pointer-button'/>"
 	);
 
 	$('#' + addId)
@@ -135,11 +117,7 @@ inspectorUtilities.updateSiteLocations = function (ele, width) {
 	);
 };
 
-inspectorUtilities.fillInspectorStateAndInfos = function (
-	nodes,
-	stateAndInfos,
-	width
-) {
+inspectorUtilities.fillInspectorStateAndInfos = function (nodes, stateAndInfos, width) {
 	// use the active chise instance
 	var chiseInstance = appUtilities.getActiveChiseInstance();
 
@@ -178,50 +156,40 @@ inspectorUtilities.fillInspectorStateAndInfos = function (
 			if (state.clazz == 'state variable') {
 				$('#inspector-state-variables').append(
 					'<div>' +
-						// state variable - value
-						"<input type='text' id='inspector-state-variable-value" +
-						i +
-						"' class='inspector-input-box' style='width: " +
-						width / 5 +
-						"px;' value='" +
-						sanitizeInfoboxVal(state.state.value) +
-						"'/>" +
-						"<span style='font: 10pt Helvetica;'>@</span>" +
-						// state variable - variable
-						"<input type='text' id='inspector-state-variable-variable" +
-						i +
-						"' class='inspector-input-box' style='width: " +
-						width / 2.5 +
-						"px;' value='" +
-						sanitizeInfoboxVal(state.state.variable) +
-						"'/>" +
-						getInfoboxDetailsBtnHtml(i) +
-						"<img width='16px' height='16px' id='inspector-delete-state-and-info" +
-						i +
-						"' class='pointer-button' src='img/toolbar/delete-simple.svg'></img>" +
-						'</div>'
+					// state variable - value
+					"<input type='text' id='inspector-state-variable-value" +
+					i +
+					"' class='inspector-input-box' style='width: " +
+					width / 5 +
+					"px;' value='" +
+					sanitizeInfoboxVal(state.state.value) +
+					"'/>" +
+					"<span style='font: 10pt Helvetica;'>@</span>" +
+					// state variable - variable
+					"<input type='text' id='inspector-state-variable-variable" +
+					i +
+					"' class='inspector-input-box' style='width: " +
+					width / 2.5 +
+					"px;' value='" +
+					sanitizeInfoboxVal(state.state.variable) +
+					"'/>" +
+					getInfoboxDetailsBtnHtml(i) +
+					"<img width='16px' height='16px' id='inspector-delete-state-and-info" +
+					i +
+					"' class='pointer-button' src='app/img/toolbar/delete-simple.svg'></img>" +
+					'</div>'
 				);
 
 				$('#inspector-state-variable-value' + i)
 					.unbind('change')
 					.on('change', function () {
-						chiseInstance.changeStateOrInfoBox(
-							nodes,
-							i,
-							$(this).val(),
-							'value'
-						);
+						chiseInstance.changeStateOrInfoBox(nodes, i, $(this).val(), 'value');
 					});
 
 				$('#inspector-state-variable-variable' + i)
 					.unbind('change')
 					.on('change', function () {
-						chiseInstance.changeStateOrInfoBox(
-							nodes,
-							i,
-							$(this).val(),
-							'variable'
-						);
+						chiseInstance.changeStateOrInfoBox(nodes, i, $(this).val(), 'variable');
 					});
 			} else if (state.clazz == 'unit of information') {
 				var total = 0.6 * width + get_text_width('@', '10pt Helvetica');
@@ -237,15 +205,11 @@ inspectorUtilities.fillInspectorStateAndInfos = function (
 
 				uioHtml += getInfoboxDetailsBtnHtml(i);
 
-				if (
-					chiseInstance.elementUtilities.canHaveMultipleUnitOfInformation(
-						nodes
-					)
-				) {
+				if (chiseInstance.elementUtilities.canHaveMultipleUnitOfInformation(nodes)) {
 					uioHtml +=
 						"<img width='16px' height='16px' id='inspector-delete-state-and-info" +
 						i +
-						"' class='pointer-button' src='img/toolbar/delete-simple.svg'></img>";
+						"' class='pointer-button' src='app/img/toolbar/delete-simple.svg'></img>";
 				}
 
 				uioHtml += '</div>';
@@ -255,11 +219,7 @@ inspectorUtilities.fillInspectorStateAndInfos = function (
 				$('#inspector-unit-of-information-label' + i)
 					.unbind('change')
 					.on('change', function () {
-						chiseInstance.changeStateOrInfoBox(
-							nodes[0],
-							i,
-							$(this).val()
-						);
+						chiseInstance.changeStateOrInfoBox(nodes[0], i, $(this).val());
 					});
 			}
 
@@ -278,14 +238,12 @@ inspectorUtilities.fillInspectorStateAndInfos = function (
 		})(i);
 	}
 	$('#inspector-state-variables').append(
-		"<img width='16px' height='16px' id='inspector-add-state-variable' src='img/add.svg' class='pointer-button'/>"
+		"<img width='16px' height='16px' id='inspector-add-state-variable' src='app/img/add.svg' class='pointer-button'/>"
 	);
 
-	if (
-		chiseInstance.elementUtilities.canHaveMultipleUnitOfInformation(nodes)
-	) {
+	if (chiseInstance.elementUtilities.canHaveMultipleUnitOfInformation(nodes)) {
 		$('#inspector-unit-of-informations').append(
-			"<img width='16px' height='16px' id='inspector-add-unit-of-information' src='img/add.svg' class='pointer-button'/>"
+			"<img width='16px' height='16px' id='inspector-add-unit-of-information' src='app/img/add.svg' class='pointer-button'/>"
 		);
 	}
 	$('#inspector-add-state-variable').click(function () {
@@ -320,18 +278,12 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 	var width = $('#sbgn-inspector').width() * 0.45;
 
-	var allNodes = chiseInstance.elementUtilities.trueForAllElements(
-		selectedEles,
-		function (ele) {
-			return ele.isNode();
-		}
-	);
-	var allEdges = chiseInstance.elementUtilities.trueForAllElements(
-		selectedEles,
-		function (ele) {
-			return ele.isEdge();
-		}
-	);
+	var allNodes = chiseInstance.elementUtilities.trueForAllElements(selectedEles, function (ele) {
+		return ele.isNode();
+	});
+	var allEdges = chiseInstance.elementUtilities.trueForAllElements(selectedEles, function (ele) {
+		return ele.isEdge();
+	});
 
 	if (allNodes || allEdges) {
 		var sbgnlabel = chiseInstance.elementUtilities.getCommonProperty(
@@ -346,19 +298,13 @@ inspectorUtilities.handleSBGNInspector = function () {
 		}
 
 		var classInfo =
-			chiseInstance.elementUtilities.getCommonProperty(
-				selectedEles,
-				function (ele) {
-					return ele.data('class').replace(' multimer', '');
-				}
-			) || '';
+			chiseInstance.elementUtilities.getCommonProperty(selectedEles, function (ele) {
+				return ele.data('class').replace(' multimer', '');
+			}) || '';
 
 		classInfo = appUtilities.transformClassInfo(classInfo);
 
-		var title =
-			classInfo == ''
-				? 'Visual Properties'
-				: classInfo + ' Visual Properties';
+		var title = classInfo == '' ? 'Visual Properties' : classInfo + ' Visual Properties';
 
 		var buttonwidth = width;
 		if (buttonwidth > 50) {
@@ -372,11 +318,9 @@ inspectorUtilities.handleSBGNInspector = function () {
 			title +
 			'</p></div>';
 
-		html +=
-			"<div id='inspector-style-properties-toggle' class='panel-collapse collapse in'>";
+		html += "<div id='inspector-style-properties-toggle' class='panel-collapse collapse in'>";
 		html += "<div class='panel-body'>";
-		html +=
-			"<table cellpadding='0' cellspacing='0' width='100%' align= 'center'>";
+		html += "<table cellpadding='0' cellspacing='0' width='100%' align= 'center'>";
 		var type;
 		var fillStateAndInfos;
 		var fillPCIDs;
@@ -400,12 +344,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 			);
 			borderColor = borderColor ? borderColor : '#FFFFFF';
 
-			var backgroundColor =
-				chiseInstance.elementUtilities.getCommonProperty(
-					selectedEles,
-					'background-color',
-					'data'
-				);
+			var backgroundColor = chiseInstance.elementUtilities.getCommonProperty(
+				selectedEles,
+				'background-color',
+				'data'
+			);
 			backgroundColor = backgroundColor ? backgroundColor : '#FFFFFF';
 
 			var borderWidth = chiseInstance.elementUtilities.getCommonProperty(
@@ -414,14 +357,12 @@ inspectorUtilities.handleSBGNInspector = function () {
 				'data'
 			);
 
-			var backgroundOpacity =
-				chiseInstance.elementUtilities.getCommonProperty(
-					selectedEles,
-					'background-opacity',
-					'data'
-				);
-			if (!backgroundOpacity && backgroundOpacity !== 0)
-				backgroundOpacity = 0;
+			var backgroundOpacity = chiseInstance.elementUtilities.getCommonProperty(
+				selectedEles,
+				'background-opacity',
+				'data'
+			);
+			if (!backgroundOpacity && backgroundOpacity !== 0) backgroundOpacity = 0;
 
 			var nodeWidth = chiseInstance.elementUtilities.getCommonProperty(
 				selectedEles,
@@ -449,16 +390,16 @@ inspectorUtilities.handleSBGNInspector = function () {
 					"px; text-align:right; padding-right: 5px;'>" +
 					"<font class='sbgn-label-font'>Label</font>" +
 					"</td><td style='padding-left: 5px;'>" +
-					"<input id='inspector-label' class='inspector-input-box' type='text' style='width: " +
+					"<textarea id='inspector-label'  cols='8' rows='1' style='min-width: " +
 					width / 1.5 +
-					"px;' value='" +
+					"px;' class='inspector-input-box'>" +
 					sbgnlabel.replace(/'/g, '&#039;') +
-					"'/>" +
+					'</textarea>' +
 					'</td></tr>';
 			}
 
-			// if at least one node is not a non-resizable parent node
-			if (selectedEles.filter(':parent').length != selectedEles.length) {
+			// if at least one node is a parent node don't show width and height editing fields
+			if (selectedEles.filter(':parent').length < 1) {
 				html +=
 					"<tr><td style='width: " +
 					width +
@@ -486,17 +427,12 @@ inspectorUtilities.handleSBGNInspector = function () {
 					"px;'";
 
 				if (nodeHeight) {
-					html +=
-						" value='" + parseFloat(nodeHeight.toFixed(2)) + "'";
+					html += " value='" + parseFloat(nodeHeight.toFixed(2)) + "'";
 				}
 
 				html += '/>';
 
-				if (
-					chiseInstance.elementUtilities.someMustNotBeSquare(
-						selectedEles
-					)
-				) {
+				if (chiseInstance.elementUtilities.someMustNotBeSquare(selectedEles)) {
 					var imageName;
 					var title;
 					if (appUtilities.nodeResizeUseAspectRatio) {
@@ -508,7 +444,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					}
 
 					html +=
-						"<img width='16px' height='16x' id='inspector-node-sizes-aspect-ratio' style='vertical-align: top; margin-left: 5px;' class='pointer-button' src='img/";
+						"<img width='16px' height='16x' id='inspector-node-sizes-aspect-ratio' style='vertical-align: top; margin-left: 5px;' class='pointer-button' src='app/img/";
 					html += imageName;
 					html += "'";
 
@@ -539,7 +475,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 				buttonwidth +
 				"px;'";
 
-			if (borderWidth) {
+			if (borderWidth !== null && borderWidth !== undefined) {
 				html += " value='" + parseFloat(borderWidth) + "'";
 			}
 
@@ -572,9 +508,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 			if (selectedEles.length > 0) {
 				var hasBackgroundImage =
-					chiseInstance.elementUtilities.anyHasBackgroundImage(
-						selectedEles
-					);
+					chiseInstance.elementUtilities.anyHasBackgroundImage(selectedEles);
 				var display = hasBackgroundImage ? '' : 'display: none;';
 
 				var removeBtn =
@@ -582,7 +516,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					'style="' +
 					display +
 					'"' +
-					"src='img/toolbar/delete-simple.svg'>";
+					"src='app/img/toolbar/delete-simple.svg'>";
 
 				var options =
 					'<option value="none">None</option>' +
@@ -591,10 +525,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					'<option value="contain">Contain</option>';
 
 				if (hasBackgroundImage) {
-					var tmp =
-						chiseInstance.elementUtilities.getBackgroundFitOptions(
-							selectedEles
-						);
+					var tmp = chiseInstance.elementUtilities.getBackgroundFitOptions(selectedEles);
 					options = tmp ? tmp : options;
 				}
 
@@ -624,12 +555,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 					"</td></tr><input id='inspector-image-load' type='file' style='display:none;'>";
 			}
 
-			commonStateAndInfos =
-				chiseInstance.elementUtilities.getCommonProperty(
-					selectedEles,
-					'statesandinfos',
-					'data'
-				);
+			commonStateAndInfos = chiseInstance.elementUtilities.getCommonProperty(
+				selectedEles,
+				'statesandinfos',
+				'data'
+			);
 
 			if (commonStateAndInfos) {
 				if (
@@ -640,8 +570,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 				) {
 					fillStateAndInfos = true;
 
-					html +=
-						"<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
+					html += "<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
 					html +=
 						"<tr><td style='width: " +
 						width +
@@ -653,21 +582,15 @@ inspectorUtilities.handleSBGNInspector = function () {
 						"'></td></tr>";
 				}
 
-				if (
-					chiseInstance.elementUtilities.canHaveUnitOfInformation(
-						selectedEles
-					)
-				) {
+				if (chiseInstance.elementUtilities.canHaveUnitOfInformation(selectedEles)) {
 					fillStateAndInfos = true;
 
-					var unit =
-						chiseInstance.elementUtilities.canHaveMultipleUnitOfInformation(
-							selectedEles
-						)
-							? 'Units'
-							: 'Unit';
-					html +=
-						"<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
+					var unit = chiseInstance.elementUtilities.canHaveMultipleUnitOfInformation(
+						selectedEles
+					)
+						? 'Units'
+						: 'Unit';
+					html += "<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
 					html +=
 						"<tr><td style='width: " +
 						width +
@@ -708,8 +631,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 			clonedCheck = clonedCheck ? clonedCheck : false;
 
 			if (multimerCheck || clonedCheck) {
-				html +=
-					"<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
+				html += "<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
 			}
 
 			if (multimerCheck) {
@@ -742,9 +664,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 			if (
 				chiseInstance.elementUtilities.trueForAllElements(
 					selectedEles,
-					chiseInstance.elementUtilities.canHavePorts.bind(
-						chiseInstance.elementUtilities
-					)
+					chiseInstance.elementUtilities.canHavePorts.bind(chiseInstance.elementUtilities)
 				)
 			) {
 				html +=
@@ -763,15 +683,12 @@ inspectorUtilities.handleSBGNInspector = function () {
 				var optionsStr = '';
 
 				// Get the common ordering of the nodes
-				var commonOrdering =
-					chiseInstance.elementUtilities.getCommonProperty(
-						selectedEles,
-						function (ele) {
-							return chiseInstance.elementUtilities.getPortsOrdering(
-								ele
-							);
-						}
-					);
+				var commonOrdering = chiseInstance.elementUtilities.getCommonProperty(
+					selectedEles,
+					function (ele) {
+						return chiseInstance.elementUtilities.getPortsOrdering(ele);
+					}
+				);
 
 				var commonOrderingVal = commonOrdering || 'empty'; // If there is no common ordering we should use "empty" for common ordering value
 
@@ -783,27 +700,14 @@ inspectorUtilities.handleSBGNInspector = function () {
 					'Top-to-bottom',
 					'Bottom-to-top',
 				]; // The orderings to be displayed on screen
-				var values = [
-					'empty',
-					'none',
-					'L-to-R',
-					'R-to-L',
-					'T-to-B',
-					'B-to-T',
-				]; // The values for the orderings
+				var values = ['empty', 'none', 'L-to-R', 'R-to-L', 'T-to-B', 'B-to-T']; // The values for the orderings
 
 				// For all possible values create an option str and append it to options str
 				for (var i = 0; i < orderings.length; i++) {
 					var ordering = orderings[i];
 					var optionVal = values[i];
 					var optionId = 'inspector-ports-ordering-' + optionVal; // Option id is generated from option value
-					var optionStr =
-						"<option id='" +
-						optionId +
-						"'" +
-						" value='" +
-						optionVal +
-						"'";
+					var optionStr = "<option id='" + optionId + "'" + " value='" + optionVal + "'";
 
 					if (optionVal === commonOrderingVal) {
 						optionStr += ' selected';
@@ -825,20 +729,18 @@ inspectorUtilities.handleSBGNInspector = function () {
 		} else {
 			type = 'edge';
 
-			var commonLineColor =
-				chiseInstance.elementUtilities.getCommonProperty(
-					selectedEles,
-					'line-color',
-					'data'
-				);
+			var commonLineColor = chiseInstance.elementUtilities.getCommonProperty(
+				selectedEles,
+				'line-color',
+				'data'
+			);
 			commonLineColor = commonLineColor ? commonLineColor : '#FFFFFF';
 
-			var commonLineWidth =
-				chiseInstance.elementUtilities.getCommonProperty(
-					selectedEles,
-					'width',
-					'data'
-				);
+			var commonLineWidth = chiseInstance.elementUtilities.getCommonProperty(
+				selectedEles,
+				'width',
+				'data'
+			);
 
 			html +=
 				"<tr><td style='width: " +
@@ -867,17 +769,12 @@ inspectorUtilities.handleSBGNInspector = function () {
 			}
 			html += '/>' + '</td></tr>';
 
-			if (
-				chiseInstance.elementUtilities.canHaveSBGNCardinality(
-					selectedEles
-				)
-			) {
-				var cardinality =
-					chiseInstance.elementUtilities.getCommonProperty(
-						selectedEles,
-						'cardinality',
-						'data'
-					);
+			if (chiseInstance.elementUtilities.canHaveSBGNCardinality(selectedEles)) {
+				var cardinality = chiseInstance.elementUtilities.getCommonProperty(
+					selectedEles,
+					'cardinality',
+					'data'
+				);
 				commonSBGNCardinality = cardinality;
 
 				if (cardinality <= 0) {
@@ -903,14 +800,12 @@ inspectorUtilities.handleSBGNInspector = function () {
 			var sbgnclass = selectedEles.data('class');
 			if (
 				selectedEles.length === 1 &&
-				(sbgnclass == 'phosphorylates' ||
-					sbgnclass == 'dephosphorylates')
+				(sbgnclass == 'phosphorylates' || sbgnclass == 'dephosphorylates')
 			) {
 				fillPCIDs = true;
 				fillSiteLocations = true;
 
-				html +=
-					"<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
+				html += "<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
 
 				html +=
 					"<tr><td style='width: " +
@@ -924,8 +819,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					// + inspectorUtilities.generateSetToInputBoxes( selectedEles.data('pcIDSet'), 'pc-ids', 0.8 * width )
 					'</td></tr>';
 
-				html +=
-					"<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
+				html += "<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
 
 				html +=
 					"<tr><td style='width: " +
@@ -939,8 +833,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					// + inspectorUtilities.generateSetToInputBoxes( selectedEles.data('siteLocSet'), 'site-locations', 0.8 * width )
 					'</td></tr>';
 
-				html +=
-					"<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
+				html += "<tr><td colspan='2'><hr class='inspector-divider'></td></tr>";
 			}
 		}
 		html += '</table></div>';
@@ -969,56 +862,56 @@ inspectorUtilities.handleSBGNInspector = function () {
 				$('#inspector-fill-color').val()
 			);
 		});
-		colorPickerUtils.bindPicker2Input(
-			'#inspector-border-color',
-			function () {
-				chiseInstance.changeData(
-					selectedEles,
-					'border-color',
-					$('#inspector-border-color').val()
-				);
-			}
-		);
-		colorPickerUtils.bindPicker2Input('#inspector-line-color', function () {
+		colorPickerUtils.bindPicker2Input('#inspector-border-color', function () {
 			chiseInstance.changeData(
 				selectedEles,
-				'line-color',
-				$('#inspector-line-color').val()
+				'border-color',
+				$('#inspector-border-color').val()
 			);
+		});
+		colorPickerUtils.bindPicker2Input('#inspector-line-color', function () {
+			chiseInstance.changeData(selectedEles, 'line-color', $('#inspector-line-color').val());
 		});
 
 		if (selectedEles.length === 1) {
 			var geneClass = selectedEles[0]._private.data.class;
 
-			function addCollapsibleSection(
-				identifier,
-				title,
-				hasSubtitleSection
-			) {
+			function addCollapsibleSection(identifier, title, hasSubtitleSection, openByDefault) {
+				var panelHeadingClass = openByDefault ? 'panel-heading' : 'panel-heading collapsed';
+				var panelHeadingId = identifier + '-heading';
+				var collapsibleClass = openByDefault
+					? 'panel-collapse collapse in'
+					: 'panel-collapse collapse';
+				var collapsibleId = identifier + '-collapsible';
+
 				html =
-					"<div  class='panel-heading collapsed' data-toggle='collapse' data-target='#" +
-					identifier +
-					"-collapsable'>" +
+					"<div id='" +
+					panelHeadingId +
+					"' class='" +
+					panelHeadingClass +
+					"' data-toggle='collapse' data-target='#" +
+					collapsibleId +
+					"'>" +
 					"<p class='panel-title accordion-toggle'>" +
 					title +
-					'</p>' +
-					'</div>' +
-					"<div style='margin-top: 5px;align: center;text-align: center;' id='" +
-					identifier +
-					"-collapsable' class='panel-collapse collapse'>";
+					'</p> </div>' +
+					"<div style='margin-top: 5px;align: center;text-align: center;'" +
+					" id='" +
+					collapsibleId +
+					"' class='" +
+					collapsibleClass +
+					"'>";
+
 				if (hasSubtitleSection) {
 					html +=
 						"<div class='panel-body' style='padding-top: 3px; padding-left: 3px;' id='" +
 						identifier +
 						"-title'></div>";
 				}
-				html +=
-					"<div id='" + identifier + "-container'></div>" + '</div>';
+				html += "<div id='" + identifier + "-container'></div>" + '</div>';
 
 				$('#sbgn-inspector-style-panel-group').append(
-					'<div id="sbgn-inspector-style-' +
-						identifier +
-						'-panel" class="panel" ></div>'
+					'<div id="sbgn-inspector-style-' + identifier + '-panel" class="panel" ></div>'
 				);
 				$('#sbgn-inspector-style-' + identifier + '-panel').html(html);
 			}
@@ -1033,11 +926,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 				geneClass === 'BA unspecified entity' ||
 				geneClass === 'SIF macromolecule'
 			) {
-				addCollapsibleSection(
-					'biogene',
-					'Properties from GeneCards',
-					true
-				);
+				addCollapsibleSection('biogene', 'Properties from GeneCards', true, true);
 				fillBioGeneContainer(selectedEles[0]);
 			}
 			if (
@@ -1045,16 +934,17 @@ inspectorUtilities.handleSBGNInspector = function () {
 				geneClass === 'BA simple chemical' ||
 				geneClass === 'SIF simple chemical'
 			) {
-				addCollapsibleSection(
-					'chemical',
-					'Properties from ChEBI',
-					true
-				);
-				fillChemicalContainer(selectedEles[0]);
+				addCollapsibleSection('chemical', 'Properties from ChEBI', true, false);
+				fillChemicalContainer(selectedEles[0], function () {
+					//callback on successful fetch, auto open collapsed panel
+					$('#chemical-collapsible').removeClass('collapse');
+					$('#chemical-collapsible').addClass('collapse in');
+					$('#chemical-heading').removeClass('collapsed');
+				});
 			}
 
 			// annotations handling part
-			addCollapsibleSection('annotations', 'Custom Properties', false);
+			addCollapsibleSection('annotations', 'Custom Properties', false, false);
 			annotHandler.fillAnnotationsContainer(selectedEles[0]);
 		}
 
@@ -1081,9 +971,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 			function updateBackgroundDeleteInfo() {
 				var hasBackgroundImage =
-					chiseInstance.elementUtilities.anyHasBackgroundImage(
-						selectedEles
-					);
+					chiseInstance.elementUtilities.anyHasBackgroundImage(selectedEles);
 
 				if (!hasBackgroundImage) {
 					$('#inspector-delete-bg').hide();
@@ -1092,10 +980,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 				} else {
 					$('#inspector-delete-bg').show();
 					$('#inspector-fit-selector').show();
-					imageURL =
-						chiseInstance.elementUtilities.getBackgroundImageURL(
-							selectedEles
-						);
+					imageURL = chiseInstance.elementUtilities.getBackgroundImageURL(selectedEles);
 					imageURL = imageURL ? imageURL : '';
 					$('#inspector-image-url').val(imageURL);
 				}
@@ -1108,10 +993,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 			$('#inspector-image-from-url').on('click', function () {
 				imageFromURL = !imageFromURL;
 				if (imageFromURL) {
-					imageURL =
-						chiseInstance.elementUtilities.getBackgroundImageURL(
-							selectedEles
-						);
+					imageURL = chiseInstance.elementUtilities.getBackgroundImageURL(selectedEles);
 					imageURL = imageURL ? imageURL : '';
 
 					$('#inspector-image-url').val(imageURL);
@@ -1124,10 +1006,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 			});
 
 			$('#inspector-delete-bg').on('click', function () {
-				var bgObj =
-					chiseInstance.elementUtilities.getBackgroundImageObjs(
-						selectedEles
-					);
+				var bgObj = chiseInstance.elementUtilities.getBackgroundImageObjs(selectedEles);
 				chiseInstance.removeBackgroundImage(selectedEles, bgObj);
 				updateBackgroundDeleteInfo();
 			});
@@ -1138,10 +1017,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					return;
 				}
 
-				var bgObj =
-					chiseInstance.elementUtilities.getBackgroundImageObjs(
-						selectedEles
-					);
+				var bgObj = chiseInstance.elementUtilities.getBackgroundImageObjs(selectedEles);
 				if (bgObj === undefined) {
 					return;
 				}
@@ -1171,12 +1047,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 				updateBackgroundDeleteInfo();
 			});
 
-			function validateBgImageURL(
-				node,
-				bgObj,
-				applyBackground,
-				promptInvalidImage
-			) {
+			function validateBgImageURL(node, bgObj, applyBackground, promptInvalidImage) {
 				var url = bgObj['background-image'];
 				var extension = url.split(/[?#]/)[0].split('.').pop();
 				var validExtensions = ['png', 'svg', 'jpg', 'jpeg'];
@@ -1212,10 +1083,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 			$('#inspector-image-url').on('change', function () {
 				var url = $(this).val().trim();
-				imageURL =
-					chiseInstance.elementUtilities.getBackgroundImageURL(
-						selectedEles
-					);
+				imageURL = chiseInstance.elementUtilities.getBackgroundImageURL(selectedEles);
 
 				if (url && imageURL !== url) {
 					var fit = $('#inspector-fit-selector').val();
@@ -1244,17 +1112,14 @@ inspectorUtilities.handleSBGNInspector = function () {
 					for (var i = 0; i < selectedEles.length; i++) {
 						var node = selectedEles[i];
 						if (node.isNode()) {
-							bgObj['background-image-opacity'] =
-								node.data('background-opacity');
+							bgObj['background-image-opacity'] = node.data('background-opacity');
 							obj[node.data('id')] = bgObj;
 						}
 					}
 
 					// If there is a background image change it, don't add
 					var oldObj =
-						chiseInstance.elementUtilities.getBackgroundImageObjs(
-							selectedEles
-						);
+						chiseInstance.elementUtilities.getBackgroundImageObjs(selectedEles);
 					if (oldObj !== undefined)
 						chiseInstance.changeBackgroundImage(
 							selectedEles,
@@ -1310,17 +1175,14 @@ inspectorUtilities.handleSBGNInspector = function () {
 					for (var i = 0; i < selectedEles.length; i++) {
 						var node = selectedEles[i];
 						if (node.isNode()) {
-							bgObj['background-image-opacity'] =
-								node.data('background-opacity');
+							bgObj['background-image-opacity'] = node.data('background-opacity');
 							obj[node.data('id')] = bgObj;
 						}
 					}
 
 					// If there is a background image change it, don't add
 					var oldObj =
-						chiseInstance.elementUtilities.getBackgroundImageObjs(
-							selectedEles
-						);
+						chiseInstance.elementUtilities.getBackgroundImageObjs(selectedEles);
 					if (oldObj !== undefined)
 						chiseInstance.changeBackgroundImage(
 							selectedEles,
@@ -1360,17 +1222,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 					'background-opacity': selected.data('background-opacity'),
 					'background-image': selected.data('background-image'),
 					'background-fit': selected.data('background-fit'),
-					'background-position-x': selected.data(
-						'background-position-x'
-					),
-					'background-position-y': selected.data(
-						'background-position-y'
-					),
+					'background-position-x': selected.data('background-position-x'),
+					'background-position-y': selected.data('background-position-y'),
 					'background-width': selected.data('background-width'),
 					'background-height': selected.data('background-height'),
-					'background-image-opacity': selected.data(
-						'background-image-opacity'
-					),
+					'background-image-opacity': selected.data('background-image-opacity'),
 				};
 
 				// Push this action if the node can be multimer
@@ -1380,15 +1236,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 				// Push this action if the node can be cloned
 				if (chiseInstance.elementUtilities.canBeCloned(sbgnclass)) {
-					nameToVal['clonemarker'] = selected.data('clonemarker')
-						? true
-						: false;
+					nameToVal['clonemarker'] = selected.data('clonemarker') ? true : false;
 				}
 
 				// Push this action if the node can have label
-				if (
-					chiseInstance.elementUtilities.canHaveSBGNLabel(sbgnclass)
-				) {
+				if (chiseInstance.elementUtilities.canHaveSBGNLabel(sbgnclass)) {
 					var fontProps = [
 						'font-size',
 						'font-family',
@@ -1404,18 +1256,14 @@ inspectorUtilities.handleSBGNInspector = function () {
 				// Push this action if the node can have ports
 				if (chiseInstance.elementUtilities.canHavePorts(sbgnclass)) {
 					nameToVal['ports-ordering'] =
-						chiseInstance.elementUtilities.getPortsOrdering(
-							selected
-						);
+						chiseInstance.elementUtilities.getPortsOrdering(selected);
 				}
 
 				if (appUtilities.undoable) {
 					var ur = cy.undoRedo();
 					var actions = [];
 					//check if staged default element styles is set
-					if (
-						typeof appUtilities.stagedElementStyles === 'undefined'
-					) {
+					if (typeof appUtilities.stagedElementStyles === 'undefined') {
 						appUtilities.stagedElementStyles = [];
 					}
 					var elementStyles = [];
@@ -1423,11 +1271,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 						var value = nameToVal[name];
 						actions.push({
 							name: 'setDefaultProperty',
-							param: {
-								class: sbgnclass,
-								name: name,
-								value: value,
-							},
+							param: { class: sbgnclass, name: name, value: value },
 						});
 						elementStyles.push({ name: name, value: value });
 					});
@@ -1448,10 +1292,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 					ur.do('batch', actions);
 				} else {
-					chiseInstance.elementUtilities.setDefaultProperties(
-						sbgnclass,
-						nameToVal
-					);
+					chiseInstance.elementUtilities.setDefaultProperties(sbgnclass, nameToVal);
 				}
 			});
 
@@ -1460,58 +1301,48 @@ inspectorUtilities.handleSBGNInspector = function () {
 				chiseInstance.setPortsOrdering(selectedEles, ordering);
 			});
 
-			$('#inspector-node-width, #inspector-node-height').change(
-				function () {
-					var w = parseFloat($('#inspector-node-width').val());
-					var h = parseFloat($('#inspector-node-height').val());
+			$('#inspector-node-width, #inspector-node-height').change(function () {
+				var w = parseFloat($('#inspector-node-width').val());
+				var h = parseFloat($('#inspector-node-height').val());
 
+				if ($(this).attr('id') === 'inspector-node-width') {
+					h = undefined;
+				} else {
+					w = undefined;
+				}
+
+				var useAspectRatio = appUtilities.nodeResizeUseAspectRatio;
+
+				chiseInstance.resizeNodes(selectedEles, w, h, useAspectRatio);
+
+				// if aspect ratio used, must correctly update the other side length
+				if (useAspectRatio) {
 					if ($(this).attr('id') === 'inspector-node-width') {
-						h = undefined;
+						var nodeHeight = chiseInstance.elementUtilities.getCommonProperty(
+							selectedEles,
+							function (ele) {
+								return ele.height();
+							}
+						);
+						$('#inspector-node-height').val(nodeHeight);
 					} else {
-						w = undefined;
-					}
-
-					var useAspectRatio = appUtilities.nodeResizeUseAspectRatio;
-
-					// trigger resize event accordingly
-					selectedEles.forEach(function (node) {
-						cy.trigger('noderesize.resizestart', [null, node]);
-						chiseInstance.resizeNodes(node, w, h, useAspectRatio);
-						cy.trigger('noderesize.resizeend', [null, node]);
-					});
-
-					// if aspect ratio used, must correctly update the other side length
-					if (useAspectRatio) {
-						if ($(this).attr('id') === 'inspector-node-width') {
-							var nodeHeight =
-								chiseInstance.elementUtilities.getCommonProperty(
-									selectedEles,
-									function (ele) {
-										return ele.height();
-									}
-								);
-							$('#inspector-node-height').val(nodeHeight);
-						} else {
-							var nodeWidth =
-								chiseInstance.elementUtilities.getCommonProperty(
-									selectedEles,
-									function (ele) {
-										return ele.width();
-									}
-								);
-							$('#inspector-node-width').val(nodeWidth);
-						}
+						var nodeWidth = chiseInstance.elementUtilities.getCommonProperty(
+							selectedEles,
+							function (ele) {
+								return ele.width();
+							}
+						);
+						$('#inspector-node-width').val(nodeWidth);
 					}
 				}
-			);
+			});
 
 			$('#inspector-node-sizes-aspect-ratio').on('click', function () {
 				if (appUtilities.nodeResizeUseAspectRatio == null) {
 					appUtilities.nodeResizeUseAspectRatio = false;
 				}
 
-				appUtilities.nodeResizeUseAspectRatio =
-					!appUtilities.nodeResizeUseAspectRatio;
+				appUtilities.nodeResizeUseAspectRatio = !appUtilities.nodeResizeUseAspectRatio;
 
 				// refresh image
 				if (appUtilities.nodeResizeUseAspectRatio) {
@@ -1522,11 +1353,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 					title = 'Lock aspect ratio';
 				}
 
-				$(this).attr('src', 'img/' + imageName);
+				$(this).attr('src', 'app/img/' + imageName);
 				$(this).attr('title', title);
 
 				//Refresh grapples when the lock icon is clicked
-				cy.nodeResize('get').refreshGrapples();
+				cy.nodeEditing('get').refreshGrapples();
 			});
 
 			$('#inspector-is-multimer').on('click', function () {
@@ -1546,8 +1377,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 			$('#inspector-label').on('change', function () {
 				var lines = $(this).val().trim();
 				var current_label_data;
-				if (typeof selectedEles.data('label') == 'undefined')
-					current_label_data = '';
+				if (typeof selectedEles.data('label') == 'undefined') current_label_data = '';
 				else
 					current_label_data = selectedEles
 						.data('label')
@@ -1595,19 +1425,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 				var actions = [];
 				actions.push({
 					name: 'changeData',
-					param: {
-						eles: selectedEles,
-						name: 'background-opacity',
-						valueMap: v,
-					},
+					param: { eles: selectedEles, name: 'background-opacity', valueMap: v },
 				});
 				actions.push({
 					name: 'changeData',
-					param: {
-						eles: selectedEles,
-						name: 'background-image-opacity',
-						valueMap: v,
-					},
+					param: { eles: selectedEles, name: 'background-image-opacity', valueMap: v },
 				});
 
 				cy.undoRedo().do('batch', actions);
@@ -1624,9 +1446,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 
 			$('#inspector-background-opacity-val').keyup(function (e) {
 				if (e.keyCode == 13) {
-					let v = parseFloat(
-						$('#inspector-background-opacity-val').val()
-					);
+					let v = parseFloat($('#inspector-background-opacity-val').val());
 					if (isNaN(v)) {
 						v = 1;
 					}
@@ -1644,11 +1464,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 			$('#inspector-border-width').change(function () {
 				var inputVal = $('#inspector-border-width').val();
 				if (inputVal || inputVal === 0)
-					chiseInstance.changeData(
-						selectedEles,
-						'border-width',
-						inputVal
-					);
+					chiseInstance.changeData(selectedEles, 'border-width', inputVal);
 			});
 
 			// Open font properties dialog
@@ -1671,16 +1487,11 @@ inspectorUtilities.handleSBGNInspector = function () {
 					var ur = cy.undoRedo();
 					var actions = [];
 					//push the default styles of edges
-					if (
-						typeof appUtilities.stagedElementStyles === 'undefined'
-					) {
+					if (typeof appUtilities.stagedElementStyles === 'undefined') {
 						appUtilities.stagedElementStyles = [];
 					}
 					var elementStyles = [];
-					elementStyles.push({
-						name: 'width',
-						value: selectedEles.data('width'),
-					});
+					elementStyles.push({ name: 'width', value: selectedEles.data('width') });
 					elementStyles.push({
 						name: 'line-color',
 						value: selectedEles.data('line-color'),
@@ -1708,10 +1519,7 @@ inspectorUtilities.handleSBGNInspector = function () {
 					});
 					ur.do('batch', actions);
 				} else {
-					var defaults =
-						chiseInstance.elementUtilities.getDefaultProperties(
-							sbgnclass
-						);
+					var defaults = chiseInstance.elementUtilities.getDefaultProperties(sbgnclass);
 					defaults['width'] = selectedEles.data('width');
 					defaults['line-color'] = selectedEles.data('line-color');
 				}
@@ -1732,43 +1540,26 @@ inspectorUtilities.handleSBGNInspector = function () {
 			});
 
 			$('#inspector-edge-width').change(function () {
-				chiseInstance.changeData(
-					selectedEles,
-					'width',
-					$('#inspector-edge-width').val()
-				);
+				chiseInstance.changeData(selectedEles, 'width', $('#inspector-edge-width').val());
 			});
 		}
 	}
 };
 
-inspectorUtilities.handleRadioButtons = function (
-	errorCode,
-	html,
-	eles,
-	cy,
-	params
-) {
+inspectorUtilities.handleRadioButtons = function (errorCode, html, eles, cy, params) {
 	if (errorCode == 'pd10104')
-		var connectedEdges = eles
-			.connectedEdges()
-			.filter('[class="consumption"]');
+		var connectedEdges = eles.connectedEdges().filter('[class="consumption"]');
 	else if (errorCode == 'pd10108')
-		var connectedEdges = eles
-			.connectedEdges()
-			.filter('[class="production"]');
+		var connectedEdges = eles.connectedEdges().filter('[class="production"]');
 	else if (errorCode == 'pd10111')
 		var connectedEdges = cy.edges('[source = "' + eles.id() + '"]');
 	else if (errorCode == 'pd10126')
-		var connectedEdges = eles
-			.connectedEdges()
-			.filter('[class="logic arc"]');
+		var connectedEdges = eles.connectedEdges().filter('[class="logic arc"]');
 	else if (errorCode == 'pd10112') {
 		var compartments = cy.nodes('[class= "compartment"]');
 		var listedNodes = [];
 		for (var i = 0; i < compartments.length; i++) {
-			if (compartments[i].parent().length == 0)
-				listedNodes.push(compartments[i]);
+			if (compartments[i].parent().length == 0) listedNodes.push(compartments[i]);
 		}
 	} else {
 		var chiseInstance = appUtilities.getActiveChiseInstance();
@@ -1791,17 +1582,10 @@ inspectorUtilities.handleRadioButtons = function (
 				nodes[i].position().y >= minY &&
 				nodes[i].position().y <= maxY
 			)
-				if (
-					groupEPN.includes(errorCode) &&
-					eles.target().data().id != nodes[i].data().id
-				) {
+				if (groupEPN.includes(errorCode) && eles.target().data().id != nodes[i].data().id) {
 					if (chiseInstance.elementUtilities.isEPNClass(nodes[i])) {
 						listedNodes.unshift(nodes[i]);
-					} else if (
-						chiseInstance.elementUtilities.isLogicalOperator(
-							nodes[i]
-						)
-					) {
+					} else if (chiseInstance.elementUtilities.isLogicalOperator(nodes[i])) {
 						listedNodes.push(nodes[i]);
 					}
 				} else if (
@@ -1814,10 +1598,7 @@ inspectorUtilities.handleRadioButtons = function (
 					chiseInstance.elementUtilities.isLogicalOperator(nodes[i])
 				)
 					listedNodes.push(nodes[i]);
-				else if (
-					errorCode == 'pd10128' &&
-					typeGroup.includes(nodes[i].data().class)
-				)
+				else if (errorCode == 'pd10128' && typeGroup.includes(nodes[i].data().class))
 					listedNodes.push(nodes[i]);
 		}
 	}
@@ -1866,11 +1647,7 @@ inspectorUtilities.handleRadioButtons = function (
 					'" checked>' +
 					eles.data().class.toUpperCase() +
 					' to ' +
-					connectedEdges[i]
-						.target()
-						.data()
-						.class.charAt(0)
-						.toUpperCase() +
+					connectedEdges[i].target().data().class.charAt(0).toUpperCase() +
 					connectedEdges[i].target().data().class.slice(1) +
 					' </label>';
 			else if (errorCode == 'pd10126')
@@ -1899,8 +1676,7 @@ inspectorUtilities.handleRadioButtons = function (
 			(chiseInstance.elementUtilities.isPNClass(eles.source()) &&
 				chiseInstance.elementUtilities.isEPNClass(eles.target()))
 		) {
-			html +=
-				'<p style="text-align:center" > To fix, choose correct arc type: </p> ';
+			html += '<p style="text-align:center" > To fix, choose correct arc type: </p> ';
 			html +=
 				'<div style="margin: 0 auto;width: auto;text-align: left; display: table;" class="radio validation-error-radio" id="errors' +
 				errorCode +
@@ -1965,12 +1741,9 @@ inspectorUtilities.handleRadioButtons = function (
 						listedNodes[i].data().class.toUpperCase() +
 						' </label>';
 				else {
-					var radioText =
-						chiseInstance.elementUtilities.isLogicalOperator(
-							listedNodes[i]
-						)
-							? listedNodes[i].data().class.toUpperCase()
-							: listedNodes[i].data().label;
+					var radioText = chiseInstance.elementUtilities.isLogicalOperator(listedNodes[i])
+						? listedNodes[i].data().class.toUpperCase()
+						: listedNodes[i].data().label;
 					html +=
 						'<label class="radio"> <input type="radio" name="optradio" value="' +
 						listedNodes[i].id() +
@@ -1999,9 +1772,7 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 		errorFixParam.nodes = [];
 		errorFixParam.edges = [];
 		var radioChecked = $('#errorspd10104 input:radio:checked').val();
-		var connectedEdges = eles
-			.connectedEdges()
-			.filter('[class="consumption"]');
+		var connectedEdges = eles.connectedEdges().filter('[class="consumption"]');
 		for (var i = 0; i < connectedEdges.length; i++) {
 			if (connectedEdges[i].source().data().label != radioChecked) {
 				errorFixParam.nodes.push(connectedEdges[i].source());
@@ -2012,9 +1783,7 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 		errorFixParam.nodes = [];
 		errorFixParam.edges = [];
 		var radioChecked = $('#errorspd10108 input:radio:checked').val();
-		var connectedEdges = eles
-			.connectedEdges()
-			.filter('[class="production"]');
+		var connectedEdges = eles.connectedEdges().filter('[class="production"]');
 		for (var i = 0; i < connectedEdges.length; i++) {
 			if (connectedEdges[i].target().data().label != radioChecked) {
 				errorFixParam.nodes.push(connectedEdges[i].target());
@@ -2034,9 +1803,7 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 		errorFixParam.edges = [];
 		errorFixParam.nodes = [];
 		var radioChecked = $('#errorspd10126 input:radio:checked').val();
-		var connectedEdges = eles
-			.connectedEdges()
-			.filter('[class="logic arc"]');
+		var connectedEdges = eles.connectedEdges().filter('[class="logic arc"]');
 		for (var i = 0; i < connectedEdges.length; i++) {
 			if (connectedEdges[i].id() != radioChecked) {
 				errorFixParam.edges.push(connectedEdges[i]);
@@ -2044,14 +1811,8 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 			}
 		}
 	} else {
-		if (
-			errorCode == 'pd10109' ||
-			errorCode == 'pd10124' ||
-			errorCode == 'pd10127'
-		) {
-			var radioChecked = $(
-				'#errors' + errorCode + ' input:radio:checked'
-			).val();
+		if (errorCode == 'pd10109' || errorCode == 'pd10124' || errorCode == 'pd10127') {
+			var radioChecked = $('#errors' + errorCode + ' input:radio:checked').val();
 			var node = cy.nodes('[id = "' + radioChecked + '"]');
 			errorFixParam.newTarget = eles.target().id();
 			errorFixParam.newSource = node.id();
@@ -2067,10 +1828,7 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 			errorFixParam.firstTime = true;
 		} else if (errorCode == 'pd10125') {
 			var radioChecked = $('#errorspd10125 input:radio:checked').val();
-			var edgeParams = {
-				class: eles.data().class,
-				language: eles.data().language,
-			};
+			var edgeParams = { class: eles.data().class, language: eles.data().language };
 			var promptInvalidEdge = function () {
 				appUtilities.promptInvalidEdgeWarning.render();
 			};
@@ -2086,10 +1844,7 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 			};
 		} else if (errorCode == 'pd10142') {
 			var radioChecked = $('#errorspd10142 input:radio:checked').val();
-			var edgeParams = {
-				class: radioChecked,
-				language: eles.data().language,
-			};
+			var edgeParams = { class: radioChecked, language: eles.data().language };
 			var promptInvalidEdge = function () {
 				appUtilities.promptInvalidEdgeWarning.render();
 			};
@@ -2097,17 +1852,14 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 			var target = eles.target();
 			errorFixParam.edge = eles;
 
-			if (target.data().class != 'process')
-				target = cy.nodes('[class = "process"]');
+			if (target.data().class != 'process') target = cy.nodes('[class = "process"]');
 			errorFixParam.newEdge = {
 				source: source.id(),
 				target: target.id(),
 				edgeParams: edgeParams,
 			};
 		} else {
-			var radioChecked = $(
-				'#errors' + errorCode + ' input:radio:checked'
-			).val();
+			var radioChecked = $('#errors' + errorCode + ' input:radio:checked').val();
 			var node = cy.nodes('[id = "' + radioChecked + '"]');
 
 			errorFixParam.newTarget = node.id();
@@ -2118,13 +1870,7 @@ inspectorUtilities.fixRadioButtons = function (errorCode, eles, cy) {
 	}
 	cy.undoRedo().do('fixError', errorFixParam);
 };
-inspectorUtilities.handleSBGNConsole = function (
-	errors,
-	currentPage,
-	cy,
-	data,
-	notPD
-) {
+inspectorUtilities.handleSBGNConsole = function (errors, currentPage, cy, data, notPD) {
 	var html = '';
 	var handled = true;
 	var dismiss = 'Dismiss';
@@ -2166,10 +1912,7 @@ inspectorUtilities.handleSBGNConsole = function (
 			viewUtilitilesInstance.highlight(eles, 1);
 		}
 
-		if (
-			errors[currentPage].pattern == 'pd10109' ||
-			errors[currentPage].pattern == 'pd10110'
-		) {
+		if (errors[currentPage].pattern == 'pd10109' || errors[currentPage].pattern == 'pd10110') {
 			var elesClass = eles.data().class;
 			errors[currentPage].text[0] = errors[currentPage].text[0].replace(
 				new RegExp('modulation', 'i'),
@@ -2179,21 +1922,16 @@ inspectorUtilities.handleSBGNConsole = function (
 
 		html +=
 			'<b><p class=\'panel-body\' style="color:red; text-align:center;" > Map is Invalid</p></b>';
-		html +=
-			'<p style="text-align:center" >' +
-			errors[currentPage].text +
-			'</p>';
-		html +=
-			'<table style="width:100%"> <tr> <td style="width:90% text-align:center;">';
+		html += '<p style="text-align:center" >' + errors[currentPage].text + '</p>';
+		html += '<table style="width:100%"> <tr> <td style="width:90% text-align:center;">';
 		if (errors[currentPage].pattern == 'pd10101') {
-			html +=
-				'<p style="text-align:center" > To fix, reverse the consumption edge:</p>';
+			html += '<p style="text-align:center" > To fix, reverse the consumption edge:</p>';
 		} else if (errors[currentPage].pattern == 'pd10103') {
-		/*   else if(errors[currentPage].pattern == "pd10102") {
+			/*   else if(errors[currentPage].pattern == "pd10102") {
                    html +="<p style=\"text-align:center\" > To fix, reverse the consumption arc:</p>";
           }  */
 			html +=
-				'<p style="text-align:center" > To fix, split the <i>source and sink</i> glyph for each consumption arc:</p> ';
+				'<p style="text-align:center" > To fix, split the <i>empty set</i> glyph for each consumption arc:</p> ';
 		} else if (radioButtonRules.includes(errors[currentPage].pattern)) {
 			var params = { handled: handled };
 			html = inspectorUtilities.handleRadioButtons(
@@ -2212,28 +1950,24 @@ inspectorUtilities.handleSBGNConsole = function (
 				chiseInstance.elementUtilities.isPNClass(eles.target()) &&
 				chiseInstance.elementUtilities.isEPNClass(eles.source())
 			) {
-				html +=
-					'<p style="text-align:center" > To fix, reverse the production arc:</p>';
+				html += '<p style="text-align:center" > To fix, reverse the production arc:</p>';
 			} else {
 				handled = false;
 			}
 		} else if (errors[currentPage].pattern == 'pd10107') {
 			html +=
-				'<p style="text-align:center" > To fix, split the <i>source and sink</i> glyph for each production arc:</p>';
-			var connectedEdges = eles
-				.connectedEdges()
-				.filter('[class="production"]');
+				'<p style="text-align:center" > To fix, split the <i>empty set</i> glyph for each production arc:</p>';
+			var connectedEdges = eles.connectedEdges().filter('[class="production"]');
 			for (var i = 0; i < connectedEdges.length; i++) {
 				viewUtilitilesInstance.highlight(connectedEdges[i], 1);
 			}
 			viewUtilitilesInstance.highlight(eles, 1);
 		} else if (errors[currentPage].pattern == 'pd10140') {
-			html +=
-				'<p style="text-align:center" > To fix, delete the glyph:</p>';
+			html += '<p style="text-align:center" > To fix, delete the glyph:</p>';
 		} else handled = false;
 		if (handled)
 			html +=
-				'</td> <td style="width:10% text-align: right; vertical-align:middle;"><img id="fix-errors-of-validation-icon" class="sbgn-toolbar-element" style="text-align: right; vertical-align:middle;opacity: 0.7;filter: alpha(opacity=70);"src="img/fix-error.svg" title="Execute"width="24"></div>';
+				'</td> <td style="width:10% text-align: right; vertical-align:middle;"><img id="fix-errors-of-validation-icon" class="sbgn-toolbar-element" style="text-align: right; vertical-align:middle;opacity: 0.7;filter: alpha(opacity=70);"src="app/img/fix-error.svg" title="Execute"width="24"></div>';
 		html += '</td></tr></table>';
 		var next = 'Next';
 		if (currentPage == 0) {
@@ -2301,24 +2035,12 @@ inspectorUtilities.handleSBGNConsole = function (
 	$('#inspector-next-button').on('click', function () {
 		currentPage = currentPage + 1;
 		var cy = appUtilities.getActiveCy();
-		inspectorUtilities.handleSBGNConsole(
-			errors,
-			currentPage,
-			cy,
-			data,
-			false
-		);
+		inspectorUtilities.handleSBGNConsole(errors, currentPage, cy, data, false);
 	});
 	$('#inspector-back-button').on('click', function () {
 		currentPage = currentPage - 1;
 		var cy = appUtilities.getActiveCy();
-		inspectorUtilities.handleSBGNConsole(
-			errors,
-			currentPage,
-			cy,
-			data,
-			false
-		);
+		inspectorUtilities.handleSBGNConsole(errors, currentPage, cy, data, false);
 	});
 
 	$('#fix-errors-of-validation-icon').on('click', function () {
@@ -2348,10 +2070,7 @@ inspectorUtilities.handleSBGNConsole = function (
 			var promptInvalidEdge = function () {
 				appUtilities.promptInvalidEdgeWarning.render();
 			};
-			var nodeParams = {
-				class: eles.data().class,
-				language: eles.data().language,
-			};
+			var nodeParams = { class: eles.data().class, language: eles.data().language };
 			for (var i = 0; i < addedNodeNum; i++) {
 				var edgeParams = {
 					class: edges[i].data().class,
@@ -2368,12 +2087,8 @@ inspectorUtilities.handleSBGNConsole = function (
 					y = edges[i].targetEndpoint().y;
 				}
 
-				var xdiff = Math.abs(
-					edges[i].targetEndpoint().x - edges[i].sourceEndpoint().x
-				);
-				var ydiff = Math.abs(
-					edges[i].targetEndpoint().y - edges[i].sourceEndpoint().y
-				);
+				var xdiff = Math.abs(edges[i].targetEndpoint().x - edges[i].sourceEndpoint().x);
+				var ydiff = Math.abs(edges[i].targetEndpoint().y - edges[i].sourceEndpoint().y);
 				var ratio = ydiff / xdiff;
 				if (xdiff == 0) {
 					shiftX = 0;
@@ -2398,12 +2113,7 @@ inspectorUtilities.handleSBGNConsole = function (
 				var cX = x + shiftX;
 				var cY = y + shiftY;
 
-				errorFixParam.newNodes.push({
-					x: cX,
-					y: cY,
-					class: nodeParams,
-					id: 'node' + i,
-				});
+				errorFixParam.newNodes.push({ x: cX, y: cY, class: nodeParams, id: 'node' + i });
 				if (edges[i].data().class == 'consumption') {
 					errorFixParam.newEdges.push({
 						source: 'node' + i,
@@ -2441,11 +2151,7 @@ inspectorUtilities.handleSBGNConsole = function (
 		}
 
 		if (radioButtonRules.includes(errors[currentPage].pattern)) {
-			inspectorUtilities.fixRadioButtons(
-				errors[currentPage].pattern,
-				eles,
-				cy
-			);
+			inspectorUtilities.fixRadioButtons(errors[currentPage].pattern, eles, cy);
 		} else {
 			cy.undoRedo().do('fixError', errorFixParam);
 		}
@@ -2477,9 +2183,7 @@ inspectorUtilities.handleSBGNConsole = function (
 		$('#sbgn-inspector-console-panel-group').html('');
 		$('#inspector-console-tab')[0].style.display = 'none';
 
-		var tabContents = document.getElementsByClassName(
-			'validation-mode-tab'
-		);
+		var tabContents = document.getElementsByClassName('validation-mode-tab');
 		for (var i = 0; i < tabContents.length; i++) {
 			$(tabContents[i]).removeClass('active');
 			$($(tabContents[i]).children('a')[0]).attr('data-toggle', 'tab');
@@ -2488,41 +2192,27 @@ inspectorUtilities.handleSBGNConsole = function (
 		$('#inspector-map-tab a').click();
 	});
 	$('input[type=radio]').change(function () {
-		if (!radioButtonChangeEvent.includes(errors[currentPage].pattern))
-			return;
+		if (!radioButtonChangeEvent.includes(errors[currentPage].pattern)) return;
 		viewUtilitilesInstance.removeHighlights();
-		var group = [
-			'pd10109',
-			'pd10110',
-			'pd10124',
-			'pd10127',
-			'pd10125',
-			'pd10128',
-		];
+		var group = ['pd10109', 'pd10110', 'pd10124', 'pd10127', 'pd10125', 'pd10128'];
 		var instance = cy.viewUtilities('get');
 		instance.highlight(eles, 1);
 		if (errors[currentPage].pattern == 'pd10104') {
-			var connectedEdges = eles
-				.connectedEdges()
-				.filter('[class="consumption"]');
+			var connectedEdges = eles.connectedEdges().filter('[class="consumption"]');
 			for (var i = 0; i < connectedEdges.length; i++) {
 				if (connectedEdges[i].source().data().label == this.value) {
 					instance.highlight(connectedEdges[i], 1);
 				}
 			}
 		} else if (errors[currentPage].pattern == 'pd10108') {
-			var connectedEdges = eles
-				.connectedEdges()
-				.filter('[class="production"]');
+			var connectedEdges = eles.connectedEdges().filter('[class="production"]');
 			for (var i = 0; i < connectedEdges.length; i++) {
 				if (connectedEdges[i].target().data().label == this.value) {
 					instance.highlight(connectedEdges[i], 1);
 				}
 			}
 		} else if (errors[currentPage].pattern == 'pd10126') {
-			var connectedEdges = eles
-				.connectedEdges()
-				.filter('[class="logic arc"]');
+			var connectedEdges = eles.connectedEdges().filter('[class="logic arc"]');
 			for (var i = 0; i < connectedEdges.length; i++) {
 				if (connectedEdges[i].id() == this.value) {
 					instance.highlight(connectedEdges[i], 1);

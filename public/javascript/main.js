@@ -27,7 +27,8 @@ const cyViewUtilities = require('cytoscape-view-utilities');
 const cyEdgehandles = require('cytoscape-edgehandles');
 const cyGridGuide = require('cytoscape-grid-guide');
 const cyAutopanOnDrag = require('cytoscape-autopan-on-drag');
-const cyNodeResize = require('cytoscape-node-resize');
+// const cyNodeResize = require('cytoscape-node-resize');
+const cyNodeEditing = require('cytoscape-node-editing');
 const cyPopper = require('cytoscape-popper');
 const cyLayoutUtilities = require('cytoscape-layout-utilities');
 
@@ -38,13 +39,14 @@ cyFcose(cytoscape);
 cyUndoRedo(cytoscape);
 cyClipboard(cytoscape, $);
 cyContextMenus(cytoscape, $);
-cyExpandCollapse(cytoscape, $);
+cyExpandCollapse(cytoscape, $, konva);
 cyEdgeEditing(cytoscape, $);
 cyViewUtilities(cytoscape, $);
 cyEdgehandles(cytoscape);
 cyGridGuide(cytoscape, $);
 cyAutopanOnDrag(cytoscape);
-cyNodeResize(cytoscape, $, konva);
+// cyNodeResize(cytoscape, $, konva);
+cyNodeEditing( cytoscape, $, konva );
 cyPopper(cytoscape);
 cyLayoutUtilities(cytoscape);
 

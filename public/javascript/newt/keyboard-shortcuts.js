@@ -82,6 +82,23 @@ module.exports = function () {
 		},
 		'keyup'
 	);
+
+	mt.bind(
+		'alt',
+		function () {
+			appUtilities.altKeyDown = true;
+		},
+		'keydown'
+	);
+
+	mt.bind(
+		'alt',
+		function () {
+			appUtilities.altKeyDown = null;
+		},
+		'keyup'
+	);
+
 	mt.bind(['esc'], function () {
 		// use active cy instance
 		var cy = appUtilities.getActiveCy();
