@@ -19,24 +19,30 @@
 <body>
 
 
-<div class="title-heading container-fluid align-items-center">
+<div class="title-heading container-fluid">
     <div class="row">
-        <div class="col-sm-1 col-md-1 col-lg-1 col-xs-1">
+        <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>
+
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11" style="position: relative">
             <img src="/img/logo.png" class="cp-logo" alt="CausalPath Logo">
+            <div style="display: inline; position: absolute; margin: 0;">
+                <h1 class="main-heading">CausalPath</h1>
+                <h3 class="sub-heading">causal interactions from molecular profiles</h3>
+            </div>
+
         </div>
-        <div class="col-sm-11 col-md-11 col-lg-11 col-xs-11">
-            <h1 class="text-center" style="padding-right: 60px">CausalPath Causal Interactions from Proteomic
-                Profiles</h1>
-        </div>
+
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
     </div>
 </div>
 
 
 <div id="menu-text-buttons" class="body-content container-fluid">
     <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+        <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>
 
-        <div class="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
 
             <div id="body_text" class="row" style="margin-top:40px;">
 
@@ -48,17 +54,21 @@
                 </p>
 
                 <div class="container-fluid" style="margin-top: 60px">
-                    <img class="center-block" src="/img/causalpath-insights.png" alt="Causalpath mechanism">
+                    <img src="/img/causalpath-insights.png" alt="Causalpath mechanism">
                 </div>
 
             </div>
 
             <div id="selection_menus" class="row" style="margin-top: 70px;">
-                <div class="menu-buttons">
+                <div class="menu-buttons" style="padding-bottom:45px">
                     <input type="file" class="file-picker" accept=".txt, .zip" multiple>
                     <h3>> Load input files for analysis</h3>
-                    <p class="menu-hint-text">Please prepare your input files following this guid, and bundle them in a
-                        zip file without a folder structure. A sample input is available here.</p>
+                    <p class="menu-hint-text" style="position: absolute">Please prepare your input files following
+                        <u><a href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md">this
+                            guide</a></u>, and bundle them in a
+                        zip file without a folder structure. A sample input is available <u><a
+                                href="https://github.com/PathwayAndDataAnalysis/causalpath/raw/master/wiki/sample-data-and-parameters.zip">here.</a></u>
+                    </p>
                 </div>
 
                 <div class="menu-buttons">
@@ -91,8 +101,12 @@
                     profiles using CausalPath.</u></a> STAR protocols, 2(4), 100955.
                 </p>
 
-                <p style="font-size: 16px;"><u><a
-                        href="https://github.com/PathwayAndDataAnalysis/causalpath-newt-webserver">Source code</a></u>
+                <p style="font-size: 16px;">
+                    <u>
+                        <a href="https://github.com/PathwayAndDataAnalysis/causalpath">
+                            Source code
+                        </a>
+                    </u>
                     is also available!
                 </p>
             </div>
@@ -105,6 +119,7 @@
                 <a href="https://www.umb.edu/">
                     <img src="/img/umass-boston.png"
                          class="collaboration-logo"
+                         style="margin-left: 1px"
                          alt="University of Massachusetts Boston">
 
                 </a>
@@ -150,7 +165,7 @@
 
         </div>
 
-        <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
     </div>
 </div>
 
