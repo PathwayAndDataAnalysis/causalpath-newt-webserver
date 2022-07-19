@@ -1,5 +1,5 @@
 body {
-    padding: 10px;
+    padding: 20px;
     font: 13px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
@@ -8,18 +8,30 @@ a {
 }
 
 .title-heading {
-    background-color: #617d8a;
-    color: floralwhite;
     border-radius: 10px;
-    padding: 5px;
+    margin-top: 10px;
 }
 
 img.cp-logo {
-    height: 60px;
+    height: 50px;
+}
+
+.main-heading {
+    display: inline;
+    font-size: 44px;
+    margin-left: 30px;
+    margin-top: 20px;
+    align-self: center
+}
+
+.sub-heading {
+    color: #898989;
+    display: inline;
+    margin-left: 20px
 }
 
 img.collaboration-logo {
-    margin-left: 20px;
+    margin-left: 40px;
     margin-top: 10px;
 }
 
@@ -30,10 +42,11 @@ img.collaboration-logo {
 
 p.body-paragraph {
     font-size: 16px;
+    margin-left: 15px;
 }
 
 p.menu-hint-text {
-    color: #5e5e5e;
+    color: #767676;
 }
 
 .edited-button {
@@ -81,6 +94,10 @@ p.menu-hint-text {
     width: fit-content;
     margin-top: 20px;
     overflow: hidden;
+}
+
+#folder-trees-graphs {
+    margin-top: 30px;
 }
 
 #graph_canvas {
