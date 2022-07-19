@@ -175,18 +175,26 @@ function buildAndDisplayFolderTree(
         core: {
             animation: 0,
             check_callback: true,
-            force_text: true,
+            // force_text: true,
             data: data
         }
     };
 
     $(function () {
+            console.log('hierarchy');
+            console.log(hierarchy);
+
             $('#folder-tree-container').jstree(hierarchy);
+
+            $('#folder-tree-container').jstree(true).settings = hierarchy;
+            $('#folder-tree-container').jstree(true).refresh();
 
             // After jsTree build is completed hide .format nodes
             $('#folder-tree-container').on("loaded.jstree", function (e, data) {
 
                 let formatNodes = getFormatNodes(hierarchy.core.data);
+                console.log('formatNodes');
+                console.log(formatNodes);
                 formatNodes.forEach(node => {
                     $('#folder-tree-container').jstree(true).hide_node(node);
                 })
@@ -208,6 +216,16 @@ function buildAndDisplayFolderTree(
                 // deleteEmptyDirs();
 
             });
+
+            $('#folder-tree-container').on("refresh.jstree", function (e, data) {
+                let formatNodes = getFormatNodes(hierarchy.core.data);
+                console.log('formatNodesRefresh');
+                console.log(formatNodes);
+                formatNodes.forEach(node => {
+                    $('#folder-tree-container').jstree(true).hide_node(node);
+                })
+            });
+
         }
     );
 }
@@ -238,6 +256,7 @@ document.getElementById('picker').addEventListener('change', event => {
 });
 
 document.getElementById("back_button_label").addEventListener("click", (event) => {
+
     document.getElementById('menu-text-buttons').style.display = 'block';
     document.getElementById('folder-trees-graphs').style.display = 'none';
     document.getElementById('back_menu').style.display = 'none';
@@ -245,5 +264,3 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
     document.getElementById('folder-tree-container').style.display = 'none';
 });
 
-
-// Detect back button click on browser if the graph is showing
