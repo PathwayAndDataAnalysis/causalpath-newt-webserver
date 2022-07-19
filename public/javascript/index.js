@@ -191,7 +191,6 @@ function buildAndDisplayFolderTree(
                     $('#folder-tree-container').jstree(true).hide_node(node);
                 })
 
-
                 // let lonelySIFs = getLonelySifNodes(hierarchy.core.data);
                 // let formatNodes = getFormatNodes(hierarchy.core.data);
                 // let lonelyLeaves = getLonelyLeaves(hierarchy.core.data);
@@ -222,22 +221,6 @@ function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
-// document.getElementById('graph-file-input').addEventListener('change', (event) => {
-//
-//     let files = event.target.files;
-//
-//     let fileList = Array.from(files);
-//
-//     event.target.value = null; //to make sure the same files can be loaded again
-//
-//     document.getElementById('back_menu').style.display = 'flex';
-//     document.getElementById('graph_canvas').style.display = 'flex';
-//     document.getElementById('body_text').style.display = 'none';
-//     document.getElementById('selection_menus').style.display = 'none';
-//
-//     this.loadAnalysisFilesFromClient(fileList);
-// });
-
 document.getElementById('picker').addEventListener('change', event => {
     let files = event.target.files;
 
@@ -262,3 +245,5 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
     document.getElementById('folder-tree-container').style.display = 'none';
 });
 
+
+// Detect back button click on browser if the graph is showing
