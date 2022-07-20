@@ -1,0 +1,2208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+  <map language="sif">
+    <extension>
+      <renderInformation 
+        xmlns="http://www.sbml.org/sbml/level3/version1/render/version1" id="renderInformation" program-name="sbgnviz" program-version="6.0.1" background-color="#00000000">
+        <listOfColorDefinitions>
+          <colorDefinition id="color_1" value="#ffffffff"/>
+          <colorDefinition id="color_2" value="#00b414"/>
+          <colorDefinition id="color_3" value="#fff3f1"/>
+          <colorDefinition id="color_4" value="#b40014"/>
+          <colorDefinition id="color_5" value="#f1f3ff"/>
+          <colorDefinition id="color_6" value="#323232"/>
+          <colorDefinition id="color_7" value="#ffe3dd"/>
+          <colorDefinition id="color_8" value="#ffd9d0"/>
+          <colorDefinition id="color_9" value="#ffd5cc"/>
+          <colorDefinition id="color_10" value="#ffc6ba"/>
+          <colorDefinition id="color_11" value="#ffd6ccff"/>
+          <colorDefinition id="color_12" value="#ffbaaa"/>
+          <colorDefinition id="color_13" value="#ffcdc1"/>
+          <colorDefinition id="color_14" value="#ffc7ba"/>
+          <colorDefinition id="color_15" value="#ffcabe"/>
+          <colorDefinition id="color_16" value="#ffc6b9"/>
+          <colorDefinition id="color_17" value="#ffe1da"/>
+          <colorDefinition id="color_18" value="#ffd8cf"/>
+          <colorDefinition id="color_19" value="#ffc0b2"/>
+          <colorDefinition id="color_20" value="#ffded6"/>
+          <colorDefinition id="color_21" value="#dce3ff"/>
+          <colorDefinition id="color_22" value="#ffd7ceff"/>
+          <colorDefinition id="color_23" value="#ffddd5"/>
+          <colorDefinition id="color_24" value="#ffd3c9"/>
+          <colorDefinition id="color_25" value="#ffc1b3"/>
+          <colorDefinition id="color_26" value="#ffe0d9ff"/>
+          <colorDefinition id="color_27" value="#ffcec3"/>
+          <colorDefinition id="color_28" value="#ffe2db"/>
+          <colorDefinition id="color_29" value="#ffd4ca"/>
+          <colorDefinition id="color_30" value="#ffcbbf"/>
+          <colorDefinition id="color_31" value="#ffded7"/>
+          <colorDefinition id="color_32" value="#ffc9bd"/>
+          <colorDefinition id="color_33" value="#ffe3dc"/>
+          <colorDefinition id="color_34" value="#ffc4b6"/>
+          <colorDefinition id="color_35" value="#ffc2b4"/>
+          <colorDefinition id="color_36" value="#ffd9d1"/>
+          <colorDefinition id="color_37" value="#ffdfd8"/>
+          <colorDefinition id="color_38" value="#ffb3a2"/>
+          <colorDefinition id="color_39" value="#ffcdc2"/>
+          <colorDefinition id="color_40" value="#ffbfb1"/>
+          <colorDefinition id="color_41" value="#ffcbc0"/>
+          <colorDefinition id="color_42" value="#ffdbd3"/>
+          <colorDefinition id="color_43" value="#ffd2c8"/>
+          <colorDefinition id="color_44" value="#ffe2dc"/>
+          <colorDefinition id="color_45" value="#ffd8d0"/>
+          <colorDefinition id="color_46" value="#ffe1db"/>
+          <colorDefinition id="color_47" value="#ffe0d9"/>
+          <colorDefinition id="color_48" value="#ffd1c6"/>
+          <colorDefinition id="color_49" value="#ffbdae"/>
+          <colorDefinition id="color_50" value="#ced7ff"/>
+          <colorDefinition id="color_51" value="#ccd6ff"/>
+          <colorDefinition id="color_52" value="#ffd0c6"/>
+          <colorDefinition id="color_53" value="#ffc9bc"/>
+          <colorDefinition id="color_54" value="#ffdad1"/>
+          <colorDefinition id="color_55" value="#ffdcd4"/>
+          <colorDefinition id="color_56" value="#ffded6ff"/>
+          <colorDefinition id="color_57" value="#ffb9aa"/>
+          <colorDefinition id="color_58" value="#ffcfc4ff"/>
+          <colorDefinition id="color_59" value="#ffcfc4"/>
+          <colorDefinition id="color_60" value="#ffd1c7ff"/>
+          <colorDefinition id="color_61" value="#ffb8a7"/>
+          <colorDefinition id="color_62" value="#ffc6b8"/>
+          <colorDefinition id="color_63" value="#ffb6a5"/>
+          <colorDefinition id="color_64" value="#ffc0b1"/>
+          <colorDefinition id="color_65" value="#ffe2dbff"/>
+          <colorDefinition id="color_66" value="#ffccc0"/>
+          <colorDefinition id="color_67" value="#ffe4dd"/>
+          <colorDefinition id="color_68" value="#ffbfb0"/>
+          <colorDefinition id="color_69" value="#ffdad2"/>
+          <colorDefinition id="color_70" value="#ffd5cb"/>
+          <colorDefinition id="color_71" value="#d7deff"/>
+          <colorDefinition id="color_72" value="#ffd1c7"/>
+          <colorDefinition id="color_73" value="#ffb4a2"/>
+          <colorDefinition id="color_74" value="#43a93c"/>
+          <colorDefinition id="color_75" value="#cd4f32"/>
+        </listOfColorDefinitions>
+        <listOfBackgroundImages/>
+        <listOfStyles>
+          <style id="nodeffffff100b4141.2511normalnormalHelvetica0001" idList="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa nwtN_e855468a-3811-447e-8725-2fda6e831e10 nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_2" stroke-width="1.25" fill="color_1" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxfff3f100b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_8e56964b-a8f8-4028-80d1-9c332f8396cf nwtUOI_f2513f18-397f-40e8-8d44-69eee4e60f68 nwtUOI_339d273b-d513-43e3-a3bb-f6701bf10bb1 nwtUOI_95053b7b-e26f-4b65-9ebe-5117d52e6377">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_3" shape-name="stadium"/>
+          </style>
+          <style id="nodeffffff1b400141.2511normalnormalHelvetica0001" idList="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035 nwtN_857e6d84-ba0c-4bbd-8686-21229984184a nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_4" stroke-width="1.25" fill="color_1" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxf1f3ff00b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_93fef430-c0f0-493a-aa03-1cec981ce681 nwtUOI_2cc03e5f-da8d-40db-9b95-14cbd2f27c2c nwtUOI_4edcf33a-766f-40b5-a76c-e1250b8c0c55">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_5" shape-name="stadium"/>
+          </style>
+          <style id="nodeffffff13232321.2511normalnormalHelvetica0001" idList="nwtN_d6805a2c-34e1-4041-8269-46a9f15cd95c nwtN_810ff604-70f8-4caa-a4a3-b5156557bc74 nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e nwtN_28cbd60a-906e-4d92-9d52-a7d919ebce07 nwtN_6f5d7c68-f68f-4712-b76a-a5fa04e3b1c8 nwtN_44229b4c-0e4c-4693-97c9-3722f85e632f nwtN_6b1f1356-6d5c-493b-94f3-739baa345138 nwtN_1ebd48d1-04eb-4a08-9469-d3269d63216b nwtN_eba0c04e-76ee-447e-93be-09fe8065df59 nwtN_5f6e99b0-2023-4b69-85b0-0289d0a79540 nwtN_a9837ad7-9d6f-4d03-ab7e-ca5aae466474 nwtN_d308f5b6-50b6-4859-ac3d-235dd976f7bb nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350 nwtN_1e483bbd-907c-497f-84b4-c8883c970c5b nwtN_4020344b-1c09-4b96-bda6-22335e36473d nwtN_9cb294fd-51e7-4ce6-86f3-ebea758cf6eb nwtN_15647f13-dcb6-4ac2-99b4-7c69237d5cca nwtN_1bb78dd1-b692-426e-9e8e-bbc289c7580c nwtN_5da5890b-b49f-4664-ad51-4fd2630029f7 nwtN_f015e879-1d83-4ed6-9e7f-a81a0e316b7e nwtN_9b647124-e4e6-4544-b752-21e28ef70637 nwtN_88bf7897-c9c5-4e7c-ae6d-726c01791c14 nwtN_81e068cb-7888-4443-a5cc-89c7eb1b46e6 nwtN_f6707c40-1bde-4047-af28-eb6dfb9e5090 nwtN_cd379d83-d7d2-4374-8f1b-061117bac0a6 nwtN_5dd246b4-0c80-40c7-bc22-54c3f33ef53f nwtN_7cf251db-ccd7-4cfa-87d4-432ff0ab4ea3 nwtN_0005794f-ea5b-4213-8896-e753eb8239ff nwtN_0fb22e7f-497c-4a3e-a301-5f43b2876ee5 nwtN_2a00031c-df97-482b-97f1-d48e79fdf674 nwtN_ef592bf2-c6b6-43d6-8c85-6f92583d312f nwtN_a195f46b-f22b-47c8-b155-0f0c43c9dc2b nwtN_a99c26c0-9b66-4408-bb1f-dbce3f164772 nwtN_ed7873ee-5db1-4f33-8354-e6571aeb5a92 nwtN_6f6cfca7-f7e4-46a6-bd56-4375ee7453ab nwtN_5b919a9f-bcee-480d-8a1c-1750f70f09ad nwtN_2eb48b31-46d3-415d-92cb-f45be6d93692 nwtN_d72b4237-3bf1-45fd-be24-0b577a18dfef nwtN_7fac1ffa-c542-4ee0-8588-99fe6cc2d2c6 nwtN_8d3e0fab-91b7-48b7-9def-1e3321d064fa nwtN_1ab2795b-b687-4651-b387-e26e2c647d14">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_1" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffe3dd323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_8ae54c98-efdc-4ba4-8880-b637f004b8b5 nwtUOI_7821fd3b-b143-4785-936c-59511a462466 nwtUOI_b4f5334f-91c7-4b58-9e81-d52eeab6f87c nwtUOI_678941d1-8015-46fd-b8ce-d3bc4b08d6d2 nwtUOI_a3af8bf6-f906-4eea-8126-1e4058299a85">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_7" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd9d0323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_f91ab871-20bf-4c21-9089-5601248b219d nwtUOI_ba6e339f-eae4-4c10-9170-48476140d78f nwtUOI_27d8141a-683f-4634-a35f-e10f4df64e53 nwtUOI_77b794d0-d931-49e9-a5bf-c7f8b2aa7a19 nwtUOI_a90b1887-26f5-4fef-b33d-d7bd82b0070c nwtUOI_d6d0f6b5-15ea-48a3-806e-97120656a52f nwtUOI_251378ed-05f3-45e2-aebb-4219b6bf4072">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_8" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd5cc323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_350384f7-beb2-4d81-944b-4da8f69efff6 nwtUOI_01f3ee4e-ac91-4d36-974d-489063a9f372 nwtUOI_df8d77f7-f4c2-4d99-8513-ab278a4d69c6 nwtUOI_ba90955e-e524-44c3-b84b-72ac991cee4f">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_9" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc6ba323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_fa5f25cd-de0a-49de-9c7e-ab2f09f080c5">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_10" shape-name="stadium"/>
+          </style>
+          <style id="nodeffd6cc13232321.2511normalnormalHelvetica0001" idList="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_11" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffbaaa323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_8ed2eebe-e8ad-451b-8397-02cf6d9053e4 nwtUOI_a38df868-abfc-422f-9141-248e2bd38644 nwtUOI_dd6d9955-1882-4098-acfb-eddc11dcc2b5 nwtUOI_fe8ed113-1a4c-4e86-9610-23e837e2c0b6 nwtUOI_27ba7df7-b886-43d1-ade4-51bc6958b328 nwtUOI_4b891478-c59c-426c-a32f-c10008f48aa6 nwtUOI_efb7ea5c-854f-47a7-a6df-c265b26f2ecb nwtUOI_4261425a-d642-425b-876a-d1ae3f0638fd">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_12" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffcdc1323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_f7bc9e6c-30fa-4e41-96e7-11de60fe3c30 nwtUOI_5235e3b6-71db-480b-8829-9430d78d4cbb nwtUOI_54adb4f8-2b29-47ad-87e4-3d1217ed6fc7">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_13" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc7ba323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_8a30c721-5e60-46e5-ac2e-731e2aa29af6 nwtUOI_2e737145-853e-42ff-9366-4a4268b85a22">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_14" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffcabe323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_f8118794-46a4-421a-ae5e-fbdab1645cbc nwtUOI_33d41eb5-fbcf-4cd8-a804-e689cc2f30a9 nwtUOI_0ec36e01-3d76-466c-a81c-f0c4ef3776fd nwtUOI_12cc5781-a7a6-4715-9f0e-430b841b18cb">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_15" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc6b900b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_8af108e9-fdcd-48ab-9caa-cfe1eab7b447">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_16" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe1da323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_395a3a9a-e899-4587-ab60-e71b54ed4762 nwtUOI_1e25ed7b-9944-43c7-8c69-c7956fc22096 nwtUOI_7eb12576-84e7-431d-bc8f-a4c319bc2311 nwtUOI_39135194-0fdd-40f0-8c4c-93e4ce970be5 nwtUOI_40a354a9-c46f-4e90-a86b-a28e650cb4d6 nwtUOI_1a9d65e5-f88c-43b3-9fd5-7110a4b20a7f nwtUOI_ff3d7b7c-11ed-44fa-a84d-121f16eb2478">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_17" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd8cf323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_aae34d44-a15f-401b-a238-6291e15ff9ad nwtUOI_bc64ffa9-f562-4459-bcb2-5b37890ded5e nwtUOI_6a9fe2c3-77bd-48e2-9628-2fbd426117ce">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_18" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc0b2323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_2ca17a02-3be3-43de-9deb-bddc5f51a0bd">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_19" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffded600b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_663fb371-3e6d-4fdd-a61c-a11ab9091c31 nwtUOI_87d360b0-0bcb-40ab-ab74-c7c28fce0914">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_20" shape-name="stadium"/>
+          </style>
+          <style id="infoboxdce3ff323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_0059b5e2-11ed-4854-8313-b6bf1fada4c0">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_21" shape-name="stadium"/>
+          </style>
+          <style id="nodeffd7ce13232321.2511normalnormalHelvetica0001" idList="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5 nwtN_fcad01ca-c8d4-44d3-ab45-7c2878648b8b nwtN_4e2ca60d-2ee4-4f4f-b395-9c524ce3bdd1 nwtN_6eed130f-4c6c-4b3d-ac68-d996e29e6bcf">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_22" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffddd5b40014111normalnormalArial0f0f0fstadium" idList="nwtUOI_323d5026-9503-44f7-91e0-23ae6d0ea348">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_4" stroke-width="1" fill="color_23" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd3c900b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_f25a2d3a-d3a7-4310-b254-ad6e88e7c000">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_24" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc1b3323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_6e957caf-2a13-4f8a-82de-2013e4a3803b nwtUOI_3765ad3c-0c50-49d6-a69a-fafcdf5c3ac9 nwtUOI_e646f5f9-eedb-4840-9a22-94d2fd864711 nwtUOI_79e287ed-420d-4a42-8cf7-81d20dddb0e2 nwtUOI_8b379eee-85b5-4ba8-8c4d-30dc518b31ec nwtUOI_f7a7c53b-87cd-43cd-a495-01062e214ae4 nwtUOI_cbedf114-cd77-464d-80db-f7ede4236057 nwtUOI_2b01fc78-d324-4b7c-b147-1e4585c88767 nwtUOI_ff93390c-1531-42ae-8dfd-f7609af85d24">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_25" shape-name="stadium"/>
+          </style>
+          <style id="nodeffe0d913232321.2511normalnormalHelvetica0001" idList="nwtN_d6d5af05-d3c0-438b-a0aa-121fee5443e5">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_26" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffcec3323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_9eefd493-ff03-46e8-9009-df0102837464 nwtUOI_77c7bb75-1286-46f0-a500-5b8bca4dd7c7">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_27" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe2db323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_27b347b7-16d3-4de9-9f3d-7d25d12bd27b nwtUOI_5f506aa5-c52d-45a8-bdef-610ed4c8a49c nwtUOI_92165d00-442a-40fe-886e-fff6834caad9 nwtUOI_0e5b72d8-5ad6-4f4f-b2a9-af95817dbd09 nwtUOI_47f0dd69-7c13-45d6-9483-da87ad59e6a0 nwtUOI_f954557e-3e97-49b8-9dfb-8cd9b2f80303 nwtUOI_90ccec93-929e-46e8-a9a8-4ae3781cb0a6 nwtUOI_16d1d11f-adc6-4d84-9ece-1d0ecfd475dc nwtUOI_ba07772b-cca2-419a-94f8-ac865dd88a80">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_28" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd4ca323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_96e75dbe-a273-4fde-a22e-8eaa1b8ea647">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_29" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffcbbf323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_8d8aa6cf-a40d-4d22-9cb3-d128970829b4 nwtUOI_765fb6ee-c5e6-450b-9264-ed163c57cb7a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_30" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffded7323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_d94dcfdb-2644-4d2e-ab43-8f4e0ab0afd1 nwtUOI_d895f34e-2463-4ce9-aea0-1c4dfc101684 nwtUOI_3391e004-2eaa-4a38-a848-cf07c546c532 nwtUOI_1896e3a3-ea09-4914-baa4-5834cf294dd7 nwtUOI_da2766f4-e225-4377-aef5-e4e73e2f3b6a nwtUOI_ba0c1432-bc3f-4f18-87f3-43d695017e05">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_31" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc6b9323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_4dc84fa6-1c32-4473-9cd8-ee8e18617807 nwtUOI_19244013-8b32-4b69-bf63-bf71fc5c1049 nwtUOI_cf964c8d-382a-4124-9bd8-bafff4630e11 nwtUOI_7e6d034b-0be0-4cb2-a576-4e2c5d4e88f7 nwtUOI_05e7964c-1c4d-474e-8663-965164aa4857">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_16" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc9bd323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_5401e748-ed84-4455-aca8-362176df22f4 nwtUOI_730bb0e3-5562-4aac-ae5e-bfe5008d6fd6 nwtUOI_1f3e5907-6479-4e39-83a5-97a216c503b8 nwtUOI_1b0883e0-3950-457f-b5a9-b79d85a89fb8 nwtUOI_30b6ee80-dfb4-45d9-8f8b-2ad05627bdcf nwtUOI_a9b82d95-c2a1-47df-b087-b27440dcbc70 nwtUOI_e99de17d-6a9d-4f93-8725-90e0b2cb48d4 nwtUOI_4597dfa9-0656-42c6-8044-faec2918348a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_32" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe3dc323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_d851d203-6662-48a7-b5a3-ab929f37c162 nwtUOI_0eb3aea5-a6e9-403b-a213-fa7910e041d5">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_33" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc4b6323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_3b7dda3c-1665-4277-aa36-9a39e4ffc9e7 nwtUOI_947c98f8-f0a5-4bef-ad31-463de71076c0 nwtUOI_892dfb49-369a-443d-84a8-7e0de4254caa nwtUOI_fed6ad7a-5ace-48aa-9b54-b317f8985c4e">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_34" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc2b4323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_e0d2dce8-7573-4ac0-905f-868197bcf224 nwtUOI_d890da30-58b7-417f-8b5c-5553daffbe9f">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_35" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd9d1323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_52c2c0c5-15f8-415b-83a5-a7450f4e29db">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_36" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdfd8323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_2017011d-a49b-4196-b010-a0ff9d2b89e3 nwtUOI_e87cb8dd-36c3-437c-944b-8209c966f8db">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_37" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffb3a2323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_1d03d4b6-1e0e-459a-b2c3-0a773292c105">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_38" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffcdc2323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_77396572-0db8-4298-b962-bb76cbe692ed">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_39" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffbfb1323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_3f703f53-9251-4dd0-b413-4cd8fd459ff1">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_40" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffded6323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_9af244b3-8264-486a-93a2-23b092de75f7 nwtUOI_671e7b4a-1dcb-40be-a797-4cf5b6c3aa90">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_20" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffcbc0323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_e315c10f-4829-449a-b208-ade51470b90e">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_41" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdbd3323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_22a76490-8f75-42eb-8214-8a2c054f349a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_42" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd2c8323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_51225bfd-edfd-4eda-9b3b-e19cb7d9e41b">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_43" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe2dc323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_5fa94563-7d52-423d-b5d9-8d6b069a8c77 nwtUOI_afdf4f22-58c3-4612-b271-9919f999b96c nwtUOI_4e3298e3-f695-4974-a5fc-c5a058b957d5">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_44" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd8d0323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_c4840f27-fe9c-43b4-b0f3-0d1d0ec8faf1">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_45" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe1db323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_c8589dee-9acd-4adb-a128-6340cded2564 nwtUOI_fe3f91ea-4c3e-475c-89ba-2fed14f272c3">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_46" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe0d9323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_08134f12-c879-409c-8eba-e79aee2fadc5 nwtUOI_63d98010-c599-4288-842e-8f80e9582e6c nwtUOI_5f0eeca5-e169-4257-b9d1-fde20c24548d">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_47" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd1c6323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_f89e2c2c-b0bc-4bb5-a654-06792174c45f nwtUOI_6acb175e-6dea-45aa-9e93-f10d17239f69">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_48" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffbdae323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_4c3ed7e1-6912-4e81-bdfa-80613d485cb1">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_49" shape-name="stadium"/>
+          </style>
+          <style id="infoboxced7ff323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_3dc612db-e38a-4897-bf39-98e0ecccc1b5">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_50" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe1da00b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_79bf08ab-8731-47d3-bf8d-f77782175b08 nwtUOI_63c468a1-ff68-4759-8740-04bfb5ea1028">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_17" shape-name="stadium"/>
+          </style>
+          <style id="infoboxccd6ff323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_01912de7-bff9-4c9d-a384-8317a06ffb67">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_51" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffddd500b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_24b0facf-613c-47f8-a95e-b243e785fee3">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_23" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd0c6323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_1cc09160-1cbc-4692-b268-7c0928761fce">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_52" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffbfb100b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_0d717060-ecf8-4e33-93b3-580fde9d4a40">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_40" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc9bd00b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_4a8424a4-7e63-468e-9768-5059e5d25b1a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_32" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc9bc323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_aee0f708-39bb-4e88-bb1b-8f73281e7fae">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_53" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdad1323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_a939e3bf-bf93-4a67-85c1-7b58dc6c9586 nwtUOI_0cdac2f4-0a75-4ac1-96f8-bf83c2df0128 nwtUOI_d8097973-5a7a-4d14-a209-251951d4807b">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_54" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdcd4323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_1672a513-8c34-4fce-a205-cbf9b738226e nwtUOI_06187f5d-d737-4edd-8be4-66a1cb45ab78 nwtUOI_50f7377f-ec6c-41fa-8786-a42e7505e3cd">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_55" shape-name="stadium"/>
+          </style>
+          <style id="nodeffded613232321.2511normalnormalHelvetica0001" idList="nwtN_a4cb7bfa-d004-41de-854e-c5260bea882f">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_56" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffb9aa323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_a25a7016-b2ce-407b-ad56-6d6588f8d8be nwtUOI_6a963284-7053-45bc-b48c-ad58fbce69f4 nwtUOI_e457e0ee-3d7f-4e0d-b5c7-beb4837200bb">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_57" shape-name="stadium"/>
+          </style>
+          <style id="nodeffcfc413232321.2511normalnormalHelvetica0001" idList="nwtN_a64589c7-b19a-4417-94aa-ead59132f24f nwtN_c17b0bb5-42e9-42e1-8fb0-b4c6e162dce6 nwtN_85792c33-e1b0-4467-b8f2-ad065dc7ab84">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_58" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffcfc4323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_f02242da-fe62-47e2-b1ef-cc483483318d nwtUOI_a7048db8-2d38-4ad1-811f-6c50bb1949aa">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_59" shape-name="stadium"/>
+          </style>
+          <style id="nodeffd1c713232321.2511normalnormalHelvetica0001" idList="nwtN_1b921a15-8f31-4f10-90e7-85a43f8d6f81">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_60" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffb8a7323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_e37ae6e4-f955-4858-8100-8f708a41439a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_61" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc6b8323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_476f622a-5d69-4bf4-a0db-85630f521620">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_62" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffb6a500b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_737051b7-6e56-4f25-ac0a-3c485e2d28ae">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_63" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe1dab40014111normalnormalArial0f0f0fstadium" idList="nwtUOI_4cf41228-7787-4e34-866c-e87834d52608">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_4" stroke-width="1" fill="color_17" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffc0b1323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_638d3ec2-fdb2-4dc8-941e-cf0da96fae52">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_64" shape-name="stadium"/>
+          </style>
+          <style id="nodeffe2db13232321.2511normalnormalHelvetica0001" idList="nwtN_22707348-d588-4d50-a6f6-d5530b9cb615">
+            <g font-size="11" font-family="Helvetica" font-weight="normal" font-style="normal" font-color="#000" stroke="color_6" stroke-width="1.25" fill="color_65" background-image-opacity="1" background-opacity="1"/>
+          </style>
+          <style id="infoboxffbaaab40014111normalnormalArial0f0f0fstadium" idList="nwtUOI_4cd8c18e-08bf-4790-a7a3-664f781abd5e">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_4" stroke-width="1" fill="color_12" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffccc0323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_0bf3ec83-08e5-4039-a7ac-5fbba4511161">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_66" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe4dd323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_04a13816-2baa-4b1d-8fa1-50b51524e535">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_67" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffe2dcb40014111normalnormalArial0f0f0fstadium" idList="nwtUOI_f5126212-2dc5-426f-93f5-c8fdb27a25c4">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_4" stroke-width="1" fill="color_44" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffbfb0323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_09739e84-ad34-48bf-b169-4299e6052430">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_68" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdfd8b40014111normalnormalArial0f0f0fstadium" idList="nwtUOI_31417ef8-e4ee-4bbe-84ea-7d86cb792be1">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_4" stroke-width="1" fill="color_37" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdad2323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_0e5a27a9-462e-4b01-81cb-4a7d7d8c7278 nwtUOI_81074685-fb51-4eb7-9145-710f01e0ea2a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_69" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd5cb00b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_05d87626-1920-478a-84d7-0e01708c33de">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_70" shape-name="stadium"/>
+          </style>
+          <style id="infoboxd7deff00b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_5d1c3cec-64cc-49c5-807e-d1f7162d512d">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_71" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffdad100b414111normalnormalArial0f0f0fstadium" idList="nwtUOI_168418ae-6bb9-4cb8-b889-f5c146e66a3a">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_2" stroke-width="1" fill="color_54" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffd1c7323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_ae2bce66-96d0-479c-ab8f-53bb9e01249e">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_72" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffddd5323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_293d5e32-2a4e-4923-bbe6-745c3649a7dd">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_23" shape-name="stadium"/>
+          </style>
+          <style id="infoboxffb4a2323232111normalnormalArial0f0f0fstadium" idList="nwtUOI_df7034d4-f1c9-4408-894b-837f505cef81">
+            <g font-size="11" font-family="Arial" font-weight="normal" font-style="normal" font-color="#0f0f0f" stroke="color_6" stroke-width="1" fill="color_73" shape-name="stadium"/>
+          </style>
+          <style id="edge43A93C1.25" idList="nwtE_fb136b38-1963-433d-93a3-40c109897d84 nwtE_45edc2e3-f5fc-4eee-b52f-357d527360f9 nwtE_b585d100-a868-418d-bb08-5f9ab82b9a08 nwtE_5f360103-380d-4b25-a554-6d3dc3c86e46 nwtE_8c16f7bd-7e98-42be-9e6b-100d2f119694 nwtE_c41ddedb-3b49-4a9d-8097-87c5c435204b nwtE_2632ce6c-8299-4603-be0a-2641fae066ea nwtE_aea51d03-d0b7-4d5f-bc1e-cd85b2ac6443 nwtE_123c9ad1-d8f0-4fb4-bbaf-942414488469 nwtE_6cd64ea7-fce1-41d3-a041-afc05567810c nwtE_39d3f5eb-7ed2-4ce5-92a0-e866452dfc2e nwtE_0c6d600b-f79d-47fd-abd2-5303c9ff1fb7 nwtE_2ef8ffec-5478-469b-bffe-20c24196c86f nwtE_6dadc9f2-f81f-411c-bac7-7f6d36f988bc nwtE_4f8cfe70-736b-4bad-ae30-e91f7d88649a nwtE_cc71cec2-22b6-4ee2-ba58-a08381c4af91 nwtE_fb42cd2d-2809-458a-9a0f-71224b69f4a7 nwtE_c1531395-fa27-46c9-a293-4ebb51606760 nwtE_2b439c4f-fe64-49cc-a027-be02779cec53 nwtE_c497002b-6334-47c8-9d9b-df4ac00f94bc nwtE_8bf97024-465f-48a3-9784-cb667f7133f2 nwtE_248e72f6-7f9c-4423-b268-e06d36d02371 nwtE_0741f2b2-afa5-409a-9cf9-a61134e02a9d nwtE_02edf2b3-18d5-45ea-a5b9-e41a46f088b1 nwtE_e2775b4a-cbc2-4d5c-8714-9ee3db0a52f3 nwtE_49f18500-bda7-4b90-b272-24178fbd7c93 nwtE_d47f408a-cc45-4fad-a69f-49e5d14a66eb nwtE_ce46bd0e-9d22-4a08-ad13-a384e2319163 nwtE_77be6778-a5ee-47e5-9120-992df5f26688 nwtE_a6c347bc-2b46-4466-bef2-52a6b74b4e2a nwtE_0f4bcf03-bdf3-4abd-8507-c58f8365dca0 nwtE_18db8179-314d-4b8f-9c53-2ecc4baab74d nwtE_fdff68c0-88b0-44d5-8532-06c5a16e08a6 nwtE_068604f7-7f58-463c-b7cc-8821a9c9e95a nwtE_791a90f2-9f32-4604-9144-06bee3abd48d nwtE_f23a2b95-844f-46e9-a953-1b202a37b441 nwtE_31c35136-9110-4b5b-aaa5-95aaa7496d90 nwtE_43c661f2-fa3e-41cf-ad89-f3033c9ada9c nwtE_7ef2d0b0-3910-4f85-b804-2f93f37c9315 nwtE_0474d43e-c235-4471-b9e7-637f0e72e056 nwtE_4bb1aeac-029d-4056-b9dc-85f6bccdc604 nwtE_73701013-a280-4462-a397-5771ee793559 nwtE_33c247f0-4d54-4391-9a4d-9ad3c84813e7 nwtE_baa866f2-2191-4aec-9fdd-a87950e3d2ef nwtE_2b6b6425-2d9b-42ea-a4d5-441d5443e07e nwtE_ccb4e8d1-8910-4eda-8fc3-6519864495d2 nwtE_393a7c9e-1a95-44fc-b477-0da6aeabbc4f nwtE_7ed85a46-7530-490c-b364-f520785c87d5 nwtE_6b9f300b-c14d-468f-93b9-e1d8cecc0579 nwtE_393f9c70-6548-4cf8-9703-ac78e3bc2caf nwtE_a2239b04-ef56-4e88-9b6c-896f34a81ba9 nwtE_4f1029ac-3469-4d99-b729-f3583e056cef nwtE_4f8a37c7-6b55-4294-9a3f-44aba6b81555 nwtE_ffcceed4-223a-42ec-aea1-6d1048efdec8 nwtE_087132a2-0814-470a-9bc8-17e49c90f12a nwtE_80ee96d0-911e-4a1d-9532-5d4eb90c95bc nwtE_3c0413e2-3188-43c3-b4ba-60322e62f1fe nwtE_dd584699-0e51-4310-85c1-95c7f95bed69 nwtE_3b5bf146-623d-495b-867d-02c85e991dff nwtE_05b80f2f-613f-428b-b088-c77e1dd740f7 nwtE_faeb5408-64a6-43c6-9b22-b3c3ab162422 nwtE_4b014fab-cec1-401c-a0d6-7471e83de6c9 nwtE_df409da9-727b-4560-8daf-4ef920e9b2f3 nwtE_89b731ab-8066-4563-b5b7-76dffda808c4 nwtE_8c1c19f6-da57-4976-acf4-0980caefc118 nwtE_609d96d3-5cbe-416a-9454-0252e05654fb nwtE_e0a56884-7f1c-45ba-a5d2-8835f7d93f22 nwtE_ce3d62b2-3a0c-4c09-a36a-dd123ce24caf nwtE_a8f0aa3d-2078-4351-a667-7d0796e3b1c7">
+            <g stroke="color_74" stroke-width="1.25"/>
+          </style>
+          <style id="edgeCD4F321.25" idList="nwtE_00a6ba44-673e-49b3-b711-a9309d5d495a nwtE_29f26290-0881-4383-b3fe-9334b648ff5c nwtE_f8d85c8b-c118-495d-a519-6b6c4c8d80bf nwtE_93e6fb22-c085-4004-9014-474ffff4eec2 nwtE_fd00176e-e2f3-46f6-810c-ad8cccad37d4 nwtE_e500755e-0197-4ba0-b9bf-debd6f9554d9 nwtE_6e110903-6297-4200-9b38-719048d44424 nwtE_ae012055-ff54-4a31-afc6-7de065121f4a nwtE_3c299c10-c7ab-45e2-b3b7-cf57f25478c1 nwtE_3eb036b7-24cb-42d1-ae63-b7bf2d3cb7f4 nwtE_87ca3a80-fb4b-4fe9-962c-dd086865e29f nwtE_26d77f9b-9486-4716-85fc-abb83171d843 nwtE_6bab5d9d-ecc3-43e9-a084-a9945bc1c7ce nwtE_6961a80f-b03f-4d9a-a91a-61972e84b1ee nwtE_ce9d528b-f261-4f71-ba4b-4b7af528e17e nwtE_7d437685-feb2-479a-a998-f76e238fb40b nwtE_2cf6b8fd-4220-45f6-84c6-8d95435560d8 nwtE_a2384e43-5efb-4283-bb57-0539eaf17a7d nwtE_b8d5338d-bb85-4144-958f-b4b93093ff25 nwtE_14bf0d0a-8fff-4f20-b618-9d3a42770b6b nwtE_11eddd79-cdb9-46c9-9099-acd8273bd3a3 nwtE_9dc12f22-c958-4b2a-aa7c-c2cf2377def1 nwtE_1222fa6d-6754-404d-9e2b-633f1f7d5422 nwtE_57022857-5e0b-43d9-99e2-91621e91b7e7 nwtE_3b73d909-5ac2-425d-b4ec-8f30a7e10404">
+            <g stroke="color_75" stroke-width="1.25"/>
+          </style>
+        </listOfStyles>
+      </renderInformation>
+      <mapProperties>
+        <compoundPadding>0</compoundPadding>
+        <extraCompartmentPadding>14</extraCompartmentPadding>
+        <extraComplexPadding>10</extraComplexPadding>
+        <arrowScale>1.25</arrowScale>
+        <showComplexName>true</showComplexName>
+        <dynamicLabelSize>large</dynamicLabelSize>
+        <inferNestingOnLoad>false</inferNestingOnLoad>
+        <fitLabelsToNodes>false</fitLabelsToNodes>
+        <fitLabelsToInfoboxes>false</fitLabelsToInfoboxes>
+        <recalculateLayoutOnComplexityManagement>true</recalculateLayoutOnComplexityManagement>
+        <rearrangeOnComplexityManagement>true</rearrangeOnComplexityManagement>
+        <animateOnDrawingChanges>true</animateOnDrawingChanges>
+        <adjustNodeLabelFontSizeAutomatically>1</adjustNodeLabelFontSizeAutomatically>
+        <enablePorts>true</enablePorts>
+        <enableSIFTopologyGrouping>true</enableSIFTopologyGrouping>
+        <allowCompoundNodeResize>true</allowCompoundNodeResize>
+        <mapColorScheme>black_white</mapColorScheme>
+        <mapColorSchemeStyle>solid</mapColorSchemeStyle>
+        <mapName>HRD-tumors</mapName>
+        <mapDescription>Pan-cancer analysis of homologous repair deficient (HRD) tumors compared to proficient. This view focuses  on proteins related to DNA damage response. The analysis integrates global proteomics, phosphoproteomics and transcriptomics.</mapDescription>
+        <highlightColor>#0B9BCD</highlightColor>
+        <extraHighlightThickness>2</extraHighlightThickness>
+        <mapPD2AFConverted>false</mapPD2AFConverted>
+      </mapProperties>
+    </extension>
+    <glyph id="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" class="SIF macromolecule">
+      <label text="E2F3"/>
+      <bbox x="-17.374851500905592" y="-104.53080048690686" w="45.85205078125" h="30"/>
+      <glyph id="nwtUOI_8e56964b-a8f8-4028-80d1-9c332f8396cf" class="unit of information">
+        <label text="!"/>
+        <bbox x="-12.374851500905592" y="-112.03080048690686" w="15" h="15"/>
+        <tooltip>E2F3-active-by-network-sig, 1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" class="SIF macromolecule">
+      <label text="E2F1"/>
+      <bbox x="-184.98593884444193" y="-90.17650660294359" w="45.85205078125" h="30"/>
+      <glyph id="nwtUOI_f2513f18-397f-40e8-8d44-69eee4e60f68" class="unit of information">
+        <label text="!"/>
+        <bbox x="-179.98593884444193" y="-97.67650660294359" w="15" h="15"/>
+        <tooltip>E2F1-active-by-network-sig, 1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" class="SIF macromolecule">
+      <label text="E2F4"/>
+      <bbox x="-231.1252207679681" y="122.12406719914736" w="45.85205078125" h="30"/>
+      <glyph id="nwtUOI_93fef430-c0f0-493a-aa03-1cec981ce681" class="unit of information">
+        <label text="i"/>
+        <bbox x="-226.1252207679681" y="114.62406719914736" w="15" h="15"/>
+        <tooltip>E2F4-inactive-by-network-sig, -1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" class="SIF macromolecule">
+      <label text="RBL2"/>
+      <bbox x="-135.17923427284776" y="134.96909831407467" w="47.52197265625" h="30"/>
+      <glyph id="nwtUOI_2cc03e5f-da8d-40db-9b95-14cbd2f27c2c" class="unit of information">
+        <label text="i"/>
+        <bbox x="-130.17923427284776" y="127.46909831407467" w="15" h="15"/>
+        <tooltip>RBL2-inactive-by-network-sig, -1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_810ff604-70f8-4caa-a4a3-b5156557bc74" class="SIF macromolecule">
+      <label text="CDC25C"/>
+      <bbox x="-235.344037280606" y="203.87012167453133" w="70.0146484375" h="30"/>
+      <glyph id="nwtUOI_350384f7-beb2-4d81-944b-4da8f69efff6" class="unit of information">
+        <label text="r"/>
+        <bbox x="-230.344037280606" y="196.37012167453133" w="15" h="15"/>
+        <tooltip>CDC25C-R, 3.579324946847979</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e" class="SIF macromolecule">
+      <label text="CDC25A"/>
+      <bbox x="-182.46604460586937" y="6.560318717800914" w="69.18701171875" h="30"/>
+      <glyph id="nwtUOI_fa5f25cd-de0a-49de-9c7e-ab2f09f080c5" class="unit of information">
+        <label text="r"/>
+        <bbox x="-177.46604460586937" y="-0.9396812821990856" w="15" h="15"/>
+        <tooltip>CDC25A-R, 4.842954642151776</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277" class="SIF macromolecule">
+      <label text="TOP2A"/>
+      <bbox x="-400.6266595178838" y="41.17673011563845" w="58.9111328125" h="30"/>
+      <glyph id="nwtUOI_8ed2eebe-e8ad-451b-8397-02cf6d9053e4" class="unit of information">
+        <label text="p"/>
+        <bbox x="-403.3081373824671" y="33.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1374-S1377, 5.918784809754587</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_f7bc9e6c-30fa-4e41-96e7-11de60fe3c30" class="unit of information">
+        <label text="p"/>
+        <bbox x="-400.8444329553838" y="63.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1247, 4.29464881338374</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_8a30c721-5e60-46e5-ac2e-731e2aa29af6" class="unit of information">
+        <label text="p"/>
+        <bbox x="-390.9896152470505" y="33.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1213, 4.804097325721159</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_f8118794-46a4-421a-ae5e-fbdab1645cbc" class="unit of information">
+        <label text="r"/>
+        <bbox x="-386.0622063928838" y="63.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-R, 4.513962996583316</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_8af108e9-fdcd-48ab-9caa-cfe1eab7b447" class="unit of information">
+        <label text="p"/>
+        <bbox x="-378.6710931116338" y="33.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1525, 4.911303716735903</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_395a3a9a-e899-4587-ab60-e71b54ed4762" class="unit of information">
+        <label text="p"/>
+        <bbox x="-371.2799798303838" y="63.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S4, 2.5686870858651867</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_aae34d44-a15f-401b-a238-6291e15ff9ad" class="unit of information">
+        <label text="p"/>
+        <bbox x="-366.3525709762172" y="33.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1377, 3.379762618424819</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_2ca17a02-3be3-43de-9deb-bddc5f51a0bd" class="unit of information">
+        <label text="p"/>
+        <bbox x="-356.4977532678838" y="63.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1374, 5.379538478921736</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_663fb371-3e6d-4fdd-a61c-a11ab9091c31" class="unit of information">
+        <label text="p"/>
+        <bbox x="-354.0340488408005" y="33.67673011563845" w="15" h="15"/>
+        <tooltip>TOP2A-P-S1106, 2.8267142171509057</tooltip>
+      </glyph>
+      <tooltip>TOP2A-G, 3.526422081641615</tooltip>
+    </glyph>
+    <glyph id="nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec" class="SIF macromolecule">
+      <label text="E2F5"/>
+      <bbox x="-83.58548359912007" y="72.25822384309913" w="45.85205078125" h="30"/>
+      <glyph id="nwtUOI_4edcf33a-766f-40b5-a76c-e1250b8c0c55" class="unit of information">
+        <label text="i"/>
+        <bbox x="-78.58548359912007" y="64.75822384309913" w="15" h="15"/>
+        <tooltip>E2F5-inactive-by-network-sig, -1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_e855468a-3811-447e-8725-2fda6e831e10" class="SIF macromolecule">
+      <label text="CDK2"/>
+      <bbox x="133.91752612951987" y="-14.514649553855048" w="50.01220703125" h="30"/>
+      <glyph id="nwtUOI_339d273b-d513-43e3-a3bb-f6701bf10bb1" class="unit of information">
+        <label text="!"/>
+        <bbox x="138.91752612951987" y="-22.014649553855048" w="15" h="15"/>
+        <tooltip>CDK2-active-by-network-sig, 1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" class="SIF macromolecule">
+      <label text="CDK1"/>
+      <bbox x="-83.74762632898913" y="-64.94165208892508" w="50.01220703125" h="30"/>
+      <glyph id="nwtUOI_323d5026-9503-44f7-91e0-23ae6d0ea348" class="unit of information">
+        <label text="p"/>
+        <bbox x="-78.74762632898913" y="-72.44165208892508" w="15" h="15"/>
+        <tooltip>CDK1-P-Y15, 2.935843512152337</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_f25a2d3a-d3a7-4310-b254-ad6e88e7c000" class="unit of information">
+        <label text="p"/>
+        <bbox x="-78.74762632898913" y="-42.44165208892508" w="15" h="15"/>
+        <tooltip>CDK1-P-T161, 3.7835899916732982</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_6e957caf-2a13-4f8a-82de-2013e4a3803b" class="unit of information">
+        <label text="r"/>
+        <bbox x="-58.74762632898913" y="-72.44165208892508" w="15" h="15"/>
+        <tooltip>CDK1-R, 5.2845627764190315</tooltip>
+      </glyph>
+      <tooltip>CDK1-G, 3.4320209786335454</tooltip>
+    </glyph>
+    <glyph id="nwtN_d6d5af05-d3c0-438b-a0aa-121fee5443e5" class="SIF macromolecule">
+      <label text="MKI67"/>
+      <bbox x="-20.497622829621953" y="166.08400742828357" w="53.35205078125" h="30"/>
+      <glyph id="nwtUOI_9eefd493-ff03-46e8-9009-df0102837464" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.997622829621953" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2110-T2113, 4.162780851651565</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_27b347b7-16d3-4de9-9f3d-7d25d12bd27b" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.997622829621953" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1071, 2.5221241188782098</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_bc64ffa9-f562-4459-bcb2-5b37890ded5e" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.997622829621953" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1091, 3.3444068246200787</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_96e75dbe-a273-4fde-a22e-8eaa1b8ea647" class="unit of information">
+        <label text="r"/>
+        <bbox x="-21.827212673371953" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-R, 3.7162203132769145</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_3765ad3c-0c50-49d6-a69a-fafcdf5c3ac9" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.997622829621953" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1298, 5.276568151374542</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_8d8aa6cf-a40d-4d22-9cb3-d128970829b4" class="unit of information">
+        <label text="p"/>
+        <bbox x="-14.992007595246953" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2389, 4.486017199301884</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_d94dcfdb-2644-4d2e-ab43-8f4e0ab0afd1" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.997622829621953" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2344, 2.802807256755957</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_77c7bb75-1286-46f0-a500-5b8bca4dd7c7" class="unit of information">
+        <label text="p"/>
+        <bbox x="-8.156802517121953" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2105, 4.167174658648268</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_e646f5f9-eedb-4840-9a22-94d2fd864711" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.997622829621953" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2588, 5.276568151374542</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_33d41eb5-fbcf-4cd8-a804-e689cc2f30a9" class="unit of information">
+        <label text="p"/>
+        <bbox x="-1.3215974389969531" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T328, 4.530157417443439</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_4dc84fa6-1c32-4473-9cd8-ee8e18617807" class="unit of information">
+        <label text="p"/>
+        <bbox x="-26.771829112866627" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1017, 4.911303716735903</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_7821fd3b-b143-4785-936c-59511a462466" class="unit of information">
+        <label text="p"/>
+        <bbox x="5.513607639128047" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S235, 2.38549900457731</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_ba6e339f-eae4-4c10-9170-48476140d78f" class="unit of information">
+        <label text="p"/>
+        <bbox x="-25.317530160074078" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1233, 3.251682193411231</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_5401e748-ed84-4455-aca8-362176df22f4" class="unit of information">
+        <label text="p"/>
+        <bbox x="12.348812717253047" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1476, 4.632084756758803</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_5f506aa5-c52d-45a8-bdef-610ed4c8a49c" class="unit of information">
+        <label text="p"/>
+        <bbox x="-23.863231207281522" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2325, 2.5105214927937687</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_d851d203-6662-48a7-b5a3-ab929f37c162" class="unit of information">
+        <label text="p"/>
+        <bbox x="19.184017795378047" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1679, 2.431064112970881</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_730bb0e3-5562-4aac-ae5e-bfe5008d6fd6" class="unit of information">
+        <label text="p"/>
+        <bbox x="-22.408932254488967" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2305, 4.621871393218111</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_a38df868-abfc-422f-9141-248e2bd38644" class="unit of information">
+        <label text="p"/>
+        <bbox x="25.354427951628047" y="188.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T761, 5.918784809754587</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_92165d00-442a-40fe-886e-fff6834caad9" class="unit of information">
+        <label text="p"/>
+        <bbox x="-20.95463330169642" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1983, 2.5130089534910707</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_dd6d9955-1882-4098-acfb-eddc11dcc2b5" class="unit of information">
+        <label text="p"/>
+        <bbox x="-19.500334348903863" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1557, 5.918784809754587</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_3b7dda3c-1665-4277-aa36-9a39e4ffc9e7" class="unit of information">
+        <label text="p"/>
+        <bbox x="-18.046035396111307" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1315, 5.098184440265086</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_fe8ed113-1a4c-4e86-9610-23e837e2c0b6" class="unit of information">
+        <label text="p"/>
+        <bbox x="-16.59173644331875" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2406, 5.923111250757505</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_1f3e5907-6479-4e39-83a5-97a216c503b8" class="unit of information">
+        <label text="p"/>
+        <bbox x="-15.137437490526196" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1540, 4.588874755392399</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_e0d2dce8-7573-4ac0-905f-868197bcf224" class="unit of information">
+        <label text="p"/>
+        <bbox x="-13.683138537733646" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1784, 5.2287203418798835</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_27d8141a-683f-4634-a35f-e10f4df64e53" class="unit of information">
+        <label text="p"/>
+        <bbox x="-12.22883958494109" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S621, 3.2651974855138715</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_52c2c0c5-15f8-415b-83a5-a7450f4e29db" class="unit of information">
+        <label text="p"/>
+        <bbox x="-10.774540632148536" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1253-S1256, 3.2262485448050846</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_2017011d-a49b-4196-b010-a0ff9d2b89e3" class="unit of information">
+        <label text="p"/>
+        <bbox x="-9.320241679355988" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1937, 2.7206131728806953</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_0e5b72d8-5ad6-4f4f-b2a9-af95817dbd09" class="unit of information">
+        <label text="p"/>
+        <bbox x="-7.865942726563432" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S538-T543, 2.4846688671838972</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_1d03d4b6-1e0e-459a-b2c3-0a773292c105" class="unit of information">
+        <label text="p"/>
+        <bbox x="-6.4116437737708765" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1503, 6.5196069965413495</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_77396572-0db8-4298-b962-bb76cbe692ed" class="unit of information">
+        <label text="p"/>
+        <bbox x="-4.957344820978321" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1747, 4.26056038510182</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_19244013-8b32-4b69-bf63-bf71fc5c1049" class="unit of information">
+        <label text="p"/>
+        <bbox x="-3.5030458681857652" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S827, 4.911303716735903</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_3f703f53-9251-4dd0-b413-4cd8fd459ff1" class="unit of information">
+        <label text="p"/>
+        <bbox x="-2.0487469153932167" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1963, 5.473856013112874</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_9af244b3-8264-486a-93a2-23b092de75f7" class="unit of information">
+        <label text="p"/>
+        <bbox x="-0.5944479626006611" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1923, 2.8366125790644214</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_27ba7df7-b886-43d1-ade4-51bc6958b328" class="unit of information">
+        <label text="p"/>
+        <bbox x="0.8598509901918945" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1861-T1869, 5.918784809754587</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_671e7b4a-1dcb-40be-a797-4cf5b6c3aa90" class="unit of information">
+        <label text="p"/>
+        <bbox x="2.31414994298445" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2085, 2.8366125790644214</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_0ec36e01-3d76-466c-a81c-f0c4ef3776fd" class="unit of information">
+        <label text="p"/>
+        <bbox x="3.7684488957770057" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1193, 4.530157417443439</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_79e287ed-420d-4a42-8cf7-81d20dddb0e2" class="unit of information">
+        <label text="p"/>
+        <bbox x="5.222747848569561" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1176, 5.276568151374542</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_e315c10f-4829-449a-b208-ade51470b90e" class="unit of information">
+        <label text="p"/>
+        <bbox x="6.677046801362117" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2268, 4.417189043499101</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_22a76490-8f75-42eb-8214-8a2c054f349a" class="unit of information">
+        <label text="p"/>
+        <bbox x="8.131345754154673" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2466, 3.078872572528716</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_1e25ed7b-9944-43c7-8c69-c7956fc22096" class="unit of information">
+        <label text="p"/>
+        <bbox x="9.585644706947228" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1131, 2.5471138325121725</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_51225bfd-edfd-4eda-9b3b-e19cb7d9e41b" class="unit of information">
+        <label text="p"/>
+        <bbox x="11.039943659739784" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2344-T2352-S2355, 3.8506463152379364</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_d895f34e-2463-4ce9-aea0-1c4dfc101684" class="unit of information">
+        <label text="p"/>
+        <bbox x="12.49424261253234" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1393, 2.802807256755957</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_4b891478-c59c-426c-a32f-c10008f48aa6" class="unit of information">
+        <label text="p"/>
+        <bbox x="13.948541565324895" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S374, 5.923111250757505</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_b4f5334f-91c7-4b58-9e81-d52eeab6f87c" class="unit of information">
+        <label text="p"/>
+        <bbox x="15.40284051811745" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1329, 2.38549900457731</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_5fa94563-7d52-423d-b5d9-8d6b069a8c77" class="unit of information">
+        <label text="p"/>
+        <bbox x="16.857139470910006" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S108, 2.475611128241904</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_47f0dd69-7c13-45d6-9483-da87ad59e6a0" class="unit of information">
+        <label text="p"/>
+        <bbox x="18.311438423702562" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T2203, 2.5235070509897257</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_c4840f27-fe9c-43b4-b0f3-0d1d0ec8faf1" class="unit of information">
+        <label text="p"/>
+        <bbox x="19.765737376495117" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1355, 3.3032735932808452</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_2e737145-853e-42ff-9366-4a4268b85a22" class="unit of information">
+        <label text="p"/>
+        <bbox x="21.220036329287673" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S538, 4.783089164063765</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_3391e004-2eaa-4a38-a848-cf07c546c532" class="unit of information">
+        <label text="p"/>
+        <bbox x="22.67433528208023" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1335, 2.802807256755957</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_c8589dee-9acd-4adb-a128-6340cded2564" class="unit of information">
+        <label text="p"/>
+        <bbox x="24.128634234872784" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1327, 2.535372754140868</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_08134f12-c879-409c-8eba-e79aee2fadc5" class="unit of information">
+        <label text="p"/>
+        <bbox x="25.354427951628047" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1864, 2.6391744593480295</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_63d98010-c599-4288-842e-8f80e9582e6c" class="unit of information">
+        <label text="p"/>
+        <bbox x="25.354427951628047" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2708, 2.641718336347259</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_8b379eee-85b5-4ba8-8c4d-30dc518b31ec" class="unit of information">
+        <label text="p"/>
+        <bbox x="25.354427951628047" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S1815, 5.276568151374542</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_f89e2c2c-b0bc-4bb5-a654-06792174c45f" class="unit of information">
+        <label text="p"/>
+        <bbox x="25.354427951628047" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-S2223-T2231, 3.942274709880933</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_947c98f8-f0a5-4bef-ad31-463de71076c0" class="unit of information">
+        <label text="p"/>
+        <bbox x="25.354427951628047" y="158.58400742828357" w="15" h="15"/>
+        <tooltip>MKI67-P-T1801, 5.098184440265086</tooltip>
+      </glyph>
+      <tooltip>MKI67-G, 2.6340861429922935</tooltip>
+    </glyph>
+    <glyph id="nwtN_44229b4c-0e4c-4693-97c9-3722f85e632f" class="SIF macromolecule">
+      <label text="PLK1"/>
+      <bbox x="5.4252708968142045" y="78.1409870958896" w="46.6943359375" h="30"/>
+      <glyph id="nwtUOI_5235e3b6-71db-480b-8829-9430d78d4cbb" class="unit of information">
+        <label text="r"/>
+        <bbox x="10.425270896814204" y="70.6409870958896" w="15" h="15"/>
+        <tooltip>PLK1-R, 4.294943523119834</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_6b1f1356-6d5c-493b-94f3-739baa345138" class="SIF macromolecule">
+      <label text="ATRIP"/>
+      <bbox x="200.8990075465136" y="-88.55019510496187" w="53.05908203125" h="30"/>
+      <glyph id="nwtUOI_3dc612db-e38a-4897-bf39-98e0ecccc1b5" class="unit of information">
+        <label text="r"/>
+        <bbox x="205.8990075465136" y="-96.05019510496187" w="15" h="15"/>
+        <tooltip>ATRIP-R, -3.438434045545032</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_79bf08ab-8731-47d3-bf8d-f77782175b08" class="unit of information">
+        <label text="p"/>
+        <bbox x="205.8990075465136" y="-66.05019510496187" w="15" h="15"/>
+        <tooltip>ATRIP-P-S224, 2.593230680100147</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_6a9fe2c3-77bd-48e2-9628-2fbd426117ce" class="unit of information">
+        <label text="p"/>
+        <bbox x="225.8990075465136" y="-96.05019510496187" w="15" h="15"/>
+        <tooltip>ATRIP-P-S239, 3.3444068246200787</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_1ebd48d1-04eb-4a08-9469-d3269d63216b" class="SIF macromolecule">
+      <label text="NBN"/>
+      <bbox x="213.19969433241457" y="1.769849936597744" w="41.669921875" h="30"/>
+      <glyph id="nwtUOI_01912de7-bff9-4c9d-a384-8317a06ffb67" class="unit of information">
+        <label text="p"/>
+        <bbox x="218.19969433241457" y="-5.730150063402256" w="15" h="15"/>
+        <tooltip>NBN-P-T337, -3.528298105892209</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_24b0facf-613c-47f8-a95e-b243e785fee3" class="unit of information">
+        <label text="p"/>
+        <bbox x="218.19969433241457" y="24.269849936597744" w="15" h="15"/>
+        <tooltip>NBN-P-S343, 2.935843512152337</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_a9837ad7-9d6f-4d03-ab7e-ca5aae466474" class="SIF macromolecule">
+      <label text="ATR"/>
+      <bbox x="278.6940084683233" y="-101.89352410291131" w="38.88671875" h="30"/>
+      <glyph id="nwtUOI_4a8424a4-7e63-468e-9768-5059e5d25b1a" class="unit of information">
+        <label text="p"/>
+        <bbox x="283.6940084683233" y="-109.39352410291131" w="15" h="15"/>
+        <tooltip>ATR-P-T1989, 4.632084756758803</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_d308f5b6-50b6-4859-ac3d-235dd976f7bb" class="SIF macromolecule">
+      <label text="CHEK1"/>
+      <bbox x="260.1770472460673" y="70.5587438868176" w="60.01708984375" h="30"/>
+      <glyph id="nwtUOI_54adb4f8-2b29-47ad-87e4-3d1217ed6fc7" class="unit of information">
+        <label text="r"/>
+        <bbox x="265.1770472460673" y="63.058743886817595" w="15" h="15"/>
+        <tooltip>CHEK1-R, 4.293746315488994</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350" class="SIF macromolecule">
+      <label text="CDC6"/>
+      <bbox x="97.08759277281311" y="77.1076953640662" w="50.83984375" h="30"/>
+      <glyph id="nwtUOI_aee0f708-39bb-4e88-bb1b-8f73281e7fae" class="unit of information">
+        <label text="r"/>
+        <bbox x="102.08759277281311" y="69.6076953640662" w="15" h="15"/>
+        <tooltip>CDC6-R, 4.663306858135106</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_63c468a1-ff68-4759-8740-04bfb5ea1028" class="unit of information">
+        <label text="p"/>
+        <bbox x="102.08759277281311" y="99.6076953640662" w="15" h="15"/>
+        <tooltip>CDC6-P-S54, 2.557959521170922</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_4020344b-1c09-4b96-bda6-22335e36473d" class="SIF macromolecule">
+      <label text="RAD51"/>
+      <bbox x="-267.5650517971286" y="-33.06988570858229" w="58.3544921875" h="30"/>
+      <glyph id="nwtUOI_a939e3bf-bf93-4a67-85c1-7b58dc6c9586" class="unit of information">
+        <label text="r"/>
+        <bbox x="-262.5650517971286" y="-40.56988570858229" w="15" h="15"/>
+        <tooltip>RAD51-R, 3.180978071240829</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" class="SIF macromolecule">
+      <label text="FOXM1"/>
+      <bbox x="111.69644327187046" y="170.79890877924183" w="61.67236328125" h="30"/>
+      <glyph id="nwtUOI_95053b7b-e26f-4b65-9ebe-5117d52e6377" class="unit of information">
+        <label text="!"/>
+        <bbox x="116.69644327187046" y="163.29890877924183" w="15" h="15"/>
+        <tooltip>FOXM1-active-by-network-sig, 1.0</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_1bb78dd1-b692-426e-9e8e-bbc289c7580c" class="SIF macromolecule">
+      <label text="BRCA2"/>
+      <bbox x="122.80804251850756" y="263.47985644108985" w="60.01708984375" h="30"/>
+      <glyph id="nwtUOI_77b794d0-d931-49e9-a5bf-c7f8b2aa7a19" class="unit of information">
+        <label text="p"/>
+        <bbox x="127.80804251850756" y="255.97985644108985" w="15" h="15"/>
+        <tooltip>BRCA2-P-S93, 3.2456839906861386</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_afdf4f22-58c3-4612-b271-9919f999b96c" class="unit of information">
+        <label text="r"/>
+        <bbox x="127.80804251850756" y="285.97985644108985" w="15" h="15"/>
+        <tooltip>BRCA2-R, 2.4666832173786615</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_a4cb7bfa-d004-41de-854e-c5260bea882f" class="SIF macromolecule">
+      <label text="FANCI"/>
+      <bbox x="338.77436481465685" y="0.6137594879942618" w="54.17236328125" h="30"/>
+      <glyph id="nwtUOI_06187f5d-d737-4edd-8be4-66a1cb45ab78" class="unit of information">
+        <label text="r"/>
+        <bbox x="343.77436481465685" y="-6.886240512005738" w="15" h="15"/>
+        <tooltip>FANCI-R, 2.985614261040804</tooltip>
+      </glyph>
+      <tooltip>FANCI-G, 2.8681299436113155</tooltip>
+    </glyph>
+    <glyph id="nwtN_f015e879-1d83-4ed6-9e7f-a81a0e316b7e" class="SIF macromolecule">
+      <label text="CCNA2"/>
+      <bbox x="-396.0088826340761" y="-40.47922744049015" w="60.8447265625" h="30"/>
+      <glyph id="nwtUOI_a25a7016-b2ce-407b-ad56-6d6588f8d8be" class="unit of information">
+        <label text="r"/>
+        <bbox x="-391.0088826340761" y="-47.97922744049015" w="15" h="15"/>
+        <tooltip>CCNA2-R, 5.962689814763482</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_1b921a15-8f31-4f10-90e7-85a43f8d6f81" class="SIF macromolecule">
+      <label text="TTK"/>
+      <bbox x="72.5555256305912" y="-82.60473315101866" w="38.330078125" h="30"/>
+      <glyph id="nwtUOI_e37ae6e4-f955-4858-8100-8f708a41439a" class="unit of information">
+        <label text="r"/>
+        <bbox x="70.8880451618412" y="-90.10473315101866" w="15" h="15"/>
+        <tooltip>TTK-R, 6.116381625118004</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_476f622a-5d69-4bf4-a0db-85630f521620" class="unit of information">
+        <label text="p"/>
+        <bbox x="75.33221833892455" y="-60.104733151018664" w="15" h="15"/>
+        <tooltip>TTK-P-T33, 4.92401745585249</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_cf964c8d-382a-4124-9bd8-bafff4630e11" class="unit of information">
+        <label text="p"/>
+        <bbox x="84.2205646930912" y="-90.10473315101866" w="15" h="15"/>
+        <tooltip>TTK-P-S821, 4.911303716735903</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_737051b7-6e56-4f25-ac0a-3c485e2d28ae" class="unit of information">
+        <label text="p"/>
+        <bbox x="93.10891104725786" y="-60.104733151018664" w="15" h="15"/>
+        <tooltip>TTK-P-S281, 6.264571311457884</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_5f0eeca5-e169-4257-b9d1-fde20c24548d" class="unit of information">
+        <label text="p"/>
+        <bbox x="97.5530842243412" y="-90.10473315101866" w="15" h="15"/>
+        <tooltip>TTK-P-S436, 2.6582130909428012</tooltip>
+      </glyph>
+      <tooltip>TTK-G, 3.9208963358117077</tooltip>
+    </glyph>
+    <glyph id="nwtN_88bf7897-c9c5-4e7c-ae6d-726c01791c14" class="SIF macromolecule">
+      <label text="EXO1"/>
+      <bbox x="372.811241094204" y="-71.847560976723" w="50.01953125" h="30"/>
+      <glyph id="nwtUOI_4cf41228-7787-4e34-866c-e87834d52608" class="unit of information">
+        <label text="p"/>
+        <bbox x="377.811241094204" y="-79.347560976723" w="15" h="15"/>
+        <tooltip>EXO1-P-S714, 2.5686870858651867</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_7eb12576-84e7-431d-bc8f-a4c319bc2311" class="unit of information">
+        <label text="p"/>
+        <bbox x="377.811241094204" y="-49.347560976723" w="15" h="15"/>
+        <tooltip>EXO1-P-S815, 2.596130572903124</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_638d3ec2-fdb2-4dc8-941e-cf0da96fae52" class="unit of information">
+        <label text="r"/>
+        <bbox x="397.811241094204" y="-79.347560976723" w="15" h="15"/>
+        <tooltip>EXO1-R, 5.4150110127474615</tooltip>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_22707348-d588-4d50-a6f6-d5530b9cb615" class="SIF macromolecule">
+      <label text="AURKB"/>
+      <bbox x="32.713110480138894" y="237.42989357012388" w="61.6796875" h="30"/>
+      <glyph id="nwtUOI_0cdac2f4-0a75-4ac1-96f8-bf83c2df0128" class="unit of information">
+        <label text="r"/>
+        <bbox x="37.713110480138894" y="229.92989357012388" w="15" h="15"/>
+        <tooltip>AURKB-R, 3.189990137253289</tooltip>
+      </glyph>
+      <tooltip>AURKB-G, 2.49452727052334</tooltip>
+    </glyph>
+    <glyph id="nwtN_85792c33-e1b0-4467-b8f2-ad065dc7ab84" class="SIF macromolecule">
+      <label text="RIF1"/>
+      <bbox x="-62.560241623123204" y="252.26610854668786" w="42.5048828125" h="30"/>
+      <glyph id="nwtUOI_4e3298e3-f695-4974-a5fc-c5a058b957d5" class="unit of information">
+        <label text="p"/>
+        <bbox x="-70.0602416231232" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S1542, 2.475611128241904</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_4cd8c18e-08bf-4790-a7a3-664f781abd5e" class="unit of information">
+        <label text="p"/>
+        <bbox x="-70.0602416231232" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2205, 5.918784809754587</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_39135194-0fdd-40f0-8c4c-93e4ce970be5" class="unit of information">
+        <label text="p"/>
+        <bbox x="-66.0592650606232" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2265, 2.5686870858651867</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_cbedf114-cd77-464d-80db-f7ede4236057" class="unit of information">
+        <label text="p"/>
+        <bbox x="-63.184020919998204" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2172-S2176, 5.276568151374542</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_40a354a9-c46f-4e90-a86b-a28e650cb4d6" class="unit of information">
+        <label text="p"/>
+        <bbox x="-60.308776779373204" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S1688, 2.5646172396993143</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_da2766f4-e225-4377-aef5-e4e73e2f3b6a" class="unit of information">
+        <label text="p"/>
+        <bbox x="-55.995910568435704" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S1454, 2.7914943777387218</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_df8d77f7-f4c2-4d99-8513-ab278a4d69c6" class="unit of information">
+        <label text="p"/>
+        <bbox x="-54.558288498123204" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S1422, 3.580925281070794</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_ba0c1432-bc3f-4f18-87f3-43d695017e05" class="unit of information">
+        <label text="p"/>
+        <bbox x="-48.807800216873204" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-T409, 2.802807256755957</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_0bf3ec83-08e5-4039-a7ac-5fbba4511161" class="unit of information">
+        <label text="p"/>
+        <bbox x="-48.807800216873204" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2348, 4.375639546051749</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_ba90955e-e524-44c3-b84b-72ac991cee4f" class="unit of information">
+        <label text="p"/>
+        <bbox x="-41.619689865310704" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S1238, 3.580925281070794</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_a9b82d95-c2a1-47df-b087-b27440dcbc70" class="unit of information">
+        <label text="p"/>
+        <bbox x="-43.057311935623204" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S1616, 4.632084756758803</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_90ccec93-929e-46e8-a9a8-4ae3781cb0a6" class="unit of information">
+        <label text="r"/>
+        <bbox x="-34.431579513748204" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-R, 2.520423987744136</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_d8097973-5a7a-4d14-a209-251951d4807b" class="unit of information">
+        <label text="p"/>
+        <bbox x="-37.306823654373204" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2172, 3.1895957094338896</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_2b01fc78-d324-4b7c-b147-1e4585c88767" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.555358810623204" y="274.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2176, 5.276568151374542</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_04a13816-2baa-4b1d-8fa1-50b51524e535" class="unit of information">
+        <label text="p"/>
+        <bbox x="-31.55633537312321" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2393, 2.337610271397633</tooltip>
+      </glyph>
+      <glyph id="nwtUOI_765fb6ee-c5e6-450b-9264-ed163c57cb7a" class="unit of information">
+        <label text="p"/>
+        <bbox x="-27.555358810623204" y="244.76610854668786" w="15" h="15"/>
+        <tooltip>RIF1-P-S2157, 4.4516748892142886</tooltip>
+      </glyph>
+      <tooltip>RIF1-G, 4.1005316023802765</tooltip>
+    </glyph>
+    <glyph id="nwtN_cd379d83-d7d2-4374-8f1b-061117bac0a6" class="topology group">
+      <extension>
+        <extraInfo>
+          <w>115.16748046875</w>
+          <h>111.875</h>
+          <minW>0</minW>
+          <minH>0</minH>
+          <WLBias>0</WLBias>
+          <WRBias>0</WRBias>
+          <HTBias>0</HTBias>
+          <HBBias>0</HBBias>
+        </extraInfo>
+      </extension>
+      <bbox x="-252.5658833235055" y="-282.6730313156254" w="143.16748046875" h="139.875"/>
+      <glyph id="nwtN_6eed130f-4c6c-4b3d-ac68-d996e29e6bcf" class="SIF macromolecule">
+        <label text="MCM3"/>
+        <bbox x="-236.9408833235055" y="-223.67303131562537" w="54.1650390625" h="30"/>
+        <glyph id="nwtUOI_81074685-fb51-4eb7-9145-710f01e0ea2a" class="unit of information">
+          <label text="r"/>
+          <bbox x="-231.9408833235055" y="-231.17303131562537" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_ff3d7b7c-11ed-44fa-a84d-121f16eb2478" class="unit of information">
+          <label text="p"/>
+          <bbox x="-231.9408833235055" y="-201.17303131562537" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_4e2ca60d-2ee4-4f4f-b395-9c524ce3bdd1" class="SIF macromolecule">
+        <label text="RRM2"/>
+        <bbox x="-177.5258442610055" y="-223.67303131562537" w="52.50244140625" h="30"/>
+        <glyph id="nwtUOI_fed6ad7a-5ace-48aa-9b54-b317f8985c4e" class="unit of information">
+          <label text="r"/>
+          <bbox x="-172.5258442610055" y="-231.17303131562537" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_f6707c40-1bde-4047-af28-eb6dfb9e5090" class="SIF macromolecule">
+        <label text="AURKA"/>
+        <bbox x="-236.9408833235055" y="-258.9230313156254" w="61.6796875" h="30"/>
+        <glyph id="nwtUOI_6a963284-7053-45bc-b48c-ad58fbce69f4" class="unit of information">
+          <label text="r"/>
+          <bbox x="-231.9408833235055" y="-266.4230313156254" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_c17b0bb5-42e9-42e1-8fb0-b4c6e162dce6" class="SIF macromolecule">
+        <label text="TYMS"/>
+        <bbox x="-180.0160786360055" y="-188.4230313156254" w="51.66748046875" h="30"/>
+        <glyph id="nwtUOI_a90b1887-26f5-4fef-b33d-d7bd82b0070c" class="unit of information">
+          <label text="r"/>
+          <bbox x="-175.0160786360055" y="-195.9230313156254" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_81e068cb-7888-4443-a5cc-89c7eb1b46e6" class="SIF macromolecule">
+        <label text="ORC1"/>
+        <bbox x="-236.9408833235055" y="-188.4230313156254" w="51.6748046875" h="30"/>
+        <glyph id="nwtUOI_a7048db8-2d38-4ad1-811f-6c50bb1949aa" class="unit of information">
+          <label text="r"/>
+          <bbox x="-231.9408833235055" y="-195.9230313156254" w="15" h="15"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_2a00031c-df97-482b-97f1-d48e79fdf674" class="topology group">
+      <extension>
+        <extraInfo>
+          <w>127.69921875000003</w>
+          <h>155.24999999999997</h>
+          <minW>0</minW>
+          <minH>0</minH>
+          <WLBias>0</WLBias>
+          <WRBias>0</WRBias>
+          <HTBias>0</HTBias>
+          <HBBias>0</HBBias>
+        </extraInfo>
+      </extension>
+      <bbox x="129.88378184007672" y="-332.1760290686618" w="155.69921875000003" h="183.24999999999997"/>
+      <glyph id="nwtN_2eb48b31-46d3-415d-92cb-f45be6d93692" class="SIF macromolecule">
+        <label text="XRCC6"/>
+        <bbox x="145.5087818400767" y="-273.17602906866193" w="60.8447265625" h="30"/>
+        <glyph id="nwtUOI_0eb3aea5-a6e9-403b-a213-fa7910e041d5" class="unit of information">
+          <label text="p"/>
+          <bbox x="150.5087818400767" y="-280.67602906866193" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_16d1d11f-adc6-4d84-9ece-1d0ecfd475dc" class="unit of information">
+          <label text="r"/>
+          <bbox x="150.5087818400767" y="-250.67602906866193" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_293d5e32-2a4e-4923-bbe6-745c3649a7dd" class="unit of information">
+          <label text="p"/>
+          <bbox x="170.5087818400767" y="-280.67602906866193" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_5b919a9f-bcee-480d-8a1c-1750f70f09ad" class="SIF macromolecule">
+        <label text="DTL"/>
+        <bbox x="196.5815357463267" y="-202.67602906866185" w="38.33740234375" h="30"/>
+        <glyph id="nwtUOI_1a9d65e5-f88c-43b3-9fd5-7110a4b20a7f" class="unit of information">
+          <label text="p"/>
+          <bbox x="194.9158863322642" y="-210.17602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_efb7ea5c-854f-47a7-a6df-c265b26f2ecb" class="unit of information">
+          <label text="p"/>
+          <bbox x="194.9158863322642" y="-180.17602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_12cc5781-a7a6-4715-9f0e-430b841b18cb" class="unit of information">
+          <label text="r"/>
+          <bbox x="208.2502369182017" y="-210.17602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_ae2bce66-96d0-479c-ab8f-53bb9e01249e" class="unit of information">
+          <label text="p"/>
+          <bbox x="208.2502369182017" y="-180.17602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_d890da30-58b7-417f-8b5c-5553daffbe9f" class="unit of information">
+          <label text="p"/>
+          <bbox x="221.5845875041392" y="-210.17602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_4261425a-d642-425b-876a-d1ae3f0638fd" class="unit of information">
+          <label text="p"/>
+          <bbox x="221.5845875041392" y="-180.17602906866185" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_ed7873ee-5db1-4f33-8354-e6571aeb5a92" class="SIF macromolecule">
+        <label text="TERF2"/>
+        <bbox x="145.5087818400767" y="-237.92602906866185" w="57.5048828125" h="30"/>
+        <glyph id="nwtUOI_168418ae-6bb9-4cb8-b889-f5c146e66a3a" class="unit of information">
+          <label text="p"/>
+          <bbox x="150.5087818400767" y="-245.42602906866185" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_a195f46b-f22b-47c8-b155-0f0c43c9dc2b" class="SIF macromolecule">
+        <label text="WRN"/>
+        <bbox x="145.5087818400767" y="-202.67602906866185" w="45.82275390625" h="30"/>
+        <glyph id="nwtUOI_5d1c3cec-64cc-49c5-807e-d1f7162d512d" class="unit of information">
+          <label text="p"/>
+          <bbox x="150.5087818400767" y="-210.17602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_a3af8bf6-f906-4eea-8126-1e4058299a85" class="unit of information">
+          <label text="p"/>
+          <bbox x="150.5087818400767" y="-180.17602906866185" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_5f6e99b0-2023-4b69-85b0-0289d0a79540" class="SIF macromolecule">
+        <label text="ORC2"/>
+        <bbox x="212.99510996507672" y="-308.4260290686618" w="51.6748046875" h="30"/>
+        <glyph id="nwtUOI_f954557e-3e97-49b8-9dfb-8cd9b2f80303" class="unit of information">
+          <label text="p"/>
+          <bbox x="217.99510996507672" y="-315.9260290686618" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_0d717060-ecf8-4e33-93b3-580fde9d4a40" class="unit of information">
+          <label text="p"/>
+          <bbox x="217.99510996507672" y="-285.9260290686618" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_15647f13-dcb6-4ac2-99b4-7c69237d5cca" class="SIF macromolecule">
+        <label text="LRWD1"/>
+        <bbox x="145.5087818400767" y="-308.4260290686618" w="62.236328125" h="30"/>
+        <glyph id="nwtUOI_01f3ee4e-ac91-4d36-974d-489063a9f372" class="unit of information">
+          <label text="p"/>
+          <bbox x="150.5087818400767" y="-315.9260290686618" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_5da5890b-b49f-4664-ad51-4fd2630029f7" class="SIF macromolecule">
+        <label text="RAD18"/>
+        <bbox x="211.60350840257675" y="-273.17602906866193" w="58.3544921875" h="30"/>
+        <glyph id="nwtUOI_678941d1-8015-46fd-b8ce-d3bc4b08d6d2" class="unit of information">
+          <label text="p"/>
+          <bbox x="216.60350840257675" y="-280.67602906866193" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_1896e3a3-ea09-4914-baa4-5834cf294dd7" class="unit of information">
+          <label text="p"/>
+          <bbox x="216.60350840257675" y="-250.67602906866193" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_0005794f-ea5b-4213-8896-e753eb8239ff" class="SIF macromolecule">
+        <label text="TICRR"/>
+        <bbox x="208.26366465257675" y="-237.92602906866185" w="55.82763671875" h="30"/>
+        <glyph id="nwtUOI_0e5a27a9-462e-4b01-81cb-4a7d7d8c7278" class="unit of information">
+          <label text="p"/>
+          <bbox x="210.97057383226425" y="-245.42602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_7e6d034b-0be0-4cb2-a576-4e2c5d4e88f7" class="unit of information">
+          <label text="p"/>
+          <bbox x="210.97057383226425" y="-215.42602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_e87cb8dd-36c3-437c-944b-8209c966f8db" class="unit of information">
+          <label text="p"/>
+          <bbox x="228.67748301195175" y="-245.42602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_e99de17d-6a9d-4f93-8725-90e0b2cb48d4" class="unit of information">
+          <label text="p"/>
+          <bbox x="228.67748301195175" y="-215.42602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_892dfb49-369a-443d-84a8-7e0de4254caa" class="unit of information">
+          <label text="r"/>
+          <bbox x="246.38439219163925" y="-245.42602906866185" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_d6d0f6b5-15ea-48a3-806e-97120656a52f" class="unit of information">
+          <label text="p"/>
+          <bbox x="246.38439219163925" y="-215.42602906866185" w="15" h="15"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_a99c26c0-9b66-4408-bb1f-dbce3f164772" class="topology group">
+      <extension>
+        <extraInfo>
+          <w>129.3544921875</w>
+          <h>76.625</h>
+          <minW>0</minW>
+          <minH>0</minH>
+          <WLBias>0</WLBias>
+          <WRBias>0</WRBias>
+          <HTBias>0</HTBias>
+          <HBBias>0</HBBias>
+        </extraInfo>
+      </extension>
+      <bbox x="-424.2118762150014" y="118.528388083154" w="157.3544921875" h="104.625"/>
+      <glyph id="nwtN_ef592bf2-c6b6-43d6-8c85-6f92583d312f" class="SIF macromolecule">
+        <label text="TOPBP1"/>
+        <bbox x="-408.5868762150014" y="142.278388083154" w="68.916015625" h="30"/>
+        <glyph id="nwtUOI_251378ed-05f3-45e2-aebb-4219b6bf4072" class="unit of information">
+          <label text="r"/>
+          <bbox x="-403.5868762150014" y="134.778388083154" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_05e7964c-1c4d-474e-8663-965164aa4857" class="unit of information">
+          <label text="p"/>
+          <bbox x="-403.5868762150014" y="164.778388083154" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_4597dfa9-0656-42c6-8044-faec2918348a" class="unit of information">
+          <label text="p"/>
+          <bbox x="-383.5868762150014" y="134.778388083154" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_d72b4237-3bf1-45fd-be24-0b577a18dfef" class="SIF macromolecule">
+        <label text="MCM10"/>
+        <bbox x="-408.5868762150014" y="177.528388083154" w="62.50732421875" h="30"/>
+        <glyph id="nwtUOI_df7034d4-f1c9-4408-894b-837f505cef81" class="unit of information">
+          <label text="r"/>
+          <bbox x="-403.5868762150014" y="170.028388083154" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_7fac1ffa-c542-4ee0-8588-99fe6cc2d2c6" class="SIF macromolecule">
+        <label text="PCLAF"/>
+        <bbox x="-340.8295519962514" y="177.528388083154" w="58.34716796875" h="30"/>
+        <glyph id="nwtUOI_ba07772b-cca2-419a-94f8-ac865dd88a80" class="unit of information">
+          <label text="r"/>
+          <bbox x="-335.8295519962514" y="170.028388083154" w="15" h="15"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_6f6cfca7-f7e4-46a6-bd56-4375ee7453ab" class="topology group">
+      <extension>
+        <extraInfo>
+          <w>119.0859375</w>
+          <h>120.00000000000003</h>
+          <minW>0</minW>
+          <minH>0</minH>
+          <WLBias>0</WLBias>
+          <WRBias>0</WRBias>
+          <HTBias>0</HTBias>
+          <HBBias>0</HBBias>
+        </extraInfo>
+      </extension>
+      <bbox x="-51.36411718730473" y="-300.0612928949156" w="147.0859375" h="148.00000000000003"/>
+      <glyph id="nwtN_1e483bbd-907c-497f-84b4-c8883c970c5b" class="SIF macromolecule">
+        <label text="TOP2B"/>
+        <bbox x="-35.73911718730473" y="-241.06129289491557" w="58.9111328125" h="30"/>
+        <glyph id="nwtUOI_fe3f91ea-4c3e-475c-89ba-2fed14f272c3" class="unit of information">
+          <label text="p"/>
+          <bbox x="-30.73911718730473" y="-248.56129289491557" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_6acb175e-6dea-45aa-9e93-f10d17239f69" class="unit of information">
+          <label text="p"/>
+          <bbox x="-30.73911718730473" y="-218.56129289491557" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_eba0c04e-76ee-447e-93be-09fe8065df59" class="SIF macromolecule">
+        <label text="USP1"/>
+        <bbox x="-35.73911718730473" y="-205.81129289491557" w="49.1845703125" h="30"/>
+        <glyph id="nwtUOI_1cc09160-1cbc-4692-b268-7c0928761fce" class="unit of information">
+          <label text="r"/>
+          <bbox x="-30.73911718730473" y="-213.31129289491557" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_87d360b0-0bcb-40ab-ab74-c7c28fce0914" class="unit of information">
+          <label text="p"/>
+          <bbox x="-30.73911718730473" y="-183.31129289491557" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_f7a7c53b-87cd-43cd-a495-01062e214ae4" class="unit of information">
+          <label text="p"/>
+          <bbox x="-10.739117187304728" y="-213.31129289491557" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_28cbd60a-906e-4d92-9d52-a7d919ebce07" class="SIF macromolecule">
+        <label text="TFPT"/>
+        <bbox x="18.695453125195257" y="-205.81129289491557" w="47.49267578125" h="30"/>
+        <glyph id="nwtUOI_0059b5e2-11ed-4854-8313-b6bf1fada4c0" class="unit of information">
+          <label text="p"/>
+          <bbox x="23.695453125195257" y="-213.31129289491557" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_7cf251db-ccd7-4cfa-87d4-432ff0ab4ea3" class="SIF macromolecule">
+        <label text="ORC6"/>
+        <bbox x="28.42201562519527" y="-241.06129289491557" w="51.6748046875" h="30"/>
+        <glyph id="nwtUOI_09739e84-ad34-48bf-b169-4299e6052430" class="unit of information">
+          <label text="p"/>
+          <bbox x="33.42201562519527" y="-248.56129289491557" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_e457e0ee-3d7f-4e0d-b5c7-beb4837200bb" class="unit of information">
+          <label text="r"/>
+          <bbox x="33.42201562519527" y="-218.56129289491557" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_0fb22e7f-497c-4a3e-a301-5f43b2876ee5" class="SIF macromolecule">
+        <label text="CDC25B"/>
+        <bbox x="-35.73911718730473" y="-276.3112928949156" w="69.18701171875" h="30"/>
+        <glyph id="nwtUOI_05d87626-1920-478a-84d7-0e01708c33de" class="unit of information">
+          <label text="p"/>
+          <bbox x="-30.73911718730473" y="-283.8112928949156" w="15" h="15"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_8d3e0fab-91b7-48b7-9def-1e3321d064fa" class="topology group">
+      <extension>
+        <extraInfo>
+          <w>105.18457031250003</w>
+          <h>84.75</h>
+          <minW>0</minW>
+          <minH>0</minH>
+          <WLBias>0</WLBias>
+          <WRBias>0</WRBias>
+          <HTBias>0</HTBias>
+          <HBBias>0</HBBias>
+        </extraInfo>
+      </extension>
+      <bbox x="208.22289333636513" y="133.9129839294212" w="133.18457031250003" h="112.75"/>
+      <glyph id="nwtN_fcad01ca-c8d4-44d3-ab45-7c2878648b8b" class="SIF macromolecule">
+        <label text="MCM4"/>
+        <bbox x="223.8478933363651" y="192.9129839294212" w="54.1650390625" h="30"/>
+        <glyph id="nwtUOI_31417ef8-e4ee-4bbe-84ea-7d86cb792be1" class="unit of information">
+          <label text="p"/>
+          <bbox x="228.8478933363651" y="185.4129839294212" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_50f7377f-ec6c-41fa-8786-a42e7505e3cd" class="unit of information">
+          <label text="r"/>
+          <bbox x="228.8478933363651" y="215.4129839294212" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_ff93390c-1531-42ae-8dfd-f7609af85d24" class="unit of information">
+          <label text="p"/>
+          <bbox x="248.8478933363651" y="185.4129839294212" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_5dd246b4-0c80-40c7-bc22-54c3f33ef53f" class="SIF macromolecule">
+        <label text="LIG3"/>
+        <bbox x="283.26293239886513" y="192.9129839294212" w="42.51953125" h="30"/>
+        <glyph id="nwtUOI_f5126212-2dc5-426f-93f5-c8fdb27a25c4" class="unit of information">
+          <label text="p"/>
+          <bbox x="288.26293239886513" y="185.4129839294212" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_d6805a2c-34e1-4041-8269-46a9f15cd95c" class="SIF macromolecule">
+        <label text="BARD1"/>
+        <bbox x="223.8478933363651" y="157.6629839294212" w="60.01708984375" h="30"/>
+        <glyph id="nwtUOI_8ae54c98-efdc-4ba4-8880-b637f004b8b5" class="unit of information">
+          <label text="p"/>
+          <bbox x="228.8478933363651" y="150.1629839294212" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_f91ab871-20bf-4c21-9089-5601248b219d" class="unit of information">
+          <label text="r"/>
+          <bbox x="228.8478933363651" y="180.1629839294212" w="15" h="15"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_1ab2795b-b687-4651-b387-e26e2c647d14" class="topology group">
+      <extension>
+        <extraInfo>
+          <w>127.69189453125</w>
+          <h>76.625</h>
+          <minW>0</minW>
+          <minH>0</minH>
+          <WLBias>0</WLBias>
+          <WRBias>0</WRBias>
+          <HTBias>0</HTBias>
+          <HBBias>0</HBBias>
+        </extraInfo>
+      </extension>
+      <bbox x="-429.71176508109386" y="-176.14121807672925" w="155.69189453125" h="104.625"/>
+      <glyph id="nwtN_a64589c7-b19a-4417-94aa-ead59132f24f" class="SIF macromolecule">
+        <label text="CHEK2"/>
+        <bbox x="-414.08676508109386" y="-152.39121807672925" w="60.01708984375" h="30"/>
+        <glyph id="nwtUOI_f02242da-fe62-47e2-b1ef-cc483483318d" class="unit of information">
+          <label text="r"/>
+          <bbox x="-409.08676508109386" y="-159.89121807672925" w="15" h="15"/>
+        </glyph>
+        <glyph id="nwtUOI_30b6ee80-dfb4-45d9-8f8b-2ad05627bdcf" class="unit of information">
+          <label text="p"/>
+          <bbox x="-409.08676508109386" y="-129.89121807672925" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_9b647124-e4e6-4544-b752-21e28ef70637" class="SIF macromolecule">
+        <label text="DBF4"/>
+        <bbox x="-348.81967523734386" y="-152.39121807672925" w="48.34228515625" h="30"/>
+        <glyph id="nwtUOI_1b0883e0-3950-457f-b5a9-b79d85a89fb8" class="unit of information">
+          <label text="r"/>
+          <bbox x="-343.81967523734386" y="-159.89121807672925" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_9cb294fd-51e7-4ce6-86f3-ebea758cf6eb" class="SIF macromolecule">
+        <label text="FANCA"/>
+        <bbox x="-414.08676508109386" y="-117.14121807672925" w="60.009765625" h="30"/>
+        <glyph id="nwtUOI_1672a513-8c34-4fce-a205-cbf9b738226e" class="unit of information">
+          <label text="r"/>
+          <bbox x="-409.08676508109386" y="-124.64121807672925" w="15" h="15"/>
+        </glyph>
+      </glyph>
+      <glyph id="nwtN_6f5d7c68-f68f-4712-b76a-a5fa04e3b1c8" class="SIF macromolecule">
+        <label text="CDC45"/>
+        <bbox x="-348.82699945609386" y="-117.14121807672925" w="59.18212890625" h="30"/>
+        <glyph id="nwtUOI_4c3ed7e1-6912-4e81-bdfa-80613d485cb1" class="unit of information">
+          <label text="r"/>
+          <bbox x="-343.82699945609386" y="-124.64121807672925" w="15" h="15"/>
+        </glyph>
+      </glyph>
+    </glyph>
+    <arc id="nwtE_fb136b38-1963-433d-93a3-40c109897d84" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-140.41229390257345" y="-62.45085916931707"/>
+      <end x="96.58777214490465" y="76.87066184721238"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8961619;http://identifiers.org/reactome/R-HSA-539112;http://identifiers.org/reactome/R-HSA-68679;http://identifiers.org/reactome/R-HSA-68637</pcIDs>
+    </arc>
+    <arc id="nwtE_45edc2e3-f5fc-4eee-b52f-357d527360f9" class="phosphorylates" source="nwtN_22707348-d588-4d50-a6f6-d5530b9cb615" target="nwtN_85792c33-e1b0-4467-b8f2-ad065dc7ab84">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="32.088110480138894" y="256.88169432762163"/>
+      <end x="-16.336175011957522" y="263.73300026601527"/>
+      <pcIDs>PMID:22267324</pcIDs>
+      <siteLocations>S2205</siteLocations>
+    </arc>
+    <arc id="nwtE_00a6ba44-673e-49b3-b711-a9309d5d495a" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-195.71547498913048" y="121.49906719914736"/>
+      <end x="-77.74175780655645" y="-26.160386365531565"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964594;http://pathwaycommons.org/pc12/TemplateReaction_e4e16b371f9c5eeaaaa4dcbcc541caf5;http://identifiers.org/reactome/R-HSA-8961934;http://pathwaycommons.org/pc12/TemplateReactionRegulation_c139b1965ab1e755a85eedd79dcb07d3</pcIDs>
+    </arc>
+    <arc id="nwtE_b585d100-a868-418d-bb08-5f9ab82b9a08" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_1b921a15-8f31-4f10-90e7-85a43f8d6f81">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-33.11041929773914" y="-52.95054467183553"/>
+      <end x="68.82683831486878" y="-64.91718739425397"/>
+      <siteLocations>S281</siteLocations>
+    </arc>
+    <arc id="nwtE_5f360103-380d-4b25-a554-6d3dc3c86e46" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-15.747489877970686" y="-76.41584336398748"/>
+      <end x="-33.54167489168381" y="-65.45881920333743"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReaction_e4e16b371f9c5eeaaaa4dcbcc541caf5;http://pathwaycommons.org/pc12/TemplateReactionRegulation_e50b08c0ec548d102572400fcfc0b7c9</pcIDs>
+    </arc>
+    <arc id="nwtE_29f26290-0881-4383-b3fe-9334b648ff5c" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-184.6481699867181" y="133.91826071278618"/>
+      <end x="95.47173054454791" y="95.7878532597224"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8961619;http://identifiers.org/reactome/R-HSA-8964507</pcIDs>
+    </arc>
+    <arc id="nwtE_f8d85c8b-c118-495d-a519-6b6c4c8d80bf" class="downregulates-expression" source="nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec" target="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-60.44103424604361" y="71.63322384309913"/>
+      <end x="-58.973924543738214" y="-33.31674978269517"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964594;http://identifiers.org/reactome/R-HSA-8961934</pcIDs>
+    </arc>
+    <arc id="nwtE_93e6fb22-c085-4004-9014-474ffff4eec2" class="downregulates-expression" source="nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-37.10843281787007" y="87.88175343001328"/>
+      <end x="95.46294306967772" y="91.39167174026689"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8961619;http://identifiers.org/reactome/R-HSA-8964507</pcIDs>
+    </arc>
+    <arc id="nwtE_fd00176e-e2f3-46f6-810c-ad8cccad37d4" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_4020344b-1c09-4b96-bda6-22335e36473d">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-128.7969523295061" y="126.96909831407467"/>
+      <end x="-225.97876710822595" y="-1.6470338452171518"/>
+      <pcIDs>PMID:21701264</pcIDs>
+    </arc>
+    <arc id="nwtE_8c16f7bd-7e98-42be-9e6b-100d2f119694" class="phosphorylates" source="nwtN_a9837ad7-9d6f-4d03-ab7e-ca5aae466474" target="nwtN_88bf7897-c9c5-4e7c-ae6d-726c01791c14">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="318.2057272183233" y="-80.84465597787099"/>
+      <end x="369.19420022121943" y="-65.47605791120927"/>
+      <pcIDs>PMID:18048416</pcIDs>
+      <siteLocations>S714</siteLocations>
+    </arc>
+    <arc id="nwtE_c41ddedb-3b49-4a9d-8097-87c5c435204b" class="upregulates-expression" source="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" target="nwtN_22707348-d588-4d50-a6f6-d5530b9cb615">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="124.01185175741082" y="201.42390877924183"/>
+      <end x="84.46225918575442" y="234.7898151999723"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReaction_c0d505adb1aad54746b351df8921ab50;http://pathwaycommons.org/pc12/TemplateReactionRegulation_a68da07576162f4df28e6f67cc7852d3</pcIDs>
+    </arc>
+    <arc id="nwtE_e500755e-0197-4ba0-b9bf-debd6f9554d9" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_44229b4c-0e4c-4693-97c9-3722f85e632f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-184.6481699867181" y="132.7528831138491"/>
+      <end x="3.817062846586083" y="97.77282544209659"/>
+      <pcIDs>PMID:17981789</pcIDs>
+    </arc>
+    <arc id="nwtE_6e110903-6297-4200-9b38-719048d44424" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_1b921a15-8f31-4f10-90e7-85a43f8d6f81">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-187.79967935416283" y="123.19911459792864"/>
+      <end x="72.74186313927143" y="-54.64964542887296"/>
+      <pcIDs>PMID:17981789</pcIDs>
+    </arc>
+    <arc id="nwtE_2632ce6c-8299-4603-be0a-2641fae066ea" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_f015e879-1d83-4ed6-9e7f-a81a0e316b7e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-185.61093884444193" y="-69.42579957262693"/>
+      <end x="-331.50334961935584" y="-33.80168136981105"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReactionRegulation_a38b25b32db682037de4e9274559bbe9;http://pathwaycommons.org/pc12/TemplateReaction_ac327b766f27c4ffe8cf4512f0b17872</pcIDs>
+    </arc>
+    <arc id="nwtE_aea51d03-d0b7-4d5f-bc1e-cd85b2ac6443" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="15.612052316308862" y="-73.90580048690687"/>
+      <end x="106.00610281190129" y="66.48025519396117"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-68679;http://pathwaycommons.org/pc12/TemplateReactionRegulation_d2c0b1f70f534db0e701aa4ff8c78d0f;http://identifiers.org/reactome/R-HSA-68637;http://pathwaycommons.org/pc12/TemplateReaction_441aa733c3916bb513d570d4f801a375;http://pathwaycommons.org/pc12/TemplateReactionRegulation_734672379ccb0939f783c7998a9104e8;http://pathwaycommons.org/pc12/TemplateReaction_40cc82aeb356ab53b378339c2a850798</pcIDs>
+    </arc>
+    <arc id="nwtE_ae012055-ff54-4a31-afc6-7de065121f4a" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_4020344b-1c09-4b96-bda6-22335e36473d">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-212.67319726008162" y="114.12406719914736"/>
+      <end x="-235.15745940601175" y="-1.463284552223456"/>
+      <pcIDs>PMID:20133863;PMID:21701264</pcIDs>
+    </arc>
+    <arc id="nwtE_123c9ad1-d8f0-4fb4-bbaf-942414488469" class="upregulates-expression" source="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" target="nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="116.0360284956461" y="170.8137632601337"/>
+      <end x="-117.52443609689647" y="38.723682920452376"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-4088166;http://identifiers.org/reactome/R-HSA-4088152</pcIDs>
+    </arc>
+    <arc id="nwtE_3c299c10-c7ab-45e2-b3b7-cf57f25478c1" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_810ff604-70f8-4caa-a4a3-b5156557bc74">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-130.78592712441196" y="164.97670009667073"/>
+      <end x="-179.38180481838043" y="202.6326099215115"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-6798285;http://identifiers.org/reactome/R-HSA-6798268</pcIDs>
+    </arc>
+    <arc id="nwtE_3eb036b7-24cb-42d1-ae63-b7bf2d3cb7f4" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-117.94777568477986" y="126.96909831407467"/>
+      <end x="-143.16361778871087" y="38.14730423048883"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReaction_6b0db83be00740f0ece67298b1bd5f3f;http://pathwaycommons.org/pc12/TemplateReactionRegulation_7cf95bd93c3de7b3fc2e7a180cb770e4;http://identifiers.org/reactome/R-HSA-188345;http://identifiers.org/reactome/R-HSA-8964503</pcIDs>
+    </arc>
+    <arc id="nwtE_87ca3a80-fb4b-4fe9-962c-dd086865e29f" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-230.83632128990214" y="125.88031850798762"/>
+      <end x="-340.1021452402948" y="71.6085231495001"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964532;http://identifiers.org/reactome/R-HSA-8964531</pcIDs>
+    </arc>
+    <arc id="nwtE_26d77f9b-9486-4716-85fc-abb83171d843" class="downregulates-expression" source="nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec" target="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-84.21048359912004" y="84.90082088078398"/>
+      <end x="-340.0954991428532" y="59.287324922557886"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964532;http://identifiers.org/reactome/R-HSA-8964531</pcIDs>
+    </arc>
+    <arc id="nwtE_6cd64ea7-fce1-41d3-a041-afc05567810c" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_d6d5af05-d3c0-438b-a0aa-121fee5443e5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-54.35078181907674" y="-34.31665208892508"/>
+      <end x="-1.130171799846309" y="155.0755331099743"/>
+      <pcIDs>PMID:25012651;PMID:18234856</pcIDs>
+      <siteLocations>T761;T1943</siteLocations>
+    </arc>
+    <arc id="nwtE_6bab5d9d-ecc3-43e9-a084-a9945bc1c7ce" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-200.04262359558612" y="121.49906719914736"/>
+      <end x="-156.49187264865168" y="38.07180121617445"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReaction_6b0db83be00740f0ece67298b1bd5f3f;http://pathwaycommons.org/pc12/TemplateReactionRegulation_7cf95bd93c3de7b3fc2e7a180cb770e4;http://identifiers.org/reactome/R-HSA-188345;http://identifiers.org/reactome/R-HSA-8964503</pcIDs>
+    </arc>
+    <arc id="nwtE_6961a80f-b03f-4d9a-a91a-61972e84b1ee" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_810ff604-70f8-4caa-a4a3-b5156557bc74">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-206.6963548186409" y="152.74906719914736"/>
+      <end x="-201.93529359351254" y="202.24971529642303"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-6798285;http://identifiers.org/reactome/R-HSA-6798268</pcIDs>
+    </arc>
+    <arc id="nwtE_ce9d528b-f261-4f71-ba4b-4b7af528e17e" class="downregulates-expression" source="nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec" target="nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-80.03868636498382" y="72.65978648745757"/>
+      <end x="-126.33183081806956" y="37.78700601153558"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-188345;http://identifiers.org/reactome/R-HSA-8964503</pcIDs>
+    </arc>
+    <arc id="nwtE_39d3f5eb-7ed2-4ce5-92a0-e866452dfc2e" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_dd2cfd54-71f5-45a8-bdc1-77b0ac955d8e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-159.76835872202878" y="-59.55150660294359"/>
+      <end x="-150.61755363039248" y="2.843393930480161"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReactionRegulation_78e0684a55932c58c36e7a26e3ab6689;http://pathwaycommons.org/pc12/TemplateReaction_6b0db83be00740f0ece67298b1bd5f3f;http://identifiers.org/reactome/R-HSA-188345;http://identifiers.org/reactome/R-HSA-8961967</pcIDs>
+    </arc>
+    <arc id="nwtE_0c6d600b-f79d-47fd-abd2-5303c9ff1fb7" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-84.28697455655538" y="-41.26500215119921"/>
+      <end x="-335.57507336861516" y="44.08635075607703"/>
+      <pcIDs>PMID:18669648;PMID:20068230;PMID:12569090;PMID:18691976;PMID:20068231;PMID:16565220;PMID:18452278;PMID:19664994;PMID:19664995;PMID:18234856;PMID:17466629;PMID:20058876;PMID:17287340;PMID:17924679;PMID:19651622;PMID:19415658;PMID:19007248;PMID:19691289;PMID:18767875;PMID:19413330;PMID:16964243;PMID:7635160</pcIDs>
+      <siteLocations>S1393;S1361;S1354;S1213;S1247</siteLocations>
+    </arc>
+    <arc id="nwtE_2ef8ffec-5478-469b-bffe-20c24196c86f" class="phosphorylates" source="nwtN_a9837ad7-9d6f-4d03-ab7e-ca5aae466474" target="nwtN_1ebd48d1-04eb-4a08-9469-d3269d63216b">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="288.4752775125786" y="-71.2685241029113"/>
+      <end x="245.34030878551505" y="-1.5130298683194496"/>
+      <pcIDs>http://pathwaycommons.org/pc12/BiochemicalReaction_83225045231ca08850d1bcc00fc9ba2a;PMID:17526493;http://pathwaycommons.org/pc12/Catalysis_e61274bb38c9f3464ad2ed569272575e;PMID:18644472;PMID:18077418</pcIDs>
+      <siteLocations>S615;S343</siteLocations>
+    </arc>
+    <arc id="nwtE_6dadc9f2-f81f-411c-bac7-7f6d36f988bc" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-183.19820996571778" y="-61.89848067387176"/>
+      <end x="-335.88780756508015" y="34.01352599527691"/>
+      <pcIDs>PMID:11313881</pcIDs>
+    </arc>
+    <arc id="nwtE_4f8cfe70-736b-4bad-ae30-e91f7d88649a" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_44229b4c-0e4c-4693-97c9-3722f85e632f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-144.6295415278909" y="-59.802611761987876"/>
+      <end x="7.581637742005796" y="74.45032751308295"/>
+      <pcIDs>PMID:24076372</pcIDs>
+    </arc>
+    <arc id="nwtE_cc71cec2-22b6-4ee2-ba58-a08381c4af91" class="phosphorylates" source="nwtN_6b1f1356-6d5c-493b-94f3-739baa345138" target="nwtN_1ebd48d1-04eb-4a08-9469-d3269d63216b">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="228.5713781218615" y="-57.925195104961865"/>
+      <end x="232.1244531743018" y="-9.346824671631708"/>
+      <pcIDs>http://pathwaycommons.org/pc12/BiochemicalReaction_83225045231ca08850d1bcc00fc9ba2a;http://pathwaycommons.org/pc12/Catalysis_e61274bb38c9f3464ad2ed569272575e</pcIDs>
+      <siteLocations>S343</siteLocations>
+    </arc>
+    <arc id="nwtE_7d437685-feb2-479a-a998-f76e238fb40b" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-107.30104149875503" y="134.34409831407467"/>
+      <end x="-65.05685447215777" y="-25.974659307863078"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964594;http://pathwaycommons.org/pc12/TemplateReaction_e4e16b371f9c5eeaaaa4dcbcc541caf5;http://identifiers.org/reactome/R-HSA-8961934;http://pathwaycommons.org/pc12/TemplateReactionRegulation_c139b1965ab1e755a85eedd79dcb07d3</pcIDs>
+    </arc>
+    <arc id="nwtE_fb42cd2d-2809-458a-9a0f-71224b69f4a7" class="upregulates-expression" source="nwtN_a9837ad7-9d6f-4d03-ab7e-ca5aae466474" target="nwtN_d308f5b6-50b6-4859-ac3d-235dd976f7bb">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="297.41689894850293" y="-71.26852410291131"/>
+      <end x="291.05000190429155" y="66.81206068153556"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-6797711;http://identifiers.org/reactome/R-HSA-6797712</pcIDs>
+    </arc>
+    <arc id="nwtE_2cf6b8fd-4220-45f6-84c6-8d95435560d8" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_58495cc2-fbf5-4e22-ac51-e154dd91d277">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-135.7044688280639" y="141.19975386367923"/>
+      <end x="-340.0571909585994" y="67.41143503273888"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964532;http://identifiers.org/reactome/R-HSA-8964531</pcIDs>
+    </arc>
+    <arc id="nwtE_c1531395-fa27-46c9-a293-4ebb51606760" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_6b1f1356-6d5c-493b-94f3-739baa345138">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="173.38140597555815" y="-15.139649553855051"/>
+      <end x="204.02432767274504" y="-48.25647475410064"/>
+      <pcIDs>http://pathwaycommons.org/pc12/Catalysis_cc6d6f6d309050dd3defd1b08dd5c70d;http://pathwaycommons.org/pc12/BiochemicalReaction_b601a91728ceffca78a436db62fc2c1f;PMID:17638878</pcIDs>
+      <siteLocations>S239;S224</siteLocations>
+    </arc>
+    <arc id="nwtE_a2384e43-5efb-4283-bb57-0539eaf17a7d" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-87.03226161659776" y="143.9372386094093"/>
+      <end x="95.49184787592424" y="98.79000501533031"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8961619;http://identifiers.org/reactome/R-HSA-8964507</pcIDs>
+    </arc>
+    <arc id="nwtE_2b439c4f-fe64-49cc-a027-be02779cec53" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_1b921a15-8f31-4f10-90e7-85a43f8d6f81">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="138.41752612951987" y="-20.29141477471464"/>
+      <end x="110.80408510890074" y="-48.26932781842392"/>
+      <pcIDs>PMID:17804818</pcIDs>
+      <siteLocations>S436;T468;T453</siteLocations>
+    </arc>
+    <arc id="nwtE_c497002b-6334-47c8-9d9b-df4ac00f94bc" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_4020344b-1c09-4b96-bda6-22335e36473d">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-181.51488423053468" y="-60.620783813896196"/>
+      <end x="-215.00146410003052" y="-35.5669618715376"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-9007582;http://identifiers.org/reactome/R-HSA-9007583</pcIDs>
+    </arc>
+    <arc id="nwtE_8bf97024-465f-48a3-9784-cb667f7133f2" class="upregulates-expression" source="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="139.1930124079681" y="170.17390877924183"/>
+      <end x="126.50029696552474" y="110.78867216292198"/>
+      <pcIDs>PMID:24583551</pcIDs>
+    </arc>
+    <arc id="nwtE_248e72f6-7f9c-4423-b268-e06d36d02371" class="upregulates-expression" source="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" target="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="122.89533644314454" y="162.79890877924183"/>
+      <end x="-43.37184083785064" y="-31.940048354858476"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReaction_234ed6aec0f159d394f70ab2e8c6df8a;http://pathwaycommons.org/pc12/TemplateReactionRegulation_e8f07c4376ee63785a5204cca9be44a7</pcIDs>
+    </arc>
+    <arc id="nwtE_0741f2b2-afa5-409a-9cf9-a61134e02a9d" class="upregulates-expression" source="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" target="nwtN_1bb78dd1-b692-426e-9e8e-bbc289c7580c">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="144.2663891709762" y="201.42390877924183"/>
+      <end x="150.73818548501825" y="259.7489186023869"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReactionRegulation_e879d56570e076f0e7549269af33e905;http://pathwaycommons.org/pc12/TemplateReaction_667f00695da53af8641f910df9939bd7</pcIDs>
+    </arc>
+    <arc id="nwtE_02edf2b3-18d5-45ea-a5b9-e41a46f088b1" class="upregulates-expression" source="nwtN_a4cb7bfa-d004-41de-854e-c5260bea882f" target="nwtN_d308f5b6-50b6-4859-ac3d-235dd976f7bb">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="348.95552930641" y="31.23875948799426"/>
+      <end x="309.385491465977" y="67.81262603967816"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-6797711;http://identifiers.org/reactome/R-HSA-6797712</pcIDs>
+    </arc>
+    <arc id="nwtE_e2775b4a-cbc2-4d5c-8714-9ee3db0a52f3" class="upregulates-expression" source="nwtN_4ffd3123-5caa-498f-9c3d-91ca3d579085" target="nwtN_44229b4c-0e4c-4693-97c9-3722f85e632f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="116.19644327187046" y="164.34803092212533"/>
+      <end x="49.790909238264774" y="110.26057743212642"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-4088305;http://pathwaycommons.org/pc12/TemplateReaction_b5c4fa5dbfd6cb109038b31672069653;http://identifiers.org/reactome/R-HSA-4088302;http://pathwaycommons.org/pc12/TemplateReactionRegulation_b13e898b04856a1255a954d838b07b6f</pcIDs>
+    </arc>
+    <arc id="nwtE_49f18500-bda7-4b90-b272-24178fbd7c93" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_63cc2ff7-1560-47ee-8b6c-ad916e7a1350">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="152.71333457637053" y="16.11035044614495"/>
+      <end x="129.87204117925015" y="73.57866803454613"/>
+      <pcIDs>PMID:24216307;http://identifiers.org/reactome/R-HSA-69005;PMID:18691976;PMID:20068231;http://pathwaycommons.org/pc12/Catalysis_48e0c608416155699ae1724b214a5945;PMID:23129444;PMID:10339564;PMID:9889196</pcIDs>
+      <siteLocations>S74;S106;S54</siteLocations>
+    </arc>
+    <arc id="nwtE_d47f408a-cc45-4fad-a69f-49e5d14a66eb" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-138.50888806319193" y="-69.42431964276764"/>
+      <end x="-87.40838881577443" y="-56.94335031960241"/>
+      <pcIDs>http://pathwaycommons.org/pc12/TemplateReaction_e4e16b371f9c5eeaaaa4dcbcc541caf5;PMID:14618416;http://pathwaycommons.org/pc12/TemplateReactionRegulation_e50b08c0ec548d102572400fcfc0b7c9;http://identifiers.org/reactome/R-HSA-8961934;http://identifiers.org/reactome/R-HSA-8961933</pcIDs>
+    </arc>
+    <arc id="nwtE_ce46bd0e-9d22-4a08-ad13-a384e2319163" class="upregulates-expression" source="nwtN_a9837ad7-9d6f-4d03-ab7e-ca5aae466474" target="nwtN_a4cb7bfa-d004-41de-854e-c5260bea882f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="308.46028957866946" y="-71.26852410291131"/>
+      <end x="348.9426125480235" y="-9.993595103854489"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-6797711;http://identifiers.org/reactome/R-HSA-6797712</pcIDs>
+    </arc>
+    <arc id="nwtE_b8d5338d-bb85-4144-958f-b4b93093ff25" class="downregulates-expression" source="nwtN_857e6d84-ba0c-4bbd-8686-21229984184a" target="nwtN_f015e879-1d83-4ed6-9e7f-a81a0e316b7e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-132.13039285063493" y="135.67183325264037"/>
+      <end x="-342.12794218473346" y="-9.286143756501673"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964588;http://identifiers.org/reactome/R-HSA-8964590</pcIDs>
+    </arc>
+    <arc id="nwtE_14bf0d0a-8fff-4f20-b618-9d3a42770b6b" class="downregulates-expression" source="nwtN_dc5a34ac-66fc-44e5-81ea-65bc578515ec" target="nwtN_f015e879-1d83-4ed6-9e7f-a81a0e316b7e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-84.12497700102796" y="78.58256622258654"/>
+      <end x="-334.47087142649093" y="-13.975168636761524"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964588;http://identifiers.org/reactome/R-HSA-8964590</pcIDs>
+    </arc>
+    <arc id="nwtE_77be6778-a5ee-47e5-9120-992df5f26688" class="phosphorylates" source="nwtN_22707348-d588-4d50-a6f6-d5530b9cb615" target="nwtN_d6d5af05-d3c0-438b-a0aa-121fee5443e5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="45.05693771467164" y="229.42989357012388"/>
+      <end x="26.632783741423907" y="206.51925543188838"/>
+      <pcIDs>PMID:22267324</pcIDs>
+      <siteLocations>S538;S374</siteLocations>
+    </arc>
+    <arc id="nwtE_11eddd79-cdb9-46c9-9099-acd8273bd3a3" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_f015e879-1d83-4ed6-9e7f-a81a0e316b7e">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start x="-226.6252207679681" y="118.08738521009491"/>
+      <end x="-349.7672481131424" y="-9.135689997974652"/>
+      <pcIDs>http://identifiers.org/reactome/R-HSA-8964588;http://identifiers.org/reactome/R-HSA-8964590</pcIDs>
+    </arc>
+    <arc id="nwtE_a6c347bc-2b46-4466-bef2-52a6b74b4e2a" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_cd379d83-d7d2-4374-8f1b-061117bac0a6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="-15.15436510014868" y="-103.20675070978034"/>
+      <end x="-106.16584463825876" y="-163.3195767744542"/>
+    </arc>
+    <arc id="nwtE_0f4bcf03-bdf3-4abd-8507-c58f8365dca0" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_cd379d83-d7d2-4374-8f1b-061117bac0a6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="-165.22372827818947" y="-98.17650660294359"/>
+      <end x="-170.8499095362091" y="-139.07718382892978"/>
+    </arc>
+    <arc id="nwtE_18db8179-314d-4b8f-9c53-2ecc4baab74d" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_2a00031c-df97-482b-97f1-d48e79fdf674">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="162.08768532033116" y="-15.139649553855008"/>
+      <end x="188.43258406065024" y="-145.23819555786832"/>
+    </arc>
+    <arc id="nwtE_9dc12f22-c958-4b2a-aa7c-c2cf2377def1" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_a99c26c0-9b66-4408-bb1f-dbce3f164772">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="-231.75022076796813" y="142.9060105571096"/>
+      <end x="-265.26122354847996" y="151.133198831577"/>
+    </arc>
+    <arc id="nwtE_fdff68c0-88b0-44d5-8532-06c5a16e08a6" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_8d3e0fab-91b7-48b7-9def-1e3321d064fa">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="-37.987140784551116" y="-34.99421550304206"/>
+      <end x="205.06209659855702" y="140.05137525401605"/>
+    </arc>
+    <arc id="nwtE_068604f7-7f58-463c-b7cc-8821a9c9e95a" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_8d3e0fab-91b7-48b7-9def-1e3321d064fa">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="168.46409500913717" y="16.110350446144963"/>
+      <end x="238.38304205236943" y="130.62085972106604"/>
+    </arc>
+    <arc id="nwtE_791a90f2-9f32-4604-9144-06bee3abd48d" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_1ab2795b-b687-4651-b387-e26e2c647d14">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="-185.61093884444193" y="-81.21324961988358"/>
+      <end x="-270.3677347026395" y="-102.93863044932544"/>
+    </arc>
+    <arc id="nwtE_f23a2b95-844f-46e9-a953-1b202a37b441" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_6f6cfca7-f7e4-46a6-bd56-4375ee7453ab">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+        <sifMetaEdge>true</sifMetaEdge>
+      </extension>
+      <start x="-48.17388480245317" y="-72.94165208892508"/>
+      <end x="-13.413234374664661" y="-148.59668105695647"/>
+    </arc>
+    <arc id="nwtE_31c35136-9110-4b5b-aaa5-95aaa7496d90" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_6eed130f-4c6c-4b3d-ac68-d996e29e6bcf">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_43c661f2-fa3e-41cf-ad89-f3033c9ada9c" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_4e2ca60d-2ee4-4f4f-b395-9c524ce3bdd1">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_7ef2d0b0-3910-4f85-b804-2f93f37c9315" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_f6707c40-1bde-4047-af28-eb6dfb9e5090">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_0474d43e-c235-4471-b9e7-637f0e72e056" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_c17b0bb5-42e9-42e1-8fb0-b4c6e162dce6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_4bb1aeac-029d-4056-b9dc-85f6bccdc604" class="upregulates-expression" source="nwtN_fb2b4732-0132-4fe6-8035-a9f62b2b8eec" target="nwtN_81e068cb-7888-4443-a5cc-89c7eb1b46e6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_73701013-a280-4462-a397-5771ee793559" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_6eed130f-4c6c-4b3d-ac68-d996e29e6bcf">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_33c247f0-4d54-4391-9a4d-9ad3c84813e7" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_4e2ca60d-2ee4-4f4f-b395-9c524ce3bdd1">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_baa866f2-2191-4aec-9fdd-a87950e3d2ef" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_f6707c40-1bde-4047-af28-eb6dfb9e5090">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_2b6b6425-2d9b-42ea-a4d5-441d5443e07e" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_c17b0bb5-42e9-42e1-8fb0-b4c6e162dce6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_ccb4e8d1-8910-4eda-8fc3-6519864495d2" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_81e068cb-7888-4443-a5cc-89c7eb1b46e6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_393a7c9e-1a95-44fc-b477-0da6aeabbc4f" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_2eb48b31-46d3-415d-92cb-f45be6d93692">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_7ed85a46-7530-490c-b364-f520785c87d5" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_5b919a9f-bcee-480d-8a1c-1750f70f09ad">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_6b9f300b-c14d-468f-93b9-e1d8cecc0579" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_ed7873ee-5db1-4f33-8354-e6571aeb5a92">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_393f9c70-6548-4cf8-9703-ac78e3bc2caf" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_a195f46b-f22b-47c8-b155-0f0c43c9dc2b">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_a2239b04-ef56-4e88-9b6c-896f34a81ba9" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_5f6e99b0-2023-4b69-85b0-0289d0a79540">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_4f1029ac-3469-4d99-b729-f3583e056cef" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_15647f13-dcb6-4ac2-99b4-7c69237d5cca">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_4f8a37c7-6b55-4294-9a3f-44aba6b81555" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_5da5890b-b49f-4664-ad51-4fd2630029f7">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_ffcceed4-223a-42ec-aea1-6d1048efdec8" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_0005794f-ea5b-4213-8896-e753eb8239ff">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_1222fa6d-6754-404d-9e2b-633f1f7d5422" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_ef592bf2-c6b6-43d6-8c85-6f92583d312f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_57022857-5e0b-43d9-99e2-91621e91b7e7" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_d72b4237-3bf1-45fd-be24-0b577a18dfef">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_3b73d909-5ac2-425d-b4ec-8f30a7e10404" class="downregulates-expression" source="nwtN_1984bd7d-3bc3-4421-8b7f-44bf12dbd035" target="nwtN_7fac1ffa-c542-4ee0-8588-99fe6cc2d2c6">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_087132a2-0814-470a-9bc8-17e49c90f12a" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_fcad01ca-c8d4-44d3-ab45-7c2878648b8b">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_80ee96d0-911e-4a1d-9532-5d4eb90c95bc" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_5dd246b4-0c80-40c7-bc22-54c3f33ef53f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_3c0413e2-3188-43c3-b4ba-60322e62f1fe" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_d6805a2c-34e1-4041-8269-46a9f15cd95c">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_dd584699-0e51-4310-85c1-95c7f95bed69" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_fcad01ca-c8d4-44d3-ab45-7c2878648b8b">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_3b5bf146-623d-495b-867d-02c85e991dff" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_5dd246b4-0c80-40c7-bc22-54c3f33ef53f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_05b80f2f-613f-428b-b088-c77e1dd740f7" class="phosphorylates" source="nwtN_e855468a-3811-447e-8725-2fda6e831e10" target="nwtN_d6805a2c-34e1-4041-8269-46a9f15cd95c">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_faeb5408-64a6-43c6-9b22-b3c3ab162422" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_a64589c7-b19a-4417-94aa-ead59132f24f">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_4b014fab-cec1-401c-a0d6-7471e83de6c9" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_9b647124-e4e6-4544-b752-21e28ef70637">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_df409da9-727b-4560-8daf-4ef920e9b2f3" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_9cb294fd-51e7-4ce6-86f3-ebea758cf6eb">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_89b731ab-8066-4563-b5b7-76dffda808c4" class="upregulates-expression" source="nwtN_a2b1653e-343f-4b61-be5e-91df5809b0fa" target="nwtN_6f5d7c68-f68f-4712-b76a-a5fa04e3b1c8">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_8c1c19f6-da57-4976-acf4-0980caefc118" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_1e483bbd-907c-497f-84b4-c8883c970c5b">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_609d96d3-5cbe-416a-9454-0252e05654fb" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_eba0c04e-76ee-447e-93be-09fe8065df59">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_e0a56884-7f1c-45ba-a5d2-8835f7d93f22" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_28cbd60a-906e-4d92-9d52-a7d919ebce07">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_ce3d62b2-3a0c-4c09-a36a-dd123ce24caf" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_7cf251db-ccd7-4cfa-87d4-432ff0ab4ea3">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+    <arc id="nwtE_a8f0aa3d-2078-4351-a667-7d0796e3b1c7" class="phosphorylates" source="nwtN_c077e5c2-2f34-4ef5-9baa-ec6175e6ccf5" target="nwtN_0fb22e7f-497c-4a3e-a301-5f43b2876ee5">
+      <extension>
+        <curveStyle>bezier</curveStyle>
+      </extension>
+      <start/>
+      <end/>
+    </arc>
+  </map>
+</sbgn>
