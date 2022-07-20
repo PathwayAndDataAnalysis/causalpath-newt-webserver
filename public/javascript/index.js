@@ -291,6 +291,59 @@ document.getElementById('picker').addEventListener('change', event => {
 
 });
 
+document.getElementById("file-analysis-input").addEventListener('change', event => {
+    // let fileCount = $('#file-analysis-input')[0].files.length;
+
+    let file = event.target.files[0];
+
+    let fileContents = [];
+
+    console.log("files", file);
+
+    //Sending a zip file
+    if (file.name.split('.').pop().toLowerCase() === "zip"
+        || file.name.split('.').pop().toLowerCase() === "rar"
+        || file.name.split('.').pop().toLowerCase() === "7z"
+        || file.name.split('.').pop().toLowerCase() === "gz"
+        || file.name.split('.').pop().toLowerCase() === "xz"
+    ) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            fileContents.push({name: file.name, content: e.target.result});
+
+            let q = {
+                fileContent: e.target.result,
+                room: "analysisId",
+            }
+
+            console.log("q", q);
+
+            let makeRequest = () => fetch('/api/analysisZip', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(q)
+            });
+
+            let afterResolve = dirStr => {
+                console.log("dirStr: ", dirStr);
+                // let fileStrList = dirStr.split("\n");
+                // self.buildAndDisplayFolderTree(fileStrList, false);
+            };
+
+            let handleRequestError = err => {
+                alert("The error message is:\n" + err);
+            };
+
+            makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+        }
+
+        reader.readAsBinaryString(file);
+
+    }
+});
+
 document.getElementById("back_button_label").addEventListener("click", (event) => {
 
     document.getElementById('menu-text-buttons').style.display = 'block';
