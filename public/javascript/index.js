@@ -276,7 +276,7 @@ document.getElementById('picker').addEventListener('change', event => {
 
     let fileList = Array.from(files);
 
-    event.target.value = null; //to make sure the same files can be loaded again
+    event.target.value = null; // to make sure the same files can be loaded again
 
     document.getElementById('menu-text-buttons').style.display = 'none';
     document.getElementById('folder-trees-graphs').style.display = 'block';
