@@ -175,7 +175,7 @@ function buildAndDisplayFolderTree(
         core: {
             animation: 0,
             check_callback: true,
-            // force_text: true,
+            force_text: true,
             data: data
         }
     };
@@ -190,10 +190,10 @@ function buildAndDisplayFolderTree(
             $('#folder-tree-container').jstree(true).refresh();
 
             // After jsTree build is completed hide .format nodes
-            $('#folder-tree-container').on("loaded.jstree", function (e, data) {
-
-                let formatNodes = getFormatNodes(hierarchy.core.data);
-                console.log('formatNodes');
+            $('#folder-tree-container').on("model.jstree", function (e, data) {
+                // let formatNodes = getFormatNodes(hierarchy.core.data);
+                let formatNodes = getFormatNodes($('#folder-tree-container').jstree(true).settings.core.data);
+                console.log('formatNodesModel');
                 console.log(formatNodes);
                 formatNodes.forEach(node => {
                     $('#folder-tree-container').jstree(true).hide_node(node);
@@ -214,16 +214,6 @@ function buildAndDisplayFolderTree(
                 // ref.delete_node(ids);
                 // Remove empty dirs from the tree
                 // deleteEmptyDirs();
-
-            });
-
-            $('#folder-tree-container').on("refresh.jstree", function (e, data) {
-                let formatNodes = getFormatNodes(hierarchy.core.data);
-                console.log('formatNodesRefresh');
-                console.log(formatNodes);
-                formatNodes.forEach(node => {
-                    $('#folder-tree-container').jstree(true).hide_node(node);
-                })
             });
 
         }
@@ -239,6 +229,48 @@ function loadAnalysisFilesFromClient(fileList, chosenNodeId) {
     this.buildAndDisplayFolderTree(fileList, true, chosenNodeId);
 }
 
+function buildTreeHierarchy(fileList) {
+    let data = [];
+    fileList.forEach(file => {
+        let paths = file.webkitRelativePath.split('/');
+        if (paths.at(-1).endsWith(".sif")
+            || paths.at(-1).endsWith(".format")
+            || paths.at(-1).endsWith(".nwt")
+        ) {
+            buildFolderTree(paths, data, file)
+        }
+    })
+    return {
+        core: {
+            animation: 0,
+            check_callback: true,
+            force_text: true,
+            data: data
+        }
+    };
+}
+
+function generateJSTree(treeHierarchy) {
+    $(function () {
+
+        $('#folder-tree-container').jstree(treeHierarchy);
+
+        $('#folder-tree-container').jstree(true).settings = treeHierarchy;
+        $('#folder-tree-container').jstree(true).refresh();
+
+        // After jsTree build is completed hide .format nodes
+        $('#folder-tree-container').on("model.jstree", function (e, data) {
+            let formatNodes = getFormatNodes($('#folder-tree-container').jstree(true).settings.core.data);
+            console.log('formatNodesModel');
+            console.log(formatNodes);
+            formatNodes.forEach(node => {
+                $('#folder-tree-container').jstree(true).hide_node(node);
+            })
+        });
+
+    });
+}
+
 document.getElementById('picker').addEventListener('change', event => {
     let files = event.target.files;
 
@@ -252,7 +284,11 @@ document.getElementById('picker').addEventListener('change', event => {
     document.getElementById('graph-container').style.display = 'block';
     document.getElementById('folder-tree-container').style.display = 'block';
 
-    this.loadAnalysisFilesFromClient(fileList);
+    // this.loadAnalysisFilesFromClient(fileList);
+
+    let treeHierarchy = this.buildTreeHierarchy(fileList);
+    generateJSTree(treeHierarchy);
+
 });
 
 document.getElementById("back_button_label").addEventListener("click", (event) => {
