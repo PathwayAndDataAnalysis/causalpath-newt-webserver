@@ -39,7 +39,7 @@ module.exports = function () {
         $.ajax({
             type: 'post',
             url: '/utilities/validateSBGNML',
-            data: { sbgnml: xml },
+            data: {sbgnml: xml},
             success: function (data) {
                 if (data.length == 0) {
                     console.log('Xsd validation OK');
@@ -61,6 +61,7 @@ module.exports = function () {
         validateSBGNML(textXml);
         return chiseInstance.loadSample(filename, 'app/samples/', callback);
     }
+
     //aa
     function updatePalette(mapType) {
         if (mapType === 'AF') {
@@ -140,9 +141,9 @@ module.exports = function () {
     dynamicResize();
 
     layoutPropertiesView = appUtilities.layoutPropertiesView =
-        new BackboneViews.LayoutPropertiesView({ el: '#layout-properties-table' });
+        new BackboneViews.LayoutPropertiesView({el: '#layout-properties-table'});
     colorSchemeInspectorView = appUtilities.colorSchemeInspectorView =
-        new BackboneViews.ColorSchemeInspectorView({ el: '#color-scheme-template-container' });
+        new BackboneViews.ColorSchemeInspectorView({el: '#color-scheme-template-container'});
     //generalPropertiesView = appUtilities.generalPropertiesView = new BackboneViews.GeneralPropertiesView({el: '#general-properties-table'});
     mapTabGeneralPanel = appUtilities.mapTabGeneralPanel = new BackboneViews.MapTabGeneralPanel({
         el: '#map-tab-general-container',
@@ -151,18 +152,18 @@ module.exports = function () {
         el: '#map-tab-label-container',
     });
     mapTabRearrangementPanel = appUtilities.mapTabRearrangementPanel =
-        new BackboneViews.MapTabRearrangementPanel({ el: '#map-tab-rearrangement-container' });
+        new BackboneViews.MapTabRearrangementPanel({el: '#map-tab-rearrangement-container'});
     experimentTabPanel = appUtilities.experimentTabPanel = new BackboneViews.experimentTabPanel({
         el: '#map-tab-experiment-container',
     });
     neighborhoodQueryView = appUtilities.neighborhoodQueryView =
-        new BackboneViews.NeighborhoodQueryView({ el: '#query-neighborhood-table' });
+        new BackboneViews.NeighborhoodQueryView({el: '#query-neighborhood-table'});
     pathsBetweenQueryView = appUtilities.pathsBetweenQueryView =
-        new BackboneViews.PathsBetweenQueryView({ el: '#query-pathsbetween-table' });
+        new BackboneViews.PathsBetweenQueryView({el: '#query-pathsbetween-table'});
     pathsFromToQueryView = appUtilities.pathsFromToQueryView =
-        new BackboneViews.PathsFromToQueryView({ el: '#query-pathsfromto-table' });
+        new BackboneViews.PathsFromToQueryView({el: '#query-pathsfromto-table'});
     commonStreamQueryView = appUtilities.commonStreamQueryView =
-        new BackboneViews.CommonStreamQueryView({ el: '#query-commonstream-table' });
+        new BackboneViews.CommonStreamQueryView({el: '#query-commonstream-table'});
     pathsByURIQueryView = appUtilities.pathsByURIQueryView = new BackboneViews.PathsByURIQueryView({
         el: '#query-pathsbyURI-table',
     });
@@ -171,18 +172,18 @@ module.exports = function () {
         el: '#file-save-table',
     });
     saveUserPreferencesView = appUtilities.saveUserPreferencesView =
-        new BackboneViews.SaveUserPreferencesView({ el: '#user-preferences-save-table' });
+        new BackboneViews.SaveUserPreferencesView({el: '#user-preferences-save-table'});
     loadUserPreferencesView = appUtilities.loadUserPreferencesView =
-        new BackboneViews.LoadUserPreferencesView({ el: '#user-preferences-load-table' });
+        new BackboneViews.LoadUserPreferencesView({el: '#user-preferences-load-table'});
     promptConfirmationView = appUtilities.promptConfirmationView =
-        new BackboneViews.PromptConfirmationView({ el: '#prompt-confirmation-table' });
+        new BackboneViews.PromptConfirmationView({el: '#prompt-confirmation-table'});
     promptMapTypeView = appUtilities.promptMapTypeView = new BackboneViews.PromptMapTypeView({
         el: '#prompt-mapType-table',
     });
     promptInvalidFileView = appUtilities.promptInvalidFileView =
-        new BackboneViews.PromptInvalidFileView({ el: '#prompt-invalidFile-table' });
+        new BackboneViews.PromptInvalidFileView({el: '#prompt-invalidFile-table'});
     promptInvalidTypeWarning = appUtilities.promptInvalidTypeWarning =
-        new BackboneViews.PromptInvalidTypeWarning({ el: '#prompt-errorInvalidType-table' });
+        new BackboneViews.PromptInvalidTypeWarning({el: '#prompt-errorInvalidType-table'});
     promtErrorPD2AF = appUtilities.promtErrorPD2AF = new BackboneViews.PromtErrorPD2AF({
         el: '#prompt-errorPD2AF-table',
     });
@@ -191,7 +192,7 @@ module.exports = function () {
             el: '#prompt-fileConversionError-table',
         });
     reactionTemplateView = appUtilities.reactionTemplateView =
-        new BackboneViews.ReactionTemplateView({ el: '#sbgn-bricks-table' });
+        new BackboneViews.ReactionTemplateView({el: '#sbgn-bricks-table'});
     gridPropertiesView = appUtilities.gridPropertiesView = new BackboneViews.GridPropertiesView({
         el: '#grid-properties-table',
     });
@@ -199,17 +200,17 @@ module.exports = function () {
         el: '#font-properties-table',
     });
     infoboxPropertiesView = appUtilities.infoboxPropertiesView =
-        new BackboneViews.InfoboxPropertiesView({ el: '#infobox-properties-table' });
+        new BackboneViews.InfoboxPropertiesView({el: '#infobox-properties-table'});
     promptInvalidURIView = appUtilities.promptInvalidURIView =
-        new BackboneViews.PromptInvalidURIView({ el: '#prompt-invalidURI-table' });
+        new BackboneViews.PromptInvalidURIView({el: '#prompt-invalidURI-table'});
     promptInvalidURIWarning = appUtilities.promptInvalidURIWarning =
-        new BackboneViews.PromptInvalidURIWarning({ el: '#prompt-invalidURI-table' });
+        new BackboneViews.PromptInvalidURIWarning({el: '#prompt-invalidURI-table'});
     promptInvalidURLWarning = appUtilities.promptInvalidURLWarning =
-        new BackboneViews.PromptInvalidURLWarning({ el: '#prompt-invalidURL-table' });
+        new BackboneViews.PromptInvalidURLWarning({el: '#prompt-invalidURL-table'});
     promptInvalidImageWarning = appUtilities.promptInvalidImageWarning =
-        new BackboneViews.PromptInvalidImageWarning({ el: '#prompt-invalidImage-table' });
+        new BackboneViews.PromptInvalidImageWarning({el: '#prompt-invalidImage-table'});
     promptInvalidEdgeWarning = appUtilities.promptInvalidEdgeWarning =
-        new BackboneViews.PromptInvalidEdgeWarning({ el: '#prompt-invalidEdge-table' });
+        new BackboneViews.PromptInvalidEdgeWarning({el: '#prompt-invalidEdge-table'});
     toolbarButtonsAndMenu();
     keyboardShortcuts();
     // Events triggered by sbgnviz module
@@ -486,7 +487,7 @@ module.exports = function () {
                         promptInvalidFileView.render();
                     };
                     var fileName = file.name;
-                    params = { data: data, fileName: fileName, errorCallback: errorCallback };
+                    params = {data: data, fileName: fileName, errorCallback: errorCallback};
                     experimentTabPanel.loadExperiment(params);
                     experimentTabPanel.render();
                 };
@@ -1205,8 +1206,10 @@ module.exports = function () {
                         setTimeout(function () {
                             chiseInstance.loadSBGNMLFile(
                                 fileToLoad,
-                                () => {},
-                                () => {},
+                                () => {
+                                },
+                                () => {
+                                },
                                 data
                             );
                         }, 1000);
@@ -1918,7 +1921,7 @@ module.exports = function () {
                 var relY = evt.pageY - parentOffset.top;
                 // the following event doesn't contain all the necessary information that cytoscape usually provide
                 // see: http://stackoverflow.com/questions/34409733/find-element-at-x-y-position-in-cytoscape-js
-                cy.trigger('tapend', { x: relX, y: relY });
+                cy.trigger('tapend', {x: relX, y: relY});
             }
         });
 
@@ -1955,64 +1958,57 @@ module.exports = function () {
 
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
-            const instance = $.jstree.reference(this);
-            let node = instance.get_node(e.target);
+                const instance = $.jstree.reference(this);
+                let node = instance.get_node(e.target);
 
-            let file = node.data;
+                let file = node.data;
 
-            console.log('clickedfile');
-            console.log(file);
+                console.log('clickedfile');
+                console.log(file);
 
-            let chiseInstance = appUtilities.getActiveChiseInstance();
-            console.log('chiseInstance:');
-            console.log(chiseInstance);
-            let cy = appUtilities.getActiveCy();
-            console.log('cy:');
-            console.log(cy);
-
-            // Load newt file
-            if (file.name.endsWith('.nwt')) {
-                chiseInstance.loadNwtFile(file);
-            } else if (file.name.endsWith('.sif')) {
-                // Load sif file
-                let loadCallbackInvalidityWarning = function () {
-                    promptInvalidFileView.render();
-                };
-
-                const loadFcn = function () {
-                    let layoutBy = function () {
-                        appUtilities.triggerLayout(cy, false);
-
-                        // Perform layout
-                        $('#perform-layout-icon').trigger('click');
-
-                        // Load .format file of corresponding sif file
-                        let formatNode = instance.get_node(e.target.id.replace('.sif', '.format'));
-
-                        // Check if format file exists
-                        if (formatNode) {
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                const text = e.target.result;
-
-                                const sifStyle = sifStyleFactory();
-                                sifStyle(chiseInstance);
-                                sifStyle.apply(text);
-                            };
-                            reader.readAsText(formatNode.data);
-                        }
+                let chiseInstance = appUtilities.getActiveChiseInstance();
+                let cy = appUtilities.getActiveCy();
+                // Load newt file
+                if (file.name.endsWith('.nwt')) {
+                    chiseInstance.loadNwtFile(file);
+                } else if (file.name.endsWith('.sif')) {
+                    // Load sif file
+                    let loadCallbackInvalidityWarning = function () {
+                        promptInvalidFileView.render();
                     };
-                    chiseInstance.loadSIFFile(file, layoutBy, loadCallbackInvalidityWarning);
-                };
 
-                // if (cy.elements().length !== 0)
-                //     promptConfirmationView.render(
-                //     loadFcn
-                // ); else
-                loadFcn();
+                    const loadFcn = function () {
+                        let layoutBy = function () {
+                            appUtilities.triggerLayout(cy, false);
 
-                $(this).val('');
-            }
-        });
+                            // Perform layout
+                            $('#perform-layout-icon').trigger('click');
+
+                            // Load .format file of corresponding sif file
+                            let formatNode = instance.get_node(e.target.id.replace('.sif', '.format'));
+
+                            // Check if format file exists
+                            if (formatNode) {
+                                const reader = new FileReader();
+                                reader.onload = function (e) {
+                                    const text = e.target.result;
+
+                                    const sifStyle = sifStyleFactory();
+                                    sifStyle(chiseInstance);
+                                    sifStyle.apply(text);
+                                };
+                                reader.readAsText(formatNode.data);
+                            }
+                        };
+                        chiseInstance.loadSIFFile(file, layoutBy, loadCallbackInvalidityWarning);
+                    };
+                    loadFcn();
+
+                    $(this).val('');
+                }
+            });
+
+
+
     }
 };
