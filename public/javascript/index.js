@@ -300,3 +300,45 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
     document.getElementById('folder-tree-container').style.display = 'none';
 });
 
+
+const readSamples = () => {
+    fetch('/samples/HRD-tumors.nwt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(myBlob => {
+            console.log(myBlob);
+            let files = new File([myBlob], "test.nwt");
+
+            console.log(files);
+            // const reader = new FileReader();
+            // reader.onload = e => {
+            //     console.log(e.target.result);
+            // };
+            // reader.readAsDataURL(myBlob);
+        })
+        .catch(error => {
+            console.error(
+                'There has been a problem with your fetch operation:',
+                error
+            );
+        });
+};
+
+
+document.getElementById("display-demo-graphs").addEventListener("click", (event) => {
+    console.log("display-demo-graphs");
+    // let dataTransfer = new DataTransfer();
+    // const file = new File(['Hello world!'], 'hello.txt', {type: 'text/plain'})
+    //
+    // dataTransfer.items.add(file);
+    //
+    // document.getElementById('picker').files = dataTransfer.files;
+
+    readSamples();
+
+});
+
