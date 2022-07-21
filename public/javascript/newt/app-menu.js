@@ -1958,13 +1958,77 @@ module.exports = function () {
 
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
-                const instance = $.jstree.reference(this);
-                let node = instance.get_node(e.target);
+            const instance = $.jstree.reference(this);
+            let node = instance.get_node(e.target);
 
-                let file = node.data;
+            let file = node.data;
 
-                console.log('clickedfile');
-                console.log(file);
+            console.log('clickedfile');
+            console.log(file);
+
+            if (file.type === "ANALYZED_FILE") {
+                let query = {
+                    dir: "./analysisOut" + "/" + file.sessionId + "/" + file.name,
+                    file: file.name
+                }
+
+                let makeRequest = () => fetch('/api/getJsonAtPath', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(query)
+                });
+
+                let afterResolve = fileContent => {
+                    console.log("fileContent: ", fileContent);
+
+                    let sifContent = fileContent.split("||||")[0];
+                    let formatContent = fileContent.split("||||")[1];
+
+                    const parts = [
+                        new Blob([sifContent], {
+                            type: 'text/plain'
+                        }),
+                        new Uint16Array([33])
+                    ];
+
+                    const sifFile = new File(parts, 'file.sif', {
+                        lastModified: new Date(2020, 1, 1),
+                        type: "text/plain"
+                    });
+
+                    // load sif file
+                    let chiseInstance = appUtilities.getActiveChiseInstance();
+                    let cy = appUtilities.getActiveCy();
+
+                    let loadCallbackInvalidityWarning = function () {
+                        promptInvalidFileView.render();
+                    };
+
+                    let layoutBy = function () {
+                        appUtilities.triggerLayout(cy, false);
+
+                        // Perform layout
+                        $('#perform-layout-icon').trigger('click');
+
+                        const sifStyle = sifStyleFactory();
+                        sifStyle(chiseInstance);
+                        sifStyle.apply(formatContent);
+                    };
+
+                    chiseInstance.loadSIFFile(sifFile, layoutBy, loadCallbackInvalidityWarning);
+
+                };
+
+                let handleRequestError = err => {
+                    alert("The error message is:\n" + err);
+                    throw err;
+                };
+
+                makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+
+            } else {
 
                 let chiseInstance = appUtilities.getActiveChiseInstance();
                 let cy = appUtilities.getActiveCy();
@@ -2006,9 +2070,7 @@ module.exports = function () {
 
                     $(this).val('');
                 }
-            });
-
-
-
+            }
+        });
     }
 };

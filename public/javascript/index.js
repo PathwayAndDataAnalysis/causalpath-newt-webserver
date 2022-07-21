@@ -3,6 +3,25 @@ const graphChoiceEnum = {
     DEMO: 3,
 };
 
+const generateUUID = () => {
+    let d = new Date().getTime(),
+        d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        let r = Math.random() * 16;
+        if (d > 0) {
+            r = (d + r) % 16 | 0;
+            d = Math.floor(d / 16);
+        } else {
+            r = (d2 + r) % 16 | 0;
+            d2 = Math.floor(d2 / 16);
+        }
+        return (c === 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+    });
+};
+
+const userSessionNumber = generateUUID();
+
+
 let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
     let {statusText, status, ok} = res;
     if (!ok) {
@@ -250,6 +269,46 @@ function buildTreeHierarchy(fileList) {
     };
 }
 
+function buildTreeHierarchyAnalyzedFiles(fileList) {
+    let data = [];
+    fileList.forEach(file => {
+        let paths = file.split('/');
+
+        let newNode = {
+            'id': paths.at(2) + "_" + paths.at(3),
+            'text': paths[3],
+            'children': [],
+            'state': {opened: true},
+            data: {
+                "name": paths[3],
+                "type": "ANALYZED_FILE",
+                "sessionId": userSessionNumber,
+            }
+        };
+
+        if (newNode.text.endsWith(".nwt"))
+            newNode.icon = "./img/tree-newt-icon.png"
+        else if (newNode.text.endsWith(".sif"))
+            newNode.icon = "./img/tree-sif-icon.png"
+        else if (newNode.text.endsWith(".format"))
+            newNode.icon = "./img/tree-sif-icon.png"
+        else if (newNode.text.endsWith(".json"))
+            newNode.icon = "./img/tree-json-icon.png"
+        else
+            newNode.icon = ""
+
+        data.push(newNode);
+    })
+    return {
+        core: {
+            animation: 0,
+            check_callback: true,
+            force_text: true,
+            data: data
+        }
+    };
+}
+
 function generateJSTree(treeHierarchy) {
     $(function () {
 
@@ -271,6 +330,22 @@ function generateJSTree(treeHierarchy) {
     });
 }
 
+function showChoosingMenus() {
+    document.getElementById('menu-text-buttons').style.display = 'block';
+    document.getElementById('folder-trees-graphs').style.display = 'none';
+    document.getElementById('back_menu').style.display = 'none';
+    document.getElementById('graph-container').style.display = 'none';
+    document.getElementById('folder-tree-container').style.display = 'none';
+}
+
+function showGraphAndFolders() {
+    document.getElementById('menu-text-buttons').style.display = 'none';
+    document.getElementById('folder-trees-graphs').style.display = 'block';
+    document.getElementById('back_menu').style.display = 'block';
+    document.getElementById('graph-container').style.display = 'block';
+    document.getElementById('folder-tree-container').style.display = 'block';
+}
+
 document.getElementById('picker').addEventListener('change', event => {
     let files = event.target.files;
 
@@ -278,11 +353,7 @@ document.getElementById('picker').addEventListener('change', event => {
 
     event.target.value = null; // to make sure the same files can be loaded again
 
-    document.getElementById('menu-text-buttons').style.display = 'none';
-    document.getElementById('folder-trees-graphs').style.display = 'block';
-    document.getElementById('back_menu').style.display = 'block';
-    document.getElementById('graph-container').style.display = 'block';
-    document.getElementById('folder-tree-container').style.display = 'block';
+    showGraphAndFolders();
 
     // this.loadAnalysisFilesFromClient(fileList);
 
@@ -291,13 +362,67 @@ document.getElementById('picker').addEventListener('change', event => {
 
 });
 
-document.getElementById("back_button_label").addEventListener("click", (event) => {
+document.getElementById("file-analysis-input").addEventListener('change', event => {
+    // let fileCount = $('#file-analysis-input')[0].files.length;
 
-    document.getElementById('menu-text-buttons').style.display = 'block';
-    document.getElementById('folder-trees-graphs').style.display = 'none';
-    document.getElementById('back_menu').style.display = 'none';
-    document.getElementById('graph-container').style.display = 'none';
-    document.getElementById('folder-tree-container').style.display = 'none';
+    let file = event.target.files[0];
+
+    let fileContents = [];
+
+    console.log("files", file);
+
+    //Sending a zip file
+    if (file.name.split('.').pop().toLowerCase() === "zip"
+        || file.name.split('.').pop().toLowerCase() === "rar"
+        || file.name.split('.').pop().toLowerCase() === "7z"
+        || file.name.split('.').pop().toLowerCase() === "gz"
+        || file.name.split('.').pop().toLowerCase() === "xz"
+    ) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            fileContents.push({name: file.name, content: e.target.result});
+
+            let q = {
+                fileContent: e.target.result,
+                room: userSessionNumber,
+            }
+
+            let makeRequest = () => fetch('/api/analysisZip', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(q)
+            });
+
+            let afterResolve = dirStr => {
+                dirStr = dirStr.trim();
+                let fileList = dirStr.split("\n");
+                console.log("fileList: ", fileList);
+
+                let analyzedFileHierarchy = self.buildTreeHierarchyAnalyzedFiles(fileList);
+
+                console.log("analyzedFileHierarchy: ", analyzedFileHierarchy);
+
+                showGraphAndFolders();
+
+                generateJSTree(analyzedFileHierarchy);
+            };
+
+            let handleRequestError = err => {
+                alert("The error message is:\n" + err);
+            };
+
+            makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+        }
+
+        reader.readAsBinaryString(file);
+
+    }
+});
+
+document.getElementById("back_button_label").addEventListener("click", (event) => {
+    showChoosingMenus();
 });
 
 
