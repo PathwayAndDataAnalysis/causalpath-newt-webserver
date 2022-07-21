@@ -7,6 +7,7 @@ const cors = require('cors');
 const createError = require('http-errors');
 const app = express();
 const api = require('./lib/api');
+const bodyParser = require('body-parser');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/api', api);
+
+// Increase payload size limit to 50MB
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
 
 
 // init static folder
