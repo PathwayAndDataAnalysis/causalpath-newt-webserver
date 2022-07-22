@@ -8,6 +8,7 @@ const inspectorUtilities = require('./inspector-utilities');
 const tutorial = require('./tutorial');
 const sifStyleFactory = require('./sif-style-factory');
 const _ = require('underscore');
+const {Notyf} = require("notyf");
 
 // Handle sbgnviz menu functions which are to be triggered on events
 module.exports = function () {
@@ -1958,13 +1959,14 @@ module.exports = function () {
 
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
+
+            // let nofyf = new Notyf();
+            // nofyf.success('Double click on a folder to open it');
+
             const instance = $.jstree.reference(this);
             let node = instance.get_node(e.target);
 
             let file = node.data;
-
-            console.log('clickedfile');
-            console.log(file);
 
             if (file.type === "ANALYZED_FILE") {
                 let query = {
@@ -1981,10 +1983,11 @@ module.exports = function () {
                 });
 
                 let afterResolve = fileContent => {
-                    console.log("fileContent: ", fileContent);
 
-                    let sifContent = fileContent.split("||||")[0];
-                    let formatContent = fileContent.split("||||")[1];
+                    let responseArr = fileContent.split("||||");
+                    let fileName = responseArr[0];
+                    let sifContent = responseArr[1];
+                    let formatContent = responseArr[2];
 
                     const parts = [
                         new Blob([sifContent], {
@@ -1993,8 +1996,8 @@ module.exports = function () {
                         new Uint16Array([33])
                     ];
 
-                    const sifFile = new File(parts, 'file.sif', {
-                        lastModified: new Date(2020, 1, 1),
+                    const sifFile = new File(parts, fileName, {
+                        lastModified: new Date(),
                         type: "text/plain"
                     });
 
@@ -2072,5 +2075,19 @@ module.exports = function () {
                 }
             }
         });
+
+        // display alert
+        document.getElementById("file-analysis-input").addEventListener("change", function (e) {
+            let nofyf = new Notyf()
+            nofyf.success({
+                duration: 5000,
+                message: 'File analysis is in progress. Please wait.',
+                position: {
+                    x: 'center',
+                    y: 'top',
+                },
+            });
+        });
+
     }
-};
+}

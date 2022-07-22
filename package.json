@@ -6,7 +6,7 @@
   "license": "LGPL-3.0",
   "main": "app.js",
   "scripts": {
-    "start": "npm run bundle:css && npm run bundle-js && node server/server.js",
+    "start": "npm run bundle:css && npm run bundle-js && nodemon server/server.js",
     "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css",
     "watch:css": "postcss --watch public/stylesheets/main.css -o public/build/bundle.css",
     "bundle-js": "browserify public/javascript/main.js -o public/build/newt-bundle.js --debug"
@@ -55,6 +55,7 @@
     "multer": "^1.4.4",
     "natives": "^1.1.6",
     "nodemailer": "^6.7.6",
+    "notyf": "^3.10.0",
     "path": "^0.12.7",
     "postcss": "^7.0.39",
     "postcss-cli": "^6.1.3",
