@@ -122,9 +122,6 @@ function getFormatNodes(hierarchy, formatNodes = []) {
 
 function deleteEmptyDirs() {
     let jsonNodes = $('#folder-tree-container').jstree(true).get_json('#', {flat: true});
-    console.log('jsonNodes');
-    console.log(jsonNodes);
-
     $.each(jsonNodes, function (i, node) {
         $.each(jsonNodes, function (i, otherNode) {
             if (
@@ -133,7 +130,6 @@ function deleteEmptyDirs() {
                 && !otherNode.id.includes('.format')
                 && !otherNode.id.includes('.sif')
             ) {
-                console.log('deleting ' + node.id);
                 $('#folder-tree-container').jstree(true).delete_node(node.id);
             }
         });
@@ -200,9 +196,6 @@ function buildAndDisplayFolderTree(
     };
 
     $(function () {
-            console.log('hierarchy');
-            console.log(hierarchy);
-
             $('#folder-tree-container').jstree(hierarchy);
 
             $('#folder-tree-container').jstree(true).settings = hierarchy;
@@ -212,8 +205,6 @@ function buildAndDisplayFolderTree(
             $('#folder-tree-container').on("model.jstree", function (e, data) {
                 // let formatNodes = getFormatNodes(hierarchy.core.data);
                 let formatNodes = getFormatNodes($('#folder-tree-container').jstree(true).settings.core.data);
-                console.log('formatNodesModel');
-                console.log(formatNodes);
                 formatNodes.forEach(node => {
                     $('#folder-tree-container').jstree(true).hide_node(node);
                 })
@@ -269,7 +260,7 @@ function buildTreeHierarchy(fileList) {
     };
 }
 
-function buildTreeHierarchyAnalyzedFiles(fileList) {
+function buildTreeHierarchyAnalyzedFiles(rootDirName, fileList) {
     let data = [];
     fileList.forEach(file => {
         let paths = file.split('/');
@@ -304,7 +295,14 @@ function buildTreeHierarchyAnalyzedFiles(fileList) {
             animation: 0,
             check_callback: true,
             force_text: true,
-            data: data
+            data: [
+                {
+                    text: rootDirName,
+                    id: rootDirName,
+                    state: {opened: true},
+                    children: data,
+                }
+            ]
         }
     };
 }
@@ -320,8 +318,6 @@ function generateJSTree(treeHierarchy) {
         // After jsTree build is completed hide .format nodes
         $('#folder-tree-container').on("model.jstree", function (e, data) {
             let formatNodes = getFormatNodes($('#folder-tree-container').jstree(true).settings.core.data);
-            console.log('formatNodesModel');
-            console.log(formatNodes);
             formatNodes.forEach(node => {
                 $('#folder-tree-container').jstree(true).hide_node(node);
             })
@@ -357,26 +353,27 @@ document.getElementById('picker').addEventListener('change', event => {
 
     // this.loadAnalysisFilesFromClient(fileList);
 
-    let treeHierarchy = this.buildTreeHierarchy(fileList);
+    let treeHierarchy = buildTreeHierarchy(fileList);
+
     generateJSTree(treeHierarchy);
 
 });
 
 document.getElementById("file-analysis-input").addEventListener('change', event => {
-    // let fileCount = $('#file-analysis-input')[0].files.length;
 
     let file = event.target.files[0];
+    event.target.value = null; // clear the input field
 
     let fileContents = [];
 
-    console.log("files", file);
+    let fileNameSplit = file.name.split('.');
 
     //Sending a zip file
-    if (file.name.split('.').pop().toLowerCase() === "zip"
-        || file.name.split('.').pop().toLowerCase() === "rar"
-        || file.name.split('.').pop().toLowerCase() === "7z"
-        || file.name.split('.').pop().toLowerCase() === "gz"
-        || file.name.split('.').pop().toLowerCase() === "xz"
+    if (fileNameSplit.pop().toLowerCase() === "zip"
+        || fileNameSplit.pop().toLowerCase() === "rar"
+        || fileNameSplit.pop().toLowerCase() === "7z"
+        || fileNameSplit.pop().toLowerCase() === "gz"
+        || fileNameSplit.pop().toLowerCase() === "xz"
     ) {
         let reader = new FileReader();
         reader.onload = function (e) {
@@ -398,11 +395,8 @@ document.getElementById("file-analysis-input").addEventListener('change', event 
             let afterResolve = dirStr => {
                 dirStr = dirStr.trim();
                 let fileList = dirStr.split("\n");
-                console.log("fileList: ", fileList);
 
-                let analyzedFileHierarchy = self.buildTreeHierarchyAnalyzedFiles(fileList);
-
-                console.log("analyzedFileHierarchy: ", analyzedFileHierarchy);
+                let analyzedFileHierarchy = buildTreeHierarchyAnalyzedFiles(fileNameSplit[0], fileList);
 
                 showGraphAndFolders();
 
@@ -435,10 +429,8 @@ const readSamples = () => {
             return response.blob();
         })
         .then(myBlob => {
-            console.log(myBlob);
             let files = new File([myBlob], "test.nwt");
 
-            console.log(files);
             // const reader = new FileReader();
             // reader.onload = e => {
             //     console.log(e.target.result);
