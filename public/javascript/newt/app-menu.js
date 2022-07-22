@@ -8,6 +8,7 @@ const inspectorUtilities = require('./inspector-utilities');
 const tutorial = require('./tutorial');
 const sifStyleFactory = require('./sif-style-factory');
 const _ = require('underscore');
+const {Notyf} = require("notyf");
 
 // Handle sbgnviz menu functions which are to be triggered on events
 module.exports = function () {
@@ -1958,13 +1959,79 @@ module.exports = function () {
 
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
-                const instance = $.jstree.reference(this);
-                let node = instance.get_node(e.target);
 
-                let file = node.data;
+            // let nofyf = new Notyf();
+            // nofyf.success('Double click on a folder to open it');
 
-                console.log('clickedfile');
-                console.log(file);
+            const instance = $.jstree.reference(this);
+            let node = instance.get_node(e.target);
+
+            let file = node.data;
+
+            if (file.type === "ANALYZED_FILE") {
+                let query = {
+                    dir: "./analysisOut" + "/" + file.sessionId + "/" + file.name,
+                    file: file.name
+                }
+
+                let makeRequest = () => fetch('/api/getJsonAtPath', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(query)
+                });
+
+                let afterResolve = fileContent => {
+
+                    let responseArr = fileContent.split("||||");
+                    let fileName = responseArr[0];
+                    let sifContent = responseArr[1];
+                    let formatContent = responseArr[2];
+
+                    const parts = [
+                        new Blob([sifContent], {
+                            type: 'text/plain'
+                        }),
+                        new Uint16Array([33])
+                    ];
+
+                    const sifFile = new File(parts, fileName, {
+                        lastModified: new Date(),
+                        type: "text/plain"
+                    });
+
+                    // load sif file
+                    let chiseInstance = appUtilities.getActiveChiseInstance();
+                    let cy = appUtilities.getActiveCy();
+
+                    let loadCallbackInvalidityWarning = function () {
+                        promptInvalidFileView.render();
+                    };
+
+                    let layoutBy = function () {
+                        appUtilities.triggerLayout(cy, false);
+
+                        // Perform layout
+                        $('#perform-layout-icon').trigger('click');
+
+                        const sifStyle = sifStyleFactory();
+                        sifStyle(chiseInstance);
+                        sifStyle.apply(formatContent);
+                    };
+
+                    chiseInstance.loadSIFFile(sifFile, layoutBy, loadCallbackInvalidityWarning);
+
+                };
+
+                let handleRequestError = err => {
+                    alert("The error message is:\n" + err);
+                    throw err;
+                };
+
+                makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+
+            } else {
 
                 let chiseInstance = appUtilities.getActiveChiseInstance();
                 let cy = appUtilities.getActiveCy();
@@ -2006,9 +2073,21 @@ module.exports = function () {
 
                     $(this).val('');
                 }
+            }
+        });
+
+        // display alert
+        document.getElementById("file-analysis-input").addEventListener("change", function (e) {
+            let nofyf = new Notyf()
+            nofyf.success({
+                duration: 5000,
+                message: 'File analysis is in progress. Please wait.',
+                position: {
+                    x: 'center',
+                    y: 'top',
+                },
             });
-
-
+        });
 
     }
-};
+}
