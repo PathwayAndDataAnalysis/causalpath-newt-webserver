@@ -14,6 +14,9 @@
     <link rel="icon" type="image/png" href="../img/logo.png"/>
     <link rel="stylesheet" href="../build/bundle.css" crossorigin="anonymous">
 
+    <!--  Notification Alert  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
 </head>
 
 <body>
@@ -61,7 +64,8 @@
 
             <div id="selection_menus" class="row" style="margin-top: 70px;">
                 <div class="menu-buttons" style="padding-bottom:25px">
-                    <input type="file" class="file-picker" accept=".txt, .zip" multiple>
+                    <input type="file" id="file-analysis-input" class="file-picker"
+                           accept=".rar, .zip, .tar.xz, .7z, .tar.gz" single>
                     <h3>> Load input files for analysis</h3>
                     <p class="menu-hint-text">Please prepare your input files following
                         <u><a href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md"
@@ -80,7 +84,7 @@
                     <p class="menu-hint-text">Select the root folder of your analysis results to upload.</p>
                 </div>
 
-                <div class="menu-buttons">
+                <div id="display-demo-graphs" class="menu-buttons">
                     <h3>> Display demo graphs</h3>
                     <p class="menu-hint-text">View a collection of network results from previous studies.</p>
                 </div>
@@ -4819,6 +4823,7 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/themes/default/style.min.css"/>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.8/jstree.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 </body>
 
