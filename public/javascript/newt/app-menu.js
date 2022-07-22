@@ -2126,7 +2126,7 @@ module.exports = function () {
             let nofyf = new Notyf()
             nofyf.success({
                 duration: 5000,
-                message: 'File analysis is in progress. Please wait.',
+                message: 'CausalPath analysis is in progress. Please wait...',
                 position: {
                     x: 'center',
                     y: 'top',
