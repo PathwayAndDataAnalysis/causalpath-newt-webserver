@@ -1957,12 +1957,12 @@ module.exports = function () {
             updatePalette(newMapType);
         });
 
+
+        // ---------------------------------------------------------------------------------------------------------------------
+        // ------------------------------------------- Edited By: Kisan Thapa --------------------------------------------------
+        // Below codes handles the click event on the files
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
-
-            // let nofyf = new Notyf();
-            // nofyf.success('Double click on a folder to open it');
-
             const instance = $.jstree.reference(this);
             let node = instance.get_node(e.target);
 
@@ -1983,13 +1983,12 @@ module.exports = function () {
                 });
 
                 let afterResolve = fileContent => {
-
                     let responseArr = fileContent.split("||||");
                     let fileName = responseArr[0];
                     let sifContent = responseArr[1];
                     let formatContent = responseArr[2];
 
-                    const parts = [
+                    let parts = [
                         new Blob([sifContent], {
                             type: 'text/plain'
                         }),
@@ -2021,6 +2020,52 @@ module.exports = function () {
                     };
 
                     chiseInstance.loadSIFFile(sifFile, layoutBy, loadCallbackInvalidityWarning);
+
+                };
+
+                let handleRequestError = err => {
+                    alert("The error message is:\n" + err);
+                    throw err;
+                };
+
+                makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+
+            } else if (file.type === "SAMPLE_FILE") {
+                let query = {
+                    dir: "./samples" + "/" + file.name,
+                    file: file.name
+                }
+
+                let makeRequest = () => fetch('/api/getJsonAtPath', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(query)
+                });
+
+                let afterResolve = fileContent => {
+
+                    fileContent = fileContent.replace("||||", "");
+                    fileContent = fileContent.replace(file.name, "");
+
+                    let parts = [
+                        new Blob([fileContent], {
+                            type: 'text/plain'
+                        }),
+                        new Uint16Array([33])
+                    ];
+
+                    const sampleFile = new File(parts, file.name, {
+                        lastModified: new Date(),
+                        type: "text/plain"
+                    });
+
+                    // load sample files
+                    let chiseInstance = appUtilities.getActiveChiseInstance();
+                    let cy = appUtilities.getActiveCy();
+
+                    chiseInstance.loadNwtFile(sampleFile);
 
                 };
 
