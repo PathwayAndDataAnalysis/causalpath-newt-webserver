@@ -362,6 +362,7 @@ function showGraphAndFolders() {
     document.getElementById("back_menu").style.display = "block";
     document.getElementById("graph-container").style.display = "block";
     document.getElementById("folder-tree-container").style.display = "block";
+    window.dispatchEvent(new Event('resize'));
 }
 
 document.getElementById("picker").addEventListener("change", (event) => {
