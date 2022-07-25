@@ -896,7 +896,7 @@ appUtilities.dynamicResize = function () {
     // using $(window).width() would be problematic when scrolls are visible
     // please see: https://stackoverflow.com/questions/19582862/get-browser-window-width-including-scrollbar
     // and https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth
-    var windowWidth = window.innerWidth - 400;
+    var windowWidth = window.innerWidth - 380;
     var windowHeight = window.innerHeight;
 
     var canvasWidth = 1000;
