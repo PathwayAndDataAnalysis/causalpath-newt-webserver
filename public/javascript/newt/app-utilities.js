@@ -882,27 +882,28 @@ appUtilities.getExpandCollapseOptions = function (_cy) {
                     offset;
             }
 
-            return { x: x, y: y };
+            return {x: x, y: y};
         },
     };
 };
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Modified By: Kisan Thapa on Jul 25, 2022
+// This modification is to resize newt to fit the screen along with folder tree
+// ---------------------------------------------------------------------------------------------------------------------
 appUtilities.dynamicResize = function () {
     // get window inner width and inner height that includes scrollbars when they are rendered
     // using $(window).width() would be problematic when scrolls are visible
     // please see: https://stackoverflow.com/questions/19582862/get-browser-window-width-including-scrollbar
     // and https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth
-    var windowWidth = window.innerWidth;
+    var windowWidth = window.innerWidth - 400;
     var windowHeight = window.innerHeight;
 
-    // var canvasWidth = 1000;
-    // var canvasHeight = 680;
-    var canvasWidth = windowWidth;
-    var canvasHeight = windowHeight;
+    var canvasWidth = 1000;
+    var canvasHeight = 680;
 
     if (windowWidth > canvasWidth) {
-        //This is the margin on left and right of the main content when the page is
-        //displayed
+        //This is the margin on left and right of the main content when the page is displayed
         var mainContentMargin = 10;
         $('#network-panels-container').width(windowWidth * 0.8 - mainContentMargin);
         $('#sbgn-inspector').width(windowWidth * 0.2 - mainContentMargin);
@@ -910,17 +911,15 @@ appUtilities.dynamicResize = function () {
         var w = $('#sbgn-inspector-and-canvas').width();
         $('.nav-menu').width(w);
         $('.navbar').width(w);
-        //    $("#sbgn-info-content").width(windowWidth * 0.85);
+        // $("#sbgn-info-content").width(windowWidth * 0.85);
         $('#sbgn-toolbar').width(w);
         $('#network-tabs-list-container').width(w);
     }
 
     if (windowHeight > canvasHeight) {
-        $('#network-panels-container').height(windowHeight * 0.95);
-        $('#sbgn-inspector').height(windowHeight * 0.95);
+        $('#network-panels-container').height(windowHeight * 0.85);
+        $('#sbgn-inspector').height(windowHeight * 0.85);
     }
-    // $('#network-panels-container').width(($("#newt-graph-container").width() - 10) * 0.75);
-    // $('#sbgn-inspector').width(($("#newt-graph-container").width() -10) * 0.25);
 
     // trigger an event to notify that newt components are dynamically resized
     $(document).trigger('newtAfterDynamicResize');
@@ -2014,27 +2013,27 @@ appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_
         // first clear the background images of already present elements
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-image', valueMap: mapIdToValue(eles, '') },
+            param: {eles: eles, name: 'background-image', valueMap: mapIdToValue(eles, '')},
         });
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-fit', valueMap: mapIdToValue(eles, '') },
+            param: {eles: eles, name: 'background-fit', valueMap: mapIdToValue(eles, '')},
         });
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-position-x', valueMap: mapIdToValue(eles, '') },
+            param: {eles: eles, name: 'background-position-x', valueMap: mapIdToValue(eles, '')},
         });
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-position-y', valueMap: mapIdToValue(eles, '') },
+            param: {eles: eles, name: 'background-position-y', valueMap: mapIdToValue(eles, '')},
         });
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-width', valueMap: mapIdToValue(eles, '') },
+            param: {eles: eles, name: 'background-width', valueMap: mapIdToValue(eles, '')},
         });
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-height', valueMap: mapIdToValue(eles, '') },
+            param: {eles: eles, name: 'background-height', valueMap: mapIdToValue(eles, '')},
         });
         actions.push({
             name: 'changeData',
@@ -2048,7 +2047,7 @@ appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_
         // edit style of the current map elements, in solid scheme just change background-color
         actions.push({
             name: 'changeData',
-            param: { eles: eles, name: 'background-color', valueMap: idMap },
+            param: {eles: eles, name: 'background-color', valueMap: idMap},
         });
 
         // first clear the background images of already present collapsed elements
@@ -2112,18 +2111,18 @@ appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_
         // collapsed nodes' style should also be changed, special edge case
         actions.push({
             name: 'changeDataDirty',
-            param: { eles: collapsedChildren, name: 'background-color', valueMap: collapsedIdMap },
+            param: {eles: collapsedChildren, name: 'background-color', valueMap: collapsedIdMap},
         });
 
         // if background-image isn't deleted from css, it is shown as soon as the node is expanded until the end of animation
         actions.push({
             name: 'changeCss',
-            param: { eles: collapsedChildren, name: 'background-image', valueMap: '' },
+            param: {eles: collapsedChildren, name: 'background-image', valueMap: ''},
         });
 
         actions.push({
             name: 'refreshColorSchemeMenu',
-            param: { value: newColorScheme, self: self, scheme_type: scheme_type },
+            param: {value: newColorScheme, self: self, scheme_type: scheme_type},
         });
 
         // set to be the default as well
@@ -2181,11 +2180,11 @@ appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_
                 });
                 actions.push({
                     name: 'setDefaultProperty',
-                    param: { class: nodeClass, name: 'background-height', value: '' },
+                    param: {class: nodeClass, name: 'background-height', value: ''},
                 });
                 actions.push({
                     name: 'setDefaultProperty',
-                    param: { class: nodeClass, name: 'background-image-opacity', value: '' },
+                    param: {class: nodeClass, name: 'background-image-opacity', value: ''},
                 });
             }
         }
@@ -2451,11 +2450,11 @@ appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_
                 });
                 actions.push({
                     name: 'setDefaultProperty',
-                    param: { class: nodeClass, name: 'background-height', value: '100%' },
+                    param: {class: nodeClass, name: 'background-height', value: '100%'},
                 });
                 actions.push({
                     name: 'setDefaultProperty',
-                    param: { class: nodeClass, name: 'background-image-opacity', value: '1' },
+                    param: {class: nodeClass, name: 'background-image-opacity', value: '1'},
                 });
             }
         }
@@ -2467,7 +2466,7 @@ appUtilities.getActionsToApplyMapColorScheme = function (newColorScheme, scheme_
 // the 3 following functions are related to the handling of the dynamic image
 // used during drag and drop of palette nodes
 appUtilities.dragImageMouseMoveHandler = function (e) {
-    $('#drag-image').css({ left: e.pageX, top: e.pageY });
+    $('#drag-image').css({left: e.pageX, top: e.pageY});
 };
 
 // get drag image for the given html value
@@ -2914,7 +2913,7 @@ appUtilities.launchWithModelFile = function () {
             $.ajax({
                 type: 'post',
                 url: '/utilities/validateSBGNML',
-                data: { sbgnml: text },
+                data: {sbgnml: text},
                 success: function (data) {
                     if (data.length == 0) {
                         console.log('Xsd validation OK');
@@ -2949,7 +2948,7 @@ appUtilities.launchWithModelFile = function () {
         $.ajax({
             type: 'get',
             url: '/utilities/testURL',
-            data: { url: filepath },
+            data: {url: filepath},
             success: async function (data) {
                 // here we can get 404 as well, for example, so there are still error cases to handle
                 if (!data.error && data.response.statusCode == 200 && data.response.body) {
@@ -3069,7 +3068,7 @@ appUtilities.launchWithModelFile = function () {
         $.ajax({
             type: 'get',
             url: '/utilities/testURL',
-            data: { url: queryURL },
+            data: {url: queryURL},
             success: function (data) {
                 // here we can get 404 as well, for example, so there are still error cases to handle
                 if (data.response.statusCode == 200 && data.response.body) {
@@ -3130,8 +3129,8 @@ appUtilities.navigateToOtherEnd = function (edge, mouse_rend, mouse_normal) {
     var source_node = edge.source();
     var target_node = edge.target();
 
-    var source_position = { x: edge_pts[0], y: edge_pts[1] };
-    var target_position = { x: edge_pts[edge_pts.length - 2], y: edge_pts[edge_pts.length - 1] };
+    var source_position = {x: edge_pts[0], y: edge_pts[1]};
+    var target_position = {x: edge_pts[edge_pts.length - 2], y: edge_pts[edge_pts.length - 1]};
 
     var source_loc =
         Math.pow(mouse_normal.x - source_position.x, 2) +
@@ -3192,7 +3191,7 @@ appUtilities.navigateToOtherEnd = function (edge, mouse_rend, mouse_normal) {
 
         cy.animate({
             duration: 1400,
-            panBy: { x: mouse_rend.x - rend_x, y: mouse_rend.y - rend_y },
+            panBy: {x: mouse_rend.x - rend_x, y: mouse_rend.y - rend_y},
             easing: 'ease',
             complete: function () {
                 finished--;
@@ -3226,7 +3225,7 @@ appUtilities.relocateInfoBoxes = function (node) {
     relocatedNode = node;
 
     //Call undo-redo relocate function
-    cy.undoRedo().do('relocateInfoBoxes', { node });
+    cy.undoRedo().do('relocateInfoBoxes', {node});
 };
 
 //Checks whether a info-box is selected in a given mouse position
