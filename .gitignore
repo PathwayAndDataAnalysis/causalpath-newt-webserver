@@ -19,6 +19,8 @@ pids
 # IDE files
 .idea
 .vscode
+
+# Generated files
 .panda
 analysisOut/*
 

@@ -4,14 +4,14 @@ CausalPath Webserver with new newt as a visualization tool.
 
 ### Requirements
 
-- Node v14.x.x or higher
+- Node v14.x.x
 
 #### Check node version
 
-- Enter `node --version` in your terminal and it should output `v14.x.x` or `v16.x.x`
+- Enter `node --version` in your terminal and it should output `v14.x.x`
 - if you do not see such output in your terminal, then you have to install node JS
 
-## Installing Node JS
+## Install [Node JS](https://nodejs.org/)
 
 ### Linux
 
@@ -22,13 +22,13 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-Installing curl
+Install [curl](https://curl.se/)
 
 ```bash
 sudo apt install curl
 ```
 
-Installing nvm
+Install nvm
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -37,7 +37,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 Installing nvm using nvm
 
 ```bash
-nvm install 16
+nvm install 14
 ```
 
 Check version
