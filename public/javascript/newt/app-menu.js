@@ -1989,15 +1989,14 @@ module.exports = function () {
                     let formatContent = responseArr[2];
 
                     let parts = [
-                        new Blob([sifContent], {
-                            type: 'text/plain'
+                        new Blob([sifContent.trim()], {
+                            type: 'text/plain;'
                         }),
-                        new Uint16Array([33])
                     ];
 
                     const sifFile = new File(parts, fileName, {
                         lastModified: new Date(),
-                        type: "text/plain"
+                        type: "text/plain;"
                     });
 
                     // load sif file
@@ -2016,11 +2015,10 @@ module.exports = function () {
 
                         const sifStyle = sifStyleFactory();
                         sifStyle(chiseInstance);
-                        sifStyle.apply(formatContent);
+                        sifStyle.apply(formatContent.trim());
                     };
 
                     chiseInstance.loadSIFFile(sifFile, layoutBy, loadCallbackInvalidityWarning);
-
                 };
 
                 let handleRequestError = err => {
@@ -2038,9 +2036,7 @@ module.exports = function () {
 
                 let makeRequest = () => fetch('/api/getJsonAtPath', {
                     method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
+                    headers: {'content-type': 'application/json'},
                     body: JSON.stringify(query)
                 });
 
@@ -2050,23 +2046,19 @@ module.exports = function () {
                     fileContent = fileContent.replace(file.name, "");
 
                     let parts = [
-                        new Blob([fileContent], {
-                            type: 'text/plain'
+                        new Blob([fileContent.trim()], {
+                            type: 'text/plain;'
                         }),
-                        new Uint16Array([33])
                     ];
 
                     const sampleFile = new File(parts, file.name, {
                         lastModified: new Date(),
-                        type: "text/plain"
+                        type: "text/plain;"
                     });
 
                     // load sample files
                     let chiseInstance = appUtilities.getActiveChiseInstance();
-                    let cy = appUtilities.getActiveCy();
-
                     chiseInstance.loadNwtFile(sampleFile);
-
                 };
 
                 let handleRequestError = err => {
@@ -2077,6 +2069,19 @@ module.exports = function () {
                 makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
 
             } else {
+                // Check if the file is empty
+                try {
+                    if (!file.size) {
+                        let notyf = new Notyf()
+                        notyf.error({
+                            duration: 3000,
+                            message: 'The file is empty...',
+                            position: {x: 'center', y: 'top'}
+                        });
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
 
                 let chiseInstance = appUtilities.getActiveChiseInstance();
                 let cy = appUtilities.getActiveCy();
@@ -2123,15 +2128,30 @@ module.exports = function () {
 
         // display alert
         document.getElementById("file-analysis-input").addEventListener("change", function (e) {
-            let nofyf = new Notyf()
-            nofyf.success({
-                duration: 5000,
+            let notyf = new Notyf()
+            notyf.success({
+                duration: 7000,
                 message: 'CausalPath analysis is in progress. Please wait...',
-                position: {
-                    x: 'center',
-                    y: 'top',
-                },
+                position: {x: 'center', y: 'top'}
             });
+        });
+
+        // clear graph: Setting the graph to empty file
+        document.getElementById("back_button_label").addEventListener("click", function (e) {
+            let chiseInstance = appUtilities.getActiveChiseInstance();
+
+            let fileContent = "";
+            let parts = [
+                new Blob([fileContent.trim()], {
+                    type: 'text/plain;'
+                }),
+            ];
+
+            const emptyFile = new File(parts, "", {
+                lastModified: new Date(),
+                type: "text/plain"
+            });
+            chiseInstance.loadSIFFile(emptyFile);
         });
 
     }

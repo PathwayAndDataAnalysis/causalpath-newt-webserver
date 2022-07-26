@@ -69,6 +69,6 @@ $(document).ready(function () {
 	appUtilities.createNewNetwork();
 
 	// launch with model file if exists
-	appUtilities.launchWithModelFile();
+	// appUtilities.launchWithModelFile();
 
 });
