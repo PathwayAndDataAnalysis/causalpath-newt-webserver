@@ -388,13 +388,7 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
     let fileNameSplit = file.name.split(".");
 
     //Sending a zip file
-    if (
-        fileNameSplit.pop().toLowerCase() === "zip" ||
-        fileNameSplit.pop().toLowerCase() === "rar" ||
-        fileNameSplit.pop().toLowerCase() === "7z" ||
-        fileNameSplit.pop().toLowerCase() === "gz" ||
-        fileNameSplit.pop().toLowerCase() === "xz"
-    ) {
+    if (fileNameSplit.pop().toLowerCase() === "zip") {
         let reader = new FileReader();
         reader.onload = function (e) {
             fileContents.push({name: file.name, content: e.target.result});
@@ -439,27 +433,6 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
     showChoosingMenus();
 });
 
-const readSamples = () => {
-    fetch("/samples/HRD-tumors.nwt")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.blob();
-        })
-        .then((myBlob) => {
-            let files = new File([myBlob], "test.nwt");
-
-            // const reader = new FileReader();
-            // reader.onload = e => {
-            //     console.log(e.target.result);
-            // };
-            // reader.readAsDataURL(myBlob);
-        })
-        .catch((error) => {
-            console.error("There has been a problem with your fetch operation:", error);
-        });
-};
 
 document.getElementById("display-demo-graphs").addEventListener("click", (event) => {
     console.log("display-demo-graphs");
