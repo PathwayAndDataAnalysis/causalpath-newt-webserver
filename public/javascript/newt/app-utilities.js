@@ -7,6 +7,7 @@ const jquery = ($ = require('jquery'));
 const chroma = require('chroma-js');
 var chise = require('chise');
 var tutorial = require('./tutorial');
+const parameters = require('../parameters');
 
 var appUtilities = {};
 
@@ -682,7 +683,7 @@ appUtilities.defaultLayoutProperties = {
     piTol: 0.0000001,
     nodeDimensionsIncludeLabels: false,
     nodeRepulsion: 2000,
-    idealEdgeLength: 30,
+    idealEdgeLength: parameters.idealEdgeLength, // Modified by Kisan Thapa
     edgeElasticity: 0.45,
     nestingFactor: 0.1,
     gravity: 0.25,
@@ -694,8 +695,8 @@ appUtilities.defaultLayoutProperties = {
     animationDuration: 2000,
     randomize: false,
     tile: true,
-    tilingPaddingVertical: 12,
-    tilingPaddingHorizontal: 12,
+    tilingPaddingVertical: parameters.tilingVerticalPadding, // Modified by Kisan Thapa
+    tilingPaddingHorizontal: parameters.tilingHorizontalPadding, // Modified by Kisan Thapa
     gravityRangeCompound: 1.5,
     gravityCompound: 1.0,
     gravityRange: 3.8,
@@ -746,7 +747,7 @@ appUtilities.defaultGeneralProperties = {
     animateOnDrawingChanges: true,
     adjustNodeLabelFontSizeAutomatically: false,
     enablePorts: true,
-    enableSIFTopologyGrouping: false,
+    enableSIFTopologyGrouping: parameters.enableTopologyGrouping, // Modified by: Kisan Thapa
     allowCompoundNodeResize: true,
     mapColorScheme: 'black_white',
     mapColorSchemeStyle: 'solid',
