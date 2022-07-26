@@ -6,7 +6,7 @@ CausalPath Webserver with new newt as a visualization tool.
 
 - Node v14.x.x
 - Unzip (get it with `sudo apt install unzip`)
-- Java (preferably Java 11)
+- Java (preferably Java 11, get it with `sudo apt install openjdk-11-jdk`)
 
 #### Check node version
 
