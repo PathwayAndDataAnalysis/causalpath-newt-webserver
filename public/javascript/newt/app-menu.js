@@ -2035,10 +2035,7 @@ module.exports = function () {
                     };
 
                     let layoutBy = function () {
-                        appUtilities.triggerLayout(cy, false);
-
-                        // Perform layout
-                        $('#perform-static-layout').trigger('click');
+                        appUtilities.triggerLayout(cy, true);
 
                         sifStyle(chiseInstance);
                         sifStyle.apply(formatContent.trim());
@@ -2049,7 +2046,8 @@ module.exports = function () {
 
                 makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
 
-            } else if (file.type === "SAMPLE_FILE") {
+            }
+            else if (file.type === "SAMPLE_FILE") {
                 let query = {
                     dir: "./samples" + "/" + file.name,
                     file: file.name
@@ -2082,7 +2080,8 @@ module.exports = function () {
 
                 makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
 
-            } else {
+            }
+            else {
                 // Check if the file is empty
                 if (!file.size)
                     showNotification("The file is empty...", "error", 3000);
@@ -2097,10 +2096,7 @@ module.exports = function () {
                     };
 
                     let layoutBy = function () {
-                        // appUtilities.triggerLayout(cy, false);
-
-                        // Perform layout
-                        $('#perform-static-layout').trigger('click');
+                        appUtilities.triggerLayout(cy, true);
 
                         // Load .format file of corresponding sif file
                         let formatNode = instance.get_node(e.target.id.replace('.sif', '.format'));
