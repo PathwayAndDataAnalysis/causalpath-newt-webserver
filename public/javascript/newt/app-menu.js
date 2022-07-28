@@ -1486,10 +1486,7 @@ module.exports = function () {
                 );
 
                 var preferences = {
-                    animate:
-                        cy.nodes().length > 3000 || cy.edges().length > 3000
-                            ? false
-                            : currentGeneralProperties.animateOnDrawingChanges,
+                    animate: cy.nodes().length > 3000 || cy.edges().length > 3000 ? false : currentGeneralProperties.animateOnDrawingChanges,
                 };
                 layoutPropertiesView.applyLayout(preferences);
             }, 0);
@@ -1517,14 +1514,16 @@ module.exports = function () {
                 );
 
                 var preferences = {
-                    quality:
-                        cy.nodes().length > 3000 || cy.edges().length > 3000 ? 'draft' : 'default',
-                    animate:
-                        cy.nodes().length > 3000 || cy.edges().length > 3000
-                            ? false
-                            : currentGeneralProperties.animateOnDrawingChanges,
+                    quality: cy.nodes().length > 3000 || cy.edges().length > 3000 ? 'draft' : 'default',
+                    animate: cy.nodes().length > 3000 || cy.edges().length > 3000 ? false : currentGeneralProperties.animateOnDrawingChanges,
                     randomize: true,
                 };
+
+                console.log("chiseInstance: ", chiseInstance);
+                console.log("cy: ", cy)
+                console.log("currentGeneralProperties: " + JSON.stringify(currentGeneralProperties));
+                console.log("preferences: " + JSON.stringify(preferences));
+
 
                 layoutPropertiesView.applyLayout(preferences);
             }, 0);
@@ -1960,6 +1959,28 @@ module.exports = function () {
 
         // ---------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------- Edited By: Kisan Thapa --------------------------------------------------
+        function showNotification(message, type, duration) {
+            const notyf = new Notyf();
+            switch (type) {
+                case  'error': {
+                    notyf.error({
+                        duration: duration,
+                        message: message,
+                        position: {x: 'center', y: 'top'}
+                    });
+                    break;
+                }
+                default: {
+                    notyf.success({
+                        duration: duration,
+                        message: message,
+                        position: {x: 'center', y: 'top'}
+                    });
+                    break;
+                }
+            }
+        }
+
         // Below codes handles the click event on the files
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
@@ -1967,6 +1988,16 @@ module.exports = function () {
             let node = instance.get_node(e.target);
 
             let file = node.data;
+
+            // load sif file
+            const chiseInstance = appUtilities.getActiveChiseInstance();
+            const cy = appUtilities.getActiveCy();
+            const sifStyle = sifStyleFactory();
+
+            const handleRequestError = err => {
+                alert("The error message is:\n" + err);
+                throw err;
+            };
 
             if (file.type === "ANALYZED_FILE") {
                 let query = {
@@ -1999,21 +2030,13 @@ module.exports = function () {
                         type: "text/plain;"
                     });
 
-                    // load sif file
-                    let chiseInstance = appUtilities.getActiveChiseInstance();
-                    let cy = appUtilities.getActiveCy();
-
                     let loadCallbackInvalidityWarning = function () {
                         promptInvalidFileView.render();
                     };
 
                     let layoutBy = function () {
-                        appUtilities.triggerLayout(cy, false);
+                        appUtilities.triggerLayout(cy, true);
 
-                        // Perform layout
-                        $('#perform-layout-icon').trigger('click');
-
-                        const sifStyle = sifStyleFactory();
                         sifStyle(chiseInstance);
                         sifStyle.apply(formatContent.trim());
                     };
@@ -2021,14 +2044,10 @@ module.exports = function () {
                     chiseInstance.loadSIFFile(sifFile, layoutBy, loadCallbackInvalidityWarning);
                 };
 
-                let handleRequestError = err => {
-                    alert("The error message is:\n" + err);
-                    throw err;
-                };
-
                 makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
 
-            } else if (file.type === "SAMPLE_FILE") {
+            }
+            else if (file.type === "SAMPLE_FILE") {
                 let query = {
                     dir: "./samples" + "/" + file.name,
                     file: file.name
@@ -2041,7 +2060,6 @@ module.exports = function () {
                 });
 
                 let afterResolve = fileContent => {
-
                     fileContent = fileContent.replace("||||", "");
                     fileContent = fileContent.replace(file.name, "");
 
@@ -2057,34 +2075,17 @@ module.exports = function () {
                     });
 
                     // load sample files
-                    let chiseInstance = appUtilities.getActiveChiseInstance();
                     chiseInstance.loadNwtFile(sampleFile);
-                };
-
-                let handleRequestError = err => {
-                    alert("The error message is:\n" + err);
-                    throw err;
                 };
 
                 makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
 
-            } else {
+            }
+            else {
                 // Check if the file is empty
-                try {
-                    if (!file.size) {
-                        let notyf = new Notyf()
-                        notyf.error({
-                            duration: 3000,
-                            message: 'The file is empty...',
-                            position: {x: 'center', y: 'top'}
-                        });
-                    }
-                } catch (e) {
-                    console.log(e)
-                }
+                if (!file.size)
+                    showNotification("The file is empty...", "error", 3000);
 
-                let chiseInstance = appUtilities.getActiveChiseInstance();
-                let cy = appUtilities.getActiveCy();
                 // Load newt file
                 if (file.name.endsWith('.nwt')) {
                     chiseInstance.loadNwtFile(file);
@@ -2094,32 +2095,25 @@ module.exports = function () {
                         promptInvalidFileView.render();
                     };
 
-                    const loadFcn = function () {
-                        let layoutBy = function () {
-                            appUtilities.triggerLayout(cy, false);
+                    let layoutBy = function () {
+                        appUtilities.triggerLayout(cy, true);
 
-                            // Perform layout
-                            $('#perform-layout-icon').trigger('click');
+                        // Load .format file of corresponding sif file
+                        let formatNode = instance.get_node(e.target.id.replace('.sif', '.format'));
 
-                            // Load .format file of corresponding sif file
-                            let formatNode = instance.get_node(e.target.id.replace('.sif', '.format'));
+                        // Check if format file exists
+                        if (formatNode) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const text = e.target.result;
 
-                            // Check if format file exists
-                            if (formatNode) {
-                                const reader = new FileReader();
-                                reader.onload = function (e) {
-                                    const text = e.target.result;
-
-                                    const sifStyle = sifStyleFactory();
-                                    sifStyle(chiseInstance);
-                                    sifStyle.apply(text);
-                                };
-                                reader.readAsText(formatNode.data);
-                            }
-                        };
-                        chiseInstance.loadSIFFile(file, layoutBy, loadCallbackInvalidityWarning);
+                                sifStyle(chiseInstance);
+                                sifStyle.apply(text);
+                            };
+                            reader.readAsText(formatNode.data);
+                        }
                     };
-                    loadFcn();
+                    chiseInstance.loadSIFFile(file, layoutBy, loadCallbackInvalidityWarning);
 
                     $(this).val('');
                 }
@@ -2128,12 +2122,7 @@ module.exports = function () {
 
         // display alert
         document.getElementById("file-analysis-input").addEventListener("change", function (e) {
-            let notyf = new Notyf()
-            notyf.success({
-                duration: 7000,
-                message: 'CausalPath analysis is in progress. Please wait...',
-                position: {x: 'center', y: 'top'}
-            });
+            showNotification("CausalPath analysis is in progress. Please wait...", "success", 7000);
         });
 
         // clear graph: Setting the graph to empty file
