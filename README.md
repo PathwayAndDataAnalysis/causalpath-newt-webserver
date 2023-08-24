@@ -2,6 +2,8 @@
 
 CausalPath Webserver with new newt as a visualization tool.
 
+This tool is live at: https://causalpath.cs.umb.edu/
+
 ### Requirements
 
 - Node v14.x.x
