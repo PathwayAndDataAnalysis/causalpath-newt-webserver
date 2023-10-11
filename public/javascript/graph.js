@@ -306,7 +306,7 @@ $(function () {
         let node = instance.get_node(e.target)
 
         console.log('node')
-        console.log(node)
+        // console.log(node)
 
 
         // // make requests
