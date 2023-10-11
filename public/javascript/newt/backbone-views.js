@@ -885,6 +885,7 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
             // use active cy instance
             var cy = appUtilities.getActiveCy();
             var chiseInstance = appUtilities.getActiveChiseInstance();
+
             // get current general properties for cy
             var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
             var actions = [];
