@@ -8,6 +8,7 @@ const chroma = require('chroma-js');
 var chise = require('chise');
 var tutorial = require('./tutorial');
 const parameters = require('../parameters');
+const {log} = require("debug");
 
 var appUtilities = {};
 
