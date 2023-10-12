@@ -634,7 +634,7 @@ module.exports = function () {
 
             if ($(this).val() !== '') {
                 const file = this.files[0];
-                console.log(file);
+                // console.log(file);
                 const loadFcn = function () {
                     const layoutBy = function () {
                         appUtilities.triggerLayout(cy, true);
@@ -1158,7 +1158,7 @@ module.exports = function () {
                 success: function (data) {
                     // If response returns error display the message
                     if (data.name === 'Error' || data.error || data.name === 'error') {
-                        console.log(data);
+                        // console.log(data);
                         chiseSpinnerInstance.endSpinner('layout-spinner');
                         promtErrorPD2AF.render(data.message);
                     } else {
@@ -1227,7 +1227,7 @@ module.exports = function () {
                     }
                 },
                 error: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     chiseSpinnerInstance.endSpinner('layout-spinner');
                     if (data.status == 0) promtErrorPD2AF.render('Server might be offline!');
                     else promtErrorPD2AF.render(data.message);
@@ -1519,10 +1519,10 @@ module.exports = function () {
                     randomize: true,
                 };
 
-                console.log("chiseInstance: ", chiseInstance);
-                console.log("cy: ", cy)
-                console.log("currentGeneralProperties: " + JSON.stringify(currentGeneralProperties));
-                console.log("preferences: " + JSON.stringify(preferences));
+                // console.log("chiseInstance: ", chiseInstance);
+                // console.log("cy: ", cy)
+                // console.log("currentGeneralProperties: " + JSON.stringify(currentGeneralProperties));
+                // console.log("preferences: " + JSON.stringify(preferences));
 
 
                 layoutPropertiesView.applyLayout(preferences);
@@ -2019,6 +2019,10 @@ module.exports = function () {
                     let sifContent = responseArr[1];
                     let formatContent = responseArr[2];
 
+                    // console.log("fileName: ", fileName)
+                    // console.log("sifContent: ", sifContent)
+                    // console.log("formatContent: ", formatContent)
+
                     let parts = [
                         new Blob([sifContent.trim()], {
                             type: 'text/plain;'
@@ -2062,6 +2066,8 @@ module.exports = function () {
                 let afterResolve = fileContent => {
                     fileContent = fileContent.replace("||||", "");
                     fileContent = fileContent.replace(file.name, "");
+
+                    // console.log("formatContent: ", fileContent)
 
                     let parts = [
                         new Blob([fileContent.trim()], {
