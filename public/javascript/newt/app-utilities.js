@@ -703,6 +703,7 @@ appUtilities.defaultLayoutProperties = {
     gravityRange: 3.8,
     initialEnergyOnIncremental: 0.3,
     improveFlow: true,
+    tileSortAscending: true, // Modified by Kisan Thapa
     packComponents: true,
 };
 
