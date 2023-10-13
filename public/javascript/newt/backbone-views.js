@@ -292,6 +292,13 @@ var LayoutPropertiesView = Backbone.View.extend({
         delete extendedOptions.incremental;
         return extendedOptions;
     },
+    sortRandomly: function (layoutOptions) {
+        let randomize = true;
+        let tilingCompareBy = function (nodeId1, nodeId2) {
+            return 0;
+        };
+        return _.extend({}, layoutOptions, {randomize, tilingCompareBy});
+    },
     // Edit End here
 
     applyLayout: function (preferences, notUndoable, _chiseInstance) {
@@ -300,7 +307,10 @@ var LayoutPropertiesView = Backbone.View.extend({
         var options = this.getLayoutOptions(preferences, _chiseInstance);
 
         // Edited By Kisan Thapa
-        options = this.sortTilesByName(options);
+        if (options.tileSortAscending)
+            options = this.sortTilesByName(options);
+        else
+            options = this.sortRandomly(options);
         // Edit End here
 
         chiseInstance.performLayout(options, notUndoable);
@@ -372,6 +382,8 @@ var LayoutPropertiesView = Backbone.View.extend({
                 );
                 currentLayoutProperties.improveFlow =
                     document.getElementById('improve-flow').checked;
+                currentLayoutProperties.tileSortAscending =
+                    document.getElementById('tile-sort-ascending').checked;
                 // reset currentLayoutProperties in scratch pad
                 appUtilities.setScratch(cy, currentLayoutProperties, 'currentLayoutProperties');
 
