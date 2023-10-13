@@ -292,12 +292,21 @@ var LayoutPropertiesView = Backbone.View.extend({
         delete extendedOptions.incremental;
         return extendedOptions;
     },
-    sortRandomly: function (layoutOptions) {
-        let randomize = true;
+    sortByLength: function (layoutOptions) {
+        let randomize = !layoutOptions.incremental;
         let tilingCompareBy = function (nodeId1, nodeId2) {
+            let cy = appUtilities.getActiveCy();
+            let nodeLabel1 = cy.getElementById(nodeId1).data('label');
+            let nodeLabel2 = cy.getElementById(nodeId2).data('label');
+
+            if (nodeLabel1.length > nodeLabel2.length) {
+                return -1;
+            }
             return 0;
         };
-        return _.extend({}, layoutOptions, {randomize, tilingCompareBy});
+        let extendedOptions = _.extend({}, layoutOptions, {randomize, tilingCompareBy});
+        delete extendedOptions.incremental;
+        return extendedOptions;
     },
     // Edit End here
 
@@ -309,8 +318,10 @@ var LayoutPropertiesView = Backbone.View.extend({
         // Edited By Kisan Thapa
         if (options.tileSortAscending)
             options = this.sortTilesByName(options);
-        else
-            options = this.sortRandomly(options);
+        else {
+            options = this.sortByLength(options);
+        }
+        console.log("options: ", options)
         // Edit End here
 
         chiseInstance.performLayout(options, notUndoable);
