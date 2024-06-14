@@ -71,5 +71,5 @@ git clone https://github.com/PathwayAndDataAnalysis/causalpath-newt-webserver.gi
 cd causalpath-newt-webserver
 npm install
 
-npm start
+npm run start
 ```
