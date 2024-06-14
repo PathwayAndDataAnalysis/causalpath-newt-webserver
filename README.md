@@ -12,7 +12,7 @@ This tool is live at: https://causalpath.cs.umb.edu/
 
 #### Check node version
 
-- Enter `node --version` in your terminal and it should output `v14.x.x`
+- Enter `node --version` in your terminal and it should output `v12.x.x`
 - if you do not see such output in your terminal, then you have to install node JS
 
 ## Install [Node JS](https://nodejs.org/)
