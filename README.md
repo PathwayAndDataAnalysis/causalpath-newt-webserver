@@ -6,7 +6,7 @@ This tool is live at: https://causalpath.cs.umb.edu/
 
 ### Requirements
 
-- Node v14.x.x
+- Node v12.x.x
 - Unzip (get it with `sudo apt install unzip`)
 - Java (preferably Java 11, get it with `sudo apt install openjdk-11-jdk`)
 
@@ -41,7 +41,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 Installing nvm using nvm
 
 ```bash
-nvm install 14
+nvm install 12
 ```
 
 Check version
