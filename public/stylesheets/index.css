@@ -107,9 +107,15 @@ p.menu-hint-text {
     margin-top: 20px;
 }
 
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
 #back_menu {
     display: none;
     margin: 10px 5px 5px;
+    justify-content: space-between;
 }
 
 #back_button_label {
@@ -125,12 +131,6 @@ p.menu-hint-text {
     background-color: #617d8a;
     color: floralwhite;
 }
-
-.carousel-inner img {
-    width: 100%;
-    height: 100%;
-}
-
 
 /*Newt styles*/
 /* Make the image fully responsive */
@@ -1176,4 +1176,94 @@ img#template-reversible-output-add-button:hover {
 
 .small-right-margin {
     margin-right: 10px;
+}
+
+#analysis-status-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+    display: none;
+}
+
+#analysis-status-menu {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; 
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    align-content: center;
+}
+
+#analysis-status-message-header {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+#analysis-status-level-selection-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font: inherit;
+}
+
+#analysis-status-message-text-area-containers {
+    display: flex;
+    justify-content: space-around;
+}
+
+.analysis-status-message-text-area {
+    width: 400px;
+    flex: 0 0 400px;
+    background: rgb(200, 200, 255);
+    height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+    margin: 10px;
+    font: inherit;
+}
+
+#analysis-status-level-selection-container {
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    padding: 10px;
+}
+
+
+#analysis-error-confirmation-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 10px;
+}
+
+.analysis-error-confirmation-button {
+    min-width: 5rem;
+    padding: 5px;
+    margin: 10px;
+}
+
+#view-warnings-label {
+    background-color: #d8d8d8;
+    font-size: 20px;
+    padding: 10px 30px 10px 20px;
+    border-radius: 8px;
+    stroke: #040000;
+    stroke-width: 2px;
+    display: none;
+}
+
+#view-warnings-label:hover {
+    background-color: #617d8a;
+    color: floralwhite;
 }

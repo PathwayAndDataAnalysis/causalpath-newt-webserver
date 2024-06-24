@@ -13,6 +13,7 @@
 
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico"/>
     <link rel="stylesheet" href="../build/bundle.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/analysis-status-menu.css">
 
     <!--  Notification Alert  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
@@ -40,6 +41,25 @@
     </div>
 </div>
 
+<div id="analysis-status-menu-overlay">
+    <div id="analysis-status-menu">
+        <div id="analysis-status-messages">
+            <h2 id="analysis-status-message-header">Analysis Status Messages</h2>
+            <div id="analysis-status-level-selection-container">
+                <p id="analysis-status-single-box-display-header"><b>Displaying Errors</b></p>
+            </div>
+            <div id="analysis-status-message-text-area-containers">
+                <div class="analysis-status-message-text-area", id="analysis-error-message-text-area">
+                </div>
+            </div>
+            <div id="analysis-status-confirmation-buttons-container">
+                <div id="analysis-error-confirmation-buttons-container">
+                    <button class="analysis-error-confirmation-button" id="analysis-error-okay-button">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="menu-text-buttons" class="body-content container-fluid">
     <div class="row">
@@ -185,6 +205,7 @@
             <!-- Back Button -->
             <div id="back_menu">
                 <label id="back_button_label"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
+                <label id="view-warnings-label"><i class="exclaimation-point"></i>Show Warnings&#33</label>
             </div>
 
             <!-- Folder Tree -->

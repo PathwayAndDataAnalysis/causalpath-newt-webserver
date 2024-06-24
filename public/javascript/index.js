@@ -365,6 +365,55 @@ function showGraphAndFolders() {
     window.dispatchEvent(new Event('resize'));
 }
 
+
+let analysisMenuOverlay = document.getElementById("analysis-status-menu-overlay")
+let errorTextArea = document.getElementById("analysis-error-message-text-area");
+let viewWarningsLabel = document.getElementById("view-warnings-label");
+
+function showAnalysisErrorMenu(fileList) {
+    let foundErrorFiles = fileList.filter(file => file.endsWith("errors.log"));
+    analysisMenuOverlay.style.display = "block";
+    displayStatusMessages(errorTextArea, foundErrorFiles)
+}
+
+function prepareAnalysisWarningDisplay(fileList) 
+{
+    let foundWarningFiles = fileList.filter(file => file.endsWith("warnings.log"));
+    displayStatusMessages(errorTextArea, foundWarningFiles);
+    viewWarningsLabel.style.display = "block";
+}
+
+function displayStatusMessages(textArea, fileList)
+{
+    textArea.innerHTML = "";
+    for (let file of fileList) {
+        fetch(`/api/getFile?filePath=${encodeURIComponent(file)}`, {
+            method: "GET",
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error("Network response not okay");
+            }
+            return response.text();
+        }).then((text) => {
+            let lines = text.split("\n");
+            for (let line of lines) {
+                textArea.innerHTML += line + "<br>";
+            }
+        }).catch(error => {
+            console.log("There was an error with fetch", error);
+        })
+    }
+}
+
+document.getElementById("analysis-error-okay-button").addEventListener("click", () => {
+    analysisMenuOverlay.style.display = "none";
+});
+
+
+viewWarningsLabel.addEventListener("click", () => {
+    analysisMenuOverlay.style.display = "block";
+})
+
 document.getElementById("picker").addEventListener("change", (event) => {
     let files = event.target.files;
     let fileList = Array.from(files);
@@ -410,12 +459,29 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
             let afterResolve = (dirStr) => {
                 dirStr = dirStr.trim();
                 let fileList = dirStr.split("\n");
+                
+                console.log("file list is: ");
+                for (let element of fileList) console.log(element);
 
-                let analyzedFileHierarchy = buildTreeHierarchyAnalyzedFiles(fileNameSplit[0], fileList);
+                let hasErrors = fileList.some(str => str.endsWith("errors.log"));
+                let hasWarnings = fileList.some(str => str.endsWith("warnings.log"));
+
+                if (hasErrors) {
+                    showAnalysisErrorMenu(fileList);
+                    return;
+                }
+                
+                let fileListToBuild = fileList.filter(file => file.endsWith(".sif"));
+
+                let analyzedFileHierarchy = buildTreeHierarchyAnalyzedFiles(fileNameSplit[0], fileListToBuild);
 
                 showGraphAndFolders();
 
                 generateJSTree(analyzedFileHierarchy);
+
+                if (hasWarnings) {
+                    prepareAnalysisWarningDisplay(fileList);   
+                }
             };
 
             let handleRequestError = (err) => {
@@ -431,6 +497,7 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
 
 document.getElementById("back_button_label").addEventListener("click", (event) => {
     showChoosingMenus();
+    viewWarningsLabel.style.display = "none";
 });
 
 
