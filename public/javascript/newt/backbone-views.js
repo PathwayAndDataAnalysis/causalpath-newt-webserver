@@ -275,11 +275,57 @@ var LayoutPropertiesView = Backbone.View.extend({
 
     return options;
   },
+
+  // New Function added by Kisan Thapa to sort tile layout by node id
+  sortTilesByName: function (layoutOptions) {
+    let randomize = !layoutOptions.incremental;
+    let tilingCompareBy = function (nodeId1, nodeId2) {
+        let cy = appUtilities.getActiveCy();
+        let nodeLabel1 = cy.getElementById(nodeId1).data('label');
+        let nodeLabel2 = cy.getElementById(nodeId2).data('label');
+
+        if (nodeLabel1 < nodeLabel2) {
+            return -1;
+        }
+        return 0;
+    };
+    let extendedOptions = _.extend({}, layoutOptions, {randomize, tilingCompareBy});
+    delete extendedOptions.incremental;
+    return extendedOptions;
+  },
+  sortByLength: function (layoutOptions) {
+      let randomize = !layoutOptions.incremental;
+      let tilingCompareBy = function (nodeId1, nodeId2) {
+          let cy = appUtilities.getActiveCy();
+          let nodeLabel1 = cy.getElementById(nodeId1).data('label');
+          let nodeLabel2 = cy.getElementById(nodeId2).data('label');
+
+          if (nodeLabel1.length > nodeLabel2.length) {
+              return -1;
+          }
+          return 0;
+      };
+      let extendedOptions = _.extend({}, layoutOptions, {randomize, tilingCompareBy});
+      delete extendedOptions.incremental;
+      return extendedOptions;
+  },
+  // Edit End here
+
   applyLayout: function (preferences, notUndoable, _chiseInstance) {
 
     // if chise instance param is not set use the recently active chise instance
     var chiseInstance = _chiseInstance || appUtilities.getActiveChiseInstance();
     var options = this.getLayoutOptions(preferences, _chiseInstance);
+
+    // Edited By Kisan Thapa
+    if (options.tileSortAscending)
+      options = this.sortTilesByName(options);
+    else {
+      options = this.sortByLength(options);
+    }
+  console.log("options: ", options)
+  // Edit End here
+
     chiseInstance.performLayout(options, notUndoable);
   },
   render: function () {

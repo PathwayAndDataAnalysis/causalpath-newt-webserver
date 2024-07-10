@@ -7,6 +7,8 @@ var jquery = $ = require('jquery');
 var chroma = require('chroma-js');
 var chise = require('chise');
 var tutorial = require('./tutorial');
+const parameters = require('../parameters');
+const {log} = require("debug");
 
 var appUtilities = {};
 
@@ -685,7 +687,7 @@ appUtilities.defaultLayoutProperties = {
   piTol: 0.0000001,  
   nodeDimensionsIncludeLabels: false,
   nodeRepulsion: 2000,
-  idealEdgeLength: 30,
+  idealEdgeLength: parameters.idealEdgeLength, // Modified by Kisan Thapa
   edgeElasticity: 0.45,
   nestingFactor: 0.1,
   gravity: 0.25,
@@ -697,13 +699,14 @@ appUtilities.defaultLayoutProperties = {
   animationDuration: 2000,
   randomize: false,
   tile: true,  
-  tilingPaddingVertical: 12,
-  tilingPaddingHorizontal: 12,
+  tilingPaddingVertical: parameters.tilingVerticalPadding, // Modified by Kisan Thapa
+  tilingPaddingHorizontal: parameters.tilingHorizontalPadding, // Modified by Kisan Thapa
   gravityRangeCompound: 1.5,
   gravityCompound: 1.0,
   gravityRange: 3.8,
   initialEnergyOnIncremental: 0.3,
   improveFlow: true,
+  tileSortAscending: true, // Modified by Kisan Thapa
   packComponents: true 
 };
 
@@ -749,7 +752,7 @@ appUtilities.defaultGeneralProperties = {
   animateOnDrawingChanges: true,
   adjustNodeLabelFontSizeAutomatically: false,
   enablePorts: true,
-  enableSIFTopologyGrouping: false,
+  enableSIFTopologyGrouping: parameters.enableTopologyGrouping, // Modified by: Kisan Thapa
   allowCompoundNodeResize: true,
   mapColorScheme: 'black_white',
   mapColorSchemeStyle: 'solid',
@@ -871,13 +874,17 @@ appUtilities.getExpandCollapseOptions = function (_cy) {
   };
 };
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Modified By: Kisan Thapa on Jul 25, 2022
+// This modification is to resize newt to fit the screen along with folder tree
+// ---------------------------------------------------------------------------------------------------------------------
 appUtilities.dynamicResize = function () {
 
   // get window inner width and inner height that includes scrollbars when they are rendered
   // using $(window).width() would be problematic when scrolls are visible
   // please see: https://stackoverflow.com/questions/19582862/get-browser-window-width-including-scrollbar
   // and https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth
-  var windowWidth = window.innerWidth;
+  var windowWidth = window.innerWidth - 380;
   var windowHeight = window.innerHeight;
 
   var canvasWidth = 1000;
