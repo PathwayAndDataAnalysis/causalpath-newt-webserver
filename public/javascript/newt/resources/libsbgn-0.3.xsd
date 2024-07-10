@@ -1,8 +1,8 @@
 <xsd:schema
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:sbgn="http://sbgn.org/libsbgn/0.3"
         targetNamespace="http://sbgn.org/libsbgn/0.3"
         xmlns="http://sbgn.org/libsbgn/0.3"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:sbgn="http://sbgn.org/libsbgn/0.3"
         elementFormDefault="qualified">
     <xsd:annotation>
         <xsd:documentation>
@@ -24,9 +24,9 @@
         <xsd:annotation>
             <xsd:documentation>
                 <p>
-                    The SBGNBase type is the base type of all main components in SBGN.
-                    It supports attaching notes and extensions to components, with
-                    metadata and annotations encoded in the extension element.
+                The SBGNBase type is the base type of all main components in SBGN.
+                It supports attaching notes and extensions to components, with
+                metadata and annotations encoded in the extension element.
                 </p>
             </xsd:documentation>
         </xsd:annotation>

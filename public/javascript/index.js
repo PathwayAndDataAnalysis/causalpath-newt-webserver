@@ -352,7 +352,7 @@ function showChoosingMenus() {
     document.getElementById("menu-text-buttons").style.display = "block";
     document.getElementById("folder-trees-graphs").style.display = "none";
     document.getElementById("back_menu").style.display = "none";
-    document.getElementById("graph-container").style.display = "none";
+    //document.getElementById("graph-container").style.display = "none";
     document.getElementById("folder-tree-container").style.display = "none";
 }
 
@@ -360,7 +360,7 @@ function showGraphAndFolders() {
     document.getElementById("menu-text-buttons").style.display = "none";
     document.getElementById("folder-trees-graphs").style.display = "block";
     document.getElementById("back_menu").style.display = "block";
-    document.getElementById("graph-container").style.display = "block";
+    //document.getElementById("graph-container").style.display = "block";
     document.getElementById("folder-tree-container").style.display = "block";
     window.dispatchEvent(new Event('resize'));
 }
