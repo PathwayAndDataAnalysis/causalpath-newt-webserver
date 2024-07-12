@@ -580,358 +580,310 @@
       </glyph>
       <tooltip>PPM1D-inactive, -1.0</tooltip>
     </glyph>
-    <glyph id="nwtN_74e62c07-0cc2-4ac2-bbf4-520ff24456bc" class="topology group">
-      <extension>
-        <extraInfo>
-          <w>130.961669921875</w>
-          <h>115.99999999999991</h>
-          <minW>0</minW>
-          <minH>0</minH>
-          <WLBias>0</WLBias>
-          <WRBias>0</WRBias>
-          <HTBias>0</HTBias>
-          <HBBias>0</HBBias>
-        </extraInfo>
-      </extension>
-      <bbox x="1186.407824349203" y="18.584890460236807" w="158.961669921875" h="143.99999999999991"/>
-      <glyph id="nwtN_5b1753c8-2d86-4e4d-ae06-afa6c1fea6ed" class="SIF macromolecule">
-        <label text="ROCK2"/>
-        <bbox x="1268.064806771078" y="75.58489046023672" w="61.6796875" h="30"/>
-        <glyph id="nwtUOI_c300393a-4419-419e-9329-135492cbeba0" class="unit of information">
-          <label text="p"/>
-          <bbox x="1273.064806771078" y="68.08489046023672" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_35a95404-fb27-430c-ac8c-163370180d3f" class="SIF macromolecule">
-        <label text="WEE1"/>
-        <bbox x="1274.744494271078" y="42.33489046023681" w="52.509765625" h="30"/>
-        <glyph id="nwtUOI_8730bb1c-91c8-468a-b300-e0ebed93bf7d" class="unit of information">
-          <label text="p"/>
-          <bbox x="1279.744494271078" y="34.83489046023681" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_93441bdd-2d7e-4b88-848b-d654bfbcc4bf" class="unit of information">
-          <label text="p"/>
-          <bbox x="1279.744494271078" y="64.8348904602368" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_3835c2f2-51f3-4c65-bff2-fcfd1bd2ad2d" class="SIF macromolecule">
-        <label text="NUMA1"/>
-        <bbox x="1202.307482552328" y="75.58489046023672" w="62.50732421875" h="30"/>
-        <glyph id="nwtUOI_b4220dee-6d19-4d97-9110-b1ac19cb8d71" class="unit of information">
-          <label text="p"/>
-          <bbox x="1202.808947396078" y="68.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_ec3166e4-add0-4815-9987-6b83b7f505cd" class="unit of information">
-          <label text="p"/>
-          <bbox x="1202.808947396078" y="98.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_89ba2202-b40b-46b4-9ab0-3f3ff69b62d8" class="unit of information">
-          <label text="p"/>
-          <bbox x="1218.310412239828" y="68.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_e0891a4c-86a4-4366-8352-6b4afbb2ec34" class="unit of information">
-          <label text="p"/>
-          <bbox x="1218.310412239828" y="98.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_7df70d99-8983-4053-93e3-8fa192eb5092" class="unit of information">
-          <label text="p"/>
-          <bbox x="1233.811877083578" y="68.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_079eac84-140c-4429-ad8c-dd6626065641" class="unit of information">
-          <label text="p"/>
-          <bbox x="1233.811877083578" y="98.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_1607f30e-9f3f-4af5-86ba-f5d01eda3ef1" class="unit of information">
-          <label text="p"/>
-          <bbox x="1249.313341927328" y="68.08489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_1719a947-3de7-4c0c-9297-38b7429f510e" class="unit of information">
-          <label text="p"/>
-          <bbox x="1249.313341927328" y="98.08489046023672" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_7acb85c6-c405-4c7b-a076-f1d03b441f69" class="SIF macromolecule">
-        <label text="KAT7"/>
-        <bbox x="1202.307482552328" y="108.83489046023672" w="46.4013671875" h="30"/>
-        <glyph id="nwtUOI_c177047a-a728-474b-8a55-18e9d5d4e815" class="unit of information">
-          <label text="p"/>
-          <bbox x="1202.657824349203" y="101.33489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_fde694f5-ab38-4890-884a-b2cb81d6982d" class="unit of information">
-          <label text="p"/>
-          <bbox x="1202.657824349203" y="131.33489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_b1132fa9-9afe-492e-b319-1c5155bc5511" class="unit of information">
-          <label text="p"/>
-          <bbox x="1218.008166146078" y="101.33489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_a756194d-b608-460e-be71-0232cb0deb87" class="unit of information">
-          <label text="p"/>
-          <bbox x="1218.008166146078" y="131.33489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_882e360b-4eb5-4d55-8301-0f4bfc293b7d" class="unit of information">
-          <label text="p"/>
-          <bbox x="1233.358507942953" y="101.33489046023672" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_69e24b00-2b91-4f21-a5e7-48efe7630c77" class="unit of information">
-          <label text="p"/>
-          <bbox x="1233.358507942953" y="131.33489046023672" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_5c729c1a-016c-4ef1-a9b5-61c5935a2504" class="SIF macromolecule">
-        <label text="CDC25B"/>
-        <bbox x="1202.307482552328" y="42.33489046023681" w="69.18701171875" h="30"/>
-        <glyph id="nwtUOI_98efcfb3-2d23-4875-9961-c6b754ec3f1d" class="unit of information">
-          <label text="p"/>
-          <bbox x="1207.307482552328" y="34.83489046023681" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_ab7f1475-e367-43d1-aa61-ce06d9e238f7" class="unit of information">
-          <label text="p"/>
-          <bbox x="1207.307482552328" y="64.8348904602368" w="15" h="15"/>
-        </glyph>
+
+
+    <glyph id="nwtN_5b1753c8-2d86-4e4d-ae06-afa6c1fea6ed" class="SIF macromolecule">
+      <label text="ROCK2"/>
+      <bbox x="1268.064806771078" y="75.58489046023672" w="61.6796875" h="30"/>
+      <glyph id="nwtUOI_c300393a-4419-419e-9329-135492cbeba0" class="unit of information">
+        <label text="p"/>
+        <bbox x="1273.064806771078" y="68.08489046023672" w="15" h="15"/>
       </glyph>
     </glyph>
-    <glyph id="nwtN_75633755-3436-425a-bd83-6e1e1a9da755" class="topology group">
-      <extension>
-        <extraInfo>
-          <w>174.7939453124999</w>
-          <h>149.25</h>
-          <minW>0</minW>
-          <minH>0</minH>
-          <WLBias>0</WLBias>
-          <WRBias>0</WRBias>
-          <HTBias>0</HTBias>
-          <HBBias>0</HBBias>
-        </extraInfo>
-      </extension>
-      <bbox x="963.7159872876887" y="-55.579915838531704" w="202.7939453124999" h="177.25"/>
-      <glyph id="nwtN_db37d453-202e-4e27-a1a4-3d5f5e50139a" class="SIF macromolecule">
-        <label text="USP28"/>
-        <bbox x="979.3409872876888" y="67.9200841614683" w="57.52685546875" h="30"/>
-        <glyph id="nwtUOI_37bbe5c9-6bca-4346-8009-c49f02fa5785" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876888" y="60.420084161468296" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_14d94c75-c871-4233-a129-d156110cc946" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876888" y="90.4200841614683" w="15" h="15"/>
-        </glyph>
+    <glyph id="nwtN_35a95404-fb27-430c-ac8c-163370180d3f" class="SIF macromolecule">
+      <label text="WEE1"/>
+      <bbox x="1274.744494271078" y="42.33489046023681" w="52.509765625" h="30"/>
+      <glyph id="nwtUOI_8730bb1c-91c8-468a-b300-e0ebed93bf7d" class="unit of information">
+        <label text="p"/>
+        <bbox x="1279.744494271078" y="34.83489046023681" w="15" h="15"/>
       </glyph>
-      <glyph id="nwtN_df40e8d7-4caf-4066-b1c6-074eec8b199a" class="SIF macromolecule">
-        <label text="UIMC1"/>
-        <bbox x="1040.1178427564387" y="67.9200841614683" w="56.669921875" h="30"/>
-        <glyph id="nwtUOI_4ce1ce4f-78c0-4833-bc6b-3c0b0948082b" class="unit of information">
-          <label text="p"/>
-          <bbox x="1045.1178427564387" y="60.420084161468296" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_e5ab2fb5-7ed7-4837-be0b-7e1de25f2320" class="unit of information">
-          <label text="p"/>
-          <bbox x="1045.1178427564387" y="90.4200841614683" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_b9580b66-8fe6-4920-8a6e-977826b847c7" class="unit of information">
-          <label text="p"/>
-          <bbox x="1065.1178427564387" y="60.420084161468296" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_0ef2113e-acd8-4630-ab12-3b3ed93b354d" class="unit of information">
-          <label text="p"/>
-          <bbox x="1065.1178427564387" y="90.4200841614683" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_7429263a-c3af-40d7-acda-a83822ad4688" class="SIF macromolecule">
-        <label text="PNKP"/>
-        <bbox x="1100.0377646314387" y="67.9200841614683" w="50.84716796875" h="30"/>
-        <glyph id="nwtUOI_f41f9b8d-4b9f-481b-870e-b0ee89668292" class="unit of information">
-          <label text="p"/>
-          <bbox x="1105.0377646314387" y="60.420084161468296" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_e943f841-b984-4e12-85d0-47be686bbb87" class="SIF macromolecule">
-        <label text="RAD18"/>
-        <bbox x="1042.6080771314387" y="34.670084161468296" w="58.3544921875" h="30"/>
-        <glyph id="nwtUOI_cab55f17-0a12-45f8-bfa0-b0df1f5ebeea" class="unit of information">
-          <label text="p"/>
-          <bbox x="1047.6080771314387" y="27.170084161468296" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_4eb51fdf-a925-4636-9831-54ac432dc122" class="unit of information">
-          <label text="p"/>
-          <bbox x="1047.6080771314387" y="57.170084161468296" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_5aef600e-0d4a-4ca6-b575-8a3655e26e98" class="SIF macromolecule">
-        <label text="NUSAP1"/>
-        <bbox x="979.3409872876889" y="-31.82991583853171" w="70.02197265625" h="30"/>
-        <glyph id="nwtUOI_cb6c46da-f006-4e3d-af76-38439e13a5aa" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876889" y="-39.32991583853171" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_ff4a2b4e-db0a-4c49-9d75-e206544a6a26" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876889" y="-9.329915838531711" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_eed9f22d-b8e6-42eb-be24-d81932433b1b" class="unit of information">
-          <label text="p"/>
-          <bbox x="1004.3409872876889" y="-39.32991583853171" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_fc545992-e538-429b-acc1-b56c384e8dda" class="unit of information">
-          <label text="p"/>
-          <bbox x="1004.3409872876889" y="-9.329915838531711" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_0323fbb2-eb5b-4a17-9bdb-8def2cdd1729" class="SIF macromolecule">
-        <label text="PBRM1"/>
-        <bbox x="1045.1056357251887" y="1.4200841614682957" w="61.6796875" h="30"/>
-        <glyph id="nwtUOI_aa695276-dc21-4c61-8f43-13533f23c6e4" class="unit of information">
-          <label text="p"/>
-          <bbox x="1050.1056357251887" y="-6.079915838531704" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_2e4a4416-b338-4f02-87cf-df195faa38ae" class="unit of information">
-          <label text="p"/>
-          <bbox x="1050.1056357251887" y="23.920084161468296" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_d56d3ea8-21d3-4094-99f5-80e5ead890a1" class="SIF macromolecule">
-        <label text="PPM1G"/>
-        <bbox x="979.3409872876889" y="1.4200841614682957" w="62.5146484375" h="30"/>
-        <glyph id="nwtUOI_679ea866-3ad6-4cf8-85c7-e5437be0f82e" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876889" y="-6.079915838531704" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_51d6fe7c-fea4-4280-8460-e9602968c787" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876889" y="23.920084161468296" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_53fe8170-d6cc-4318-8b38-dceb3188cd4d" class="SIF macromolecule">
-        <label text="SMC3"/>
-        <bbox x="1052.6129599439387" y="-31.82991583853171" w="51.6748046875" h="30"/>
-        <glyph id="nwtUOI_f8e0030b-cebf-4832-85ef-b19e75b2c9a2" class="unit of information">
-          <label text="p"/>
-          <bbox x="1054.2816611158137" y="-39.32991583853171" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_8bd5b01b-9e13-4739-8624-f1148cacd515" class="unit of information">
-          <label text="p"/>
-          <bbox x="1057.6129599439387" y="-9.329915838531711" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_76c87c07-7795-4403-ad26-3df43c1abd6a" class="unit of information">
-          <label text="p"/>
-          <bbox x="1070.9503622876887" y="-39.32991583853171" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_544ef878-0a03-4c48-b9b4-086460740076" class="unit of information">
-          <label text="p"/>
-          <bbox x="1077.6129599439387" y="-9.329915838531711" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_3dbbe8c0-f57f-46b1-9e37-9dc81f041241" class="unit of information">
-          <label text="p"/>
-          <bbox x="1087.6190634595637" y="-39.32991583853171" w="15" h="15"/>
-        </glyph>
-      </glyph>
-      <glyph id="nwtN_cb970e40-c7aa-41cb-8547-fd1f0bcbfb8a" class="SIF macromolecule">
-        <label text="CREB1"/>
-        <bbox x="979.3409872876888" y="34.670084161468296" w="60.01708984375" h="30"/>
-        <glyph id="nwtUOI_9299ec34-49b7-4b9c-81e9-e9589cb6a5b5" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876888" y="27.170084161468296" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_da14b2b7-ecf0-4299-8b91-04480f824233" class="unit of information">
-          <label text="p"/>
-          <bbox x="984.3409872876888" y="57.170084161468296" w="15" h="15"/>
-        </glyph>
+      <glyph id="nwtUOI_93441bdd-2d7e-4b88-848b-d654bfbcc4bf" class="unit of information">
+        <label text="p"/>
+        <bbox x="1279.744494271078" y="64.8348904602368" w="15" h="15"/>
       </glyph>
     </glyph>
-    <glyph id="nwtN_149cd099-ad5f-48f5-a6af-9d7273c31098" class="topology group">
-      <extension>
-        <extraInfo>
-          <w>62.15380859375</w>
-          <h>74.62499999999987</h>
-          <minW>0</minW>
-          <minH>0</minH>
-          <WLBias>0</WLBias>
-          <WRBias>0</WRBias>
-          <HTBias>0</HTBias>
-          <HBBias>0</HBBias>
-        </extraInfo>
-      </extension>
-      <bbox x="638.969491780125" y="75.04263120606839" w="90.15380859375" h="102.62499999999987"/>
-      <glyph id="nwtN_312c0fca-e6b6-4e11-bfdf-8516af0f8d3a" class="SIF macromolecule">
-        <label text="MRE11"/>
-        <bbox x="654.594491780125" y="98.7926312060684" w="58.90380859375" h="30"/>
-        <glyph id="nwtUOI_3943a3ea-8f6e-49ba-a7cc-e585eab8d093" class="unit of information">
-          <label text="!"/>
-          <bbox x="659.594491780125" y="91.2926312060684" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_79c5ae4e-e430-42ef-88d2-0234a287f0be" class="unit of information">
-          <label text="p"/>
-          <bbox x="659.594491780125" y="121.2926312060684" w="15" h="15"/>
-        </glyph>
+    <glyph id="nwtN_3835c2f2-51f3-4c65-bff2-fcfd1bd2ad2d" class="SIF macromolecule">
+      <label text="NUMA1"/>
+      <bbox x="1202.307482552328" y="75.58489046023672" w="62.50732421875" h="30"/>
+      <glyph id="nwtUOI_b4220dee-6d19-4d97-9110-b1ac19cb8d71" class="unit of information">
+        <label text="p"/>
+        <bbox x="1202.808947396078" y="68.08489046023672" w="15" h="15"/>
       </glyph>
-      <glyph id="nwtN_13c6a960-8aed-42a0-9827-c5b0280185d5" class="SIF macromolecule">
-        <label text="RAD50"/>
-        <bbox x="654.594491780125" y="132.04263120606828" w="58.3544921875" h="30"/>
-        <glyph id="nwtUOI_85c6ee48-fc92-41cf-b42e-1b20a7b2abcc" class="unit of information">
-          <label text="!"/>
-          <bbox x="659.594491780125" y="124.54263120606828" w="15" h="15"/>
-        </glyph>
+      <glyph id="nwtUOI_ec3166e4-add0-4815-9987-6b83b7f505cd" class="unit of information">
+        <label text="p"/>
+        <bbox x="1202.808947396078" y="98.08489046023672" w="15" h="15"/>
       </glyph>
-    </glyph>
-    <glyph id="nwtN_c045aac7-b891-4c1a-8115-73d1397349dd" class="topology group">
-      <extension>
-        <extraInfo>
-          <w>121.53173828125023</w>
-          <h>107.87499999999977</h>
-          <minW>0</minW>
-          <minH>0</minH>
-          <WLBias>0</WLBias>
-          <WRBias>0</WRBias>
-          <HTBias>0</HTBias>
-          <HBBias>0</HBBias>
-        </extraInfo>
-      </extension>
-      <bbox x="966.6819028505632" y="141.2689666796166" w="149.53173828125023" h="135.87499999999977"/>
-      <glyph id="nwtN_4bb083ed-fdfd-4f7b-b57a-74c615309cdc" class="SIF macromolecule">
-        <label text="GINS2"/>
-        <bbox x="1045.5739926943133" y="198.26896667961645" w="55.0146484375" h="30"/>
-        <glyph id="nwtUOI_ab1e45a2-dc2b-4e14-829a-d9a212a4d94d" class="unit of information">
-          <label text="p"/>
-          <bbox x="1050.5739926943133" y="190.76896667961645" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_4cbe780a-21e3-4830-b970-41ae8885f86c" class="unit of information">
-          <label text="p"/>
-          <bbox x="1050.5739926943133" y="220.76896667961645" w="15" h="15"/>
-        </glyph>
+      <glyph id="nwtUOI_89ba2202-b40b-46b4-9ab0-3f3ff69b62d8" class="unit of information">
+        <label text="p"/>
+        <bbox x="1218.310412239828" y="68.08489046023672" w="15" h="15"/>
       </glyph>
-      <glyph id="nwtN_bd4f883a-b800-4f38-a725-c61c03ec42cd" class="SIF macromolecule">
-        <label text="BRCA1"/>
-        <bbox x="982.3069028505635" y="198.26896667961645" w="60.01708984375" h="30"/>
-        <glyph id="nwtUOI_31ffcbb7-c88d-495f-9593-c070f8ab254a" class="unit of information">
-          <label text="p"/>
-          <bbox x="987.3069028505635" y="190.76896667961645" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_81adf67d-d22d-497d-ad2a-339a51b91df5" class="unit of information">
-          <label text="p"/>
-          <bbox x="987.3069028505635" y="220.76896667961645" w="15" h="15"/>
-        </glyph>
-        <glyph id="nwtUOI_7cfed8e0-2a7f-4bac-8b21-ea854e008953" class="unit of information">
-          <label text="p"/>
-          <bbox x="1007.3069028505635" y="190.76896667961645" w="15" h="15"/>
-        </glyph>
+      <glyph id="nwtUOI_e0891a4c-86a4-4366-8352-6b4afbb2ec34" class="unit of information">
+        <label text="p"/>
+        <bbox x="1218.310412239828" y="98.08489046023672" w="15" h="15"/>
       </glyph>
-      <glyph id="nwtN_fc875c31-fc20-439d-bc79-1cd4229ab549" class="SIF macromolecule">
-        <label text="CGGBP1"/>
-        <bbox x="982.3069028505635" y="165.0189666796166" w="72.51953125" h="30"/>
-        <glyph id="nwtUOI_a771bf25-2c09-4a43-8200-32b11f30d54c" class="unit of information">
-          <label text="p"/>
-          <bbox x="987.3069028505635" y="157.5189666796166" w="15" h="15"/>
-        </glyph>
+      <glyph id="nwtUOI_7df70d99-8983-4053-93e3-8fa192eb5092" class="unit of information">
+        <label text="p"/>
+        <bbox x="1233.811877083578" y="68.08489046023672" w="15" h="15"/>
       </glyph>
-      <glyph id="nwtN_0a382b07-448c-4808-930d-2fbac180f485" class="SIF macromolecule">
-        <label text="SUN2"/>
-        <bbox x="982.3069028505631" y="231.51896667961634" w="50.01220703125" h="30"/>
-        <glyph id="nwtUOI_2017cd81-abae-4aa3-ae31-d920bc55b8fa" class="unit of information">
-          <label text="p"/>
-          <bbox x="987.3069028505631" y="224.01896667961634" w="15" h="15"/>
-        </glyph>
+      <glyph id="nwtUOI_079eac84-140c-4429-ad8c-dd6626065641" class="unit of information">
+        <label text="p"/>
+        <bbox x="1233.811877083578" y="98.08489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_1607f30e-9f3f-4af5-86ba-f5d01eda3ef1" class="unit of information">
+        <label text="p"/>
+        <bbox x="1249.313341927328" y="68.08489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_1719a947-3de7-4c0c-9297-38b7429f510e" class="unit of information">
+        <label text="p"/>
+        <bbox x="1249.313341927328" y="98.08489046023672" w="15" h="15"/>
       </glyph>
     </glyph>
+    <glyph id="nwtN_7acb85c6-c405-4c7b-a076-f1d03b441f69" class="SIF macromolecule">
+      <label text="KAT7"/>
+      <bbox x="1202.307482552328" y="108.83489046023672" w="46.4013671875" h="30"/>
+      <glyph id="nwtUOI_c177047a-a728-474b-8a55-18e9d5d4e815" class="unit of information">
+        <label text="p"/>
+        <bbox x="1202.657824349203" y="101.33489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_fde694f5-ab38-4890-884a-b2cb81d6982d" class="unit of information">
+        <label text="p"/>
+        <bbox x="1202.657824349203" y="131.33489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_b1132fa9-9afe-492e-b319-1c5155bc5511" class="unit of information">
+        <label text="p"/>
+        <bbox x="1218.008166146078" y="101.33489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_a756194d-b608-460e-be71-0232cb0deb87" class="unit of information">
+        <label text="p"/>
+        <bbox x="1218.008166146078" y="131.33489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_882e360b-4eb5-4d55-8301-0f4bfc293b7d" class="unit of information">
+        <label text="p"/>
+        <bbox x="1233.358507942953" y="101.33489046023672" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_69e24b00-2b91-4f21-a5e7-48efe7630c77" class="unit of information">
+        <label text="p"/>
+        <bbox x="1233.358507942953" y="131.33489046023672" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_5c729c1a-016c-4ef1-a9b5-61c5935a2504" class="SIF macromolecule">
+      <label text="CDC25B"/>
+      <bbox x="1202.307482552328" y="42.33489046023681" w="69.18701171875" h="30"/>
+      <glyph id="nwtUOI_98efcfb3-2d23-4875-9961-c6b754ec3f1d" class="unit of information">
+        <label text="p"/>
+        <bbox x="1207.307482552328" y="34.83489046023681" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_ab7f1475-e367-43d1-aa61-ce06d9e238f7" class="unit of information">
+        <label text="p"/>
+        <bbox x="1207.307482552328" y="64.8348904602368" w="15" h="15"/>
+      </glyph>
+    </glyph>
+
+
+    <glyph id="nwtN_db37d453-202e-4e27-a1a4-3d5f5e50139a" class="SIF macromolecule">
+      <label text="USP28"/>
+      <bbox x="979.3409872876888" y="67.9200841614683" w="57.52685546875" h="30"/>
+      <glyph id="nwtUOI_37bbe5c9-6bca-4346-8009-c49f02fa5785" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876888" y="60.420084161468296" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_14d94c75-c871-4233-a129-d156110cc946" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876888" y="90.4200841614683" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_df40e8d7-4caf-4066-b1c6-074eec8b199a" class="SIF macromolecule">
+      <label text="UIMC1"/>
+      <bbox x="1040.1178427564387" y="67.9200841614683" w="56.669921875" h="30"/>
+      <glyph id="nwtUOI_4ce1ce4f-78c0-4833-bc6b-3c0b0948082b" class="unit of information">
+        <label text="p"/>
+        <bbox x="1045.1178427564387" y="60.420084161468296" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_e5ab2fb5-7ed7-4837-be0b-7e1de25f2320" class="unit of information">
+        <label text="p"/>
+        <bbox x="1045.1178427564387" y="90.4200841614683" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_b9580b66-8fe6-4920-8a6e-977826b847c7" class="unit of information">
+        <label text="p"/>
+        <bbox x="1065.1178427564387" y="60.420084161468296" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_0ef2113e-acd8-4630-ab12-3b3ed93b354d" class="unit of information">
+        <label text="p"/>
+        <bbox x="1065.1178427564387" y="90.4200841614683" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_7429263a-c3af-40d7-acda-a83822ad4688" class="SIF macromolecule">
+      <label text="PNKP"/>
+      <bbox x="1100.0377646314387" y="67.9200841614683" w="50.84716796875" h="30"/>
+      <glyph id="nwtUOI_f41f9b8d-4b9f-481b-870e-b0ee89668292" class="unit of information">
+        <label text="p"/>
+        <bbox x="1105.0377646314387" y="60.420084161468296" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_e943f841-b984-4e12-85d0-47be686bbb87" class="SIF macromolecule">
+      <label text="RAD18"/>
+      <bbox x="1042.6080771314387" y="34.670084161468296" w="58.3544921875" h="30"/>
+      <glyph id="nwtUOI_cab55f17-0a12-45f8-bfa0-b0df1f5ebeea" class="unit of information">
+        <label text="p"/>
+        <bbox x="1047.6080771314387" y="27.170084161468296" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_4eb51fdf-a925-4636-9831-54ac432dc122" class="unit of information">
+        <label text="p"/>
+        <bbox x="1047.6080771314387" y="57.170084161468296" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_5aef600e-0d4a-4ca6-b575-8a3655e26e98" class="SIF macromolecule">
+      <label text="NUSAP1"/>
+      <bbox x="979.3409872876889" y="-31.82991583853171" w="70.02197265625" h="30"/>
+      <glyph id="nwtUOI_cb6c46da-f006-4e3d-af76-38439e13a5aa" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876889" y="-39.32991583853171" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_ff4a2b4e-db0a-4c49-9d75-e206544a6a26" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876889" y="-9.329915838531711" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_eed9f22d-b8e6-42eb-be24-d81932433b1b" class="unit of information">
+        <label text="p"/>
+        <bbox x="1004.3409872876889" y="-39.32991583853171" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_fc545992-e538-429b-acc1-b56c384e8dda" class="unit of information">
+        <label text="p"/>
+        <bbox x="1004.3409872876889" y="-9.329915838531711" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_0323fbb2-eb5b-4a17-9bdb-8def2cdd1729" class="SIF macromolecule">
+      <label text="PBRM1"/>
+      <bbox x="1045.1056357251887" y="1.4200841614682957" w="61.6796875" h="30"/>
+      <glyph id="nwtUOI_aa695276-dc21-4c61-8f43-13533f23c6e4" class="unit of information">
+        <label text="p"/>
+        <bbox x="1050.1056357251887" y="-6.079915838531704" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_2e4a4416-b338-4f02-87cf-df195faa38ae" class="unit of information">
+        <label text="p"/>
+        <bbox x="1050.1056357251887" y="23.920084161468296" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_d56d3ea8-21d3-4094-99f5-80e5ead890a1" class="SIF macromolecule">
+      <label text="PPM1G"/>
+      <bbox x="979.3409872876889" y="1.4200841614682957" w="62.5146484375" h="30"/>
+      <glyph id="nwtUOI_679ea866-3ad6-4cf8-85c7-e5437be0f82e" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876889" y="-6.079915838531704" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_51d6fe7c-fea4-4280-8460-e9602968c787" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876889" y="23.920084161468296" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_53fe8170-d6cc-4318-8b38-dceb3188cd4d" class="SIF macromolecule">
+      <label text="SMC3"/>
+      <bbox x="1052.6129599439387" y="-31.82991583853171" w="51.6748046875" h="30"/>
+      <glyph id="nwtUOI_f8e0030b-cebf-4832-85ef-b19e75b2c9a2" class="unit of information">
+        <label text="p"/>
+        <bbox x="1054.2816611158137" y="-39.32991583853171" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_8bd5b01b-9e13-4739-8624-f1148cacd515" class="unit of information">
+        <label text="p"/>
+        <bbox x="1057.6129599439387" y="-9.329915838531711" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_76c87c07-7795-4403-ad26-3df43c1abd6a" class="unit of information">
+        <label text="p"/>
+        <bbox x="1070.9503622876887" y="-39.32991583853171" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_544ef878-0a03-4c48-b9b4-086460740076" class="unit of information">
+        <label text="p"/>
+        <bbox x="1077.6129599439387" y="-9.329915838531711" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_3dbbe8c0-f57f-46b1-9e37-9dc81f041241" class="unit of information">
+        <label text="p"/>
+        <bbox x="1087.6190634595637" y="-39.32991583853171" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_cb970e40-c7aa-41cb-8547-fd1f0bcbfb8a" class="SIF macromolecule">
+      <label text="CREB1"/>
+      <bbox x="979.3409872876888" y="34.670084161468296" w="60.01708984375" h="30"/>
+      <glyph id="nwtUOI_9299ec34-49b7-4b9c-81e9-e9589cb6a5b5" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876888" y="27.170084161468296" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_da14b2b7-ecf0-4299-8b91-04480f824233" class="unit of information">
+        <label text="p"/>
+        <bbox x="984.3409872876888" y="57.170084161468296" w="15" h="15"/>
+      </glyph>
+    </glyph>
+
+
+
+    <glyph id="nwtN_312c0fca-e6b6-4e11-bfdf-8516af0f8d3a" class="SIF macromolecule">
+      <label text="MRE11"/>
+      <bbox x="654.594491780125" y="98.7926312060684" w="58.90380859375" h="30"/>
+      <glyph id="nwtUOI_3943a3ea-8f6e-49ba-a7cc-e585eab8d093" class="unit of information">
+        <label text="!"/>
+        <bbox x="659.594491780125" y="91.2926312060684" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_79c5ae4e-e430-42ef-88d2-0234a287f0be" class="unit of information">
+        <label text="p"/>
+        <bbox x="659.594491780125" y="121.2926312060684" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_13c6a960-8aed-42a0-9827-c5b0280185d5" class="SIF macromolecule">
+      <label text="RAD50"/>
+      <bbox x="654.594491780125" y="132.04263120606828" w="58.3544921875" h="30"/>
+      <glyph id="nwtUOI_85c6ee48-fc92-41cf-b42e-1b20a7b2abcc" class="unit of information">
+        <label text="!"/>
+        <bbox x="659.594491780125" y="124.54263120606828" w="15" h="15"/>
+      </glyph>
+    </glyph>
+
+
+
+    <glyph id="nwtN_4bb083ed-fdfd-4f7b-b57a-74c615309cdc" class="SIF macromolecule">
+      <label text="GINS2"/>
+      <bbox x="1045.5739926943133" y="198.26896667961645" w="55.0146484375" h="30"/>
+      <glyph id="nwtUOI_ab1e45a2-dc2b-4e14-829a-d9a212a4d94d" class="unit of information">
+        <label text="p"/>
+        <bbox x="1050.5739926943133" y="190.76896667961645" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_4cbe780a-21e3-4830-b970-41ae8885f86c" class="unit of information">
+        <label text="p"/>
+        <bbox x="1050.5739926943133" y="220.76896667961645" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_bd4f883a-b800-4f38-a725-c61c03ec42cd" class="SIF macromolecule">
+      <label text="BRCA1"/>
+      <bbox x="982.3069028505635" y="198.26896667961645" w="60.01708984375" h="30"/>
+      <glyph id="nwtUOI_31ffcbb7-c88d-495f-9593-c070f8ab254a" class="unit of information">
+        <label text="p"/>
+        <bbox x="987.3069028505635" y="190.76896667961645" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_81adf67d-d22d-497d-ad2a-339a51b91df5" class="unit of information">
+        <label text="p"/>
+        <bbox x="987.3069028505635" y="220.76896667961645" w="15" h="15"/>
+      </glyph>
+      <glyph id="nwtUOI_7cfed8e0-2a7f-4bac-8b21-ea854e008953" class="unit of information">
+        <label text="p"/>
+        <bbox x="1007.3069028505635" y="190.76896667961645" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_fc875c31-fc20-439d-bc79-1cd4229ab549" class="SIF macromolecule">
+      <label text="CGGBP1"/>
+      <bbox x="982.3069028505635" y="165.0189666796166" w="72.51953125" h="30"/>
+      <glyph id="nwtUOI_a771bf25-2c09-4a43-8200-32b11f30d54c" class="unit of information">
+        <label text="p"/>
+        <bbox x="987.3069028505635" y="157.5189666796166" w="15" h="15"/>
+      </glyph>
+    </glyph>
+    <glyph id="nwtN_0a382b07-448c-4808-930d-2fbac180f485" class="SIF macromolecule">
+      <label text="SUN2"/>
+      <bbox x="982.3069028505631" y="231.51896667961634" w="50.01220703125" h="30"/>
+      <glyph id="nwtUOI_2017cd81-abae-4aa3-ae31-d920bc55b8fa" class="unit of information">
+        <label text="p"/>
+        <bbox x="987.3069028505631" y="224.01896667961634" w="15" h="15"/>
+      </glyph>
+    </glyph>
+
+
     <arc id="nwtE_d0ecabfd-93af-4842-85c4-57de47c4b355" class="phosphorylates" source="nwtN_4dda0d43-b7ae-4416-85f1-7c94b82d24ce" target="nwtN_cc2b8a03-e75a-4126-b2cc-e7dce29f1cd6">
       <extension>
         <curveStyle>bezier</curveStyle>
