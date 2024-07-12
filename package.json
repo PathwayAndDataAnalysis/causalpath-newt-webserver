@@ -9,7 +9,10 @@
     "start": "npm run bundle:css && npm run bundle-js && nodemon server/server.js",
     "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css",
     "watch:css": "postcss --watch public/stylesheets/main.css -o public/build/bundle.css",
-    "bundle-js": "browserify public/javascript/main.js -o public/build/newt-bundle.js --debug"
+    "bundle-js": "browserify public/javascript/main.js -o public/build/newt-bundle.js --debug",
+    "clean": "rm -rf public/build/* && rm -rf node_modules",
+    "clean_install": "npm ci",
+    "clean-run": "npm run clean && npm run reinstall && npm run start"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",

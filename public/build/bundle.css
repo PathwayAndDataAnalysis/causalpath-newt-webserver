@@ -145,10 +145,11 @@ p.menu-hint-text {
 }
 
 #newt-graph-container {
-    position: relative;
+    position: absolute;
     border: 1px solid #6a6a6a;
     width: 100%;
     height: 100%;
+    visibility: hidden;
 }
 
 .drag-and-drop-file {

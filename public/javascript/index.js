@@ -348,6 +348,8 @@ function generateJSTree(treeHierarchy) {
     });
 }
 
+showChoosingMenus() // Call this function once to hide the newt graph
+
 function showChoosingMenus() {
     document.getElementById("menu-text-buttons").style.display = "block";
     document.getElementById("folder-trees-graphs").style.display = "none";
