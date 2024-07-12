@@ -476,7 +476,6 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
                 }
                 
                 let fileListToBuild = fileList.filter(file => file.endsWith(".sif"));
-
                 let analyzedFileHierarchy = buildTreeHierarchyAnalyzedFiles(fileNameSplit[0], fileListToBuild);
 
                 showGraphAndFolders();
