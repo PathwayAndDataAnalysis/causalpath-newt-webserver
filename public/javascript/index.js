@@ -353,6 +353,8 @@ function showChoosingMenus() {
     document.getElementById("folder-trees-graphs").style.display = "none";
     document.getElementById("back_menu").style.display = "none";
     //document.getElementById("graph-container").style.display = "none";
+    document.getElementById("newt-graph-container").style.visibility = "hidden";
+    document.getElementById("newt-graph-container").style.position = "absolute";
     document.getElementById("folder-tree-container").style.display = "none";
 }
 
@@ -361,6 +363,8 @@ function showGraphAndFolders() {
     document.getElementById("folder-trees-graphs").style.display = "block";
     document.getElementById("back_menu").style.display = "block";
     //document.getElementById("graph-container").style.display = "block";
+    document.getElementById("newt-graph-container").style.visibility = "visible";
+    document.getElementById("newt-graph-container").style.position = "relative";
     document.getElementById("folder-tree-container").style.display = "block";
     window.dispatchEvent(new Event('resize'));
 }
@@ -503,7 +507,7 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
 
 document.getElementById("display-demo-graphs").addEventListener("click", (event) => {
     console.log("display-demo-graphs");
-
+``
     let makeRequest = () =>
         fetch("/api/displayDemoGraphs", {
             method: "GET",

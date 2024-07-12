@@ -1,0 +1,65 @@
+---------------------------------------
+index.html CHANGES
+---------------------------------------
+Added a new div with id "analysis-status-menu-overlay" near the top of the file
+This div contains all the html for the menu that displays warnings/errors in the analysis
+
+Added a new label with id "view-warnings-label".
+This is a button that only appears after the analysis has been performed. If any warnings were detected in the analysis, click this button will open up the menu and it will display all the warnings on screen.
+
+REMOVED a div with id "graph-container" which was a container for all the html for the newt graph. This graph container made the newt graph not work at all, thus it was removed
+
+---------------------------------------
+index.css CHANGES
+---------------------------------------
+Added all the css for the analysis menu overlay at the bottom of the file.
+
+---------------------------------------
+api.js CHANGES
+---------------------------------------
+analyzeFiles
+	Changed it so the function now checks weather or not any warning/error files were created from the CausalPath jar.
+	The function now returns a list of all the filepaths to the sif files as well as the warning/error files.
+	
+analysisZip
+	The function now deletes the folder ./analysisOut/{roomNumber} before unzipping. This deletes files from the previous analysis and leaves the folder clean for the new analysis
+	
+getFile
+	Created a new function called getFile. This is used from reading the contents of the warning/error files.
+	
+	
+---------------------------------------
+package.json CHANGES
+---------------------------------------
+Updated the versions of all the libraries from using unstable versions to stable version numbers. These versions now match the versions that newt uses.
+
+---------------------------------------
+javascript/newt CHANGES
+---------------------------------------
+This folder contains all the javascript files from the newt project. Updated this folder to the newest versions of files from newt's github. 
+Kisan made slight changes to these files, so these changes were copied over to the new files.
+
+---------------------------------------
+main.js CHANGES
+---------------------------------------
+Removed node editing because newt no longer uses this package. 
+Added node resizing
+
+---------------------------------------
+index.js CHANGES
+---------------------------------------
+displayStatusMessages
+	Takes in a div and list log files as arguments. Displays each line in the log file on the div
+	
+showAnalysisErrorMenu
+	Takes in a list of files as an argument. For every log file that contains a list of error messages, it automatically opens the analysis error menu and displays the messages.
+	
+prepareAnalysisWarningDisplay
+	Takes in a list of files as an argument. For every log file that contains a list of warnings, it adds the messages to the div to be displayed. The analysis menu is not yet opened.
+	For warnings, the analysis menu will only be opened if the user clicks on the show warnings button.
+
+file-analysis-input button changes:
+	After recieving the zip file and running the CausalPath jar, it will now check if there are any errors or warnings. It does this by seeing the if appropriate files exist in the file list.
+	If there are any errors, the error menu will pop up and display the errors. The analysis will not continue.
+	If there are any warnings, the graph will be displayed and the show warnings button will appear at the top left corner of the screen, next to the back button.
+
