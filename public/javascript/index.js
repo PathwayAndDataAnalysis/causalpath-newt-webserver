@@ -348,11 +348,15 @@ function generateJSTree(treeHierarchy) {
     });
 }
 
-showChoosingMenus() // Call this function once to hide the newt graph
+// Run this once to hide the graph
+// Hiding the graph at the start with css doesn't work as it messes up newt animations
+//document.getElementById("folder-trees-graphs").style.display = "none"; 
+//showChoosingMenus();
 
 function showChoosingMenus() {
     document.getElementById("menu-text-buttons").style.display = "block";
     document.getElementById("folder-trees-graphs").style.display = "none";
+    document.getElementById("folder-trees-graphs").style.position = "fixed";
     document.getElementById("back_menu").style.display = "none";
     //document.getElementById("graph-container").style.display = "none";
     document.getElementById("newt-graph-container").style.visibility = "hidden";
@@ -363,7 +367,8 @@ function showChoosingMenus() {
 function showGraphAndFolders() {
     document.getElementById("menu-text-buttons").style.display = "none";
     document.getElementById("folder-trees-graphs").style.display = "block";
-    document.getElementById("back_menu").style.display = "block";
+    document.getElementById("folder-trees-graphs").style.position = "relative";
+    document.getElementById("back_menu").style.display = "block";    
     //document.getElementById("graph-container").style.display = "block";
     document.getElementById("newt-graph-container").style.visibility = "visible";
     document.getElementById("newt-graph-container").style.position = "relative";
