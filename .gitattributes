@@ -1,1 +1,9 @@
 jar/causalpath.jar filter=lfs diff=lfs merge=lfs -text
+.panda/PC/catalysis-precedes.txt filter=lfs diff=lfs merge=lfs -text
+.panda/uniprot-sequence.txt filter=lfs diff=lfs merge=lfs -text
+.panda/PC/chemical-affects.txt filter=lfs diff=lfs merge=lfs -text
+.panda/PC/interacts-with.txt filter=lfs diff=lfs merge=lfs -text
+.panda/PC/controls-state-change-of.txt filter=lfs diff=lfs merge=lfs -text
+.panda/iPTMNet.txt filter=lfs diff=lfs merge=lfs -text
+.panda/PC/in-complex-with.txt filter=lfs diff=lfs merge=lfs -text
+.panda/PC/interacts-with.txt filter=lfs diff=lfs merge=lfs -text

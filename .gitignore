@@ -21,7 +21,7 @@ pids
 .vscode
 
 # Generated files
-.panda
+#.panda
 analysisOut/*
 public/build/*
 
