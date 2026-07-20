@@ -37,6 +37,80 @@ let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
 
 let graphChoice = graphChoiceEnum.ANALYSIS;
 
+/**
+ * Right-click context menu items for file-tree nodes. "Graph Statistics" is
+ * enabled for .sif graph files and greyed out for folders and other file
+ * types. The stats are computed inside the newt bundle (it needs appUtilities,
+ * which this plain script can't see), exposed as window.newtShowGraphStatistics.
+ * This menu is also where the upcoming subgraph/quick-preview actions will live.
+ */
+function treeContextMenuItems(node) {
+    let name = (node && (node.text || (node.data && node.data.name))) || "";
+    let isSif = name.endsWith(".sif");
+
+    // the sibling ".format" node (if any) carries node colors/infoboxes for
+    // client-uploaded .sif files; analyzed files bundle it in their content.
+    let getFormatNode = function (instance, targetNode) {
+        let formatId = String(targetNode.id).replace(".sif", ".format");
+        let formatNode = instance.get_node(formatId);
+        return formatNode || null;
+    };
+
+    return {
+        open: {
+            label: "Open",
+            _disabled: !isSif,
+            action: function (data) {
+                let instance = $.jstree.reference(data.reference);
+                let targetNode = instance.get_node(data.reference);
+                if (typeof window.newtOpenFile === "function") {
+                    window.newtOpenFile(targetNode, getFormatNode(instance, targetNode));
+                }
+            },
+        },
+        loadSubgraph: {
+            label: "Load Subgraph...",
+            _disabled: !isSif,
+            action: function (data) {
+                let instance = $.jstree.reference(data.reference);
+                let targetNode = instance.get_node(data.reference);
+                if (typeof window.newtLoadSubgraphCanvas === "function") {
+                    window.newtLoadSubgraphCanvas(targetNode, getFormatNode(instance, targetNode));
+                }
+            },
+        },
+        loadSubgraphOverlay: {
+            label: "Load Subgraph (overlay)...",
+            _disabled: !isSif,
+            action: function (data) {
+                let instance = $.jstree.reference(data.reference);
+                let targetNode = instance.get_node(data.reference);
+                if (typeof window.newtLoadSubgraph === "function") {
+                    window.newtLoadSubgraph(targetNode, getFormatNode(instance, targetNode));
+                }
+            },
+        },
+        graphStatistics: {
+            label: "Graph Statistics",
+            _disabled: !isSif,
+            action: function (data) {
+                let instance = $.jstree.reference(data.reference);
+                let targetNode = instance.get_node(data.reference);
+                if (typeof window.newtShowGraphStatistics === "function") {
+                    window.newtShowGraphStatistics(targetNode);
+                }
+            },
+        },
+    };
+}
+
+/** Enable the jsTree context-menu plugin on a tree config (in place). */
+function withTreeContextMenu(config) {
+    config.plugins = (config.plugins || []).concat(["contextmenu"]);
+    config.contextmenu = {items: treeContextMenuItems};
+    return config;
+}
+
 function buildFolderTree(paths, treeNode, file, parentNodePath = "") {
     let idSeparator = "___";
     if (paths.length === 0) return;
@@ -59,6 +133,7 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = "") {
     let newNode = {
         id: nodeId,
         text: paths[0],
+        a_attr: {title: paths[0]}, // native tooltip shows the full name when truncated
         children: [],
         state: {opened: true},
         data: file,
@@ -175,14 +250,14 @@ function buildAndDisplayFolderTree(fileList, isFromClient, chosenNodeId) {
             buildFolderTree(paths, data, file);
         }
     });
-    let hierarchy = {
+    let hierarchy = withTreeContextMenu({
         core: {
             animation: 0,
             check_callback: true,
             force_text: true,
             data: data,
         },
-    };
+    });
 
     $(function () {
         $("#folder-tree-container").jstree(hierarchy);
@@ -238,14 +313,14 @@ function buildTreeHierarchy(fileList) {
             buildFolderTree(paths, data, file);
         }
     });
-    return {
+    return withTreeContextMenu({
         core: {
             animation: 0,
             check_callback: true,
             force_text: true,
             data: data,
         },
-    };
+    });
 }
 
 function buildTreeHierarchyAnalyzedFiles(rootDirName, fileList) {
@@ -273,7 +348,7 @@ function buildTreeHierarchyAnalyzedFiles(rootDirName, fileList) {
 
         data.push(newNode);
     });
-    return {
+    return withTreeContextMenu({
         core: {
             animation: 0,
             check_callback: true,
@@ -287,7 +362,7 @@ function buildTreeHierarchyAnalyzedFiles(rootDirName, fileList) {
                 },
             ],
         },
-    };
+    });
 }
 
 function buildTreeHierarchySampleFiles(dirsList) {
@@ -314,7 +389,7 @@ function buildTreeHierarchySampleFiles(dirsList) {
         data.push(newNode);
     });
 
-    return {
+    return withTreeContextMenu({
         core: {
             animation: 0,
             check_callback: true,
@@ -328,7 +403,7 @@ function buildTreeHierarchySampleFiles(dirsList) {
                 },
             ],
         },
-    };
+    });
 }
 
 function generateJSTree(treeHierarchy) {
