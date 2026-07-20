@@ -9,10 +9,6 @@ var chise = require('chise');
 var appUtilities = require('./app-utilities');
 var setFileContent = appUtilities.setFileContent.bind(appUtilities);
 const colorPickerUtils = require('./color-picker-utils');
-var subgraphUtils = require('./subgraph-utils');
-var subgraphPreview = require('./subgraph-preview');
-var mainCanvasLoad = require('./main-canvas-load');
-var subgraphIndicator = require('./subgraph-indicator');
 //var annotationsHandler = require('./annotations-handler');
 
 // since biogene service from PC is not available any more, we now give link to gene properties in My Cancer Genome organization
@@ -292,7 +288,7 @@ var LayoutPropertiesView = Backbone.View.extend({
             }
             return 0;
         };
-        let extendedOptions = _.extend({}, layoutOptions, { randomize, tilingCompareBy });
+        let extendedOptions = _.extend({}, layoutOptions, {randomize, tilingCompareBy});
         delete extendedOptions.incremental;
         return extendedOptions;
     },
@@ -308,7 +304,7 @@ var LayoutPropertiesView = Backbone.View.extend({
             }
             return 0;
         };
-        let extendedOptions = _.extend({}, layoutOptions, { randomize, tilingCompareBy });
+        let extendedOptions = _.extend({}, layoutOptions, {randomize, tilingCompareBy});
         delete extendedOptions.incremental;
         return extendedOptions;
     },
@@ -749,7 +745,7 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
             var newMapType = $('#map-type').val();
             if (cy.elements().length == 0) {
                 //chiseInstance.elementUtilities.setMapType(newMapType);
-                cy.undoRedo().do('changeMapType', { mapType: newMapType, callback: callback });
+                cy.undoRedo().do('changeMapType', {mapType: newMapType, callback: callback});
                 $(document).trigger('changeMapTypeFromMenu', [newMapType]);
                 return;
             }
@@ -850,7 +846,7 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
                 }
             }
             if (validChange) {
-                cy.undoRedo().do('changeMapType', { mapType: newMapType, callback: callback });
+                cy.undoRedo().do('changeMapType', {mapType: newMapType, callback: callback});
                 $(document).trigger('changeMapTypeFromMenu', [newMapType]);
             } else {
                 $('#map-type').val(currentMapType);
@@ -891,7 +887,7 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
             self.params.arrowScale.value = Number($('#arrow-scale').val());
             var ur = cy.undoRedo();
             var actions = [];
-            actions.push({ name: 'changeMenu', param: self.params.arrowScale });
+            actions.push({name: 'changeMenu', param: self.params.arrowScale});
             actions.push({
                 name: 'changeCss',
                 param: {
@@ -947,12 +943,12 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
             );
             var apply = self.params.enableSIFTopologyGrouping.value;
 
-            actions.push({ name: 'changeMenu', param: self.params.enableSIFTopologyGrouping });
+            actions.push({name: 'changeMenu', param: self.params.enableSIFTopologyGrouping});
             if (chiseInstance.elementUtilities.mapType === 'SIF') {
-                actions.push({ name: 'applySIFTopologyGrouping', param: { apply } });
+                actions.push({name: 'applySIFTopologyGrouping', param: {apply}});
 
                 if (currentGeneralProperties.recalculateLayoutOnComplexityManagement) {
-                    var preferences = { randomize: false };
+                    var preferences = {randomize: false};
                     var layoutOptions = appUtilities.layoutPropertiesView.getLayoutOptions(
                         preferences,
                         chiseInstance
@@ -962,7 +958,7 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
                         options: layoutOptions,
                     };
 
-                    actions.push({ name: 'layout', param: layoutParam });
+                    actions.push({name: 'layout', param: layoutParam});
                 }
             }
 
@@ -1073,16 +1069,16 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
             self.params.extraHighlightThickness.value =
                 appUtilities.defaultGeneralProperties.extraHighlightThickness;
             self.params.highlightColor.value = appUtilities.defaultGeneralProperties.highlightColor;
-            actions.push({ name: 'changeMenu', param: self.params.allowCompoundNodeResize });
-            actions.push({ name: 'changeMenu', param: self.params.inferNestingOnLoad });
-            actions.push({ name: 'changeMenu', param: self.params.enablePorts });
-            actions.push({ name: 'changeMenu', param: self.params.enableSIFTopologyGrouping });
+            actions.push({name: 'changeMenu', param: self.params.allowCompoundNodeResize});
+            actions.push({name: 'changeMenu', param: self.params.inferNestingOnLoad});
+            actions.push({name: 'changeMenu', param: self.params.enablePorts});
+            actions.push({name: 'changeMenu', param: self.params.enableSIFTopologyGrouping});
             actions.push({
                 name: 'applySIFTopologyGrouping',
-                param: { apply: self.params.enableSIFTopologyGrouping.value },
+                param: {apply: self.params.enableSIFTopologyGrouping.value},
             });
-            actions.push({ name: 'changeMenu', param: self.params.compoundPadding });
-            actions.push({ name: 'changeMenu', param: self.params.arrowScale });
+            actions.push({name: 'changeMenu', param: self.params.compoundPadding});
+            actions.push({name: 'changeMenu', param: self.params.arrowScale});
             actions.push({
                 name: 'changeCss',
                 param: {
@@ -1091,8 +1087,8 @@ var MapTabGeneralPanel = GeneralPropertiesParentView.extend({
                     valueMap: self.params.arrowScale.value,
                 },
             });
-            actions.push({ name: 'changeMenu', param: self.params.extraHighlightThickness });
-            actions.push({ name: 'changeMenu', param: self.params.highlightColor });
+            actions.push({name: 'changeMenu', param: self.params.extraHighlightThickness});
+            actions.push({name: 'changeMenu', param: self.params.highlightColor});
             ur.do('batch', actions);
         });
     },
@@ -1219,14 +1215,14 @@ var MapTabLabelPanel = GeneralPropertiesParentView.extend({
             self.params.showComplexName.value =
                 appUtilities.defaultGeneralProperties.showComplexName;
 
-            actions.push({ name: 'changeMenu', param: self.params.dynamicLabelSize });
+            actions.push({name: 'changeMenu', param: self.params.dynamicLabelSize});
             actions.push({
                 name: 'changeMenu',
                 param: self.params.adjustNodeLabelFontSizeAutomatically,
             });
-            actions.push({ name: 'changeMenu', param: self.params.fitLabelsToNodes });
-            actions.push({ name: 'changeMenu', param: self.params.fitLabelsToInfoboxes });
-            actions.push({ name: 'changeMenu', param: self.params.showComplexName });
+            actions.push({name: 'changeMenu', param: self.params.fitLabelsToNodes});
+            actions.push({name: 'changeMenu', param: self.params.fitLabelsToInfoboxes});
+            actions.push({name: 'changeMenu', param: self.params.showComplexName});
             ur.do('batch', actions);
         });
     },
@@ -1321,7 +1317,7 @@ var MapTabRearrangementPanel = GeneralPropertiesParentView.extend({
                 name: 'changeMenu',
                 param: self.params.rearrangeOnComplexityManagement,
             });
-            actions.push({ name: 'changeMenu', param: self.params.animateOnDrawingChanges });
+            actions.push({name: 'changeMenu', param: self.params.animateOnDrawingChanges});
             ur.do('batch', actions);
         });
     },
@@ -1360,7 +1356,7 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
             '#experiment-remove-all, #experiment-data-remove-all',
             function (evt) {
                 var cy = appUtilities.getActiveCy();
-                var param = { self };
+                var param = {self};
                 cy.undoRedo().do('updateRemoveAll', param);
                 self.render();
             }
@@ -1646,7 +1642,7 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
             var cy = appUtilities.getActiveCy();
             var fileName = this.id.substring(20);
             var subExperiments = $('[id^="experiment-vis-' + filename + '"]');
-            var params = { fileName };
+            var params = {fileName};
             params.self = self;
 
             if (this.value === 'true') {
@@ -1661,7 +1657,7 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
             var cy = appUtilities.getActiveCy();
             var chiseInstance = appUtilities.getActiveChiseInstance();
             var fileName = evt.target.id.substring(23);
-            var param = { fileName, self, document };
+            var param = {fileName, self, document};
             cy.undoRedo().do('deleteFile', param);
         });
         //change experiment visibilty
@@ -1670,7 +1666,7 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
             var index = expRep.indexOf('?');
             var fileName = expRep.substring(0, index);
             var expName = expRep.substring(index + 1);
-            var params = { fileName, expName };
+            var params = {fileName, expName};
             params.evt = evt;
             params.self = self;
             var cy = appUtilities.getActiveCy();
@@ -1690,7 +1686,7 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
             var index = expRep.indexOf('?');
             var fileName = expRep.substring(0, index);
             var expName = expRep.substring(index + 1);
-            var param = { self, fileName, expName, document };
+            var param = {self, fileName, expName, document};
             cy.undoRedo().do('updateExperimentPanel', param);
         });
     },
@@ -1750,7 +1746,7 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
                 defaultColorSchemeStyle,
                 appUtilities.colorSchemeInspectorView
             );
-            actions.push({ name: 'loadExperiment', param: params });
+            actions.push({name: 'loadExperiment', param: params});
             ur.do('batch', actions);
         } else {
             cy.undoRedo().do('loadMore', params);
@@ -1984,7 +1980,7 @@ var NeighborhoodQueryView = Backbone.View.extend({
                 geneSymbols = geneSymbols.replace(/[^a-zA-Z0-9\n\t ]/g, '').trim();
                 if (geneSymbols.length === 0) {
                     $(self.el).modal('toggle');
-                    new PromptInvalidQueryView({ el: '#prompt-invalidQuery-table' }).render();
+                    new PromptInvalidQueryView({el: '#prompt-invalidQuery-table'}).render();
                     return;
                 }
                 if (self.currentQueryParameters.lengthLimit > 2) {
@@ -2042,7 +2038,7 @@ var NeighborhoodQueryView = Backbone.View.extend({
                     $.ajax({
                         type: 'get',
                         url: '/utilities/testURL',
-                        data: { url: queryURL },
+                        data: {url: queryURL},
                         success: function (data) {
                             if (
                                 !data.error &&
@@ -2083,7 +2079,7 @@ var NeighborhoodQueryView = Backbone.View.extend({
 
                     $(self.el).modal('toggle');
                 } else {
-                    new PromptConfirmationView({ el: '#prompt-confirmation-table' }).render(
+                    new PromptConfirmationView({el: '#prompt-confirmation-table'}).render(
                         function () {
                             chiseInstance.startSpinner('neighborhood-spinner');
                             var currentGeneralProperties = appUtilities.getScratch(
@@ -2100,7 +2096,7 @@ var NeighborhoodQueryView = Backbone.View.extend({
                             $.ajax({
                                 type: 'get',
                                 url: '/utilities/testURL',
-                                data: { url: queryURL },
+                                data: {url: queryURL},
                                 success: function (data) {
                                     if (
                                         !data.error &&
@@ -2207,7 +2203,7 @@ var PathsBetweenQueryView = Backbone.View.extend({
                 geneSymbols = geneSymbols.replace(/[^a-zA-Z0-9\n\t ]/g, '').trim();
                 if (geneSymbols.length === 0) {
                     $(self.el).modal('toggle');
-                    new PromptInvalidQueryView({ el: '#prompt-invalidQuery-table' }).render();
+                    new PromptInvalidQueryView({el: '#prompt-invalidQuery-table'}).render();
                     return;
                 }
                 if (self.currentQueryParameters.lengthLimit > 3) {
@@ -2265,7 +2261,7 @@ var PathsBetweenQueryView = Backbone.View.extend({
                     $.ajax({
                         type: 'get',
                         url: '/utilities/testURL',
-                        data: { url: queryURL },
+                        data: {url: queryURL},
                         success: function (data) {
                             if (
                                 !data.error &&
@@ -2301,7 +2297,7 @@ var PathsBetweenQueryView = Backbone.View.extend({
 
                     $(self.el).modal('toggle');
                 } else {
-                    new PromptConfirmationView({ el: '#prompt-confirmation-table' }).render(
+                    new PromptConfirmationView({el: '#prompt-confirmation-table'}).render(
                         function () {
                             chiseInstance.startSpinner('paths-between-spinner');
                             var currentGeneralProperties = appUtilities.getScratch(
@@ -2318,7 +2314,7 @@ var PathsBetweenQueryView = Backbone.View.extend({
                             $.ajax({
                                 type: 'get',
                                 url: '/utilities/testURL',
-                                data: { url: queryURL },
+                                data: {url: queryURL},
                                 success: function (data) {
                                     if (
                                         !data.error &&
@@ -2424,7 +2420,7 @@ var PathsFromToQueryView = Backbone.View.extend({
                 sourceSymbols = sourceSymbols.replace(/[^a-zA-Z0-9\n\t ]/g, '').trim();
                 if (sourceSymbols.length === 0) {
                     $(self.el).modal('toggle');
-                    new PromptInvalidQueryView({ el: '#prompt-invalidQuery-table' }).render();
+                    new PromptInvalidQueryView({el: '#prompt-invalidQuery-table'}).render();
                     return;
                 }
 
@@ -2437,7 +2433,7 @@ var PathsFromToQueryView = Backbone.View.extend({
                 targetSymbols = targetSymbols.replace(/[^a-zA-Z0-9\n\t ]/g, '').trim();
                 if (targetSymbols.length === 0) {
                     $(self.el).modal('toggle');
-                    new PromptInvalidQueryView({ el: '#prompt-invalidQuery-table' }).render();
+                    new PromptInvalidQueryView({el: '#prompt-invalidQuery-table'}).render();
                     return;
                 }
 
@@ -2519,7 +2515,7 @@ var PathsFromToQueryView = Backbone.View.extend({
                     $.ajax({
                         type: 'get',
                         url: '/utilities/testURL',
-                        data: { url: queryURL },
+                        data: {url: queryURL},
                         success: function (data) {
                             if (
                                 !data.error &&
@@ -2555,7 +2551,7 @@ var PathsFromToQueryView = Backbone.View.extend({
 
                     $(self.el).modal('toggle');
                 } else {
-                    new PromptConfirmationView({ el: '#prompt-confirmation-table' }).render(
+                    new PromptConfirmationView({el: '#prompt-confirmation-table'}).render(
                         function () {
                             chiseInstance.startSpinner('paths-fromto-spinner');
                             var currentGeneralProperties = appUtilities.getScratch(
@@ -2572,7 +2568,7 @@ var PathsFromToQueryView = Backbone.View.extend({
                             $.ajax({
                                 type: 'get',
                                 url: '/utilities/testURL',
-                                data: { url: queryURL },
+                                data: {url: queryURL},
                                 success: function (data) {
                                     if (
                                         !data.error &&
@@ -2674,7 +2670,7 @@ var CommonStreamQueryView = Backbone.View.extend({
                 geneSymbols = geneSymbols.replace(/[^a-zA-Z0-9\n\t ]/g, '').trim();
                 if (geneSymbols.length === 0) {
                     $(self.el).modal('toggle');
-                    new PromptInvalidQueryView({ el: '#prompt-invalidQuery-table' }).render();
+                    new PromptInvalidQueryView({el: '#prompt-invalidQuery-table'}).render();
                     return;
                 }
                 if (self.currentQueryParameters.lengthLimit > 3) {
@@ -2732,7 +2728,7 @@ var CommonStreamQueryView = Backbone.View.extend({
                     $.ajax({
                         type: 'get',
                         url: '/utilities/testURL',
-                        data: { url: queryURL },
+                        data: {url: queryURL},
                         success: function (data) {
                             if (
                                 !data.error &&
@@ -2768,7 +2764,7 @@ var CommonStreamQueryView = Backbone.View.extend({
 
                     $(self.el).modal('toggle');
                 } else {
-                    new PromptConfirmationView({ el: '#prompt-confirmation-table' }).render(
+                    new PromptConfirmationView({el: '#prompt-confirmation-table'}).render(
                         function () {
                             chiseInstance.startSpinner('common-stream-spinner');
                             var currentGeneralProperties = appUtilities.getScratch(
@@ -2785,7 +2781,7 @@ var CommonStreamQueryView = Backbone.View.extend({
                             $.ajax({
                                 type: 'get',
                                 url: '/utilities/testURL',
-                                data: { url: queryURL },
+                                data: {url: queryURL},
                                 success: function (data) {
                                     if (
                                         !data.error &&
@@ -2880,7 +2876,7 @@ var PathsByURIQueryView = Backbone.View.extend({
                 uri = uri.replace(/[^a-zA-Z0-9:/.\-\n\t ]/g, '').trim();
                 if (uri.length === 0) {
                     $(self.el).modal('toggle');
-                    new PromptInvalidURIView({ el: '#prompt-invalidURI-table' }).render();
+                    new PromptInvalidURIView({el: '#prompt-invalidURI-table'}).render();
                     return;
                 }
 
@@ -2911,7 +2907,7 @@ var PathsByURIQueryView = Backbone.View.extend({
                     $.ajax({
                         type: 'get',
                         url: '/utilities/testURL',
-                        data: { url: queryURL },
+                        data: {url: queryURL},
                         success: function (data) {
                             if (
                                 !data.error &&
@@ -2938,14 +2934,14 @@ var PathsByURIQueryView = Backbone.View.extend({
                             }
                         },
                         error: function (xhr, options, err) {
-                            new PromptInvalidURIView({ el: '#prompt-invalidURI-table' }).render();
+                            new PromptInvalidURIView({el: '#prompt-invalidURI-table'}).render();
                             chiseInstance.endSpinner('paths-byURI-spinner');
                         },
                     });
 
                     $(self.el).modal('toggle');
                 } else {
-                    new PromptConfirmationView({ el: '#prompt-confirmation-table' }).render(
+                    new PromptConfirmationView({el: '#prompt-confirmation-table'}).render(
                         function () {
                             chiseInstance.startSpinner('paths-byURI-spinner');
                             var currentGeneralProperties = appUtilities.getScratch(
@@ -2962,7 +2958,7 @@ var PathsByURIQueryView = Backbone.View.extend({
                             $.ajax({
                                 type: 'get',
                                 url: '/utilities/testURL',
-                                data: { url: queryURL },
+                                data: {url: queryURL},
                                 success: function (data) {
                                     if (
                                         !data.error &&
@@ -3199,7 +3195,7 @@ var FileSaveView = Backbone.View.extend({
                     if (version === 'plain') {
                         saveAsFcn(filename, version, undefined, undefined, nodes, edges);
                     }
-                    // If the version is plain3, write renderInfo but not map properties
+                        // If the version is plain3, write renderInfo but not map properties
                     // which are specific to newt
                     else if (version === 'plain3') {
                         saveAsFcn(filename, version, renderInfo, undefined, nodes, edges);
@@ -3445,14 +3441,14 @@ var LoadUserPreferencesView = Backbone.View.extend({
                             snapToGridOnRelease: currentGridProperties.snapToGridOnRelease,
                             snapToGridDuringDrag: currentGridProperties.snapToGridDuringDrag,
                             snapToAlignmentLocationOnRelease:
-                                currentGridProperties.snapToAlignmentLocationOnRelease,
+                            currentGridProperties.snapToAlignmentLocationOnRelease,
                             snapToAlignmentLocationDuringDrag:
-                                currentGridProperties.snapToAlignmentLocationDuringDrag,
+                            currentGridProperties.snapToAlignmentLocationDuringDrag,
                             gridSpacing: currentGridProperties.gridSize,
                             resize: currentGridProperties.autoResizeNodes,
                             geometricGuideline: currentGridProperties.showGeometricGuidelines,
                             distributionGuidelines:
-                                currentGridProperties.showDistributionGuidelines,
+                            currentGridProperties.showDistributionGuidelines,
                             initPosAlignment: currentGridProperties.showInitPosAlignment,
                             guidelinesTolerance: currentGridProperties.guidelineTolerance,
                             guidelinesStyle: {
@@ -3465,7 +3461,7 @@ var LoadUserPreferencesView = Backbone.View.extend({
                                 verticalDistColor: currentGridProperties.verticalGuidelineColor,
                                 initPosAlignmentColor: currentGridProperties.initPosAlignmentColor,
                                 geometricGuidelineRange:
-                                    currentGridProperties.geometricAlignmentRange,
+                                currentGridProperties.geometricAlignmentRange,
                                 range: currentGridProperties.distributionAlignmentRange,
                             },
                         });
@@ -4084,7 +4080,7 @@ var PromptSbmlConversionErrorView = Backbone.View.extend({
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                             },
-                            data: { fileContent: data, message: 'Error message: ' + errorMessage },
+                            data: {fileContent: data, message: 'Error message: ' + errorMessage},
                             success: function (data) {
                             },
                             error: function (xhr, options, err) {
@@ -5494,9 +5490,9 @@ var GridPropertiesView = Backbone.View.extend({
                     snapToGridOnRelease: currentGridProperties.snapToGridOnRelease,
                     snapToGridDuringDrag: currentGridProperties.snapToGridDuringDrag,
                     snapToAlignmentLocationOnRelease:
-                        currentGridProperties.snapToAlignmentLocationOnRelease,
+                    currentGridProperties.snapToAlignmentLocationOnRelease,
                     snapToAlignmentLocationDuringDrag:
-                        currentGridProperties.snapToAlignmentLocationDuringDrag,
+                    currentGridProperties.snapToAlignmentLocationDuringDrag,
                     gridSpacing: currentGridProperties.gridSize,
                     resize: currentGridProperties.autoResizeNodes,
                     geometricGuideline: currentGridProperties.showGeometricGuidelines,
@@ -5546,46 +5542,46 @@ function sanitizeForHtml(val) {
 
 function getFontFamilyOptions() {
     return [
-        { value: '', label: '' },
-        { value: 'Helvetica', label: 'Helvetica' },
-        { value: 'Arial', label: 'Arial' },
-        { value: 'Calibri', label: 'Calibri' },
-        { value: 'Cambria', label: 'Cambria' },
-        { value: 'Comic Sans MS', label: 'Comic Sans MS' },
-        { value: 'Consolas', label: 'Consolas' },
-        { value: 'Corsiva', label: 'Corsiva' },
-        { value: 'Courier New', label: 'Courier New' },
-        { value: 'Droid Sans', label: 'Droid Sans' },
-        { value: 'Droid Serif', label: 'Droid Serif' },
-        { value: 'Georgia', label: 'Georgia' },
-        { value: 'Impact', label: 'Impact' },
-        { value: 'Lato', label: 'Lato' },
-        { value: 'Roboto', label: 'Roboto' },
-        { value: 'Source Sans Pro', label: 'Source Sans Pro' },
-        { value: 'Syncopate', label: 'Syncopate' },
-        { value: 'Times New Roman', label: 'Times New Roman' },
-        { value: 'Trebuchet MS', label: 'Trebuchet MS' },
-        { value: 'Ubuntu', label: 'Ubuntu' },
-        { value: 'Verdana', label: 'Verdana' },
+        {value: '', label: ''},
+        {value: 'Helvetica', label: 'Helvetica'},
+        {value: 'Arial', label: 'Arial'},
+        {value: 'Calibri', label: 'Calibri'},
+        {value: 'Cambria', label: 'Cambria'},
+        {value: 'Comic Sans MS', label: 'Comic Sans MS'},
+        {value: 'Consolas', label: 'Consolas'},
+        {value: 'Corsiva', label: 'Corsiva'},
+        {value: 'Courier New', label: 'Courier New'},
+        {value: 'Droid Sans', label: 'Droid Sans'},
+        {value: 'Droid Serif', label: 'Droid Serif'},
+        {value: 'Georgia', label: 'Georgia'},
+        {value: 'Impact', label: 'Impact'},
+        {value: 'Lato', label: 'Lato'},
+        {value: 'Roboto', label: 'Roboto'},
+        {value: 'Source Sans Pro', label: 'Source Sans Pro'},
+        {value: 'Syncopate', label: 'Syncopate'},
+        {value: 'Times New Roman', label: 'Times New Roman'},
+        {value: 'Trebuchet MS', label: 'Trebuchet MS'},
+        {value: 'Ubuntu', label: 'Ubuntu'},
+        {value: 'Verdana', label: 'Verdana'},
     ];
 }
 
 function getFontWeightOptions() {
     return [
-        { value: '', label: '' },
-        { value: 'lighter', label: 'Lighter' },
-        { value: 'normal', label: 'Normal' },
-        { value: 'bold', label: 'Bold' },
-        { value: 'bolder', label: 'Bolder' },
+        {value: '', label: ''},
+        {value: 'lighter', label: 'Lighter'},
+        {value: 'normal', label: 'Normal'},
+        {value: 'bold', label: 'Bold'},
+        {value: 'bolder', label: 'Bolder'},
     ];
 }
 
 function getFontStyleOptions() {
     return [
-        { value: '', label: '' },
-        { value: 'normal', label: 'Normal' },
-        { value: 'italic', label: 'Italic' },
-        { value: 'oblique', label: 'Oblique' },
+        {value: '', label: ''},
+        {value: 'normal', label: 'Normal'},
+        {value: 'italic', label: 'Italic'},
+        {value: 'oblique', label: 'Oblique'},
     ];
 }
 
@@ -6116,8 +6112,8 @@ var InfoboxPropertiesView = Backbone.View.extend({
                 var updates = readInfoboxProps();
                 var currentDefaults =
                     chiseInstance.elementUtilities.getDefaultProperties(parentClass)[
-                    infoboxObj.clazz
-                    ];
+                        infoboxObj.clazz
+                        ];
                 var infoboxStyle = $.extend({}, currentDefaults, updates);
                 chiseInstance.setDefaultProperty(parentClass, infoboxObj.clazz, infoboxStyle);
 
@@ -6141,7 +6137,7 @@ var InfoboxPropertiesView = Backbone.View.extend({
                         element: parentClass,
                         type: 'node',
                         styles: [],
-                        infoBoxStyles: [{ clazz: infoboxObj.clazz, styles: infoboxStyle }],
+                        infoBoxStyles: [{clazz: infoboxObj.clazz, styles: infoboxStyle}],
                     });
                 }
             });
@@ -6169,10 +6165,10 @@ var AnnotationListView = Backbone.View.extend({
         });
     },
     createAnnotation: function (e) {
-        var newAnnot = this.model.create({ cyParent: this.model.cyParent });
+        var newAnnot = this.model.create({cyParent: this.model.cyParent});
     },
     addAnnotationElementView: function (annotationModel) {
-        var view = new AnnotationElementView({ model: annotationModel });
+        var view = new AnnotationElementView({model: annotationModel});
         this.elements.push(view);
         this.$el.find('p#annotations-small-helptext').remove();
         this.$el.children('div').first().append(view.render().el);
@@ -6184,7 +6180,7 @@ var AnnotationListView = Backbone.View.extend({
         for (var i = 0; i < this.elements.length; i++) {
             renderedElement.push(this.elements[i].render().$el.html());
         }
-        this.$el.html(this.template({ elements: renderedElement }));
+        this.$el.html(this.template({elements: renderedElement}));
         return this;
     },
 });
@@ -6338,264 +6334,6 @@ function bindColorPicker2GridColorInputs() {
     }
 }
 
-/*
- * Shows read-only statistics for a SIF graph file: node count, edge count, and
- * the number of interactions broken down by SIF interaction type. Computed by
- * parsing raw .sif text (not the live graph), so a file can be inspected from
- * the file-tree right-click menu without loading/switching the current graph.
- */
-var GraphStatisticsView = Backbone.View.extend({
-    initialize: function () {
-    },
-    // Parse SIF text into stats. SIF lines are "source <sep> relation <sep>
-    // target" (tab- or space-delimited), with optional trailing columns; a
-    // single-token line is a standalone node with no interactions.
-    parseStatistics: function (sifText) {
-        var nodeSet = {};
-        var edgeCount = 0;
-        var counts = {};
-
-        (sifText || '').split(/\r?\n/).forEach(function (line) {
-            line = line.trim();
-            if (!line) return;
-
-            var cols = line.split(/\s+/);
-            var source = cols[0];
-            if (source) nodeSet[source] = true;
-
-            // standalone node (no interaction on this line)
-            if (cols.length < 3) return;
-
-            var type = cols[1] || '(unspecified)';
-            var target = cols[2];
-            if (target) nodeSet[target] = true;
-
-            edgeCount++;
-            counts[type] = (counts[type] || 0) + 1;
-        });
-
-        // most frequent first for a stable, readable display
-        var interactionCounts = Object.keys(counts)
-            .map(function (type) {
-                return { type: type, count: counts[type] };
-            })
-            .sort(function (a, b) {
-                return b.count - a.count;
-            });
-
-        return {
-            nodeCount: Object.keys(nodeSet).length,
-            edgeCount: edgeCount,
-            interactionCounts: interactionCounts,
-        };
-    },
-    render: function (stats) {
-        var self = this;
-
-        self.template = _.template($('#graph-statistics-template').html());
-        self.template = self.template(stats);
-        $(self.el).html(self.template);
-
-        $(self.el).modal('show');
-
-        return this;
-    },
-    // Convenience entry point used by the file-tree right-click menu.
-    renderFromSif: function (sifText, fileName) {
-        var stats = this.parseStatistics(sifText);
-        stats.fileName = fileName || '';
-        return this.render(stats);
-    },
-});
-
-/*
- * load-subgraph dialog: pick genes of interest (chips + autocomplete, red chip =
- * not in file), confirm -> compute selected + 1-hop neighbors -> filtered sif.
- * the filtered sif is then loaded either onto the main canvas (mode 'canvas',
- * with colors + grouping via the .format content) or into a floating preview
- * panel (mode 'overlay', subgraph-preview).
- */
-var LoadSubgraphView = Backbone.View.extend({
-    initialize: function () {
-        this.chips = []; // [{name, valid}]
-    },
-    render: function (sifText, fileName, options) {
-        var self = this;
-        var parsed = subgraphUtils.parseSifGenes(sifText);
-        options = options || {};
-
-        self.sifText = sifText;
-        self.fileName = fileName || '';
-        self.mode = options.mode === 'canvas' ? 'canvas' : 'overlay';
-        self.format = options.format || '';
-        self.adjacency = parsed.adjacency;
-        self.genes = parsed.genes;          // sorted uniq
-        self.geneSet = new Set(parsed.genes); // membership for validity
-        self.chips = [];
-
-        self.template = _.template($('#load-subgraph-template').html());
-        $(self.el).html(self.template({fileName: self.fileName}));
-
-        self.bindEvents();
-        self.renderChips();
-
-        $(self.el).modal('show');
-        $(self.el).one('shown.bs.modal', function () {
-            $('#subgraph-gene-input').focus();
-        });
-        return this;
-    },
-    bindEvents: function () {
-        var self = this;
-        var $el = $(self.el);
-
-        // clicking the box focuses the text input
-        $el.off('click.subgraph').on('click.subgraph', '#subgraph-chip-input', function (e) {
-            if (e.target.id === 'subgraph-chip-input') $('#subgraph-gene-input').focus();
-        });
-
-        // typing -> refresh autocomplete; Enter/comma -> add; Backspace on empty -> pop
-        $el.off('input.subgraph').on('input.subgraph', '#subgraph-gene-input', function () {
-            self.renderSuggestions(this.value);
-        });
-        $el.off('keydown.subgraph').on('keydown.subgraph', '#subgraph-gene-input', function (e) {
-            if (e.key === 'Enter' || e.key === ',') {
-                e.preventDefault();
-                self.addFromText(this.value);
-                this.value = '';
-                self.renderSuggestions('');
-            } else if (e.key === 'Backspace' && this.value === '' && self.chips.length) {
-                self.chips.pop();
-                self.afterChange();
-            }
-        });
-
-        // paste a list
-        $el.off('paste.subgraph').on('paste.subgraph', '#subgraph-gene-input', function (e) {
-            e.preventDefault();
-            var text = (e.originalEvent || e).clipboardData.getData('text');
-            self.addFromText(text);
-            this.value = '';
-            self.renderSuggestions('');
-        });
-
-        // pick a suggestion
-        $el.off('click.sugg').on('click.sugg', '.subgraph-suggestion', function () {
-            self.addChip($(this).text());
-            $('#subgraph-gene-input').val('').focus();
-            self.renderSuggestions('');
-        });
-
-        // remove a chip
-        $el.off('click.chipx').on('click.chipx', '.subgraph-chip-x', function () {
-            var i = parseInt($(this).attr('data-index'), 10);
-            self.chips.splice(i, 1);
-            self.afterChange();
-        });
-
-        // confirm
-        $el.off('click.load').on('click.load', '#subgraph-load-btn', function () {
-            self.confirm();
-        });
-    },
-    chosenNames: function () {
-        return this.chips.map(function (c) {
-            return c.name;
-        });
-    },
-    addFromText: function (text) {
-        var self = this;
-        subgraphUtils.splitPastedGenes(text).forEach(function (name) {
-            self.addChip(name);
-        });
-    },
-    addChip: function (name) {
-        name = (name || '').trim();
-        if (!name) return;
-        if (this.chosenNames().indexOf(name) !== -1) return; // dedupe
-        this.chips.push({name: name, valid: this.geneSet.has(name)});
-        this.afterChange();
-    },
-    afterChange: function () {
-        this.renderChips();
-        this.renderInvalidNote();
-        this.updateLoadButton();
-    },
-    renderChips: function () {
-        var html = this.chips.map(function (c, i) {
-            var cls = 'subgraph-chip' + (c.valid ? '' : ' invalid');
-            return '<span class="' + cls + '">' + _.escape(c.name) +
-                '<span class="subgraph-chip-x" data-index="' + i + '">&times;</span></span>';
-        }).join('');
-        $('#subgraph-chips').html(html);
-    },
-    renderSuggestions: function (query) {
-        var self = this;
-        var q = (query || '').trim().toLowerCase();
-        if (!q) {
-            $('#subgraph-suggestions').hide().empty();
-            return;
-        }
-        var chosen = self.chosenNames();
-        var matches = self.genes.filter(function (g) {
-            return g.toLowerCase().indexOf(q) === 0 && chosen.indexOf(g) === -1;
-        }).slice(0, 8);
-        if (!matches.length) {
-            $('#subgraph-suggestions').hide().empty();
-            return;
-        }
-        var html = matches.map(function (g) {
-            return '<div class="subgraph-suggestion">' + _.escape(g) + '</div>';
-        }).join('');
-        $('#subgraph-suggestions').html(html).show();
-    },
-    renderInvalidNote: function () {
-        var bad = this.chips.filter(function (c) {
-            return !c.valid;
-        }).map(function (c) {
-            return c.name;
-        });
-        $('#subgraph-invalid-note').text(bad.length ? ('not in file: ' + bad.join(', ')) : '');
-    },
-    updateLoadButton: function () {
-        // always loadable: with no genes of interest we preview the full graph
-        $('#subgraph-load-btn').prop('disabled', false);
-    },
-    confirm: function () {
-        var valid = this.chips.filter(function (c) {
-            return c.valid;
-        }).map(function (c) {
-            return c.name;
-        });
-        var subSif;
-        if (valid.length) {
-            var nodeSet = subgraphUtils.expandWithNeighbors(this.adjacency, valid);
-            subSif = subgraphUtils.filterSif(this.sifText, nodeSet);
-        } else {
-            // no genes picked -> use the whole graph as-is
-            subSif = this.sifText;
-        }
-        if (this.mode === 'canvas') {
-            // load onto the main canvas with proper colors + grouping
-            mainCanvasLoad.loadStyledSifToCanvas(subSif, this.format, this.fileName);
-            // show/refresh the selected-genes badge above the file tree. with no
-            // genes picked this is the full graph, so clear any stale badge.
-            if (valid.length) {
-                subgraphIndicator.show({
-                    fullSif: this.sifText, format: this.format,
-                    fileName: this.fileName, seeds: valid,
-                });
-            } else {
-                subgraphIndicator.hide();
-            }
-        } else {
-            // render in the floating preview panel (format drives node colors)
-            subgraphPreview.open(subSif, this.fileName, valid, this.format);
-        }
-        $(this.el).modal('hide');
-    },
-});
-
 module.exports = {
     //  BioGeneView: BioGeneView,
     ChemicalView: ChemicalView,
@@ -6633,6 +6371,4 @@ module.exports = {
     PromptInvalidImageWarning: PromptInvalidImageWarning,
     PromptInvalidEdgeWarning: PromptInvalidEdgeWarning,
     PromptSbmlConversionErrorView: PromptSbmlConversionErrorView,
-    GraphStatisticsView: GraphStatisticsView,
-    LoadSubgraphView: LoadSubgraphView,
 };

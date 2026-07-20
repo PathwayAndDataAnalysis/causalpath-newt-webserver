@@ -187,9 +187,6 @@
                 <label id="back_button_label"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
             </div>
 
-            <!-- Selected-genes subgraph badge (populated by subgraph-indicator.js) -->
-            <div id="subgraph-indicator-container"></div>
-
             <!-- Folder Tree -->
             <div id="folder-tree-container"></div>
 
@@ -1363,13 +1360,6 @@
                         <!-- confirmation dialog will be shown here-->
                     </div>
 
-                    <div id="graph-statistics-table" tabindex="-1" class="modal fade" role="dialog">
-                        <!-- graph statistics dialog will be shown here-->
-                    </div>
-                    <div id="load-subgraph-table" tabindex="-1" class="modal fade" role="dialog">
-                        <!-- load subgraph dialog will be shown here-->
-                    </div>
-
                     <div id="prompt-mapType-table" tabindex="-1" class="modal fade" role="dialog">
                         <!-- map type change confirmation dialog will be shown here-->
                     </div>
@@ -1698,83 +1688,6 @@
                     <script type="text/template" id="loading-small-template">
                         <p class="sbgn-text"> <%= name %> </p>
                         <img class="centered" src="app/img/loading-small.gif" height="auto" width="auto" align="middle">
-                    </script>
-
-                    <script type="text/template" id="load-subgraph-template">
-                        <div class="modal-dialog modal-sm sbgn-modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Load Subgraph</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <% if (fileName) { %>
-                                    <div style="margin-bottom:8px;word-break:break-all;">
-                                        <span class="add-on layout-text"><b><%= fileName %></b></span>
-                                    </div>
-                                    <% } %>
-                                    <div class="add-on layout-text" style="margin-bottom:4px;">
-                                        Genes of interest (type to search, paste a list, Enter to add).
-                                        Leave empty to load the whole graph:
-                                    </div>
-                                    <div class="subgraph-chip-input" id="subgraph-chip-input">
-                                        <span id="subgraph-chips"></span><input type="text"
-                                            id="subgraph-gene-input" class="subgraph-gene-input"
-                                            autocomplete="off" placeholder="e.g. TP53"/>
-                                    </div>
-                                    <div class="subgraph-suggestions" id="subgraph-suggestions"></div>
-                                    <div class="subgraph-invalid-note" id="subgraph-invalid-note"></div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" id="subgraph-load-btn">Load</button>
-                                </div>
-                            </div>
-                        </div>
-                    </script>
-                    <script type="text/template" id="graph-statistics-template">
-                        <div class="modal-dialog modal-sm sbgn-modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Graph Statistics</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table-condensed layout-table dialog-table" style="width:100%;">
-                                        <tbody>
-                                        <% if (typeof fileName !== 'undefined' && fileName) { %>
-                                        <tr>
-                                            <td colspan="2" style="padding-bottom:8px;word-break:break-all;">
-                                                <span class="add-on layout-text"><b><%= fileName %></b></span>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                        <tr>
-                                            <td><span class="add-on layout-text">Nodes</span></td>
-                                            <td style="text-align:right;"><%= nodeCount %></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="add-on layout-text">Edges</span></td>
-                                            <td style="text-align:right;"><%= edgeCount %></td>
-                                        </tr>
-                                        <% if (interactionCounts.length > 0) { %>
-                                        <tr>
-                                            <td colspan="2" style="padding-top:8px;">
-                                                <span class="add-on layout-text"><b>Interactions by type</b> (<%= edgeCount %> total)</span>
-                                            </td>
-                                        </tr>
-                                        <% interactionCounts.forEach(function (item) { %>
-                                        <tr>
-                                            <td style="padding-left:16px;"><span class="add-on layout-text"><%= item.type %></span></td>
-                                            <td style="text-align:right;"><%= item.count %></td>
-                                        </tr>
-                                        <% }); %>
-                                        <% } %>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
                     </script>
 
                     <script type="text/template" id="layout-settings-template">
