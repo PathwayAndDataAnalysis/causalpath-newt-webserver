@@ -1,4 +1,5 @@
 let conf = {
+	map: false,
 	plugins: [
 		require('postcss-import')(),
 		require('postcss-url')([

@@ -7,8 +7,8 @@
   "main": "app.js",
   "scripts": {
     "start": "npm run bundle:css && npm run bundle-js && nodemon server/server.js",
-    "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css",
-    "watch:css": "postcss --watch public/stylesheets/main.css -o public/build/bundle.css",
+    "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css --no-map",
+    "watch:css": "postcss --watch public/stylesheets/main.css -o public/build/bundle.css --no-map",
     "bundle-js": "browserify public/javascript/main.js -o public/build/newt-bundle.js --debug"
   },
   "dependencies": {
