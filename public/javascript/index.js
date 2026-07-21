@@ -510,8 +510,6 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
 
 
 document.getElementById("display-demo-graphs").addEventListener("click", (event) => {
-    console.log("display-demo-graphs");
-
     let makeRequest = () =>
         fetch("/api/displayDemoGraphs", {
             method: "GET",
@@ -522,8 +520,6 @@ document.getElementById("display-demo-graphs").addEventListener("click", (event)
 
     let afterResolve = (dirsList) => {
         dirsList = dirsList.trim();
-
-        console.log("dirsList", dirsList);
 
         let folderTree = buildTreeHierarchySampleFiles(dirsList.split("\n"));
 

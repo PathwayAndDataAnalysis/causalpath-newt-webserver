@@ -305,9 +305,6 @@ $(function () {
         const instance = $.jstree.reference(this);
         let node = instance.get_node(e.target)
 
-        console.log('node')
-        // console.log(node)
-
 
         // // make requests
         // let makeRequest = () =>
@@ -318,9 +315,7 @@ $(function () {
         //         },
         //         body: JSON.stringify(file),
         //     });
-        // let afterResolve = (fileContent) => {
-        //     console.log(fileContent)
-        // };
+        // let afterResolve = (fileContent) => {};
         // let handleRequestError = (err) => {
         //     alert('The error message is:\n' + err);
         //     throw err;

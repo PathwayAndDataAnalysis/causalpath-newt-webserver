@@ -16,7 +16,7 @@ module.exports = function () {
 
     sifStyle.apply = function (formatText) {
         if (elementUtilities.fileFormat != 'sif') {
-            console.log('Map type must be sif to apply sif style!!!');
+            console.warn('SIF styling skipped because the map is not SIF.');
             return;
         }
 

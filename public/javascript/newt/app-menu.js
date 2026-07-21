@@ -44,14 +44,10 @@ module.exports = function () {
             url: '/utilities/validateSBGNML',
             data: {sbgnml: xml},
             success: function (data) {
-                if (data.length == 0) {
-                    console.log('Xsd validation OK');
-                } else {
-                    console.error('Xsd validation failed. Errors:', data);
-                }
+                if (data.length !== 0) console.error('XSD validation failed.');
             },
             error: function (req, status, err) {
-                console.error('Error during file validation', status, err);
+                console.error('File validation request failed.');
             },
         });
     }
@@ -136,8 +132,6 @@ module.exports = function () {
             console.warn('invalid map type!');
         }
     }
-
-    console.log('init the sbgnviz template/page');
 
     $(window).on('resize', _.debounce(dynamicResize, 100));
 
@@ -642,7 +636,6 @@ module.exports = function () {
             subgraphIndicator.hide();
 
             const chiseInstance = appUtilities.getActiveChiseInstance();
-            console.log(`chiseInstance:  ${chiseInstance}`);
 
             // use cy instance associated with chise instance
             const cy = appUtilities.getActiveCy();
@@ -1179,7 +1172,6 @@ module.exports = function () {
                 success: function (data) {
                     // If response returns error display the message
                     if (data.name === 'Error' || data.error || data.name === 'error') {
-                        // console.log(data);
                         chiseSpinnerInstance.endSpinner('layout-spinner');
                         promtErrorPD2AF.render(data.message);
                     } else {
@@ -1248,7 +1240,6 @@ module.exports = function () {
                     }
                 },
                 error: function (data) {
-                    // console.log(data);
                     chiseSpinnerInstance.endSpinner('layout-spinner');
                     if (data.status == 0) promtErrorPD2AF.render('Server might be offline!');
                     else promtErrorPD2AF.render(data.message);
@@ -1539,12 +1530,6 @@ module.exports = function () {
                     animate: cy.nodes().length > 3000 || cy.edges().length > 3000 ? false : currentGeneralProperties.animateOnDrawingChanges,
                     randomize: true,
                 };
-
-                // console.log("chiseInstance: ", chiseInstance);
-                // console.log("cy: ", cy)
-                // console.log("currentGeneralProperties: " + JSON.stringify(currentGeneralProperties));
-                // console.log("preferences: " + JSON.stringify(preferences));
-
 
                 layoutPropertiesView.applyLayout(preferences);
             }, 0);
@@ -1968,7 +1953,6 @@ module.exports = function () {
         // on active network tab change
         $(document).on('shown.bs.tab', '#network-tabs-list  a[data-toggle="tab"]', function (e) {
             var target = $(e.target).attr('href'); // activated tab
-            console.log(target);
             appUtilities.setActiveNetwork(target);
             inspectorUtilities.handleSBGNInspector();
         });
@@ -2043,10 +2027,6 @@ module.exports = function () {
                     let sifContent = responseArr[1];
                     let formatContent = responseArr[2];
 
-                    // console.log("fileName: ", fileName)
-                    // console.log("sifContent: ", sifContent)
-                    // console.log("formatContent: ", formatContent)
-
                     let parts = [
                         new Blob([sifContent.trim()], {
                             type: 'text/plain;'
@@ -2090,8 +2070,6 @@ module.exports = function () {
                 let afterResolve = fileContent => {
                     fileContent = fileContent.replace("||||", "");
                     fileContent = fileContent.replace(file.name, "");
-
-                    // console.log("formatContent: ", fileContent)
 
                     let parts = [
                         new Blob([fileContent.trim()], {

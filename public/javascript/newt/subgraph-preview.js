@@ -190,7 +190,7 @@ function applyGrouping(instance) {
     try {
         if (instance.sifTopologyGrouping) instance.sifTopologyGrouping.apply();
     } catch (e) {
-        console.warn('[subgraph-preview] topology grouping skipped:', e && e.message);
+        console.warn('[subgraph-preview] topology grouping skipped.');
     }
 }
 

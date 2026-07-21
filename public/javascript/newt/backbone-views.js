@@ -325,7 +325,6 @@ var LayoutPropertiesView = Backbone.View.extend({
         else {
             options = this.sortByLength(options);
         }
-        console.log("options: ", options)
         // Edit End here
 
         chiseInstance.performLayout(options, notUndoable);
@@ -1909,7 +1908,6 @@ var experimentTabPanel = GeneralPropertiesParentView.extend({
     appUtilities.currentGeneralProperties = _.clone(appUtilities.defaultGeneralProperties);
   },
   render: function () {
-    console.log("render general", appUtilities.currentGeneralProperties);
     this.template = _.template($("#general-properties-template").html());
     this.$el.empty();
     this.$el.html(this.template(appUtilities.currentGeneralProperties));
@@ -3235,7 +3233,7 @@ var FileSaveView = Backbone.View.extend({
                     chiseInstance.saveAsSvg(filename);
                 } else {
                     // invalid file format provided
-                    console.error('FileSaveView received unsupported file format: ' + fileformat);
+                    console.error('FileSaveView received an unsupported file format.');
                 }
 
                 $(self.el).modal('toggle');
@@ -4088,7 +4086,7 @@ var PromptSbmlConversionErrorView = Backbone.View.extend({
                             success: function (data) {
                             },
                             error: function (xhr, options, err) {
-                                console.log(err);
+                                console.error('Failed to send the SBML conversion report.');
                             },
                         });
                     }, 0);
@@ -4110,7 +4108,7 @@ var PromptSbmlConversionErrorView = Backbone.View.extend({
                             success: function (data) {
                             },
                             error: function (xhr, options, err) {
-                                console.log(err);
+                                console.error('Failed to send the SBML conversion report.');
                             },
                         });
                     }, 0);
@@ -6312,7 +6310,7 @@ var AnnotationElementView = Backbone.View.extend({
                 if (err) {
                     self.model.set('status', 'error');
                     self.model.save();
-                    console.error('validation error', err);
+                    console.error('Annotation validation failed.');
                     return;
                 }
                 // result contains the validated url
