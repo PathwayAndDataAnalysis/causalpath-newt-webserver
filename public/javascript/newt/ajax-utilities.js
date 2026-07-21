@@ -1,8 +1,47 @@
 const libxmljs = require('libxmljs');
 const fs = require('fs');
-const request = require('request');
 const querystring = require('querystring');
 const nodeMailer = require('nodemailer');
+
+const REQUEST_TIMEOUT_MS = 30000;
+
+function responsePayload(statusCode, body) {
+	return { statusCode: statusCode, body: body };
+}
+
+function requestErrorPayload(error) {
+	return {
+		error: error instanceof Error ? error.message : String(error),
+		response: responsePayload(502, ''),
+	};
+}
+
+function appendQueryParams(urlString, params) {
+	if (!params || typeof params !== 'object') return urlString;
+
+	const url = new URL(urlString);
+	Object.keys(params).forEach(function (key) {
+		const value = params[key];
+		if (Array.isArray(value)) {
+			value.forEach(function (item) {
+				url.searchParams.append(key, item);
+			});
+		} else if (value !== undefined && value !== null) {
+			url.searchParams.append(key, value);
+		}
+	});
+
+	return url.toString();
+}
+
+async function proxyRequest(url, options) {
+	const response = await fetch(url, {
+		...options,
+		signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+	});
+
+	return responsePayload(response.status, await response.text());
+}
 
 /*
 	functions in this file all have to take the same arguments:
@@ -95,17 +134,14 @@ exports.validateSBGNML = function (req, res) {
  * This cannot be done on browser side due to CORS/same-origin policies forbiding requests
  * by the application to other domains than the application's domain.
  */
-exports.testURL = function (req, res) {
-	const options = {
-		url: req.query.url,
-		method: 'GET',
-		qs: req.query.qs,
-		timeout: 30000,
-	};
-
-	request.get(options, function (error, response, body) {
-		res.send({ error: error, response: response });
-	});
+exports.testURL = async function (req, res) {
+	try {
+		const url = appendQueryParams(req.query.url, req.query.qs);
+		const response = await proxyRequest(url, { method: 'GET' });
+		res.send({ error: null, response: response });
+	} catch (error) {
+		res.send(requestErrorPayload(error));
+	}
 };
 
 exports.sendEmail = function (req, res) {
@@ -145,38 +181,35 @@ exports.sendEmail = function (req, res) {
 	res.send('OK');
 };
 
-exports.ServerRequest = function (req, res) {
-	let options;
-	//request for taking authentication from minerva api
-	if (req.body.postType === 'auth') {
-		options = {
-			url: req.body.address,
-			method: 'POST',
-			timeout: 30000,
-			json: req.body.param,
-			contentType: 'application/json',
-		};
+exports.ServerRequest = async function (req, res) {
+	try {
+		let url;
+		let options;
 
-		request.post(options, function (error, response, body) {
-			res.send({ error: error, response: response });
-		});
-	} else {
-		//request for sending the file to be changed
-		const headers = {
-			Cookie: req.body.token,
-			'Content-Type': 'text/plain',
-		};
-		options = {
-			url: req.body.url,
-			method: 'POST',
-			qs: req.query.qs,
-			timeout: 30000,
-			body: req.body.file,
-			headers: headers,
-		};
+		// Request for taking authentication from the Minerva API.
+		if (req.body.postType === 'auth') {
+			url = req.body.address;
+			options = {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(req.body.param),
+			};
+		} else {
+			// Request for sending the file to be changed.
+			url = appendQueryParams(req.body.url, req.query.qs);
+			options = {
+				method: 'POST',
+				headers: {
+					Cookie: req.body.token,
+					'Content-Type': 'text/plain',
+				},
+				body: req.body.file,
+			};
+		}
 
-		request.post(options, function (error, response, body) {
-			res.send({ error: error, response: response.body });
-		});
+		const response = await proxyRequest(url, options);
+		res.send({ error: null, response: response });
+	} catch (error) {
+		res.send(requestErrorPayload(error));
 	}
 };

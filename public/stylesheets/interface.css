@@ -109,7 +109,7 @@ img.cp-logo {
 
 .brand-copy {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 14px;
 }
 
@@ -129,6 +129,7 @@ img.cp-logo {
     color: var(--cp-muted);
     font-size: 16px;
     font-weight: 400;
+    line-height: 1.2;
 }
 
 .site-links {

@@ -1,6 +1,5 @@
 const jquery = ($ = require('jquery'));
-const lo_get = require('lodash.get');
-const lo_set = require('lodash.set');
+const objectPath = require('./object-path');
 const appUtilities = require('./app-utilities');
 
 module.exports = function (cy) {
@@ -330,7 +329,7 @@ module.exports = function (cy) {
 		// need to get and set properties on scratchpad of cy
 		var scratchpad = appUtilities.getScratch(cy);
 
-		var currentValue = lo_get(scratchpad, param.property);
+		var currentValue = objectPath.get(scratchpad, param.property);
 
 		var result = {
 			id: id,
@@ -345,7 +344,7 @@ module.exports = function (cy) {
 		} else {
 			$(jQId).val(param.value);
 		}
-		lo_set(scratchpad, param.property, param.value);
+		objectPath.set(scratchpad, param.property, param.value);
 
 		if (id == 'compound-padding') {
 			var chise = appUtilities.getActiveChiseInstance();

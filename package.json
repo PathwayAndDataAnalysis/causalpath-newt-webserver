@@ -1,27 +1,33 @@
 {
-  "name": "causalpath-webserver",
+  "name": "causalpath-newt-webserver",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "author": "",
   "license": "LGPL-3.0",
   "main": "app.js",
+  "engines": {
+    "node": ">=24 <25",
+    "npm": ">=11"
+  },
   "scripts": {
-    "start": "npm run bundle:css && npm run bundle-js && nodemon server/server.js",
+    "build": "npm run bundle:css && npm run bundle-js",
+    "start": "npm run build && node server/server.js",
+    "dev": "npm run build && nodemon server/server.js",
+    "test": "node --test",
     "bundle:css": "postcss public/stylesheets/main.css -o public/build/bundle.css --no-map",
     "watch:css": "postcss --watch public/stylesheets/main.css -o public/build/bundle.css --no-map",
     "bundle-js": "browserify public/javascript/main.js -o public/build/newt-bundle.js --debug"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5",
     "a-color-picker": "^1.2.1",
     "backbone": "1.3.3",
-    "body-parser": "^1.19.0",
     "bootstrap": "^3.4.1",
     "chise": "4.0.0",
     "chroma-js": "^1.3.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "cytoscape": "github:iVis-at-Bilkent/cytoscape.js#master",
+    "cytoscape": "https://github.com/iVis-at-Bilkent/cytoscape.js/archive/8900d161b43e7a0461c1c2f5e2b8484ed5d742a4.tar.gz",
     "cytoscape-autopan-on-drag": "2.2.1",
     "cytoscape-clipboard": "2.2.1",
     "cytoscape-context-menus": "4.2.1",
@@ -46,29 +52,29 @@
     "jquery-expander": "1.7.0",
     "jstree": "^3.3.12",
     "konva": "^7.0.3",
-    "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2",
-    "mongoose": "^6.4.0",
     "morgan": "^1.10.0",
     "mousetrap": "^1.6.5",
-    "multer": "^1.4.4",
-    "natives": "^1.1.6",
-    "nodemailer": "^6.7.6",
+    "nodemailer": "^9.0.3",
     "notyf": "^3.10.0",
-    "path": "^0.12.7",
-    "postcss": "^7.0.39",
-    "postcss-cli": "^6.1.3",
-    "postcss-import": "^12.0.1",
-    "postcss-url": "^8.0.0",
     "queue": "^6.0.2",
-    "request": "^2.81.0",
-    "sbgnviz": "github:PathwayAndDataAnalysis/sbgnviz.js#master",
-    "tippy.js": "^3.4.0",
-    "uuid": "^8.3.2"
+    "sbgnviz": "https://github.com/PathwayAndDataAnalysis/sbgnviz.js/archive/af56767e77d117b02933e2dfdc0cc2ce68c053a7.tar.gz",
+    "tippy.js": "^3.4.0"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
-    "nodemon": "^2.0.16",
-    "parallelshell": "3.0.1"
+    "nodemon": "^3.1.14",
+    "postcss": "^8.5.8",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
+    "postcss-url": "^10.1.4"
+  },
+  "overrides": {
+    "canvas2svg": "https://github.com/ahmetcandiroglu/canvas2svg/archive/bee284bb628ca376810c8ecd2a7ff3d69b482d3b.tar.gz",
+    "request": {
+      "form-data": "2.5.6"
+    },
+    "qs": "6.15.3",
+    "libsbgn.js": "https://github.com/sbgn/libsbgn.js/archive/f7e265ae530c101ce44387a64080fc50107f01ff.tar.gz",
+    "rdflib": "https://github.com/royludo/rdflib.js/archive/761b45170b0652507a613160a3893d214b062c91.tar.gz"
   }
 }
