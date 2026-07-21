@@ -7,6 +7,8 @@ const keyboardShortcuts = require('./keyboard-shortcuts');
 const inspectorUtilities = require('./inspector-utilities');
 const tutorial = require('./tutorial');
 const sifStyleFactory = require('./sif-style-factory');
+const mainCanvasLoad = require('./main-canvas-load');
+const subgraphIndicator = require('./subgraph-indicator');
 const _ = require('underscore');
 const {Notyf} = require("notyf");
 
@@ -42,14 +44,10 @@ module.exports = function () {
             url: '/utilities/validateSBGNML',
             data: {sbgnml: xml},
             success: function (data) {
-                if (data.length == 0) {
-                    console.log('Xsd validation OK');
-                } else {
-                    console.error('Xsd validation failed. Errors:', data);
-                }
+                if (data.length !== 0) console.error('XSD validation failed.');
             },
             error: function (req, status, err) {
-                console.error('Error during file validation', status, err);
+                console.error('File validation request failed.');
             },
         });
     }
@@ -135,8 +133,6 @@ module.exports = function () {
         }
     }
 
-    console.log('init the sbgnviz template/page');
-
     $(window).on('resize', _.debounce(dynamicResize, 100));
 
     dynamicResize();
@@ -178,6 +174,10 @@ module.exports = function () {
         new BackboneViews.LoadUserPreferencesView({el: '#user-preferences-load-table'});
     promptConfirmationView = appUtilities.promptConfirmationView =
         new BackboneViews.PromptConfirmationView({el: '#prompt-confirmation-table'});
+    appUtilities.graphStatisticsView =
+        new BackboneViews.GraphStatisticsView({el: '#graph-statistics-table'});
+    appUtilities.loadSubgraphView =
+        new BackboneViews.LoadSubgraphView({el: '#load-subgraph-table'});
     promptMapTypeView = appUtilities.promptMapTypeView = new BackboneViews.PromptMapTypeView({
         el: '#prompt-mapType-table',
     });
@@ -220,6 +220,9 @@ module.exports = function () {
         var isActiveInstance = cy == appUtilities.getActiveCy();
 
         var chiseInstance = appUtilities.getChiseInstance(cy);
+        // a cy with no registered instance isn't an app-managed network (e.g. the
+        // subgraph preview) -> none of this network bookkeeping applies, skip it
+        if (!chiseInstance) return;
 
         // set the current file name for cy
         appUtilities.setScratch(cy, 'currentFileName', filename);
@@ -284,6 +287,9 @@ module.exports = function () {
     });
 
     $(document).on('updateGraphEnd', function (event, cy) {
+        // skip unmanaged graphs (e.g. the subgraph preview) -> they have no
+        // mode/scratch state for setSelectionMode to read
+        if (!appUtilities.getChiseInstance(cy)) return;
         appUtilities.resetUndoRedoButtons();
         modeHandler.setSelectionMode(cy);
     });
@@ -365,6 +371,7 @@ module.exports = function () {
         });
 
         $('#new-file, #new-file-icon').click(function () {
+            subgraphIndicator.hide();
             appUtilities.createNewNetwork();
         });
         // close the active file
@@ -387,6 +394,9 @@ module.exports = function () {
         });
 
         $('#file-input').change(function (e, fileObject) {
+            // opening a file replaces the graph -> drop any subgraph badge
+            subgraphIndicator.hide();
+
             // use the active chise instance
             var chiseInstance = appUtilities.getActiveChiseInstance();
 
@@ -622,8 +632,10 @@ module.exports = function () {
 
         // TODO: eliminate code replication in similar functions.
         $('#sif-file-input').change(function () {
+            // opening a sif replaces the graph -> drop any subgraph badge
+            subgraphIndicator.hide();
+
             const chiseInstance = appUtilities.getActiveChiseInstance();
-            console.log(`chiseInstance:  ${chiseInstance}`);
 
             // use cy instance associated with chise instance
             const cy = appUtilities.getActiveCy();
@@ -655,6 +667,8 @@ module.exports = function () {
 
             // get chise instance for cy
             var chiseInstance = appUtilities.getChiseInstance(cy);
+            // skip unmanaged graphs (e.g. the subgraph preview)
+            if (!chiseInstance) return;
 
             // get current general properties for cy
             var currentGeneralProperties = appUtilities.getScratch(cy, 'currentGeneralProperties');
@@ -1158,7 +1172,6 @@ module.exports = function () {
                 success: function (data) {
                     // If response returns error display the message
                     if (data.name === 'Error' || data.error || data.name === 'error') {
-                        // console.log(data);
                         chiseSpinnerInstance.endSpinner('layout-spinner');
                         promtErrorPD2AF.render(data.message);
                     } else {
@@ -1227,7 +1240,6 @@ module.exports = function () {
                     }
                 },
                 error: function (data) {
-                    // console.log(data);
                     chiseSpinnerInstance.endSpinner('layout-spinner');
                     if (data.status == 0) promtErrorPD2AF.render('Server might be offline!');
                     else promtErrorPD2AF.render(data.message);
@@ -1518,12 +1530,6 @@ module.exports = function () {
                     animate: cy.nodes().length > 3000 || cy.edges().length > 3000 ? false : currentGeneralProperties.animateOnDrawingChanges,
                     randomize: true,
                 };
-
-                // console.log("chiseInstance: ", chiseInstance);
-                // console.log("cy: ", cy)
-                // console.log("currentGeneralProperties: " + JSON.stringify(currentGeneralProperties));
-                // console.log("preferences: " + JSON.stringify(preferences));
-
 
                 layoutPropertiesView.applyLayout(preferences);
             }, 0);
@@ -1947,7 +1953,6 @@ module.exports = function () {
         // on active network tab change
         $(document).on('shown.bs.tab', '#network-tabs-list  a[data-toggle="tab"]', function (e) {
             var target = $(e.target).attr('href'); // activated tab
-            console.log(target);
             appUtilities.setActiveNetwork(target);
             inspectorUtilities.handleSBGNInspector();
         });
@@ -1989,6 +1994,9 @@ module.exports = function () {
 
             let file = node.data;
 
+            // dbl-clicking loads a different full graph -> drop any subgraph badge
+            subgraphIndicator.hide();
+
             // load sif file
             const chiseInstance = appUtilities.getActiveChiseInstance();
             const cy = appUtilities.getActiveCy();
@@ -2018,10 +2026,6 @@ module.exports = function () {
                     let fileName = responseArr[0];
                     let sifContent = responseArr[1];
                     let formatContent = responseArr[2];
-
-                    // console.log("fileName: ", fileName)
-                    // console.log("sifContent: ", sifContent)
-                    // console.log("formatContent: ", formatContent)
 
                     let parts = [
                         new Blob([sifContent.trim()], {
@@ -2066,8 +2070,6 @@ module.exports = function () {
                 let afterResolve = fileContent => {
                     fileContent = fileContent.replace("||||", "");
                     fileContent = fileContent.replace(file.name, "");
-
-                    // console.log("formatContent: ", fileContent)
 
                     let parts = [
                         new Blob([fileContent.trim()], {
@@ -2126,6 +2128,166 @@ module.exports = function () {
             }
         });
 
+        // reads a tree node's sif text, same data paths as the dblclick load.
+        // shared by graph-statistics + load-subgraph. returns a promise of sif text.
+        function readSifTextForNode(node) {
+            return new Promise(function (resolve, reject) {
+                var file = node && node.data;
+                if (!file) {
+                    reject(new Error('no file on node'));
+                    return;
+                }
+                if (file.type === "ANALYZED_FILE") {
+                    // server-side analyzed result: sif content is the 2nd "||||" field
+                    var query = {
+                        dir: "./analysisOut/" + file.sessionId + "/" + file.name,
+                        file: file.name,
+                    };
+                    fetch('/api/getJsonAtPath', {
+                        method: 'POST',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify(query),
+                    }).then(function (res) {
+                        return handleResponse(res, function (content) {
+                            resolve(content.split("||||")[1] || "");
+                        }, function (err) {
+                            reject(err);
+                        });
+                    }).catch(reject); // network-level failures
+                } else if (file.type === "SAMPLE_FILE") {
+                    // bundled sample: strip the leading "||||" + filename like the dblclick path
+                    var sampleQuery = {
+                        dir: "./samples/" + file.name,
+                        file: file.name,
+                    };
+                    fetch('/api/getJsonAtPath', {
+                        method: 'POST',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify(sampleQuery),
+                    }).then(function (res) {
+                        return handleResponse(res, function (content) {
+                            resolve(content.replace("||||", "").replace(file.name, ""));
+                        }, function (err) {
+                            reject(err);
+                        });
+                    }).catch(reject);
+                } else {
+                    // client-uploaded .sif File object
+                    var reader = new FileReader();
+                    reader.onload = function (ev) {
+                        resolve(ev.target.result);
+                    };
+                    reader.onerror = function () {
+                        reject(reader.error);
+                    };
+                    reader.readAsText(file);
+                }
+            });
+        }
+
+        // like readSifTextForNode but also resolves the .format content that drives
+        // node colors/infoboxes. for analyzed files the format is the 3rd "||||"
+        // field; for client-uploaded .sif it's a sibling .format node (formatNode).
+        // returns a promise of { sif, format } (format may be '').
+        function readSifAndFormatForNode(node, formatNode) {
+            return new Promise(function (resolve, reject) {
+                var file = node && node.data;
+                if (!file) {
+                    reject(new Error('no file on node'));
+                    return;
+                }
+                if (file.type === "ANALYZED_FILE") {
+                    var query = {
+                        dir: "./analysisOut/" + file.sessionId + "/" + file.name,
+                        file: file.name,
+                    };
+                    fetch('/api/getJsonAtPath', {
+                        method: 'POST',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify(query),
+                    }).then(function (res) {
+                        return handleResponse(res, function (content) {
+                            var parts = content.split("||||");
+                            resolve({sif: parts[1] || "", format: parts[2] || ""});
+                        }, reject);
+                    }).catch(reject);
+                } else if (file.type === "SAMPLE_FILE") {
+                    // bundled samples are full .nwt (already styled), no separate format
+                    readSifTextForNode(node).then(function (sif) {
+                        resolve({sif: sif, format: ""});
+                    }).catch(reject);
+                } else {
+                    // client-uploaded .sif -> read the file, then the sibling .format if any
+                    readSifTextForNode(node).then(function (sif) {
+                        if (formatNode && formatNode.data) {
+                            var reader = new FileReader();
+                            reader.onload = function (ev) {
+                                resolve({sif: sif, format: ev.target.result || ""});
+                            };
+                            reader.onerror = function () {
+                                resolve({sif: sif, format: ""}); // load graph even if format fails
+                            };
+                            reader.readAsText(formatNode.data);
+                        } else {
+                            resolve({sif: sif, format: ""});
+                        }
+                    }).catch(reject);
+                }
+            });
+        }
+
+        function nodeFileName(node) {
+            return (node && node.data && node.data.name) || (node && node.text) || "";
+        }
+
+        // bridge for the file-tree "graph statistics" item (index.js can't see appUtilities)
+        window.newtShowGraphStatistics = function (node) {
+            var fileName = nodeFileName(node);
+            readSifTextForNode(node).then(function (sif) {
+                appUtilities.graphStatisticsView.renderFromSif(sif, fileName);
+            }).catch(function (err) {
+                alert("The error message is:\n" + err);
+            });
+        };
+
+        // bridge for the file-tree "load subgraph (overlay)" item -> floating preview
+        window.newtLoadSubgraph = function (node, formatNode) {
+            var fileName = nodeFileName(node);
+            readSifAndFormatForNode(node, formatNode).then(function (r) {
+                appUtilities.loadSubgraphView.render(r.sif, fileName,
+                    {mode: 'overlay', format: r.format});
+            }).catch(function (err) {
+                alert("The error message is:\n" + err);
+            });
+        };
+
+        // bridge for the file-tree "load subgraph" item -> filtered subgraph onto
+        // the main canvas, with proper colors + grouping (via the .format content)
+        window.newtLoadSubgraphCanvas = function (node, formatNode) {
+            var fileName = nodeFileName(node);
+            readSifAndFormatForNode(node, formatNode).then(function (r) {
+                appUtilities.loadSubgraphView.render(r.sif, fileName,
+                    {mode: 'canvas', format: r.format});
+            }).catch(function (err) {
+                alert("The error message is:\n" + err);
+            });
+        };
+
+        // bridge for the file-tree "open" item -> load the full graph onto the main
+        // canvas with colors + grouping, same result as double-clicking the file
+        window.newtOpenFile = function (node, formatNode) {
+            var fileName = nodeFileName(node);
+            // opening a file loads the full graph -> drop any subgraph badge
+            subgraphIndicator.hide();
+            readSifAndFormatForNode(node, formatNode).then(function (r) {
+                mainCanvasLoad.loadStyledSifToCanvas(r.sif, r.format, fileName, function () {
+                    promptInvalidFileView.render();
+                });
+            }).catch(function (err) {
+                alert("The error message is:\n" + err);
+            });
+        };
+
         // display alert
         document.getElementById("file-analysis-input").addEventListener("change", function (e) {
             showNotification("CausalPath analysis is in progress. Please wait...", "success", 7000);
@@ -2134,6 +2296,9 @@ module.exports = function () {
         // clear graph: Setting the graph to empty file
         document.getElementById("back_button_label").addEventListener("click", function (e) {
             let chiseInstance = appUtilities.getActiveChiseInstance();
+
+            // clearing the graph -> drop any subgraph badge
+            subgraphIndicator.hide();
 
             let fileContent = "";
             let parts = [

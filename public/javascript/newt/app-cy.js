@@ -466,7 +466,7 @@ module.exports = function (chiseInstance) {
                             }
                         },
                         error: function (xhr, options, err) {
-                            console.log(err);
+                            console.error('Remote pathway request failed.');
                         },
                     });
                 },

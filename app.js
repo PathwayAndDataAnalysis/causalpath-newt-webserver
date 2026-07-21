@@ -4,26 +4,30 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
-const createError = require("http-errors");
 const app = express();
 const api = require("./lib/api");
+const log = require("./lib/log");
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-// app.set('view engine', "ejs");
+logger.token("short-url", (req) => log.compact(req.originalUrl, 200));
 
 // init middlewares
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: false }));
 app.use(cors({ origin: true, credentials: true }));
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(logger(":method :short-url :status :response-time ms", {
+	skip: (req, res) => res.statusCode < 400,
+}));
 app.use(cookieParser());
 app.use("/api", api);
 
 // init static folder
 app.use(express.static(path.join(__dirname, "/public")));
+
+// libsbml.js resolves its WebAssembly binary relative to the page URL.
+app.get("/libsbml.wasm", (req, res) => {
+	res.type("application/wasm");
+	res.sendFile(path.join(__dirname, "node_modules/libsbmljs_stable/libsbml.wasm"));
+});
 
 // user bootstrap styles
 app.use("/css", express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
@@ -39,28 +43,40 @@ app.get("/", (req, res, next) => {
 
 // end point
 app.post("/api/submitFolders", (req, res, next) => {
-	console.log("/api/submitFolders");
-	console.log(req.body);
+	res.sendStatus(204);
 });
 
 app.get("/node_modules/cytoscape-node-editing/resizeCue.svg", (req, res) => {
 	res.sendFile(path.join(__dirname, "node_modules/cytoscape-node-editing/resizeCue.svg"));
 });
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-	next(createError(404));
+// Return a response directly because this application does not configure a view engine.
+app.use(function (req, res) {
+	if (req.path.startsWith("/api/")) {
+		res.status(404).json({error: "Not Found"});
+		return;
+	}
+
+	res.status(404).type("text/plain").send("Not Found");
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get("env") === "development" ? err : {};
+	if (res.headersSent) {
+		next(err);
+		return;
+	}
 
-	// render the error page
-	res.status(err.status || 500);
-	res.render("error");
+	let status = err.status || 500;
+	let message = status >= 500 ? "Internal Server Error" : err.message;
+	log.error(req.method + " " + log.compact(req.originalUrl, 200) + " failed", err);
+
+	if (req.path.startsWith("/api/")) {
+		res.status(status).json({error: message});
+		return;
+	}
+
+	res.status(status).type("text/plain").send(message);
 });
 
 module.exports = app;

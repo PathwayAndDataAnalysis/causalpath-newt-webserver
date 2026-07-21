@@ -1063,7 +1063,6 @@ inspectorUtilities.handleSBGNInspector = function () {
 					type: 'GET',
 					data: { url: url },
 					success: function (data) {
-						console.log(data);
 						// here we can get 404 as well, for example, so there are still error cases to handle
 						if (
 							!data.error &&

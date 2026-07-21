@@ -139,7 +139,7 @@ exports.sendEmail = function (req, res) {
 	};
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {
-			return console.log(error);
+			console.error('Failed to send the error report.');
 		}
 	});
 	res.send('OK');

@@ -2918,14 +2918,10 @@ appUtilities.launchWithModelFile = function () {
                 url: '/utilities/validateSBGNML',
                 data: {sbgnml: text},
                 success: function (data) {
-                    if (data.length == 0) {
-                        console.log('Xsd validation OK');
-                    } else {
-                        console.error('Xsd validation failed. Errors:', data);
-                    }
+                    if (data.length !== 0) console.error('XSD validation failed.');
                 },
                 error: function (req, status, err) {
-                    console.error('Error during file validation', status, err);
+                    console.error('File validation request failed.');
                 },
             });
         };
