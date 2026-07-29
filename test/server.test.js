@@ -30,6 +30,9 @@ test("serves the CausalPath landing page", async () => {
 
     assert.equal(response.status, 200);
     assert.match(body, /CausalPath works on a set of molecular profiles/);
+    assert.match(body, /id="analysis-progress-overlay"[^>]*hidden/);
+    assert.match(body, /id="analysis-progress-track"[\s\S]*role="progressbar"/);
+    assert.match(body, /id="analysis-progress-status"/);
 });
 
 test("lists bundled demo graphs", async () => {

@@ -2301,11 +2301,6 @@ module.exports = function () {
             });
         };
 
-        // display alert
-        document.getElementById("file-analysis-input").addEventListener("change", function (e) {
-            showNotification("CausalPath analysis is in progress. Please wait...", "success", 7000);
-        });
-
         // clear graph: Setting the graph to empty file
         document.getElementById("back_button_label").addEventListener("click", function (e) {
             let chiseInstance = appUtilities.getActiveChiseInstance();

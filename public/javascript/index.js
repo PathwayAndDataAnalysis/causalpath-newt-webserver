@@ -37,6 +37,57 @@ let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
 
 let graphChoice = graphChoiceEnum.ANALYSIS;
 
+const analysisProgressElements = {
+    overlay: document.getElementById("analysis-progress-overlay"),
+    card: document.querySelector("#analysis-progress-overlay .analysis-progress-card"),
+    fileName: document.getElementById("analysis-progress-file"),
+    track: document.getElementById("analysis-progress-track"),
+    bar: document.getElementById("analysis-progress-bar"),
+    status: document.getElementById("analysis-progress-status"),
+};
+
+function updateAnalysisProgress(message, progress) {
+    analysisProgressElements.status.textContent = message;
+
+    let isDeterminate = Number.isFinite(progress);
+    analysisProgressElements.track.classList.toggle("is-determinate", isDeterminate);
+
+    if (isDeterminate) {
+        let normalizedProgress = Math.min(100, Math.max(0, progress));
+        analysisProgressElements.bar.style.width = normalizedProgress + "%";
+        analysisProgressElements.track.setAttribute("aria-valuemin", "0");
+        analysisProgressElements.track.setAttribute("aria-valuemax", "100");
+        analysisProgressElements.track.setAttribute("aria-valuenow", String(Math.round(normalizedProgress)));
+    } else {
+        analysisProgressElements.bar.style.removeProperty("width");
+        analysisProgressElements.track.removeAttribute("aria-valuemin");
+        analysisProgressElements.track.removeAttribute("aria-valuemax");
+        analysisProgressElements.track.removeAttribute("aria-valuenow");
+    }
+}
+
+function showAnalysisProgress(fileName) {
+    analysisProgressElements.fileName.textContent = fileName || "your input";
+    updateAnalysisProgress("Reading input file…", 0);
+
+    analysisProgressElements.overlay.hidden = false;
+    document.body.classList.add("analysis-in-progress");
+    document.body.setAttribute("aria-busy", "true");
+    analysisProgressElements.card.focus();
+}
+
+function hideAnalysisProgress() {
+    analysisProgressElements.overlay.hidden = true;
+    document.body.classList.remove("analysis-in-progress");
+    document.body.removeAttribute("aria-busy");
+}
+
+function hideAnalysisProgressAfterPaint() {
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(hideAnalysisProgress);
+    });
+}
+
 /**
  * Right-click context menu items for file-tree nodes. "Graph Statistics" is
  * enabled for .sif graph files and greyed out for folders and other file
@@ -468,20 +519,28 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
     let file = event.target.files[0];
     event.target.value = null; // clear the input field
 
-    let fileContents = [];
+    if (!file) return;
 
     let fileNameSplit = file.name.split(".");
 
     //Sending a zip file
     if (fileNameSplit.pop().toLowerCase() === "zip") {
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            fileContents.push({name: file.name, content: e.target.result});
+        showAnalysisProgress(file.name);
 
+        let reader = new FileReader();
+        reader.onprogress = function (e) {
+            if (e.lengthComputable) {
+                updateAnalysisProgress("Reading input file…", (e.loaded / e.total) * 100);
+            }
+        };
+
+        reader.onload = function (e) {
             let q = {
                 fileContent: e.target.result,
                 room: userSessionNumber,
             };
+
+            updateAnalysisProgress("Uploading files and running CausalPath…");
 
             let makeRequest = () =>
                 fetch("/api/analysisZip", {
@@ -493,6 +552,8 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
                 });
 
             let afterResolve = (dirStr) => {
+                updateAnalysisProgress("Preparing the Newt workspace…");
+
                 dirStr = dirStr.trim();
                 let fileList = dirStr.split("\n");
 
@@ -501,15 +562,26 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
                 showGraphAndFolders();
 
                 generateJSTree(analyzedFileHierarchy);
+                hideAnalysisProgressAfterPaint();
             };
 
             let handleRequestError = (err) => {
+                hideAnalysisProgress();
                 alert("The error message is:\n" + err);
             };
 
-            makeRequest().then((res) => handleResponse(res, afterResolve, handleRequestError));
+            Promise.resolve()
+                .then(makeRequest)
+                .then((res) => handleResponse(res, afterResolve, handleRequestError))
+                .catch(handleRequestError);
         };
 
+        reader.onerror = function () {
+            hideAnalysisProgress();
+            alert("The input file could not be read. Please try selecting it again.");
+        };
+
+        reader.onabort = hideAnalysisProgress;
         reader.readAsBinaryString(file);
     }
 });
