@@ -435,9 +435,19 @@ function showGraphAndFolders() {
     document.getElementById("menu-text-buttons").style.display = "none";
     document.getElementById("folder-trees-graphs").style.display = "block";
     document.getElementById("back_menu").style.display = "block";
-    document.getElementById("graph-container").style.display = "block";
+    document.getElementById("graph-container").style.display = "flex";
     document.getElementById("folder-tree-container").style.display = "block";
-    window.dispatchEvent(new Event('resize'));
+
+    // Wait until the graph workspace has been painted before measuring it.
+    // Calling Newt directly avoids the debounce and hidden-layout measurements
+    // that previously left the canvas short until the window was resized.
+    window.requestAnimationFrame(() => {
+        if (typeof window.newtResizeWorkspace === "function") {
+            window.newtResizeWorkspace();
+        } else {
+            window.dispatchEvent(new Event("resize"));
+        }
+    });
 }
 
 document.getElementById("picker").addEventListener("change", (event) => {

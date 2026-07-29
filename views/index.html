@@ -3,13 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        CausalPath Web Server
-    </title>
+    <meta name="description"
+          content="Analyze molecular profiles and explore causal pathway networks with CausalPath.">
+    <title>CausalPath Web Server</title>
 
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico"/>
     <link rel="stylesheet" href="../build/bundle.css" crossorigin="anonymous">
@@ -22,169 +20,122 @@
 <body>
 
 
-<div class="title-heading container-fluid">
-    <div class="row">
-        <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>
+<header class="title-heading">
+    <a class="brand" href="/" aria-label="CausalPath home">
+        <img src="/img/logo.png" class="cp-logo" alt="">
+        <span class="brand-copy">
+            <span class="main-heading">CausalPath</span>
+            <span class="sub-heading">causal interactions from molecular profiles</span>
+        </span>
+    </a>
+    <nav class="site-links" aria-label="Project links">
+        <a href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md">Input guide</a>
+        <a href="https://github.com/PathwayAndDataAnalysis/causalpath">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>Source code</span>
+        </a>
+    </nav>
+</header>
 
-        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11" style="position: relative">
-            <img src="/img/logo.png" class="cp-logo" alt="CausalPath Logo">
-            <div style="display: inline; position: absolute; margin: 0;">
-                <h1 class="main-heading">CausalPath</h1>
-                <h3 class="sub-heading">causal interactions from molecular profiles</h3>
-            </div>
 
+<main id="menu-text-buttons" class="body-content">
+    <section id="body_text" class="hero-section" aria-label="About CausalPath">
+        <div class="hero-copy">
+            <p class="body-paragraph">
+                CausalPath works on a set of molecular profiles and predicts the causal mechanisms that act on the
+                data. It integrates prior knowledge from biological pathway databases, and uses them to explain new
+                observations. While the main focus is phosphoproteomics, CausalPath can also work on global
+                proteomic, transcriptomic, acetylomic and methylomic profiles, and combinations of them.
+            </p>
         </div>
+        <figure class="hero-figure">
+            <img src="/img/causalpath-insights.png"
+                 alt="CausalPath connects molecular measurements to predicted activity and pathway mechanisms">
+        </figure>
+    </section>
 
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-
-    </div>
-</div>
-
-
-<div id="menu-text-buttons" class="body-content container-fluid">
-    <div class="row">
-        <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>
-
-        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-
-            <div id="body_text" class="row" style="margin-top:40px;">
-
-                <p class="body-paragraph">
-                    CausalPath works on a set of molecular profiles and predicts the causal mechanisms that act on the
-                    data. It integrates prior knowledge from biological pathway databases, and uses them to explain new
-                    observations. While the main focus is phosphoproteomics, CausalPath can also work on global
-                    proteomic, transcriptomic, acetylomic and methylomic profiles, and combinations of them.
+    <section class="start-section" aria-label="Analysis options">
+        <div id="selection_menus" class="workflow-grid">
+            <article class="menu-buttons">
+                <input type="file" id="file-analysis-input" class="file-picker menu-file-picker"
+                       accept=".zip,application/zip">
+                <h3>&gt; Load input files for analysis</h3>
+                <p class="menu-hint-text">Please prepare your input files following
+                    <a href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md">this guide</a>,
+                    and bundle them in a zip file without a folder structure. A sample input is available
+                    <a href="https://github.com/PathwayAndDataAnalysis/causalpath/raw/master/wiki/sample-data-and-parameters.zip">here.</a>
                 </p>
+            </article>
 
-                <div class="container-fluid" style="margin-top: 60px">
-                    <img src="/img/causalpath-insights.png" alt="Causalpath mechanism">
-                </div>
+            <article class="menu-buttons">
+                <input type="file" id="picker" class="file-picker menu-file-picker" name="fileList"
+                       webkitdirectory multiple>
+                <h3>&gt; View results from a previous analysis</h3>
+                <p class="menu-hint-text">Select the root folder of your analysis results to upload.</p>
+            </article>
 
-            </div>
-
-            <div id="selection_menus" class="row" style="margin-top: 70px;">
-                <div class="menu-buttons" style="padding-bottom:25px">
-                    <input type="file" id="file-analysis-input" class="file-picker"
-                           accept=".rar, .zip, .tar.xz, .7z, .tar.gz" single>
-                    <h3>> Load input files for analysis</h3>
-                    <p class="menu-hint-text">Please prepare your input files following
-                        <u><a href="https://github.com/PathwayAndDataAnalysis/causalpath/blob/master/wiki/InputFormat.md"
-                              style="position: absolute">this
-                            guide</a></u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,
-                        and bundle them in a
-                        zip file without a folder structure. A sample input is available&nbsp;<u><a
-                                href="https://github.com/PathwayAndDataAnalysis/causalpath/raw/master/wiki/sample-data-and-parameters.zip"
-                                style="position: absolute">here.</a></u>
-                    </p>
-                </div>
-
-                <div class="menu-buttons">
-                    <input type="file" id="picker" class="file-picker" name="fileList" webkitdirectory multiple>
-                    <h3>> View results from a previous analysis</h3>
-                    <p class="menu-hint-text">Select the root folder of your analysis results to upload.</p>
-                </div>
-
-                <div id="display-demo-graphs" class="menu-buttons">
-                    <h3>> Display demo graphs</h3>
-                    <p class="menu-hint-text">View a collection of network results from previous studies.</p>
-                </div>
-            </div>
-
-
-            <div id="citation-section" style="margin-top: 80px;">
-                <p style="font-size: 17px;">CausalPath is described in detail in the following publications.</p>
-
-                <p style="margin-left: 20px">Babur, Ö., et al. (2021). <a
-                        href="https://www.sciencedirect.com/science/article/pii/S2666389921000830?via%3Dihub"><u>Causal
-                    interactions from proteomic
-                    profiles:
-                    Molecular data meet pathway knowledge.</u></a> Patterns, 2(6), 100257.
-                </p>
-
-                <p style="margin-left: 20px">Luna, A., et al. (2021). <a
-                        href="https://www.sciencedirect.com/science/article/pii/S2666166721006614"><u>Analyzing causal
-                    relationships in
-                    proteomic
-                    profiles using CausalPath.</u></a> STAR protocols, 2(4), 100955.
-                </p>
-
-                <p style="font-size: 16px;">
-                    <u>
-                        <a href="https://github.com/PathwayAndDataAnalysis/causalpath">
-                            Source code
-                        </a>
-                    </u>
-                    is also available!
-                </p>
-            </div>
-
-
-            <div id="collaboration-section" style="margin-top: 60px;">
-                <p style="font-size: 16px;">This is a collaborative project with contributions from the below
-                    institutions.</p>
-
-                <a href="https://www.umb.edu/">
-                    <img src="/img/umass-boston.png"
-                         class="collaboration-logo"
-                         style="margin-left: 1px"
-                         alt="University of Massachusetts Boston">
-
-                </a>
-
-                <a href="https://www.ohsu.edu/">
-                    <img src="/img/ohsu.png"
-                         class="collaboration-logo"
-                         alt="OHSU">
-                </a>
-
-                <a href="https://w3.bilkent.edu.tr/bilkent/">
-                    <img src="/img/bilkent-uni.png"
-                         class="collaboration-logo"
-                         alt="Bilkent University">
-                </a>
-
-                <a href="https://www.dana-farber.org/">
-                    <img src="/img/dana-farber-cancer.png"
-                         class="collaboration-logo"
-                         alt="Dana-Farber Cancer Institute">
-                </a>
-
-                <a href="https://www.mdanderson.org/">
-                    <img src="/img/md-anderson.png"
-                         class="collaboration-logo"
-                         alt="MD Anderson Cancer Center">
-                </a>
-
-                <a href="https://www.broadinstitute.org/">
-                    <img src="/img/broad-institute.png"
-                         class="collaboration-logo"
-                         alt="Broad Institute">
-                </a>
-            </div>
-
-
-            <div id="reach-out-section" style="margin-top: 60px;">
-                <p>Please reach out to <u><a href="mailto:causalpath@cs.umb.edu">causalpath@cs.umb.edu</a></u> for
-                    questions
-                    and
-                    comments.</p>
-            </div>
-
+            <button id="display-demo-graphs" class="menu-buttons" type="button">
+                <span class="workflow-title">&gt; Display demo graphs</span>
+                <span class="menu-hint-text">View a collection of network results from previous studies.</span>
+            </button>
         </div>
+    </section>
 
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-    </div>
-</div>
+    <section id="citation-section" class="information-section" aria-label="Publications">
+        <div class="section-heading">
+            <p class="section-lead">CausalPath is described in detail in the following publications.</p>
+        </div>
+        <div class="publication-list">
+            <p>Babur, Ö., et al. (2021). <a
+                    href="https://www.sciencedirect.com/science/article/pii/S2666389921000830?via%3Dihub">Causal
+                interactions from proteomic profiles: Molecular data meet pathway knowledge.</a> Patterns,
+                2(6), 100257.</p>
+            <p>Luna, A., et al. (2021). <a
+                    href="https://www.sciencedirect.com/science/article/pii/S2666166721006614">Analyzing causal
+                relationships in proteomic profiles using CausalPath.</a> STAR protocols, 2(4), 100955.</p>
+        </div>
+    </section>
+
+    <section id="collaboration-section" class="information-section" aria-label="Collaborating institutions">
+        <div class="section-heading">
+            <p class="section-lead">This is a collaborative project with contributions from the below institutions.</p>
+        </div>
+        <div class="collaboration-logos">
+            <a href="https://www.umb.edu/"><img src="/img/umass-boston.png" class="collaboration-logo"
+                                                 alt="University of Massachusetts Boston"></a>
+            <a href="https://www.ohsu.edu/"><img src="/img/ohsu.png" class="collaboration-logo" alt="OHSU"></a>
+            <a href="https://w3.bilkent.edu.tr/bilkent/"><img src="/img/bilkent-uni.png" class="collaboration-logo"
+                                                               alt="Bilkent University"></a>
+            <a href="https://www.dana-farber.org/"><img src="/img/dana-farber-cancer.png" class="collaboration-logo"
+                                                         alt="Dana-Farber Cancer Institute"></a>
+            <a href="https://www.mdanderson.org/"><img src="/img/md-anderson.png" class="collaboration-logo"
+                                                        alt="MD Anderson Cancer Center"></a>
+            <a href="https://www.broadinstitute.org/"><img src="/img/broad-institute.png" class="collaboration-logo"
+                                                            alt="Broad Institute"></a>
+        </div>
+    </section>
+
+    <footer id="reach-out-section" class="site-footer">
+        <p>Please reach out to <a href="mailto:causalpath@cs.umb.edu">causalpath@cs.umb.edu</a> for questions and
+            comments.</p>
+    </footer>
+</main>
 
 
-<div id="folder-trees-graphs" class="canvas-body-content container-fluid">
+<div id="folder-trees-graphs" class="canvas-body-content">
 
-    <div class="" style="display: flex ; height: available;">
+    <div class="workspace-layout">
 
-        <div class="left" style="flex: 0 0 350px; min-width: 330px;">
+        <aside class="left workspace-sidebar" aria-label="Analysis files">
             <!-- Back Button -->
             <div id="back_menu">
-                <label id="back_button_label"><i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</label>
+                <button id="back_button_label" type="button"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back to start</span></button>
+            </div>
+
+            <div class="workspace-sidebar-header">
+                <h2>Analysis files</h2>
+                <p>Double-click a network file to open it.</p>
             </div>
 
             <!-- Selected-genes subgraph badge (populated by subgraph-indicator.js) -->
@@ -193,9 +144,9 @@
             <!-- Folder Tree -->
             <div id="folder-tree-container"></div>
 
-        </div>
+        </aside>
 
-        <div class="right" style="flex: 1;">
+        <section class="right workspace-main" aria-label="Network graph editor">
 
 
             <!-- Html part of Newt -->
@@ -570,16 +521,19 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                    <a href="http://newteditor.org" target="_blank"><img class="newt-logo" height="25"
+                                    <a href="http://newteditor.org" target="_blank" rel="noopener noreferrer"
+                                       aria-label="Open the Newt editor website"><img class="newt-logo" height="25"
                                                                                          width="auto"
-                                                                                         src="app/img/newt-logo.png"/></a>
+                                                                                         src="app/img/newt-logo.png"
+                                                                                         alt="Newt editor"/></a>
                                     <span class="input-file" id="displayed-file-name"></span>
                                     <span class="input-file" id="file-name"></span>
                                 </div>
                             </nav>
                         </div>
 
-                        <div id="sbgn-toolbar" class="read-mode-off">
+                        <div id="sbgn-toolbar" class="read-mode-off" role="toolbar"
+                             aria-label="Network editing tools">
                             <div class="inside-menu">
                                 <div style="padding: 1px;" class="sbgn-toolbar-element">
                                     <img id="new-file-icon" src="app/img/toolbar/new.svg"
@@ -736,7 +690,8 @@
                                          title="Search: Search (case insensitive) and highlight all nodes with specified label text">
 
                                 </div>
-                                <input id="search-by-label-text-box" class="sbgn-toolbar-element" type="label">
+                                <input id="search-by-label-text-box" class="sbgn-toolbar-element" type="search"
+                                       placeholder="Find node" aria-label="Find node by label">
 
                                 <div style="padding: 1px;" class="sbgn-toolbar-element">
                                     <img id="highlight-selected-icon" src="app/img/toolbar/highlight-selected.svg"
@@ -4908,7 +4863,7 @@
 
             <!-- Newt Html closed -->
 
-        </div>
+        </section>
 
     </div>
 </div>

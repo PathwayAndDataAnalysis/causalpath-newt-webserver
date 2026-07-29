@@ -16,6 +16,19 @@ const {Notyf} = require("notyf");
 module.exports = function () {
     var dynamicResize = appUtilities.dynamicResize.bind(appUtilities);
 
+    // The landing page reveals the editor after this bundle initializes. Expose
+    // a guarded resize routine so the newly visible Cytoscape canvas is sized
+    // from its real position. The network stack is empty during Newt startup,
+    // so only access the active graph after the first network has been created.
+    window.newtResizeWorkspace = function () {
+        dynamicResize();
+
+        if (appUtilities.networkIdsStack && appUtilities.networkIdsStack.length) {
+            var activeCy = appUtilities.getActiveCy();
+            if (activeCy) activeCy.resize();
+        }
+    };
+
     var layoutPropertiesView,
         generalPropertiesView,
         neighborhoodQueryView,

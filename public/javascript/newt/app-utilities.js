@@ -895,34 +895,35 @@ appUtilities.getExpandCollapseOptions = function (_cy) {
 // This modification is to resize newt to fit the screen along with folder tree
 // ---------------------------------------------------------------------------------------------------------------------
 appUtilities.dynamicResize = function () {
-    // get window inner width and inner height that includes scrollbars when they are rendered
-    // using $(window).width() would be problematic when scrolls are visible
-    // please see: https://stackoverflow.com/questions/19582862/get-browser-window-width-including-scrollbar
-    // and https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth
-    var windowWidth = window.innerWidth - 380;
-    var windowHeight = window.innerHeight;
+    // Size the editor from its real workspace rather than from a fixed sidebar
+    // estimate. This keeps the graph, inspector, menus, and toolbar aligned at
+    // every viewport size and when the results workspace is first revealed.
+    var workspace = $('#newt-graph-container');
+    var workspaceWidth = workspace.innerWidth();
 
-    var canvasWidth = 1000;
-    var canvasHeight = 680;
-
-    if (windowWidth > canvasWidth) {
-        //This is the margin on left and right of the main content when the page is displayed
-        var mainContentMargin = 10;
-        $('#network-panels-container').width(windowWidth * 0.8 - mainContentMargin);
-        $('#sbgn-inspector').width(windowWidth * 0.2 - mainContentMargin);
-
-        var w = $('#sbgn-inspector-and-canvas').width();
-        $('.nav-menu').width(w);
-        $('.navbar').width(w);
-        // $("#sbgn-info-content").width(windowWidth * 0.85);
-        $('#sbgn-toolbar').width(w);
-        $('#network-tabs-list-container').width(w);
+    if (!workspaceWidth) {
+        workspaceWidth = Math.max(680, window.innerWidth - 304);
     }
 
-    if (windowHeight > canvasHeight) {
-        $('#network-panels-container').height(windowHeight * 0.85);
-        $('#sbgn-inspector').height(windowHeight * 0.85);
+    var inspectorWidth = Math.round(workspaceWidth * 0.22);
+    inspectorWidth = Math.max(230, Math.min(320, inspectorWidth));
+
+    if (workspaceWidth < 760) {
+        inspectorWidth = Math.max(200, Math.round(workspaceWidth * 0.3));
     }
+
+    var canvasWidth = Math.max(360, workspaceWidth - inspectorWidth);
+    var tableTop = $('#sbgn-inspector-and-canvas').offset();
+    var availableHeight = tableTop ? window.innerHeight - tableTop.top - 14 : window.innerHeight - 190;
+    var workspaceHeight = Math.max(420, availableHeight);
+
+    $('#sbgn-inspector-and-canvas').width(workspaceWidth);
+    $('#network-panels-container').width(canvasWidth).height(workspaceHeight);
+    $('#sbgn-inspector').width(inspectorWidth).height(workspaceHeight);
+    $('.nav-menu').width(workspaceWidth);
+    $('.navbar').width(workspaceWidth);
+    $('#sbgn-toolbar').width(workspaceWidth);
+    $('#network-tabs-list-container').width(workspaceWidth);
 
     // trigger an event to notify that newt components are dynamically resized
     $(document).trigger('newtAfterDynamicResize');
