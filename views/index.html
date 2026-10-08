@@ -44,6 +44,19 @@
     </div>
 
 
+    <dialog id="analysis-error-dialog" class="analysis-error-dialog"
+        aria-labelledby="analysis-error-title" aria-describedby="analysis-error-message">
+        <h2 id="analysis-error-title">Analysis could not be completed</h2>
+        <p id="analysis-error-message"></p>
+        <section id="analysis-error-details" hidden>
+            <h3>Diagnostic details</h3>
+            <pre id="analysis-error-output" tabindex="0"></pre>
+        </section>
+        <form method="dialog">
+            <button class="btn btn-default" autofocus>Close</button>
+        </form>
+    </dialog>
+
     <header class="title-heading">
         <a class="brand" href="/" aria-label="CausalPath home">
             <img src="/img/logo.png" class="cp-logo" alt="">

@@ -23,6 +23,7 @@ pids
 # Generated files
 /.panda/
 /analysisOut/
+/jar/causalpath.jar
 /public/build/*
 !/public/build/.gitkeep
 

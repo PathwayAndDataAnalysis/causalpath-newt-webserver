@@ -24,16 +24,52 @@ const generateUUID = () => {
 
 const userSessionNumber = generateUUID();
 
-let handleResponse = (res, afterResolve, handleRequestError, getResData) => {
+let handleResponse = async (res, afterResolve, handleRequestError, getResData) => {
     let {statusText, status, ok} = res;
     if (!ok) {
-        let errStr = status + " - " + statusText;
-        return handleRequestError(errStr);
+        let error = {error: `The request failed (${status}${statusText ? " - " + statusText : ""}). Please try again.`};
+        try {
+            const body = await res.text();
+            if (body.trim()) {
+                if ((res.headers.get("content-type") || "").includes("application/json")) {
+                    const data = JSON.parse(body);
+                    if (typeof data.error === "string" && data.error.trim()) error = data;
+                } else if ((res.headers.get("content-type") || "").includes("text/plain")) {
+                    error.error = body;
+                }
+            }
+        } catch (_) {
+            // A missing/unreadable response body still needs a useful HTTP fallback.
+        }
+        return handleRequestError(error);
     }
     if (!getResData) getResData = () => res.text();
 
     return getResData(res).then(afterResolve);
 };
+
+function showAnalysisError(error) {
+    const dialog = document.getElementById("analysis-error-dialog");
+    const message = error && typeof error.error === "string" ? error.error :
+        "The analysis request could not be completed. Check your connection and try again.";
+    const details = [];
+    if (error && error.directory) details.push("Analysis folder: " + error.directory);
+    if (error && error.details) details.push(error.details);
+    if (error && error.stderr) details.push("Original error output (stderr):\n" + error.stderr);
+    if (error && error.stdout) details.push("Original console output (stdout):\n" + error.stdout);
+    if (error && Array.isArray(error.output)) {
+        error.output.forEach((run) => {
+            details.push("Analysis folder: " + run.directory);
+            if (run.stderr) details.push("Original error output (stderr):\n" + run.stderr);
+            if (run.stdout) details.push("Original console output (stdout):\n" + run.stdout);
+        });
+    }
+    // Use textContent so diagnostics and uploaded file names are never interpreted as HTML.
+    document.getElementById("analysis-error-message").textContent = message;
+    document.getElementById("analysis-error-output").textContent = details.join("\n\n");
+    document.getElementById("analysis-error-details").hidden = !details.length;
+    if (!dialog.open) dialog.showModal();
+}
 
 let graphChoice = graphChoiceEnum.ANALYSIS;
 
@@ -187,7 +223,7 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = "") {
         a_attr: {title: paths[0]}, // native tooltip shows the full name when truncated
         children: [],
         state: {opened: true},
-        data: file,
+        data: paths.length === 1 ? file : {},
     };
 
     if (newNode.text.endsWith(".nwt")) newNode.icon = "./img/tree-newt-icon.png";
@@ -232,7 +268,7 @@ function getFormatNodes(hierarchy, formatNodes = []) {
     hierarchy.forEach((rootNode) => {
         // this is leaf node
         if (rootNode.children.length === 0) {
-            if (rootNode.data.name.endsWith(".format")) {
+            if (rootNode.data && typeof rootNode.data.name === "string" && rootNode.data.name.endsWith(".format")) {
                 formatNodes.push(rootNode);
             }
         }
@@ -375,43 +411,31 @@ function buildTreeHierarchy(fileList) {
 }
 
 function buildTreeHierarchyAnalyzedFiles(rootDirName, fileList) {
-    let data = [];
+    const root = {
+        text: rootDirName,
+        id: "analysis-root-" + userSessionNumber,
+        state: {opened: true},
+        data: {},
+        children: [],
+    };
     fileList.forEach((file) => {
-        let paths = file.split("/");
-
-        let newNode = {
-            id: paths.at(2) + "_" + paths.at(3),
-            text: paths[3],
-            children: [],
-            state: {opened: true},
-            data: {
-                name: paths[3],
-                type: "ANALYZED_FILE",
-                sessionId: userSessionNumber,
-            },
+        // Server paths are ./analysisOut/<session>/<folders>/<filename>.
+        const paths = file.replace(/^\.\//, "").split("/");
+        const relativePaths = paths.slice(2);
+        if (!relativePaths.length || !relativePaths.at(-1)) return;
+        const data = {
+            name: relativePaths.join("/"),
+            type: "ANALYZED_FILE",
+            sessionId: paths[1],
         };
-
-        if (newNode.text.endsWith(".nwt")) newNode.icon = "./img/tree-newt-icon.png";
-        else if (newNode.text.endsWith(".sif")) newNode.icon = "./img/tree-sif-icon.png";
-        else if (newNode.text.endsWith(".format")) newNode.icon = "./img/tree-sif-icon.png";
-        else if (newNode.text.endsWith(".json")) newNode.icon = "./img/tree-json-icon.png";
-        else newNode.icon = "";
-
-        data.push(newNode);
+        buildFolderTree(relativePaths, root.children, data, root.id);
     });
     return withTreeContextMenu({
         core: {
             animation: 0,
             check_callback: true,
             force_text: true,
-            data: [
-                {
-                    text: rootDirName,
-                    id: rootDirName,
-                    state: {opened: true},
-                    children: data,
-                },
-            ],
+            data: [root],
         },
     });
 }
@@ -567,7 +591,7 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
 
             let handleRequestError = (err) => {
                 hideAnalysisProgress();
-                alert("The error message is:\n" + err);
+                showAnalysisError(err);
             };
 
             Promise.resolve()
@@ -611,8 +635,8 @@ document.getElementById("display-demo-graphs").addEventListener("click", (event)
     };
 
     let handleRequestError = (err) => {
-        alert("The error message is:\n" + err);
+        alert(err.error || String(err));
     };
 
-    makeRequest().then((res) => handleResponse(res, afterResolve, handleRequestError));
+    makeRequest().then((res) => handleResponse(res, afterResolve, handleRequestError)).catch(handleRequestError);
 });
