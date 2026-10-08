@@ -2005,6 +2005,9 @@ module.exports = function () {
             const instance = $.jstree.reference(this);
             let node = instance.get_node(e.target);
 
+            // Folder rows expand/collapse; only network files should load a graph.
+            if (!node || !node.data || node.children.length || !/\.(sif|nwt)$/.test(node.text || "")) return;
+
             let file = node.data;
 
             // dbl-clicking loads a different full graph -> drop any subgraph badge
