@@ -1999,6 +1999,10 @@ module.exports = function () {
             }
         }
 
+        function handleFileRequestError(error) {
+            showAnalysisError(error, "Network file could not be loaded");
+        }
+
         // Below codes handles the click event on the files
         // jsTree events
         $('#folder-tree-container').on('dblclick.jstree', function (e, data) {
@@ -2017,11 +2021,6 @@ module.exports = function () {
             const chiseInstance = appUtilities.getActiveChiseInstance();
             const cy = appUtilities.getActiveCy();
             const sifStyle = sifStyleFactory();
-
-            const handleRequestError = err => {
-                alert("The error message is:\n" + err);
-                throw err;
-            };
 
             if (file.type === "ANALYZED_FILE") {
                 let query = {
@@ -2068,7 +2067,8 @@ module.exports = function () {
                     chiseInstance.loadSIFFile(sifFile, layoutBy, loadCallbackInvalidityWarning);
                 };
 
-                makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+                makeRequest().then(res => handleResponse(res, afterResolve, handleFileRequestError))
+                    .catch(handleFileRequestError);
 
             }
             else if (file.type === "SAMPLE_FILE") {
@@ -2102,7 +2102,8 @@ module.exports = function () {
                     chiseInstance.loadNwtFile(sampleFile);
                 };
 
-                makeRequest().then(res => handleResponse(res, afterResolve, handleRequestError));
+                makeRequest().then(res => handleResponse(res, afterResolve, handleFileRequestError))
+                    .catch(handleFileRequestError);
 
             }
             else {
@@ -2123,7 +2124,7 @@ module.exports = function () {
                         appUtilities.triggerLayout(cy, true);
 
                         // Load .format file of corresponding sif file
-                        let formatNode = instance.get_node(e.target.id.replace('.sif', '.format'));
+                        let formatNode = instance.get_node(node.id.replace(/\.sif$/, '.format'));
 
                         // Check if format file exists
                         if (formatNode) {
@@ -2261,9 +2262,7 @@ module.exports = function () {
             var fileName = nodeFileName(node);
             readSifTextForNode(node).then(function (sif) {
                 appUtilities.graphStatisticsView.renderFromSif(sif, fileName);
-            }).catch(function (err) {
-                alert("The error message is:\n" + err);
-            });
+            }).catch(handleFileRequestError);
         };
 
         // bridge for the file-tree "load subgraph (overlay)" item -> floating preview
@@ -2272,9 +2271,7 @@ module.exports = function () {
             readSifAndFormatForNode(node, formatNode).then(function (r) {
                 appUtilities.loadSubgraphView.render(r.sif, fileName,
                     {mode: 'overlay', format: r.format});
-            }).catch(function (err) {
-                alert("The error message is:\n" + err);
-            });
+            }).catch(handleFileRequestError);
         };
 
         // bridge for the file-tree "load subgraph" item -> filtered subgraph onto
@@ -2284,9 +2281,7 @@ module.exports = function () {
             readSifAndFormatForNode(node, formatNode).then(function (r) {
                 appUtilities.loadSubgraphView.render(r.sif, fileName,
                     {mode: 'canvas', format: r.format});
-            }).catch(function (err) {
-                alert("The error message is:\n" + err);
-            });
+            }).catch(handleFileRequestError);
         };
 
         // bridge for the file-tree "open" item -> load the full graph onto the main
@@ -2299,9 +2294,7 @@ module.exports = function () {
                 mainCanvasLoad.loadStyledSifToCanvas(r.sif, r.format, fileName, function () {
                     promptInvalidFileView.render();
                 });
-            }).catch(function (err) {
-                alert("The error message is:\n" + err);
-            });
+            }).catch(handleFileRequestError);
         };
 
         // clear graph: Setting the graph to empty file

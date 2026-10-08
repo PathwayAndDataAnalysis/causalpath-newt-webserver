@@ -30,11 +30,12 @@ let handleResponse = async (res, afterResolve, handleRequestError, getResData) =
     return getResData(res).then(afterResolve);
 };
 
-function showAnalysisError(error) {
+function showAnalysisError(error, title = "Analysis could not be completed") {
     const dialog = document.getElementById("analysis-error-dialog");
     const message = error && typeof error.error === "string" ? error.error :
-        "The analysis request could not be completed. Check your connection and try again.";
+        "The request could not be completed. Check your connection and try again.";
     const details = [];
+    if (error && error.message) details.push(error.message);
     if (error && error.directory) details.push("Analysis folder: " + error.directory);
     if (error && error.details) details.push(error.details);
     if (error && error.stderr) details.push("Original error output (stderr):\n" + error.stderr);
@@ -47,6 +48,7 @@ function showAnalysisError(error) {
         });
     }
     // Use textContent so diagnostics and uploaded file names are never interpreted as HTML.
+    document.getElementById("analysis-error-title").textContent = title;
     document.getElementById("analysis-error-message").textContent = message;
     document.getElementById("analysis-error-output").textContent = details.join("\n\n");
     document.getElementById("analysis-error-details").hidden = !details.length;
@@ -120,7 +122,7 @@ function treeContextMenuItems(node) {
     // the sibling ".format" node (if any) carries node colors/infoboxes for
     // client-uploaded .sif files; analyzed files bundle it in their content.
     let getFormatNode = function (instance, targetNode) {
-        let formatId = String(targetNode.id).replace(".sif", ".format");
+        let formatId = String(targetNode.id).replace(/\.sif$/, ".format");
         let formatNode = instance.get_node(formatId);
         return formatNode || null;
     };
@@ -183,6 +185,8 @@ function withTreeContextMenu(config) {
 function buildFolderTree(paths, treeNode, file, parentNodePath = "") {
     let idSeparator = "___";
     if (paths.length === 0) return;
+    // Escaping underscores keeps a name containing ___ distinct from nested folders.
+    const nodeId = parentNodePath + idSeparator + encodeURIComponent(paths[0]).replace(/_/g, "%5F");
 
     for (let i = 0; i < treeNode.length; i++) {
         let nodeText = treeNode[i].text;
@@ -192,13 +196,12 @@ function buildFolderTree(paths, treeNode, file, parentNodePath = "") {
                 paths.splice(1, paths.length),
                 treeNode[i].children,
                 file,
-                parentNodePath + idSeparator + nodeText
+                nodeId
             );
             return;
         }
     }
 
-    let nodeId = parentNodePath + idSeparator + paths[0];
     let newNode = {
         id: nodeId,
         text: paths[0],
