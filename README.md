@@ -19,7 +19,7 @@ The hosted application is available at
 
 - [Node.js 24 LTS](https://nodejs.org/) (`>=24 <25`)
 - npm 11 or newer
-- Java 11 or newer for running the bundled CausalPath JAR
+- Java 11 or newer for running the CausalPath JAR
 - `unzip` for extracting submitted analyses
 
 The repository includes `.nvmrc` and `.node-version` files so supported Node
@@ -58,6 +58,11 @@ npm --version
 
 The Node version should begin with `v24` and the npm version should be 11 or
 newer.
+
+Before submitting analyses, place your CausalPath JAR at `jar/causalpath.jar`.
+Create the `jar/` directory if needed. The JAR is not tracked by Git on this
+branch and must be supplied separately; `.gitignore` prevents it from being
+committed accidentally.
 
 ## Running the application
 
@@ -142,7 +147,7 @@ network and verify that it renders and remains editable.
 | `public/stylesheets/` | Source styles bundled by PostCSS. |
 | `public/build/` | Generated browser bundles. |
 | `samples/` | Demo analysis networks. |
-| `jar/` | Bundled CausalPath Java application. |
+| `jar/` | Locally supplied CausalPath Java application (not tracked by Git). |
 | `test/` | Node.js test suite. |
 
 ## Contact
