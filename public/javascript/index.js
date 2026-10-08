@@ -6,24 +6,6 @@ const graphChoiceEnum = {
     DEMO: 3,
 };
 
-const generateUUID = () => {
-    let d = new Date().getTime(),
-        d2 = (performance && performance.now && performance.now() * 1000) || 0;
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-        let r = Math.random() * 16;
-        if (d > 0) {
-            r = (d + r) % 16 | 0;
-            d = Math.floor(d / 16);
-        } else {
-            r = (d2 + r) % 16 | 0;
-            d2 = Math.floor(d2 / 16);
-        }
-        return (c === "x" ? r : (r & 0x7) | 0x8).toString(16);
-    });
-};
-
-const userSessionNumber = generateUUID();
-
 let handleResponse = async (res, afterResolve, handleRequestError, getResData) => {
     let {statusText, status, ok} = res;
     if (!ok) {
@@ -413,7 +395,7 @@ function buildTreeHierarchy(fileList) {
 function buildTreeHierarchyAnalyzedFiles(rootDirName, fileList) {
     const root = {
         text: rootDirName,
-        id: "analysis-root-" + userSessionNumber,
+        id: "analysis-root-" + fileList[0].replace(/^\.\//, "").split("/")[1],
         state: {opened: true},
         data: {},
         children: [],
@@ -561,7 +543,6 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
         reader.onload = function (e) {
             let q = {
                 fileContent: e.target.result,
-                room: userSessionNumber,
             };
 
             updateAnalysisProgress("Uploading files and running CausalPath…");
