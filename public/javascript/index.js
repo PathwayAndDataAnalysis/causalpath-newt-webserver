@@ -54,6 +54,15 @@ function showAnalysisError(error) {
 }
 
 let graphChoice = graphChoiceEnum.ANALYSIS;
+let currentAnalysisSession = null;
+
+function setDownloadResultsSession(session) {
+    currentAnalysisSession = session && session.sessionId ? session : null;
+    const container = document.getElementById("download-results-container");
+    if (container) {
+        container.hidden = !currentAnalysisSession;
+    }
+}
 
 const analysisProgressElements = {
     overlay: document.getElementById("analysis-progress-overlay"),
@@ -486,6 +495,7 @@ function showChoosingMenus() {
     document.getElementById("back_menu").style.display = "none";
     document.getElementById("graph-container").style.display = "none";
     document.getElementById("folder-tree-container").style.display = "none";
+    setDownloadResultsSession(null);
 }
 
 function showGraphAndFolders() {
@@ -513,6 +523,8 @@ document.getElementById("picker").addEventListener("change", (event) => {
 
     event.target.value = null; // to make sure the same files can be loaded again
 
+    graphChoice = graphChoiceEnum.JSON;
+    setDownloadResultsSession(null);
     showGraphAndFolders();
 
     // this.loadAnalysisFilesFromClient(fileList);
@@ -561,9 +573,15 @@ document.getElementById("file-analysis-input").addEventListener("change", (event
 
                 dirStr = dirStr.trim();
                 let fileList = dirStr.split("\n");
+                let sessionId = fileList[0] ? fileList[0].replace(/^\.\//, "").split("/")[1] : "";
 
                 let analyzedFileHierarchy = buildTreeHierarchyAnalyzedFiles(fileNameSplit[0], fileList);
 
+                graphChoice = graphChoiceEnum.ANALYSIS;
+                setDownloadResultsSession({
+                    sessionId,
+                    name: fileNameSplit[0] || "causalpath",
+                });
                 showGraphAndFolders();
 
                 generateJSTree(analyzedFileHierarchy);
@@ -595,6 +613,42 @@ document.getElementById("back_button_label").addEventListener("click", (event) =
     showChoosingMenus();
 });
 
+const downloadResultsButton = document.getElementById("download-results-button");
+if (downloadResultsButton) {
+    downloadResultsButton.addEventListener("click", () => {
+        if (!currentAnalysisSession || !currentAnalysisSession.sessionId) return;
+
+        const {sessionId, name} = currentAnalysisSession;
+        const baseName = (name || "causalpath").replace(/[^A-Za-z0-9._-]+/g, "_").replace(/^_+|_+$/g, "") || "causalpath";
+        const downloadName = `${baseName}-results.zip`;
+        const url = `/api/downloadResults/${encodeURIComponent(sessionId)}?name=${encodeURIComponent(baseName)}`;
+
+        downloadResultsButton.disabled = true;
+
+        let afterResolve = (blob) => {
+            const objectUrl = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = objectUrl;
+            link.download = downloadName;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+        };
+
+        let handleRequestError = (err) => {
+            showAnalysisError(err);
+        };
+
+        fetch(url, {method: "GET"})
+            .then((res) => handleResponse(res, afterResolve, handleRequestError, (r) => r.blob()))
+            .catch(handleRequestError)
+            .finally(() => {
+                downloadResultsButton.disabled = false;
+            });
+    });
+}
+
 
 document.getElementById("display-demo-graphs").addEventListener("click", (event) => {
     let makeRequest = () =>
@@ -610,6 +664,8 @@ document.getElementById("display-demo-graphs").addEventListener("click", (event)
 
         let folderTree = buildTreeHierarchySampleFiles(dirsList.split("\n"));
 
+        graphChoice = graphChoiceEnum.DEMO;
+        setDownloadResultsSession(null);
         showGraphAndFolders();
 
         generateJSTree(folderTree);

@@ -676,13 +676,53 @@ img.collaboration-logo {
 #folder-tree-container {
     display: none;
     width: 100%;
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 280px);
     margin: 0;
-    padding: 8px 10px 24px;
+    padding: 8px 10px 16px;
     position: relative;
     overflow: auto;
     border-top: 1px solid var(--cp-line);
     font-size: 12px;
+}
+
+.download-results-container[hidden] {
+    display: none;
+}
+
+.download-results-container {
+    padding: 12px 18px 18px;
+    border-top: 1px solid var(--cp-line);
+}
+
+.download-results-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 32px;
+    padding: 6px 12px;
+    border: 1px solid var(--cp-line);
+    border-radius: var(--cp-radius);
+    background: var(--cp-surface-subtle);
+    color: #465460;
+    font-size: 12px !important;
+    font-weight: 500;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, opacity 140ms ease;
+}
+
+.download-results-button:hover,
+.download-results-button:focus {
+    border-color: var(--cp-line-strong);
+    background: #eef2f4;
+    color: var(--cp-ink);
+}
+
+.download-results-button:disabled {
+    opacity: 0.65;
+    cursor: wait;
 }
 
 #folder-tree-container .jstree-anchor {
