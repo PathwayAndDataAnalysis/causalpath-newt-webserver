@@ -42,6 +42,10 @@ function injectStyles() {
         '.subgraph-indicator-add{flex:0 0 auto;border:1px solid #2a6ebb;background:#2a6ebb;',
         'color:#fff;border-radius:3px;padding:2px 8px;cursor:pointer;font-size:12px;}',
         '.subgraph-indicator-add:hover{background:#215aa0;}',
+        '.subgraph-indicator-suggestions{border:1px solid #b9c6d6;border-top:none;',
+        'border-radius:0 0 3px 3px;background:#fff;max-height:140px;overflow-y:auto;display:none;}',
+        '.subgraph-indicator-suggestion{padding:4px 8px;cursor:pointer;font-size:12px;color:#33475b;}',
+        '.subgraph-indicator-suggestion:hover{background:#617d8a;color:floralwhite;}',
         '.subgraph-indicator-note{margin-top:3px;color:#c0392b;min-height:0;}',
     ].join('');
     var style = document.createElement('style');
@@ -74,9 +78,10 @@ function render() {
         }).join('');
         html += '<div class="subgraph-indicator-body">' + chips +
             '<div class="subgraph-indicator-add-row">' +
-            '<input type="text" class="subgraph-indicator-input" placeholder="add gene(s)…">' +
+            '<input type="text" class="subgraph-indicator-input" autocomplete="off" placeholder="add gene(s)…">' +
             '<button type="button" class="subgraph-indicator-add">Add</button>' +
             '</div>' +
+            '<div class="subgraph-indicator-suggestions"></div>' +
             '<div class="subgraph-indicator-note">' + _escape(note) + '</div>' +
             '<div><span class="subgraph-indicator-full">Show full graph</span></div>' +
             '</div>';
@@ -124,6 +129,29 @@ function removeGene(name) {
     }
 }
 
+// filter full-graph genes by prefix (excluding already-selected seeds) and
+// display up to 8 autocomplete suggestions below the input, matching LoadSubgraphView.
+function renderSuggestions(query) {
+    var $sugg = $container().find('.subgraph-indicator-suggestions');
+    if (!$sugg.length || !state) return;
+    var q = (query || '').trim().toLowerCase();
+    if (!q) {
+        $sugg.hide().empty();
+        return;
+    }
+    var matches = (state.genes || []).filter(function (g) {
+        return g.toLowerCase().indexOf(q) === 0 && state.seeds.indexOf(g) === -1;
+    }).slice(0, 8);
+    if (!matches.length) {
+        $sugg.hide().empty();
+        return;
+    }
+    var html = matches.map(function (g) {
+        return '<div class="subgraph-indicator-suggestion">' + _escape(g) + '</div>';
+    }).join('');
+    $sugg.html(html).show();
+}
+
 // add one or more typed gene names to the seeds. only genes present in the full
 // graph count; anything else is reported in the note. re-filters if we added any.
 function addFromText(text) {
@@ -166,6 +194,15 @@ function wireEvents() {
         e.stopPropagation();
         showFull();
     });
+    // typing -> refresh autocomplete suggestions
+    $c.on('input', '.subgraph-indicator-input', function () {
+        renderSuggestions(this.value);
+    });
+    // pick a suggestion -> add that gene and refresh the subgraph
+    $c.on('click', '.subgraph-indicator-suggestion', function (e) {
+        e.stopPropagation();
+        addFromText($(this).text());
+    });
     // add genes: click the button or press Enter in the input
     $c.on('click', '.subgraph-indicator-add', function (e) {
         e.stopPropagation();
@@ -189,13 +226,15 @@ function show(opts) {
     }
     injectStyles();
     var fullSif = opts.fullSif || '';
+    var parsed = subgraphUtils.parseSifGenes(fullSif);
     state = {
         fullSif: fullSif,
         format: opts.format || '',
         fileName: opts.fileName || '',
         seeds: opts.seeds.slice(),
+        genes: parsed.genes,
         // gene names present in the full graph, for validating typed additions
-        geneSet: new Set(subgraphUtils.parseSifGenes(fullSif).genes),
+        geneSet: new Set(parsed.genes),
     };
     expanded = false;
     note = '';
